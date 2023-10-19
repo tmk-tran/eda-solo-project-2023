@@ -23,6 +23,7 @@ import Games from "../Games/Games";
 import Rounds from "../Rounds/Rounds";
 import Profile from "../Profile/Profile";
 import History from "../History/History";
+import GamesPage from "../GamesPage/GamesPage";
 import ThreeRing from "../ThreeRing/ThreeRing";
 import FourRing from "../FourRing/FourRing";
 import FiveRing from "../FiveRing/FiveRing";
@@ -70,11 +71,11 @@ function App() {
             <UserPage />
           </ProtectedRoute>
 
-          <ProtectedRoute exact path="/games">
+          <ProtectedRoute exact path="/games-admin">
             <Games />
           </ProtectedRoute>
 
-          <ProtectedRoute exact path="/rounds">
+          <ProtectedRoute exact path="/rounds-admin">
             <Rounds />
           </ProtectedRoute>
 
@@ -84,6 +85,10 @@ function App() {
 
           <ProtectedRoute exact path="/history">
             <History />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/games">
+            <GamesPage />
           </ProtectedRoute>
 
           <ProtectedRoute

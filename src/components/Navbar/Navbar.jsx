@@ -49,6 +49,8 @@ export default function SimpleBottomNavigation() {
         <BottomNavigationAction
           label="Games"
           style={{ color: "ghostwhite" }}
+          component={Link}
+          to="/games"
           icon={
             <FontAwesomeIcon
               icon={faBullseye}

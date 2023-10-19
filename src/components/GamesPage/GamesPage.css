@@ -1,0 +1,4 @@
+.game-type-link {
+    display: flex;
+    justify-content: space-between;
+}
