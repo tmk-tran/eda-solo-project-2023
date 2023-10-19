@@ -41,7 +41,7 @@ export default function QuickRound() {
   const [gameNotes, setGameNotes] = useState("");
   const [targetName, setTargetName] = useState("Quick Round");
   const [targetScore, setTargetScore] = useState(0); // for this component, we want to record total shots taken, too
-  // State for Trap Round Scoring ~~~~~~~~~~~~~~~~~~~~~~~~~
+  // State for Quick Round Scoring ~~~~~~~~~~~~~~~~~~~~~~~~~
   const [hit, setHit] = useState(getCookie("hit_quick") || 0);
 
   useEffect(() => {
@@ -173,7 +173,7 @@ export default function QuickRound() {
     setRoundScores(newRoundScores);
     setRoundHeaders([...roundHeaders, newRoundHeader]);
     setHit(0);
-    setTargetScore(targetScore + 25);
+    setTargetScore(sumRoundScores);
     // setTotalScore(0);
   };
 
