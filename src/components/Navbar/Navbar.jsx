@@ -1,10 +1,14 @@
 import React from "react";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
+import PersonIcon from "@mui/icons-material/Person";
 import RestoreIcon from "@mui/icons-material/Restore";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import ArchiveIcon from "@mui/icons-material/Archive";
+import GpsFixedIcon from "@mui/icons-material/GpsFixed";
 import Paper from "@mui/material/Paper";
+import InfoIcon from '@mui/icons-material/Info';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBullseye } from '@fortawesome/free-solid-svg-icons';
 
 export default function SimpleBottomNavigation() {
   return (
@@ -18,10 +22,12 @@ export default function SimpleBottomNavigation() {
         //   onChange={(event, newValue) => {
         //     setValue(newValue);
         //   }}
-      >
+      >s
+        <BottomNavigationAction label="Profile" icon={<PersonIcon />} />
         <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-        <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-        <BottomNavigationAction label="Archive" icon={<ArchiveIcon />} />
+        <BottomNavigationAction label="Train" icon={<GpsFixedIcon style={{ fontSize: "34px" }}/>} />
+        <BottomNavigationAction label="Games" icon={<FontAwesomeIcon icon={faBullseye} style={{ fontSize: "22px" }} />} />
+        <BottomNavigationAction label="Info" icon={<InfoIcon />} />
       </BottomNavigation>
     </Paper>
   );
