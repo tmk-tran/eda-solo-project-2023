@@ -25,14 +25,18 @@ export default function Profile() {
   const [editedUsername, setEditedUsername] = useState("");
   const [newProfileName, setNewProfileName] = useState(getCookie("name") || "");
 
-  const user = useSelector((store) => store.user); // possible change of name here
+  const user = useSelector((store) => store.user);
   console.log("USER IS:", user.username);
   const currentUser = user.username;
 
-  const profileEdit = () => {
+  const profileEdit = (e) => {
     console.log("WIRE ME FOR PROFILE EDIT");
     setEdit(!edit);
   };
+
+  const inputClick = (e) => {
+    e.stopPropagation();
+  }
 
   const saveProfileName = (e) => {
     e.preventDefault();
@@ -47,7 +51,7 @@ export default function Profile() {
       <Card>
         <CardContent>
           <Typography variant="h5">Profile</Typography>
-          <div className="profile-head" >
+          <div className="profile-head" onClick={profileEdit}>
             {!edit ? (
               <>
                 {" "}
@@ -68,6 +72,7 @@ export default function Profile() {
                     type="text"
                     value={newProfileName}
                     onChange={(e) => setNewProfileName(e.target.value)}
+                    onClick={inputClick}
                     onBlur={saveProfileName}
                   ></input>
                 </div>
