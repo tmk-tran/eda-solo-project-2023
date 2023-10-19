@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 
 import GamesList from "../GamesList/GamesList";
-import "./Games.css";
+// import "./Games.css";
 
 export default function Games() {
   const dispatch = useDispatch();

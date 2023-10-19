@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import GameTimer from "../GameTimer/GameTimer"; // timer keeps resetting, figure out issue
+// import GameTimer from "../GameTimer/GameTimer"; // timer keeps resetting, figure out issue
 import { useDispatch, useSelector } from "react-redux";
 // ~~~~~~~~~~~~~~~ Style ~~~~~~~~~~~~~~~~~~
 import {
