@@ -9,6 +9,9 @@ import {
   Typography,
 } from "@mui/material";
 import "./Profile.css";
+import BarChart from "../Chart/Chart";
+import LineDot from "../LineDot/LineDot";
+import PieChart from "../AreaChart/AreaChart";
 
 export default function Profile() {
   const profileEdit = () => {
@@ -30,13 +33,23 @@ export default function Profile() {
           <br />
           <Card style={{ backgroundColor: "antiquewhite" }}>
             <CardContent>
-              <Typography variant="h6">Graphs Here</Typography>
+              <Typography variant="h6">
+                <BarChart />
+              </Typography>
             </CardContent>
           </Card>
           <br />
           <Card style={{ backgroundColor: "antiquewhite" }}>
             <CardContent>
-              <Typography variant="h6">Additional Graphs Here</Typography>
+              <Typography variant="h6">
+                <LineDot />
+              </Typography>
+            </CardContent>
+          </Card>
+          <br />
+          <Card style={{ backgroundColor: "antiquewhite" }}>
+            <CardContent>
+              <Typography variant="h6">{/* <PieChart /> */}</Typography>
             </CardContent>
           </Card>
         </CardContent>
