@@ -24,7 +24,7 @@ export default function QuickRound() {
   const [showSettings, setShowSettings] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [replaceName, setReplaceName] = useState(false);
-  const [roundName, setRoundName] = useState(getCookie("round") || "Trap");
+  const [roundName, setRoundName] = useState(getCookie("round") || "Quick Round");
   // Define state to manage round scores and round headers
   const [roundScores, setRoundScores] = useState([]); // Array to store round scores
   const [roundHeaders, setRoundHeaders] = useState([1]); // Array to store round headers
@@ -39,8 +39,8 @@ export default function QuickRound() {
   const [gameDate, setGameDate] = useState(new Date()); // Initialize with the current date
   console.log("GAME DATE IS:", gameDate);
   const [gameNotes, setGameNotes] = useState("");
-  const [targetName, setTargetName] = useState("Trap");
-  const [targetScore, setTargetScore] = useState(25); // update this when we decide what it is for
+  const [targetName, setTargetName] = useState("Quick Round");
+  const [targetScore, setTargetScore] = useState(0); // for this component, we want to record total shots taken, too
   // State for Trap Round Scoring ~~~~~~~~~~~~~~~~~~~~~~~~~
   const [hit, setHit] = useState(getCookie("hit_quick") || 0);
 
@@ -93,7 +93,7 @@ export default function QuickRound() {
     return date.toLocaleDateString("en-US");
   }
 
-  // Record Trap Hits
+  // Record Hits
   const targetHit = () => {
     setHit(hit + 1);
   };
