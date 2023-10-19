@@ -1,0 +1,45 @@
+/* ~~~~~~~~~~ Fourth Ring Style ~~~~~~~~~~ */
+
+.fourth-ring {
+  background-color: yellow;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fourth-ring:hover {
+  background-color: rgba(255, 255, 0, 0.778);
+}
+
+.third-ring {
+  background-color: black;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.third-ring:hover {
+  background-color: rgba(0, 0, 0, 0.778);
+}
+
+/* Media query for screens with a maximum width of 600px (typical for iPhones) */
+/* Media query for screens with a maximum width of 600px (typical for iPhones) */
+@media (max-width: 600px) {
+  .fourth-ring {
+    width: 45%; /* Adjust the width for mobile screens */
+    height: 45%; /* Adjust the height for mobile screens */
+  }
+
+  .third-ring {
+    width: 70%;
+    height: 70%;
+  }
+}

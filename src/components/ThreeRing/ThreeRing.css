@@ -1,0 +1,120 @@
+/* ~~~~~~~~~~ Target Style ~~~~~~~~~~ */
+
+.three-ring {
+  background-color: black;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.three-ring:hover {
+  background-color: rgba(0, 0, 0, 0.778);
+}
+
+.three-ring-inner {
+  background-color: yellow;
+  width: 60%;
+  height: 60%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.three-ring-inner:hover {
+  background-color: rgba(255, 255, 0, 0.778);
+}
+
+.three-ring-bulls {
+  background-color: red;
+  width: 33%;
+  height: 33%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.small-ring-bulls:hover {
+  background-color: crimson;
+}
+
+.container {
+  height: 50vh;
+  margin: 5px auto;
+  background-color: rgb(221, 227, 227);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Media query for screens with a maximum width of 600px (typical for iPhones) */
+@media (max-width: 600px) {
+  .container {
+    height: 50vh;
+    width: 50vh;
+  }
+
+  .three-ring {
+    width: 35%; /* Adjust the width for mobile screens */
+    height: 35%; /* Adjust the height for mobile screens */
+  }
+
+  .three-ring-inner {
+    width: 60%; /* Adjust the width for mobile screens */
+    height: 60%; /* Adjust the height for mobile screens */
+  }
+
+  .three-ring-bulls {
+    width: 35%; /* Adjust the width for mobile screens */
+    height: 35%; /* Adjust the height for mobile screens */
+  }
+}
+
+/* ~~~~~~~~~~ Button Style ~~~~~~~~~~ */
+.top-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+/* ~~~~~~~~~~ Header ~~~~~~~~~~ */
+.game-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ~~~~~~~~~~ Settings ~~~~~~~~~~ */
+.settings-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* ~~~~~~~~~~ Round Table ~~~~~~~~~~ */
+/* Basic styling for the table */
+table {
+  border-collapse: collapse;
+  width: 40%;
+  margin: 0 auto;
+}
+
+th,
+td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* Styling for the right column */
+td.score {
+  text-align: center;
+}

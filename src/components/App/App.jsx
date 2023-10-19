@@ -1,34 +1,42 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import {
   HashRouter as Router,
   Redirect,
   Route,
   Switch,
-} from 'react-router-dom';
+} from "react-router-dom";
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 
-import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
+import Nav from "../Nav/Nav";
+import Footer from "../Footer/Footer";
 
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-
-import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
-import LandingPage from '../LandingPage/LandingPage';
-import LoginPage from '../LoginPage/LoginPage';
-import RegisterPage from '../RegisterPage/RegisterPage';
-
-import './App.css';
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import "./App.css";
+import AboutPage from "../AboutPage/AboutPage";
+import UserPage from "../UserPage/UserPage";
+import LandingPage from "../LandingPage/LandingPage";
+import LoginPage from "../LoginPage/LoginPage";
+import RegisterPage from "../RegisterPage/RegisterPage";
+import Games from "../Games/Games";
+import Rounds from "../Rounds/Rounds";
+import Profile from "../Profile/Profile";
+import History from "../History/History";
+import ThreeRing from "../ThreeRing/ThreeRing";
+import FourRing from "../FourRing/FourRing";
+import FiveRing from "../FiveRing/FiveRing";
+import Trap from "../Trap/Trap";
+import QuickRound from "../QuickRound/QuickRound";
+import SuccessPage from "../SuccessPage/SuccessPage";
+import TestComp from "../TestComponent/TestComponent";
 
 function App() {
   const dispatch = useDispatch();
 
-  const user = useSelector(store => store.user);
+  const user = useSelector((store) => store.user);
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_USER' });
+    dispatch({ type: "FETCH_USER" });
   }, [dispatch]);
 
   return (
@@ -60,54 +68,85 @@ function App() {
             <UserPage />
           </ProtectedRoute>
 
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/info"
-          >
-            <InfoPage />
+          <ProtectedRoute exact path="/games">
+            <Games />
           </ProtectedRoute>
 
-          <Route
+          <ProtectedRoute exact path="/rounds">
+            <Rounds />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/profile">
+            <Profile />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/history">
+            <History />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows game page else shows LoginPage
             exact
-            path="/login"
+            path="/3-ring"
           >
-            {user.id ?
-              // If the user is already logged in, 
+            <ThreeRing />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/4-ring">
+            <FourRing />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/5-ring">
+            <FiveRing />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/trap">
+            <Trap />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/success">
+            <SuccessPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/quickround">
+            <QuickRound />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/test">
+            <TestComp />
+          </ProtectedRoute>
+
+          <Route exact path="/login">
+            {user.user_id ? (
+              // If the user is already logged in,
               // redirect to the /user page
               <Redirect to="/user" />
-              :
+            ) : (
               // Otherwise, show the login page
               <LoginPage />
-            }
+            )}
           </Route>
 
-          <Route
-            exact
-            path="/registration"
-          >
-            {user.id ?
-              // If the user is already logged in, 
+          <Route exact path="/registration">
+            {user.user_id ? (
+              // If the user is already logged in,
               // redirect them to the /user page
               <Redirect to="/user" />
-              :
+            ) : (
               // Otherwise, show the registration page
               <RegisterPage />
-            }
+            )}
           </Route>
 
-          <Route
-            exact
-            path="/home"
-          >
-            {user.id ?
-              // If the user is already logged in, 
+          <Route exact path="/home">
+            {user.user_id ? (
+              // If the user is already logged in,
               // redirect them to the /user page
               <Redirect to="/user" />
-              :
+            ) : (
               // Otherwise, show the Landing page
               <LandingPage />
-            }
+            )}
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}

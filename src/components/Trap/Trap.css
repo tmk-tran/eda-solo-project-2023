@@ -1,0 +1,9 @@
+.trap-hit-button,
+.trap-hit-display {
+  display: flex;
+  justify-content: center;
+}
+
+.trap-hit-card {
+  margin-bottom: 15px;
+}

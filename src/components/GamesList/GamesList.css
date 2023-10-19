@@ -1,0 +1,57 @@
+.list-buttons {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.edit-mode {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.edit-field {
+  flex-basis: 50%; /* Two fields per row, adjust as needed */
+  margin-bottom: 10px;
+}
+
+/* Style labels in edit mode */
+.edit-field label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Style input fields in edit mode */
+.edit-field input,
+.edit-field textarea {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.list-buttons {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Style the Delete button */
+.list-buttons button {
+  margin-left: 10px;
+  background-color: crimson;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}

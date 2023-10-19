@@ -1,0 +1,76 @@
+/* ~~~~~~~~~~ Fourth Ring Style ~~~~~~~~~~ */
+
+.fifth-ring {
+  background-color: black;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fifth-ring:hover {
+  background-color: rgba(0, 0, 0, 0.778);
+}
+
+.fourth-ring2 {
+  background-color: yellow;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fourth-ring2:hover {
+  background-color: rgba(255, 255, 0, 0.778);
+}
+
+.third-ring2 {
+  background-color: black;
+  width: 214px;
+  height: 214px;
+  border-radius: 50%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.third-ring2:hover {
+  background-color: rgba(0, 0, 0, 0.778);
+}
+
+.fifth-bulls {
+  background-color: red;
+  width: 33%;
+  height: 33%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fifth-bulls:hover {
+  background-color: crimson;
+}
+
+/* Media query for screens with a maximum width of 600px (typical for iPhones) */
+/* Media query for screens with a maximum width of 600px (typical for iPhones) */
+@media (max-width: 600px) {
+  .fifth-ring,
+  .fifth-bulls {
+    width: 45%; /* Adjust the width for mobile screens */
+    height: 45%; /* Adjust the height for mobile screens */
+  }
+
+  .fourth-ring2,
+  .third-ring2 {
+    width: 75%;
+    height: 75%;
+  }
+}
