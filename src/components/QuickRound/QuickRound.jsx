@@ -340,7 +340,7 @@ export default function QuickRound() {
                 </tr>
               </tbody>
             </table>
-            <CustomizedTables roundHeaders={roundHeaders} roundScores={roundScores}/>
+            {/* <CustomizedTables addRound={addRound}/> */}
           </div>
           <div className="trap-hit-display">
             <p>Hits: {hit}</p>
