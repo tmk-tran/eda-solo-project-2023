@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import EmojiEventsOutlinedIcon from "@mui/icons-material/EmojiEventsOutlined";
 import "./Profile.css";
 import BarChart from "../Chart/Chart";
 import LineDot from "../LineDot/LineDot";
@@ -73,8 +74,10 @@ export default function Profile() {
               <>
                 {" "}
                 <div className="profile-name-icon">
-                  <AccountCircleIcon />
+                  <AccountCircleIcon style={{ marginRight: "5px" }}/>
                   {currentUser}
+                  <EmojiEventsOutlinedIcon style={{ marginLeft: "20px" }}/>
+                  Display PR
                 </div>
                 <Button onClick={profileEdit}>
                   <ArrowForwardIosIcon />
