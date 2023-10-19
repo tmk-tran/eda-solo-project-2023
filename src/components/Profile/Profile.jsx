@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   Card,
@@ -8,27 +9,70 @@ import {
   Button,
   Typography,
 } from "@mui/material";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import "./Profile.css";
 import BarChart from "../Chart/Chart";
 import LineDot from "../LineDot/LineDot";
 // import PieChart from "../AreaChart/AreaChart";
+// ~~~~~~~~~~~~~~~ Hooks ~~~~~~~~~~~~~~~~~~
+import getCookie from "../../hooks/cookie";
 
 export default function Profile() {
+
+  const [edit, setEdit] = useState(false);
+  const [saveNewName, setSaveNewName] = useState(false);
+  const [editedUsername, setEditedUsername] = useState("");
+  const [newProfileName, setNewProfileName] = useState(getCookie("name") || "");
+
+  const user = useSelector((store) => store.user); // possible change of name here
+  console.log("USER IS:", user.username);
+  const currentUser = user.username;
+
   const profileEdit = () => {
     console.log("WIRE ME FOR PROFILE EDIT");
+    setEdit(!edit);
+  };
+
+  const saveProfileName = (e) => {
+    e.preventDefault();
+    document.cookie = `name=${newProfileName}`;
+    setEdit(false);
+    setSaveNewName(true);
+    setEditedUsername(newProfileName);
   };
 
   return (
     <div>
-      <h1>Profile</h1>
       <Card>
         <CardContent>
-        <Typography variant="h5">Profile</Typography>
-          <div className="profile-head" onClick={profileEdit}>
-            <AccountCircleIcon />
-            <Button onClick={profileEdit}><ArrowForwardIosIcon /></Button>
+          <Typography variant="h5">Profile</Typography>
+          <div className="profile-head" >
+            {!edit ? (
+              <>
+                {" "}
+                <div className="profile-name-icon">
+                  <AccountCircleIcon />
+                  {currentUser}
+                </div>
+                <Button onClick={profileEdit}>
+                  <ArrowForwardIosIcon />
+                </Button>
+              </>
+            ) : (
+              <>
+                <div>
+                  <AccountCircleIcon />
+                  <input
+                    placeholder="New Profile Name"
+                    type="text"
+                    value={newProfileName}
+                    onChange={(e) => setNewProfileName(e.target.value)}
+                    onBlur={saveProfileName}
+                  ></input>
+                </div>
+              </>
+            )}
           </div>
           <br />
           <Typography variant="caption">User Info Here</Typography>
