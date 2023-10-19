@@ -17,16 +17,15 @@ import LineDot from "../LineDot/LineDot";
 // import PieChart from "../AreaChart/AreaChart";
 // ~~~~~~~~~~~~~~~ Hooks ~~~~~~~~~~~~~~~~~~
 import getCookie from "../../hooks/cookie";
+import { BusAlertTwoTone } from "@mui/icons-material";
 
 export default function Profile() {
+  const dispatch = useDispatch();
 
   const [edit, setEdit] = useState(false);
-  const [saveNewName, setSaveNewName] = useState(false);
-  const [editedUsername, setEditedUsername] = useState("");
   const [newProfileName, setNewProfileName] = useState(getCookie("name") || "");
 
   const user = useSelector((store) => store.user);
-  console.log("USER IS:", user.username);
   const currentUser = user.username;
 
   const profileEdit = (e) => {
@@ -42,8 +41,22 @@ export default function Profile() {
     e.preventDefault();
     document.cookie = `name=${newProfileName}`;
     setEdit(false);
-    setSaveNewName(true);
-    setEditedUsername(newProfileName);
+  };
+
+  const saveEdit = () => {
+    console.log("clicked saveEdit");
+    if (newProfileName === "") {
+      // update later, when decided on what score is used for
+      setNewProfileName(currentUser);
+    }
+
+    const editedItem = {
+      username: newProfileName,
+    };
+
+    dispatch({ type: "EDIT_USER", payload: editedItem });
+
+    setEdit(false);
   };
 
   return (
@@ -51,7 +64,7 @@ export default function Profile() {
       <Card>
         <CardContent>
           <Typography variant="h5">Profile</Typography>
-          <div className="profile-head" onClick={profileEdit}>
+          <div className="profile-head" onClick={profileEdit} onBlur={inputClick}>
             {!edit ? (
               <>
                 {" "}
@@ -74,7 +87,7 @@ export default function Profile() {
                     onChange={(e) => setNewProfileName(e.target.value)}
                     onClick={inputClick}
                     onBlur={saveProfileName}
-                  ></input>
+                  /><Button onClick={saveEdit}>save</Button>
                 </div>
               </>
             )}
