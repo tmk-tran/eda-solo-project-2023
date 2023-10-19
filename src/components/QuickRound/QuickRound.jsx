@@ -10,12 +10,20 @@ import {
   FormControl,
   Button,
   Typography,
+  Table,
+  TableBody,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
 } from "@mui/material";
+import TableCell, { tableCellClasses } from "@mui/material";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import EditIcon from "@mui/icons-material/Edit";
 import ModeStandbyIcon from "@mui/icons-material/ModeStandby";
 // ~~~~~~~~~~~~~~~ Hooks ~~~~~~~~~~~~~~~~~~
 import getCookie from "../../hooks/cookie";
+import CustomizedTables from "../TestComponent/TestComponent";
 
 export default function QuickRound() {
   const dispatch = useDispatch();
@@ -24,7 +32,9 @@ export default function QuickRound() {
   const [showSettings, setShowSettings] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [replaceName, setReplaceName] = useState(false);
-  const [roundName, setRoundName] = useState(getCookie("round") || "Quick Round");
+  const [roundName, setRoundName] = useState(
+    getCookie("round") || "Quick Round"
+  );
   // Define state to manage round scores and round headers
   const [roundScores, setRoundScores] = useState([]); // Array to store round scores
   const [roundHeaders, setRoundHeaders] = useState([1]); // Array to store round headers
@@ -309,6 +319,29 @@ export default function QuickRound() {
       <h1>Quick Round</h1>
       <Card className="trap-hit-card">
         <CardContent>
+          <div className="round-display">
+            <table>
+              <thead>
+                <tr>
+                  {roundHeaders.map((header) => (
+                    <th key={header} className="header">
+                      Round {header}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  {roundScores.map((score, index) => (
+                    <td key={index} className="score">
+                      {score}
+                    </td>
+                  ))}
+                </tr>
+              </tbody>
+            </table>
+            <CustomizedTables roundHeaders={roundHeaders} roundScores={roundScores}/>
+          </div>
           <div className="trap-hit-display">
             <p>Hits: {hit}</p>
           </div>
