@@ -1,7 +1,9 @@
 .trap-hit-button,
 .trap-hit-display {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .trap-hit-card {
