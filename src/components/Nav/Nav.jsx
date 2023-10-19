@@ -54,6 +54,9 @@ function Nav() {
             <Link className="navLink" to="/success">
               Success Page
             </Link>
+            <Link className="navLink" to="/results">
+              Results
+            </Link>
             <Link className="navLink" to="/test">
               Test Comp
             </Link>

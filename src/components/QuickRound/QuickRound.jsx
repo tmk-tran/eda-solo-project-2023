@@ -10,12 +10,20 @@ import {
   FormControl,
   Button,
   Typography,
+  Table,
+  TableBody,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
 } from "@mui/material";
+import TableCell, { tableCellClasses } from "@mui/material";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import EditIcon from "@mui/icons-material/Edit";
 import ModeStandbyIcon from "@mui/icons-material/ModeStandby";
 // ~~~~~~~~~~~~~~~ Hooks ~~~~~~~~~~~~~~~~~~
 import getCookie from "../../hooks/cookie";
+import CustomizedTables from "../TestComponent/TestComponent";
 
 export default function QuickRound() {
   const dispatch = useDispatch();
@@ -24,7 +32,9 @@ export default function QuickRound() {
   const [showSettings, setShowSettings] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [replaceName, setReplaceName] = useState(false);
-  const [roundName, setRoundName] = useState(getCookie("round") || "Trap");
+  const [roundName, setRoundName] = useState(
+    getCookie("round") || "Quick Round"
+  );
   // Define state to manage round scores and round headers
   const [roundScores, setRoundScores] = useState([]); // Array to store round scores
   const [roundHeaders, setRoundHeaders] = useState([1]); // Array to store round headers
@@ -39,9 +49,9 @@ export default function QuickRound() {
   const [gameDate, setGameDate] = useState(new Date()); // Initialize with the current date
   console.log("GAME DATE IS:", gameDate);
   const [gameNotes, setGameNotes] = useState("");
-  const [targetName, setTargetName] = useState("Trap");
-  const [targetScore, setTargetScore] = useState(25); // update this when we decide what it is for
-  // State for Trap Round Scoring ~~~~~~~~~~~~~~~~~~~~~~~~~
+  const [targetName, setTargetName] = useState("Quick Round");
+  const [targetScore, setTargetScore] = useState(0); // for this component, we want to record total shots taken, too
+  // State for Quick Round Scoring ~~~~~~~~~~~~~~~~~~~~~~~~~
   const [hit, setHit] = useState(getCookie("hit_quick") || 0);
 
   useEffect(() => {
@@ -93,7 +103,7 @@ export default function QuickRound() {
     return date.toLocaleDateString("en-US");
   }
 
-  // Record Trap Hits
+  // Record Hits
   const targetHit = () => {
     setHit(hit + 1);
   };
@@ -173,7 +183,7 @@ export default function QuickRound() {
     setRoundScores(newRoundScores);
     setRoundHeaders([...roundHeaders, newRoundHeader]);
     setHit(0);
-    setTargetScore(targetScore + 25);
+    setTargetScore(sumRoundScores);
     // setTotalScore(0);
   };
 
@@ -309,6 +319,29 @@ export default function QuickRound() {
       <h1>Quick Round</h1>
       <Card className="trap-hit-card">
         <CardContent>
+          <div className="round-display">
+            <table>
+              <thead>
+                <tr>
+                  {roundHeaders.map((header) => (
+                    <th key={header} className="header">
+                      Round {header}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  {roundScores.map((score, index) => (
+                    <td key={index} className="score">
+                      {score}
+                    </td>
+                  ))}
+                </tr>
+              </tbody>
+            </table>
+            {/* <CustomizedTables addRound={addRound}/> */}
+          </div>
           <div className="trap-hit-display">
             <p>Hits: {hit}</p>
           </div>

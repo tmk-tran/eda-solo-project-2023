@@ -8,7 +8,12 @@ import {
   Button,
   Typography,
 } from "@mui/material";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import "./Profile.css";
+import BarChart from "../Chart/Chart";
+import LineDot from "../LineDot/LineDot";
+// import PieChart from "../AreaChart/AreaChart";
 
 export default function Profile() {
   const profileEdit = () => {
@@ -20,9 +25,10 @@ export default function Profile() {
       <h1>Profile</h1>
       <Card>
         <CardContent>
-          <div className="profile-head">
-            <Typography variant="h5">Profile</Typography>
-            <Button onClick={profileEdit}>Settings</Button>
+        <Typography variant="h5">Profile</Typography>
+          <div className="profile-head" onClick={profileEdit}>
+            <AccountCircleIcon />
+            <Button onClick={profileEdit}><ArrowForwardIosIcon /></Button>
           </div>
           <br />
           <Typography variant="caption">User Info Here</Typography>
@@ -30,13 +36,23 @@ export default function Profile() {
           <br />
           <Card style={{ backgroundColor: "antiquewhite" }}>
             <CardContent>
-              <Typography variant="h6">Graphs Here</Typography>
+              <Typography variant="h6">
+                <BarChart />
+              </Typography>
             </CardContent>
           </Card>
           <br />
           <Card style={{ backgroundColor: "antiquewhite" }}>
             <CardContent>
-              <Typography variant="h6">Additional Graphs Here</Typography>
+              <Typography variant="h6" type="graph">
+                <LineDot />
+              </Typography>
+            </CardContent>
+          </Card>
+          <br />
+          <Card style={{ backgroundColor: "antiquewhite" }}>
+            <CardContent>
+              <Typography variant="h6">{/* <PieChart /> */}</Typography>
             </CardContent>
           </Card>
         </CardContent>
