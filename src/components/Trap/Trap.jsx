@@ -97,6 +97,10 @@ export default function Trap() {
   // Record Trap Hits
   const hit = () => {
     setTrapHit(trapHit + 1);
+    if (trapHit >= 25) {
+      setTrapHit(25);
+      alert("Perfect Score!");
+    }
   };
 
   const clearScores = (e) => {
@@ -311,7 +315,19 @@ export default function Trap() {
       <Card className="trap-hit-card">
         <CardContent>
           <div className="trap-hit-display">
-            <p>Hits: {trapHit}</p>
+            <Typography
+              variant="h5"
+              style={{
+                backgroundColor: "orange",
+                borderRadius: "10px",
+                padding: "10px",
+                fontWeight: "bold",
+              }}
+            >
+              {targetScore}
+            </Typography>
+            <br />
+            <Typography variant="h6">Hits: {trapHit}</Typography>
           </div>
           <div className="trap-hit-button">
             <Button variant="contained" onClick={hit}>
