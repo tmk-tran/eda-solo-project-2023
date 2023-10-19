@@ -35,7 +35,7 @@ export default function Profile() {
 
   const inputClick = (e) => {
     e.stopPropagation();
-  }
+  };
 
   const saveProfileName = (e) => {
     e.preventDefault();
@@ -64,7 +64,11 @@ export default function Profile() {
       <Card>
         <CardContent>
           <Typography variant="h5">Profile</Typography>
-          <div className="profile-head" onClick={profileEdit} onBlur={inputClick}>
+          <div
+            className="profile-head"
+            onClick={profileEdit}
+            onBlur={inputClick}
+          >
             {!edit ? (
               <>
                 {" "}
@@ -87,7 +91,8 @@ export default function Profile() {
                     onChange={(e) => setNewProfileName(e.target.value)}
                     onClick={inputClick}
                     onBlur={saveProfileName}
-                  /><Button onClick={saveEdit}>save</Button>
+                  />
+                  <Button onClick={saveEdit}>save</Button>
                 </div>
               </>
             )}
