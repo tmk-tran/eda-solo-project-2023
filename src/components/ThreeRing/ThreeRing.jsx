@@ -243,7 +243,14 @@ export default function ThreeRing() {
   return (
     <>
       <div className="top-buttons">
-        <button onClick={() => history.push("/games")}>Cancel</button>
+        <button
+          onClick={() => {
+            resetScore(); // Call your resetScores() function here
+            history.push("/games");
+          }}
+        >
+          Cancel
+        </button>{" "}
         <button onClick={addGame}>Finish</button>
       </div>
       <div>

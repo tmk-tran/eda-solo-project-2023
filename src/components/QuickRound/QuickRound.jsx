@@ -45,7 +45,7 @@ export default function QuickRound() {
   const [roundNumber, setRoundNumber] = useState(1);
   // from Games ~~~~~~~~~~~~~~~~~~~~~~~~~
   const [notes, setNotes] = useState(getCookie("notes") || "Notes");
-  const [totalScore, setTotalScore] = useState(0); // change once named
+  const [totalScore, setTotalScore] = useState(0); // UNNAMED, NEED TO ASSIGN
   const [gameDate, setGameDate] = useState(new Date()); // Initialize with the current date
   console.log("GAME DATE IS:", gameDate);
   const [gameNotes, setGameNotes] = useState("");
@@ -53,6 +53,9 @@ export default function QuickRound() {
   const [targetScore, setTargetScore] = useState(0); // for this component, we want to record total shots taken, too
   // State for Quick Round Scoring ~~~~~~~~~~~~~~~~~~~~~~~~~
   const [hit, setHit] = useState(getCookie("hit_quick") || 0);
+  const [totalShots, setTotalShots] = useState(0); // for user to set total shots per round
+  const [userTargetInput, setUserTargetInput] = useState(false);
+  console.log("USER TARGET INPUT IS: ", userTargetInput);
 
   useEffect(() => {
     // Calculate the total score whenever any of the individual scores change
@@ -206,7 +209,8 @@ export default function QuickRound() {
     setTargetName("");
     setTargetScore(0);
     alert("Added Game!");
-    history.push("/games");
+    history.push("/success");
+    resetScore();
   };
 
   const resetScore = () => {
@@ -221,7 +225,14 @@ export default function QuickRound() {
   return (
     <>
       <div className="top-buttons">
-        <button onClick={() => history.push("/games")}>Cancel</button>
+        <button
+          onClick={() => {
+            resetScore(); // Call your resetScores() function here
+            history.push("/games");
+          }}
+        >
+          Cancel
+        </button>{" "}
         <button onClick={addGame}>Finish</button>
       </div>
       <div>
@@ -343,6 +354,7 @@ export default function QuickRound() {
             {/* <CustomizedTables addRound={addRound}/> */}
           </div>
           <div className="trap-hit-display">
+            <p>{totalShots}</p>
             <p>Hits: {hit}</p>
           </div>
           <div className="trap-hit-button">
@@ -350,6 +362,7 @@ export default function QuickRound() {
               <ModeStandbyIcon />
               Hit
             </Button>
+            <button onClick={() => setUserTargetInput(!userTargetInput)}>total shots</button>
           </div>
         </CardContent>
       </Card>

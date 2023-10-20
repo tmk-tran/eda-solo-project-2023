@@ -41,7 +41,7 @@ export default function Trap() {
   console.log("GAME DATE IS:", gameDate);
   const [gameNotes, setGameNotes] = useState("");
   const [targetName, setTargetName] = useState("Trap");
-  const [targetScore, setTargetScore] = useState(25); // update this when we decide what it is for
+  const [targetScore, setTargetScore] = useState(0); // update this when we decide what it is for
   // State for Trap Round Scoring ~~~~~~~~~~~~~~~~~~~~~~~~~
   const [trapHit, setTrapHit] = useState(getCookie("hits") || 0);
 
@@ -201,7 +201,8 @@ export default function Trap() {
     setTargetName("");
     setTargetScore(0);
     alert("Added Game!");
-    history.push("/games");
+    history.push("/success");
+    resetScore();
   };
 
   const resetScore = () => {
@@ -216,7 +217,14 @@ export default function Trap() {
   return (
     <>
       <div className="top-buttons">
-        <button onClick={() => history.push("/games")}>Cancel</button>
+        <button
+          onClick={() => {
+            resetScore(); // Call your resetScores() function here
+            history.push("/games");
+          }}
+        >
+          Cancel
+        </button>{" "}
         <button onClick={addGame}>Finish</button>
       </div>
       <div>
@@ -324,7 +332,7 @@ export default function Trap() {
                 fontWeight: "bold",
               }}
             >
-              {targetScore}
+              25
             </Typography>
             <br />
             <Typography variant="h6">Hits: {trapHit}</Typography>
