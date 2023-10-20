@@ -143,7 +143,7 @@ export default function GamesList({ target }) {
               <br />
               Total Game Score: {target.total_game_score}
               <br />
-              Max Score?: {target.target_score_value}
+              Target Total: {target.target_score_value !== null ? target.target_score_value : "none"}
               <br />
             </>
           )}
