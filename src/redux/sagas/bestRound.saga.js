@@ -3,7 +3,7 @@ import { takeEvery, put } from "redux-saga/effects";
 
 function* fetchBestRound() {
   try {
-    const items = yield axios.get("/api/games");
+    const items = yield axios.get("/api/best-round");
     console.log("FETCH request from bestRound.saga", "ITEMS: ", items);
     yield put({ type: "SET_BEST_ROUND", payload: items.data });
   } catch {

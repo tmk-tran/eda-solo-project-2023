@@ -23,34 +23,6 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 });
 
 /**
- * Retrieve the best round data of games played by a specific user using USER_ID
- */
-router.get("/", rejectUnauthenticated, (req, res) => {
-  console.log("req.user:", req.user);
-  pool
-    .query(
-      `SELECT u.user_id AS user_id,
-      g.game_id,
-      s.round_score AS best_round_score
-      FROM "user" u
-      JOIN games g ON u.user_id = g.user_id
-      JOIN rounds r ON g.game_id = r.game_id
-      JOIN scores s ON r.round_id = s.round_id
-      WHERE u.user_id = $1
-      ORDER BY s.round_score DESC
-      LIMIT 1;`
-    )
-    .then((result) => {
-      console.log(result.rows);
-      res.send(result.rows);
-    })
-    .catch((err) => {
-      console.log("error in the GET / request for best round data", err);
-      res.sendStatus(500);
-    });
-});
-
-/**
  * Add a game for the logged in user
  */
 router.post("/", rejectUnauthenticated, (req, res) => {

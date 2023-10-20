@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import {
@@ -10,7 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import "./GamesList.css";
-import EmojiEventsOutlinedIcon from '@mui/icons-material/EmojiEventsOutlined';
+import EmojiEventsOutlinedIcon from "@mui/icons-material/EmojiEventsOutlined";
 
 export default function GamesList({ target }) {
   const dispatch = useDispatch();
@@ -24,6 +24,10 @@ export default function GamesList({ target }) {
   const [editTargetName, setEditTargetName] = useState(target.target_name);
   const [editScore, setEditScore] = useState(target.target_score_value);
   const [editTotalScore, setEditTotalScore] = useState(target.total_game_score);
+
+  useEffect(() => {
+    dispatch({ type: "FETCH_BEST" });
+  }, []);
 
   function handleEdit() {
     setEdit(!edit);
@@ -119,7 +123,8 @@ export default function GamesList({ target }) {
             <>
               Date: {formatDate(target.game_date)}
               <br />
-              <EmojiEventsOutlinedIcon />Best Round Display?
+              <EmojiEventsOutlinedIcon />
+              Best Round Display?
               <br />
               Notes: {target.game_notes}
               <br />
