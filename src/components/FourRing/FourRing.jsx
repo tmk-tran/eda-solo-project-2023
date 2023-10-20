@@ -236,9 +236,9 @@ export default function FourRing() {
     setGameNotes("Notes");
     setTotalScore(0);
     setTargetName("");
-    setTargetScore(0);
     alert("Added Game!");
-    history.push("/games");
+    history.push("/success");
+    resetScore();
   };
 
   const resetScore = () => {
@@ -252,6 +252,7 @@ export default function FourRing() {
     setPointsOuter(0);
     setPointsInner(0);
     setBulls(0);
+    setTotalScore(0);
     setRoundScores([]);
     setRoundHeaders([]);
   };
