@@ -177,6 +177,14 @@ JOIN scores s ON r.round_id = s.round_id
 GROUP BY g.game_date, g.target_name
 ORDER BY g.game_date;
 
-
+--To retrieve the total rounds played for a user by user_id
+SELECT u.user_id,
+       u.username,
+       COUNT(r.round_id) AS total_rounds_played
+FROM "user" u
+LEFT JOIN games g ON u.user_id = g.user_id
+LEFT JOIN rounds r ON g.game_id = r.game_id
+WHERE u.user_id = 1
+GROUP BY u.user_id, u.username;
 
 UPDATE "games" SET "game_date" = '10-10-2023' WHERE "game_id" = 36 AND user_id = 1;

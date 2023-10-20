@@ -7,7 +7,8 @@ import userSaga from "./user.saga";
 import gamesSaga from "./games.saga";
 import roundsSaga from "./rounds.saga";
 import scoresSaga from "./scores.saga";
-import bestRound from "./bestRound.saga"
+import bestRound from "./bestRound.saga";
+import totalRounds from "./totalRounds.saga";
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
@@ -24,5 +25,6 @@ export default function* rootSaga() {
     roundsSaga(),
     scoresSaga(),
     bestRound(),
+    totalRounds(),
   ]);
 }

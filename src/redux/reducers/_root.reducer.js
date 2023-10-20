@@ -7,6 +7,8 @@ import gamesReducer from "./games.reducer";
 import roundReducer from "./rounds.reducer";
 import scoresReducer from "./scores.reducer";
 import bestRound from "./bestRound.reducer";
+import totalRounds from "./totalRounds.reducer";
+
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -23,6 +25,7 @@ const rootReducer = combineReducers({
   roundReducer,
   scoresReducer,
   bestRound,
+  totalRounds,
 });
 
 export default rootReducer;

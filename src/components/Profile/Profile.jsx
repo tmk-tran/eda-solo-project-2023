@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -28,6 +28,8 @@ export default function Profile() {
 
   const user = useSelector((store) => store.user);
   const currentUser = user.username;
+
+  const userRounds = useSelector((store) => store.totalRounds);
 
   const profileEdit = (e) => {
     console.log("WIRE ME FOR PROFILE EDIT");
@@ -78,7 +80,9 @@ export default function Profile() {
                   <AccountCircleIcon style={{ marginRight: "5px" }} />
                   {currentUser}
                   <br />
-                  Total Rounds Played Here?
+                  {userRounds.map((userRound, index) => (
+                    <p key={index}>Total Rounds Played: {userRound.total_rounds_played}</p>
+                  ))}
                 </div>
                 <Button onClick={profileEdit}>
                   <ArrowForwardIosIcon />
