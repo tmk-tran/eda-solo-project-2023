@@ -127,7 +127,17 @@ GROUP BY u.user_id, g.game_id
 ORDER BY best_round_score DESC
 LIMIT 1;
 
-
+-- Retrieve the best round data of games played by a specific user using USER_ID / without MAX
+SELECT u.user_id AS user_id,
+       g.game_id,
+       s.round_score AS best_round_score
+FROM "user" u
+JOIN games g ON u.user_id = g.user_id
+JOIN rounds r ON g.game_id = r.game_id
+JOIN scores s ON r.round_id = s.round_id
+WHERE u.user_id = 1
+ORDER BY s.round_score DESC
+LIMIT 1;
 
 -- Retrieve the game with the highest average round score
 SELECT g.game_id,

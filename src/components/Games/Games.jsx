@@ -32,7 +32,7 @@ export default function Games() {
     setNewGame(false);
   }, []);
 
-  const gameList = useSelector((store) => store.gamesReducer); // possible change of name here
+  const gameList = useSelector((store) => store.gamesReducer);
   const reversedGameList = [...gameList].reverse();
 
   const startNewGame = () => {
