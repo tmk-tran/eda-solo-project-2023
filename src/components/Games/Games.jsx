@@ -28,9 +28,11 @@ export default function Games() {
   const [newGame, setNewGame] = useState(false);
 
   useEffect(() => {
-    dispatch({ type: "FETCH_GAMES" });
     setNewGame(false);
   }, []);
+
+  // const bestRound = useSelector((store) => store.bestRound);
+  // const bestScore = bestRound.map
 
   const gameList = useSelector((store) => store.gamesReducer);
   const reversedGameList = [...gameList].reverse();

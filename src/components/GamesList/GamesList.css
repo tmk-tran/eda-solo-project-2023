@@ -55,3 +55,9 @@
   padding: 5px 10px;
   cursor: pointer;
 }
+
+/* Style the line under Date */
+.game-data-line {
+  display: flex;
+  /* justify-content: space-between; */
+}

@@ -18,8 +18,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   JOIN rounds r ON g.game_id = r.game_id
   JOIN scores s ON r.round_id = s.round_id
   WHERE u.user_id = $1
-  ORDER BY s.round_score DESC
-  LIMIT 1;`;
+  ORDER BY s.round_score DESC;`; // removed LIMIT 1 here, let's see what happens LOL
   pool
     .query(queryText, [req.user.user_id])
     .then((result) => {

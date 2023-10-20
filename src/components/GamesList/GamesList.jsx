@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   Card,
@@ -24,10 +24,17 @@ export default function GamesList({ target }) {
   const [editTargetName, setEditTargetName] = useState(target.target_name);
   const [editScore, setEditScore] = useState(target.target_score_value);
   const [editTotalScore, setEditTotalScore] = useState(target.total_game_score);
+  // const [bestRoundGameId, setBestRoundGameId] = useState(target.game_id);
+  // console.log(bestRoundGameId);
 
-  useEffect(() => {
-    dispatch({ type: "FETCH_BEST" });
-  }, []);
+  // const bestRound = useSelector((store) => store.bestRound);
+  // const bestScore = bestRound.map((game) => {
+  //   if (game.game_id === ) {
+  //     return game.best_round_score;
+  //   }
+  //   // You can choose to return a default value or null for games that don't match the specificGameId.
+  //   return null;
+  // });
 
   function handleEdit() {
     setEdit(!edit);
@@ -122,10 +129,14 @@ export default function GamesList({ target }) {
             // Render the formatted date in non-edit mode
             <>
               Date: {formatDate(target.game_date)}
-              <br />
-              <EmojiEventsOutlinedIcon />
-              Best Round Display?
-              <br />
+              <div className="game-data-line">
+                <EmojiEventsOutlinedIcon />
+                {/* {bestRound.map((best) => (
+                  <span key={best.game_id} style={{ marginBottom: "15px" }}>
+                    {best.best_round_score}
+                  </span>
+                ))} */}
+              </div>
               Notes: {target.game_notes}
               <br />
               Target Name: {target.target_name}
