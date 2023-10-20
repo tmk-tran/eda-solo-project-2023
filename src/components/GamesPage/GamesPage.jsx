@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -9,6 +9,8 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import "./GamesPage.css";
 
 export default function GamesPage() {
+  const history = useHistory();
+
   return (
     <div>
       <Accordion>
@@ -21,8 +23,12 @@ export default function GamesPage() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Three Ring Target
-            <Link to="/3-ring">3-Ring</Link>
+            <img
+              id="three-ring-game"
+              src="images/three-ring.png"
+              alt="A Three Ring Target"
+              onClick={() => history.push("/3-ring")}
+            ></img>
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -36,7 +42,12 @@ export default function GamesPage() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Four Ring Target<Link to="/4-ring">4-Ring</Link>
+            <img
+              id="four-ring-game"
+              src="images/four-ring.png"
+              alt="A Four Ring Target"
+              onClick={() => history.push("/4-ring")}
+            ></img>
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -50,7 +61,12 @@ export default function GamesPage() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Five Ring Target<Link to="/5-ring">5-Ring</Link>
+            <img
+              id="five-ring-game"
+              src="images/five-ring.png"
+              alt="A Five Ring Target"
+              onClick={() => history.push("/5-ring")}
+            ></img>{" "}
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -64,7 +80,12 @@ export default function GamesPage() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Trap Style Game<Link to="/trap">Trap</Link>
+            <img
+              id="trap-game"
+              src="images/trap_clay.png"
+              alt="A Trap Clay Target, Shattering"
+              onClick={() => history.push("/trap")}
+            ></img>{" "}
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -78,7 +99,12 @@ export default function GamesPage() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Counts Hits Only<Link to="/quickround">Quick Round</Link>
+            <img
+              id="hits-game"
+              src="images/crosshair.png"
+              alt="An image of a crosshair target"
+              onClick={() => history.push("/quickround")}
+            ></img>{" "}
           </Typography>
         </AccordionDetails>
       </Accordion>
