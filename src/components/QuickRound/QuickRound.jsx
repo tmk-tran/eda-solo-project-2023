@@ -51,8 +51,10 @@ export default function QuickRound() {
   const [gameNotes, setGameNotes] = useState("");
   const [targetName, setTargetName] = useState("Quick Round");
   const [targetScore, setTargetScore] = useState(0); // for this component, we want to record total shots taken, too
+  console.log("TARGET SCORE = ", targetScore);
   // State for Quick Round Scoring ~~~~~~~~~~~~~~~~~~~~~~~~~
   const [hit, setHit] = useState(getCookie("hit_quick") || 0);
+  const [miss, setMiss] = useState(getCookie("miss_quick") || 0);
   const [totalShots, setTotalShots] = useState(0); // for user to set total shots per round
   const [userTargetInput, setUserTargetInput] = useState(false);
   console.log("USER TARGET INPUT IS: ", userTargetInput);
@@ -109,6 +111,11 @@ export default function QuickRound() {
   // Record Hits
   const targetHit = () => {
     setHit(hit + 1);
+  };
+
+  // Record Misses
+  const targetMiss = () => {
+    setMiss(miss + 1);
   };
 
   const clearScores = (e) => {
@@ -185,17 +192,20 @@ export default function QuickRound() {
 
     setRoundScores(newRoundScores);
     setRoundHeaders([...roundHeaders, newRoundHeader]);
-    setHit(0);
+    // setHit(0);
     setTargetScore(sumRoundScores);
     // setTotalScore(0);
   };
+
+  const shotTotal = Number(hit + miss);
+  console.log("SHOT TOTAL IS: ", shotTotal);
 
   const addGame = () => {
     const newGame = {
       game_date: formatDate(gameDate),
       game_notes: gameNotes,
       target_name: targetName,
-      target_score_value: targetScore, // what is this representing??? -- decide later
+      target_score_value: shotTotal, // the total shots taken by user 
       total_game_score: totalRoundScores, // this is representing the total score of all the rounds for the game
     };
 
@@ -220,6 +230,12 @@ export default function QuickRound() {
     // Reset the related state variables if needed
     setRoundScores([]);
     setRoundHeaders([]);
+  };
+
+  const saveTotalShots = (e) => {
+    e.preventDefault();
+    document.cookie = `totalShots=${totalShots}`;
+    setUserTargetInput(false);
   };
 
   return (
@@ -354,7 +370,6 @@ export default function QuickRound() {
             {/* <CustomizedTables addRound={addRound}/> */}
           </div>
           <div className="trap-hit-display">
-            <p>{totalShots}</p>
             <p>Hits: {hit}</p>
           </div>
           <div className="trap-hit-button">
@@ -362,8 +377,22 @@ export default function QuickRound() {
               <ModeStandbyIcon />
               Hit
             </Button>
-            <button onClick={() => setUserTargetInput(!userTargetInput)}>total shots</button>
+            <Button onClick={targetMiss}>Miss</Button>
+            <p>Miss: {miss}</p>
           </div>
+          <button onClick={() => setUserTargetInput(!userTargetInput)}>
+            total shots
+          </button>
+          {userTargetInput ? (
+            <input
+              placeholder="Total Shots"
+              value={totalShots}
+              onChange={(e) => setTotalShots(e.target.value)}
+              onBlur={saveTotalShots}
+            ></input>
+          ) : (
+            <p>Total Shots: {totalShots}</p>
+          )}
         </CardContent>
       </Card>
       <FormControl className="form-control" fullWidth>
