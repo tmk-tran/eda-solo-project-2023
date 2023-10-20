@@ -22,7 +22,6 @@ SELECT * FROM "user";
 DROP TABLE "user" CASCADE;
 
 
-
 CREATE TABLE games (
     game_id serial PRIMARY KEY,
     user_id INTEGER REFERENCES "user"(user_id),
@@ -49,7 +48,7 @@ SELECT * FROM user_games;
 
 CREATE TABLE rounds (
     round_id serial PRIMARY KEY,
-    game_id INTEGER REFERENCES games(game_id),
+    game_id INTEGER REFERENCES games(game_id) ON DELETE CASCADE,
     round_number INTEGER NOT NULL
 );
 
@@ -59,7 +58,7 @@ SELECT * FROM rounds;
 
 CREATE TABLE scores (
     score_id serial PRIMARY KEY,
-    round_id integer REFERENCES rounds(round_id),
+    round_id integer REFERENCES rounds(round_id) ON DELETE CASCADE,
     round_score integer
 );
 
@@ -82,29 +81,59 @@ JOIN user_games ug ON u.user_id = ug.user_id
 JOIN games g ON ug.game_id = g.game_id;
 
 -- Retrieve all games for a specific user
-SELECT g.game_date, g.target_name
-FROM "user" u
-JOIN user_games ug ON u.user_id = ug.user_id
-JOIN games g ON ug.game_id = g.game_id
-WHERE u.username = 'mark';
+SELECT *
+FROM games
+WHERE user_id = 1;
 
--- Retrieve all games for a specific user, including round details:
-SELECT u.username, g.game_date, g.target_name, r.round_number, s.round_score
-FROM "user" u
-JOIN user_games ug ON u.user_id = ug.user_id
-JOIN games g ON ug.game_id = g.game_id
+
+-- Retrieve all games for a specific user (by user_id), including round details
+SELECT g.game_id,
+       g.game_date,
+       g.game_notes,
+       g.total_game_score,
+       r.round_id,
+       r.round_number,
+       s.round_score
+FROM games g
 JOIN rounds r ON g.game_id = r.game_id
-LEFT JOIN scores s ON r.round_id = s.round_id
-WHERE u.username = 'mark'
-ORDER BY g.game_date, r.round_number;
+JOIN scores s ON r.round_id = s.round_id
+WHERE g.user_id = 1;
+
+
+
+-- Retrieve the best round data of games played by a specific user
+SELECT u.username AS user_name,
+       g.game_id,
+       MAX(s.round_score) AS best_round_score
+FROM "user" u
+JOIN games g ON u.user_id = g.user_id
+JOIN rounds r ON g.game_id = r.game_id
+JOIN scores s ON r.round_id = s.round_id
+WHERE u.username = 'Mark'
+GROUP BY u.username, g.game_id
+ORDER BY best_round_score DESC
+LIMIT 1;
+
+
+-- Retrieve the game with the highest average round score
+SELECT g.game_id,
+       AVG(s.round_score) AS average_round_score
+FROM games g
+JOIN rounds r ON g.game_id = r.game_id
+JOIN scores s ON r.round_id = s.round_id
+GROUP BY g.game_id
+ORDER BY average_round_score DESC
+LIMIT 1;
 
 
 -- Retrieve the highest total game score for each user:
-SELECT u.username, MAX(g.total_game_score) AS highest_score
+SELECT u.user_id, 
+       u.username,
+       MAX(g.total_game_score) AS highest_total_game_score
 FROM "user" u
-JOIN user_games ug ON u.user_id = ug.user_id
-JOIN games g ON ug.game_id = g.game_id
-GROUP BY u.username;
+JOIN games g ON u.user_id = g.user_id
+GROUP BY u.user_id, u.username;
+
 
 -- Retrieve the average total game score for all users:
 SELECT AVG(g.total_game_score) AS average_score
@@ -115,6 +144,14 @@ SELECT g.game_id, COUNT(r.round_id) AS num_rounds
 FROM games g
 LEFT JOIN rounds r ON g.game_id = r.game_id
 GROUP BY g.game_id;
+
+-- Retrieve the average round score for each game
+SELECT g.game_date, g.target_name, AVG(s.round_score) AS average_round_score
+FROM games g
+JOIN rounds r ON g.game_id = r.game_id
+JOIN scores s ON r.round_id = s.round_id
+GROUP BY g.game_date, g.target_name
+ORDER BY g.game_date;
 
 
 

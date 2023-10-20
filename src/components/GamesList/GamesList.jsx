@@ -10,6 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import "./GamesList.css";
+import EmojiEventsOutlinedIcon from '@mui/icons-material/EmojiEventsOutlined';
 
 export default function GamesList({ target }) {
   const dispatch = useDispatch();
@@ -117,6 +118,8 @@ export default function GamesList({ target }) {
             // Render the formatted date in non-edit mode
             <>
               Date: {formatDate(target.game_date)}
+              <br />
+              <EmojiEventsOutlinedIcon />Best Round Display?
               <br />
               Notes: {target.game_notes}
               <br />

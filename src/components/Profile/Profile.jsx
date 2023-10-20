@@ -12,13 +12,13 @@ import {
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import EmojiEventsOutlinedIcon from "@mui/icons-material/EmojiEventsOutlined";
+import SettingsIcon from "@mui/icons-material/Settings";
 import "./Profile.css";
 import BarChart from "../Chart/Chart";
 import LineDot from "../LineDot/LineDot";
 // import PieChart from "../AreaChart/AreaChart";
 // ~~~~~~~~~~~~~~~ Hooks ~~~~~~~~~~~~~~~~~~
 import getCookie from "../../hooks/cookie";
-import { BusAlertTwoTone } from "@mui/icons-material";
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -64,6 +64,7 @@ export default function Profile() {
     <div>
       <Card>
         <CardContent>
+          <SettingsIcon onClick={() => console.log("WIRE ME FOR SETTINGS")} />
           <Typography variant="h5">Profile</Typography>
           <div
             className="profile-head"
@@ -74,10 +75,10 @@ export default function Profile() {
               <>
                 {" "}
                 <div className="profile-name-icon">
-                  <AccountCircleIcon style={{ marginRight: "5px" }}/>
+                  <AccountCircleIcon style={{ marginRight: "5px" }} />
                   {currentUser}
-                  <EmojiEventsOutlinedIcon style={{ marginLeft: "20px" }}/>
-                  Display PR
+                  <br />
+                  Total Rounds Played Here?
                 </div>
                 <Button onClick={profileEdit}>
                   <ArrowForwardIosIcon />
