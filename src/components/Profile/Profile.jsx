@@ -17,6 +17,8 @@ import "./Profile.css";
 import BarChart from "../Chart/Chart";
 import LineDot from "../LineDot/LineDot";
 // import PieChart from "../AreaChart/AreaChart";
+// ~~~~~~~~~~~~~~~ Sweet Alert ~~~~~~~~~~~~~~~~~~
+import Swal from "sweetalert2";
 // ~~~~~~~~~~~~~~~ Hooks ~~~~~~~~~~~~~~~~~~
 import getCookie from "../../hooks/cookie";
 
@@ -62,12 +64,40 @@ export default function Profile() {
     setEdit(false);
   };
 
+  const showAlert = () => {
+    Swal.fire({
+      title: "Edit Profile Username",
+      input: "text",
+      inputValue: currentUser, // Initialize with the current username
+      showCancelButton: true,
+      confirmButtonText: "Save",
+      cancelButtonText: "Cancel",
+      inputValidator: (value) => {
+        if (!value) {
+          return "Username cannot be empty";
+        }
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const newUsername = result.value;
+        // Handle the new username (e.g., save it to your state or send it to the server)
+        console.log("New Username:", newUsername);
+        // setNewProfileName(newUsername);
+        const editedItem = {
+          username: newUsername,
+        };
+        dispatch({ type: "EDIT_USER", payload: editedItem });
+      }
+    });
+  };
+
   return (
     <div>
       <Card>
         <CardContent>
           <SettingsIcon onClick={() => console.log("WIRE ME FOR SETTINGS")} />
           <Typography variant="h6">Profile</Typography>
+          <button onClick={showAlert}>try me</button>
           <br />
           <div
             className="profile-head"
