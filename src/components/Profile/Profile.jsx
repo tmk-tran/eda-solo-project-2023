@@ -67,7 +67,8 @@ export default function Profile() {
       <Card>
         <CardContent>
           <SettingsIcon onClick={() => console.log("WIRE ME FOR SETTINGS")} />
-          <Typography variant="h5">Profile</Typography>
+          <Typography variant="h6">Profile</Typography>
+          <br />
           <div
             className="profile-head"
             onClick={profileEdit}
@@ -75,16 +76,20 @@ export default function Profile() {
           >
             {!edit ? (
               <>
-                {" "}
                 <div className="profile-name-icon">
-                  <AccountCircleIcon style={{ marginRight: "5px" }} />
-                  {currentUser}
-                  <br />
-                  {userRounds.map((rounds, index) => (
-                    <p key={index}>
-                      Total Rounds Played: {rounds.total_rounds_played}
-                    </p>
-                  ))}
+                  <AccountCircleIcon
+                    style={{ fontSize: "30px", marginRight: "5px" }}
+                  />
+                  <div className="current-user">
+                    <Typography variant="body1">{currentUser}</Typography>
+                    {userRounds.map((rounds, index) => (
+                      <div key={index}>
+                        <Typography variant="body2">
+                          Total Rounds Played: {rounds.total_rounds_played}
+                        </Typography>
+                      </div>
+                    ))}
+                  </div>
                 </div>
                 <Button onClick={profileEdit}>
                   <ArrowForwardIosIcon />
@@ -93,7 +98,6 @@ export default function Profile() {
             ) : (
               <>
                 <div>
-                  <AccountCircleIcon />
                   <input
                     placeholder="New Profile Name"
                     type="text"
@@ -107,8 +111,6 @@ export default function Profile() {
               </>
             )}
           </div>
-          <br />
-          <Typography variant="caption">User Info Here</Typography>
           <Typography variant="h6">Dashboard</Typography>
           <br />
           <Card style={{ backgroundColor: "antiquewhite" }}>
