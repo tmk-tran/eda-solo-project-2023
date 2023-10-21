@@ -31,7 +31,7 @@ export default function Profile() {
 
   const userRounds = useSelector((store) => store.totalRounds);
 
-  const profileEdit = (e) => {
+  const profileEdit = () => {
     console.log("WIRE ME FOR PROFILE EDIT");
     setEdit(!edit);
   };
@@ -80,8 +80,10 @@ export default function Profile() {
                   <AccountCircleIcon style={{ marginRight: "5px" }} />
                   {currentUser}
                   <br />
-                  {userRounds.map((userRound, index) => (
-                    <p key={index}>Total Rounds Played: {userRound.total_rounds_played}</p>
+                  {userRounds.map((rounds, index) => (
+                    <p key={index}>
+                      Total Rounds Played: {rounds.total_rounds_played}
+                    </p>
                   ))}
                 </div>
                 <Button onClick={profileEdit}>
