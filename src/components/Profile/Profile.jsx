@@ -19,50 +19,15 @@ import LineDot from "../LineDot/LineDot";
 // import PieChart from "../AreaChart/AreaChart";
 // ~~~~~~~~~~~~~~~ Sweet Alert ~~~~~~~~~~~~~~~~~~
 import Swal from "sweetalert2";
-// ~~~~~~~~~~~~~~~ Hooks ~~~~~~~~~~~~~~~~~~
-import getCookie from "../../hooks/cookie";
+// import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 export default function Profile() {
   const dispatch = useDispatch();
-
-  const [edit, setEdit] = useState(false);
-  const [newProfileName, setNewProfileName] = useState(getCookie("name") || "");
 
   const user = useSelector((store) => store.user);
   const currentUser = user.username;
 
   const userRounds = useSelector((store) => store.totalRounds);
-
-  const profileEdit = () => {
-    console.log("WIRE ME FOR PROFILE EDIT");
-    setEdit(!edit);
-  };
-
-  const inputClick = (e) => {
-    e.stopPropagation();
-  };
-
-  const saveProfileName = (e) => {
-    e.preventDefault();
-    document.cookie = `name=${newProfileName}`;
-    setEdit(false);
-  };
-
-  const saveEdit = () => {
-    console.log("clicked saveEdit");
-    if (newProfileName === "") {
-      // update later, when decided on what score is used for
-      setNewProfileName(currentUser);
-    }
-
-    const editedItem = {
-      username: newProfileName,
-    };
-
-    dispatch({ type: "EDIT_USER", payload: editedItem });
-
-    setEdit(false);
-  };
 
   const showAlert = () => {
     Swal.fire({
@@ -72,6 +37,10 @@ export default function Profile() {
       showCancelButton: true,
       confirmButtonText: "Save",
       cancelButtonText: "Cancel",
+      customClass: {
+        confirmButton: "custom-confirm-button",
+        cancelButton: "custom-cancel-button",
+      },
       inputValidator: (value) => {
         if (!value) {
           return "Username cannot be empty";
@@ -80,13 +49,33 @@ export default function Profile() {
     }).then((result) => {
       if (result.isConfirmed) {
         const newUsername = result.value;
-        // Handle the new username (e.g., save it to your state or send it to the server)
-        console.log("New Username:", newUsername);
-        // setNewProfileName(newUsername);
-        const editedItem = {
-          username: newUsername,
-        };
-        dispatch({ type: "EDIT_USER", payload: editedItem });
+
+        // Display a confirmation dialog before saving
+        Swal.fire({
+          title: "Confirm Save",
+          text: `Do you want to save the new username: ${newUsername}?`,
+          icon: "question",
+          showCancelButton: true,
+          confirmButtonText: "Yes, save it!",
+          cancelButtonText: "No, cancel!",
+        }).then((confirmResult) => {
+          if (confirmResult.isConfirmed) {
+            // Handle the new username (e.g., save it to your state or send it to the server)
+            console.log("New Username:", newUsername);
+            // setNewProfileName(newUsername);
+            const editedItem = {
+              username: newUsername,
+            };
+            dispatch({ type: "EDIT_USER", payload: editedItem });
+
+            // Display an alert after saving
+            Swal.fire(
+              "Saved!",
+              "Your profile username has been updated.",
+              "success"
+            );
+          }
+        });
       }
     });
   };
@@ -97,49 +86,26 @@ export default function Profile() {
         <CardContent>
           <SettingsIcon onClick={() => console.log("WIRE ME FOR SETTINGS")} />
           <Typography variant="h6">Profile</Typography>
-          <button onClick={showAlert}>try me</button>
           <br />
-          <div
-            className="profile-head"
-            onClick={profileEdit}
-            onBlur={inputClick}
-          >
-            {!edit ? (
-              <>
-                <div className="profile-name-icon">
-                  <AccountCircleIcon
-                    style={{ fontSize: "30px", marginRight: "5px" }}
-                  />
-                  <div className="current-user">
-                    <Typography variant="body1">{currentUser}</Typography>
-                    {userRounds.map((rounds, index) => (
-                      <div key={index}>
-                        <Typography variant="body2">
-                          Total Rounds Played: {rounds.total_rounds_played}
-                        </Typography>
-                      </div>
-                    ))}
+          <div className="profile-head">
+            <div className="profile-name-icon">
+              <AccountCircleIcon
+                style={{ fontSize: "30px", marginRight: "5px" }}
+              />
+              <div className="current-user">
+                <Typography variant="body1">{currentUser}</Typography>
+                {userRounds.map((rounds, index) => (
+                  <div key={index}>
+                    <Typography variant="body2">
+                      Total Rounds Played: {rounds.total_rounds_played}
+                    </Typography>
                   </div>
-                </div>
-                <Button onClick={profileEdit}>
-                  <ArrowForwardIosIcon />
-                </Button>
-              </>
-            ) : (
-              <>
-                <div>
-                  <input
-                    placeholder="New Profile Name"
-                    type="text"
-                    value={newProfileName}
-                    onChange={(e) => setNewProfileName(e.target.value)}
-                    onClick={inputClick}
-                    onBlur={saveProfileName}
-                  />
-                  <Button onClick={saveEdit}>save</Button>
-                </div>
-              </>
-            )}
+                ))}
+              </div>
+            </div>
+            <Button onClick={showAlert}>
+              <ArrowForwardIosIcon />
+            </Button>
           </div>
           <Typography variant="h6">Dashboard</Typography>
           <br />

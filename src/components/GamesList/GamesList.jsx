@@ -29,12 +29,13 @@ export default function GamesList({ target }) {
 
   // const bestRound = useSelector((store) => store.bestRound);
   // const bestScore = bestRound.map((game) => {
-  //   if (game.game_id === ) {
+  //   if (game.game_id === 57) {
   //     return game.best_round_score;
   //   }
   //   // You can choose to return a default value or null for games that don't match the specificGameId.
   //   return null;
   // });
+  // console.log(bestRound);
 
   function handleEdit() {
     setEdit(!edit);

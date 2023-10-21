@@ -31,11 +31,9 @@ export default function Games() {
     setNewGame(false);
   }, []);
 
-  // const bestRound = useSelector((store) => store.bestRound);
-  // const bestScore = bestRound.map
-
   const gameList = useSelector((store) => store.gamesReducer);
   const reversedGameList = [...gameList].reverse();
+  const bestRound = useSelector((store) => store.bestRound);
 
   const startNewGame = () => {
     setNewGame(true);
