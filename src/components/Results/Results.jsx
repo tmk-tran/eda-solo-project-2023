@@ -1,3 +1,6 @@
+import React from "react";
+import { useSelector } from "react-redux";
+
 import EmojiEventsOutlinedIcon from "@mui/icons-material/EmojiEventsOutlined";
 import {
   Card,
@@ -18,6 +21,12 @@ import {
 import "./Results.css";
 
 export default function Results() {
+
+  const currentGame = useSelector((store) => store.gamesReducer);
+  console.log("CURRENT GAME = ", currentGame);
+  const bestRoundScore = useSelector((store) => store.bestRound);
+  console.log("BEST ROUND SCORE = ", bestRoundScore);
+
   return (
     <div>
       <h1 className="results-header">Results</h1>
