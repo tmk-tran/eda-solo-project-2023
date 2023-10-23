@@ -32,6 +32,7 @@ import QuickRound from "../QuickRound/QuickRound";
 import Results from "../Results/Results";
 import SuccessPage from "../SuccessPage/SuccessPage";
 import TestComp from "../TestComponent/TestComponent";
+import Train from "../Train/Train";
 
 function App() {
   const dispatch = useDispatch();
@@ -89,6 +90,10 @@ function App() {
 
           <ProtectedRoute exact path="/history">
             <History />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/train">
+            <Train />
           </ProtectedRoute>
 
           <ProtectedRoute exact path="/games">

@@ -79,7 +79,9 @@ export default function Results() {
           </Card>
         </CardContent>
         <FormControl className="form-control" fullWidth>
-        <Button variant="contained" onClick={() => history.push("/games")}>Finish</Button>
+          <Button variant="contained" onClick={() => history.push("/games")}>
+            Finish
+          </Button>
         </FormControl>
       </Card>
     </div>

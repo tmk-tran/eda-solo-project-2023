@@ -44,7 +44,7 @@ export default function SimpleBottomNavigation() {
           icon={<GpsFixedIcon style={{ fontSize: "34px" }} />}
           style={{ color: "ghostwhite" }}
           component={Link}
-          to="/3-ring"
+          to="/train"
         />
         <BottomNavigationAction
           label="Games"

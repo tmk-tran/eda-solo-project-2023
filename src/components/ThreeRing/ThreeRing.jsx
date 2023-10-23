@@ -238,7 +238,8 @@ export default function ThreeRing() {
     setTotalScore(0);
   };
 
-  const addGame = () => { // when we click this, dont start new game, update the one started previously
+  const addGame = () => {
+    // when we click this, dont start new game, update the one started previously
     // const newGame = {
     //   game_date: formatDate(gameDate),
     //   game_notes: gameNotes,
@@ -254,11 +255,11 @@ export default function ThreeRing() {
       target_name: targetName,
       target_score_value: targetScore, // what is this representing??? -- decide later
       total_game_score: totalRoundScores, // this is representing the total score of all the rounds for the game
-    }
+    };
 
     // Dispatch the action with the new target data
     // dispatch({ type: "ADD_GAME", payload: newGame });
-    dispatch({ type: "EDIT_GAME" , payload: gameData });
+    dispatch({ type: "EDIT_GAME", payload: gameData });
 
     // Clear the fields
     setGameDate(gameDate);
