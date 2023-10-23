@@ -23,7 +23,7 @@ function AboutPage() {
         <Paper elevation={3}>
           {" "}
           <Typography variant="h5" style={{ textAlign: "center" }}>
-            Info Page
+            Info
           </Typography>
           <img
             src="https://academics.otc.edu/media/uploads/sites/49/2022/06/page-under-construction-icon.jpg"

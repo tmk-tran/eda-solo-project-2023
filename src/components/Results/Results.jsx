@@ -21,13 +21,16 @@ import {
 import "./Results.css";
 
 export default function Results() {
-  const rounds = useSelector((store) => store.roundReducer);
-  console.log("ROUNDS ARE:", rounds);
-
   const currentGame = useSelector((store) => store.gamesReducer);
   console.log("CURRENT GAME = ", currentGame);
   const currGameId = currentGame[currentGame.length - 1].game_id;
   console.log("CURRENT GAME ID = ", currGameId);
+  const rounds = useSelector((store) => store.roundReducer);
+  console.log("ROUNDS ARE:", rounds);
+  const roundNumberMatchGameId = rounds.filter(
+    (roundScore) => roundScore.game_id === currGameId
+  );
+  console.log("ROUND NUMBER MATCH GAME ID IS:", roundNumberMatchGameId);
   const bestRoundScore = useSelector((store) => store.bestRound);
   console.log("BEST ROUND SCORE = ", bestRoundScore);
   const roundsMatchGameId = bestRoundScore.filter(
@@ -43,6 +46,7 @@ export default function Results() {
           <h2 className="results-display-head">
             <EmojiEventsOutlinedIcon style={{ fontSize: "40px" }} />
             Score: Display Best Here
+            <EmojiEventsOutlinedIcon style={{ fontSize: "40px" }} />
           </h2>
           <Card style={{ width: "80%", margin: "0 auto" }}>
             <CardContent>
@@ -55,10 +59,13 @@ export default function Results() {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {roundsMatchGameId.map((round, i) => (
+                    {roundNumberMatchGameId.map((round, i) => (
                       <TableRow key={i}>
-                        <TableCell># Game_ID: {round.game_id}</TableCell>
-                        <TableCell>{round.best_round_score} Points</TableCell>
+                        <TableCell>Round # {round.round_number}</TableCell>
+                        <TableCell>
+                          {roundsMatchGameId[i] &&
+                            `${roundsMatchGameId[i].best_round_score} Points`}
+                        </TableCell>
                       </TableRow>
                     ))}
                   </TableBody>
