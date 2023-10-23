@@ -10,6 +10,7 @@ import Paper from "@mui/material/Paper";
 import InfoIcon from "@mui/icons-material/Info";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBullseye } from "@fortawesome/free-solid-svg-icons";
+import "./Navbar.css";
 
 export default function SimpleBottomNavigation() {
   return (
@@ -26,6 +27,7 @@ export default function SimpleBottomNavigation() {
         //   }}
       >
         <BottomNavigationAction
+          className="profile-nav"
           label="Profile"
           icon={<PersonIcon />}
           style={{ color: "ghostwhite" }}
@@ -33,6 +35,7 @@ export default function SimpleBottomNavigation() {
           to="/profile"
         />
         <BottomNavigationAction
+          className="profile-nav"
           label="History"
           icon={<RestoreIcon />}
           style={{ color: "ghostwhite" }}
@@ -40,6 +43,7 @@ export default function SimpleBottomNavigation() {
           to="/history"
         />
         <BottomNavigationAction
+          className="profile-nav"
           label="Train"
           icon={<GpsFixedIcon style={{ fontSize: "34px" }} />}
           style={{ color: "ghostwhite" }}
@@ -47,6 +51,7 @@ export default function SimpleBottomNavigation() {
           to="/train"
         />
         <BottomNavigationAction
+          className="profile-nav"
           label="Games"
           style={{ color: "ghostwhite" }}
           component={Link}
@@ -63,6 +68,7 @@ export default function SimpleBottomNavigation() {
           }
         />
         <BottomNavigationAction
+          className="profile-nav"
           label="Info"
           icon={<InfoIcon />}
           style={{ color: "white" }}

@@ -46,7 +46,12 @@ export default function Train() {
                   gap: 2,
                 }}
               >
-                <Typography variant="h5">Start a Game</Typography>
+                <Paper elevation={7}>
+                  {" "}
+                  <Typography variant="h5">Start Training</Typography>
+                  <Typography variant="h6">Quick Start</Typography>
+                  <Typography variant="h6">Quick Game</Typography>
+                </Paper>
                 <Button onClick={() => history.push("/games")}>Start</Button>
               </Box>
             </ThemeProvider>
