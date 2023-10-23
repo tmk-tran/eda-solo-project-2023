@@ -22,10 +22,19 @@ import "./Results.css";
 
 export default function Results() {
 
+  const rounds = useSelector((store) => store.roundsReducer);
+  console.log("ROUNDS ARE:", rounds);
+
   const currentGame = useSelector((store) => store.gamesReducer);
   console.log("CURRENT GAME = ", currentGame);
+  const currGameId = currentGame[currentGame.length - 1].game_id;
+  console.log("CURRENT GAME ID = ", currGameId);
   const bestRoundScore = useSelector((store) => store.bestRound);
   console.log("BEST ROUND SCORE = ", bestRoundScore);
+  const roundsMatchGameId = bestRoundScore.filter(
+    (rounds) => rounds.game_id === currGameId
+  ); // change back to currGameId after
+  console.log("ROUNDS MATCH GAME ID = ", roundsMatchGameId);
 
   return (
     <div>
@@ -36,7 +45,7 @@ export default function Results() {
             <EmojiEventsOutlinedIcon style={{ fontSize: "40px" }} />
             Score: Display Best Here
           </h2>
-          <Card style={{ width: "50%", margin: "0 auto" }}>
+          <Card style={{ width: "80%", margin: "0 auto" }}>
             <CardContent>
               <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -49,7 +58,11 @@ export default function Results() {
                   <TableBody>
                     <TableRow>
                       <TableCell>#</TableCell>
-                      <TableCell>Score</TableCell>
+                      {roundsMatchGameId.map((round, i) => (
+                        <div key={i}>
+                          <TableCell>{round.best_round_score} Points</TableCell>{" "}
+                        </div>
+                      ))}
                     </TableRow>
                   </TableBody>
                 </Table>

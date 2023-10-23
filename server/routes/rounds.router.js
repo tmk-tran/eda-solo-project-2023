@@ -13,7 +13,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   pool
     .query(`SELECT * FROM "rounds";`)
     .then((result) => {
-      console.log("GAME_ID = ", result.rows[0].game_id); // logging the game_id, for later use
+      // console.log("GAME_ID = ", result.rows[0].game_id); // logging the game_id, for later use
       res.send(result.rows);
     })
     .catch((err) => {

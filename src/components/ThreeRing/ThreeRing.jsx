@@ -32,9 +32,20 @@ export default function ThreeRing() {
   const [roundHeaders, setRoundHeaders] = useState([1]); // Array to store round headers
   const [totalRoundScores, setTotalRoundScores] = useState(0);
   console.log("TOTAL SCORES OF ROUNDS = ", totalRoundScores);
+  // Define a state variable to accumulate round data
+  // const [roundData, setRoundData] = useState({
+  //   game_id: null, // This will be set when the game is added
+  //   round_number: 1,
+  //   round_score: [], // To store round scores
+  // });
+  // const [roundData, setRoundData] = useState({
+  //   game_id: null, // This will be set when the game is added
+  //   roundDetails: [], // To store round number and scores
+  // });
+  // console.log("ROUND DATA IS: ", roundData);
 
   // State to manage round numbers
-  const [roundNumber, setRoundNumber] = useState(1);
+  const [roundNumber, setRoundNumber] = useState(0);
 
   // from Games ~~~~~~~~~~~~~~~~~~~~~~~~~
   const [notes, setNotes] = useState(getCookie("notes") || "Notes");
@@ -107,7 +118,7 @@ export default function ThreeRing() {
     setPointsInner(0);
     setBulls(0);
     setTotalScore(0);
-    setRoundNumber(1);
+    setRoundNumber(0);
     resetScore();
     // alert("Added Target!");
   };
@@ -178,6 +189,30 @@ export default function ThreeRing() {
     // Increment the round header
     const newRoundHeader = roundHeaders.length + 1;
 
+    //~~~~~~~~~~~~~~~~ Just Had ~~~~~~~~~~~~~~~~~~
+    // Increment the round number
+    // setRoundData({
+    //   ...roundData,
+    //   round_number: roundData.round_number + 1,
+    //   round_score: [...roundData.round_score, newRoundScore]
+    // });
+    // ~~~~~~~~~~~~~~~~ Just Had ~~~~~~~~~~~~~~~~~~
+
+    // // Add round number and score to roundDetails array
+    // const updatedRoundDetails = [
+    //   ...roundData.roundDetails,
+    //   {
+    //     round_number: roundData.roundDetails.length + 1,
+    //     round_score: newRoundScore,
+    //   },
+    // ];
+
+    // // Update roundData with the new round's data
+    // setRoundData({
+    //   ...roundData,
+    //   roundDetails: updatedRoundDetails,
+    // });
+
     const roundData = {
       game_id: newGameId,
       round_number: roundNumber,
@@ -203,7 +238,7 @@ export default function ThreeRing() {
     setTotalScore(0);
   };
 
-  const addGame = () => {
+  const addGame = () => { // when we click this, dont start new game, update the one started previously
     const newGame = {
       game_date: formatDate(gameDate),
       game_notes: gameNotes,
@@ -221,7 +256,7 @@ export default function ThreeRing() {
     setTotalScore(0);
     setTargetName("");
     alert("Added Game!");
-    history.push("/results");
+    // history.push("/results");
     resetScore();
   };
 
