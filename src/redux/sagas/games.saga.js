@@ -38,7 +38,6 @@ function* deleteGameSaga(action) {
 }
 
 function* editGameSaga(action) {
-  console.log("ACTION IS: ", action);
   try {
     yield axios.put(`/api/games/${action.payload}`, action.payload);
     alert("Game Edited!");

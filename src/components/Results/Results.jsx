@@ -21,8 +21,7 @@ import {
 import "./Results.css";
 
 export default function Results() {
-
-  const rounds = useSelector((store) => store.roundsReducer);
+  const rounds = useSelector((store) => store.roundReducer);
   console.log("ROUNDS ARE:", rounds);
 
   const currentGame = useSelector((store) => store.gamesReducer);
@@ -56,14 +55,12 @@ export default function Results() {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    <TableRow>
-                      <TableCell>#</TableCell>
-                      {roundsMatchGameId.map((round, i) => (
-                        <div key={i}>
-                          <TableCell>{round.best_round_score} Points</TableCell>{" "}
-                        </div>
-                      ))}
-                    </TableRow>
+                    {roundsMatchGameId.map((round, i) => (
+                      <TableRow key={i}>
+                        <TableCell># Game_ID: {round.game_id}</TableCell>
+                        <TableCell>{round.best_round_score} Points</TableCell>
+                      </TableRow>
+                    ))}
                   </TableBody>
                 </Table>
               </TableContainer>

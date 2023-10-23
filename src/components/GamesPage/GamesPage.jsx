@@ -1,5 +1,6 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -10,6 +11,7 @@ import "./GamesPage.css";
 
 export default function GamesPage() {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -27,7 +29,10 @@ export default function GamesPage() {
               id="three-ring-game"
               src="images/three-ring.png"
               alt="A Three Ring Target"
-              onClick={() => history.push("/3-ring")}
+              onClick={() => {
+                dispatch({ type: "ADD_GAME" });
+                history.push("/3-ring");
+              }}
             ></img>
           </Typography>
         </AccordionDetails>

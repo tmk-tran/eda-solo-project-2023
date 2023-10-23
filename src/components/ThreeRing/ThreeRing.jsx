@@ -45,7 +45,7 @@ export default function ThreeRing() {
   // console.log("ROUND DATA IS: ", roundData);
 
   // State to manage round numbers
-  const [roundNumber, setRoundNumber] = useState(0);
+  const [roundNumber, setRoundNumber] = useState(1);
 
   // from Games ~~~~~~~~~~~~~~~~~~~~~~~~~
   const [notes, setNotes] = useState(getCookie("notes") || "Notes");
@@ -118,7 +118,7 @@ export default function ThreeRing() {
     setPointsInner(0);
     setBulls(0);
     setTotalScore(0);
-    setRoundNumber(0);
+    setRoundNumber(1);
     resetScore();
     // alert("Added Target!");
   };
@@ -239,16 +239,26 @@ export default function ThreeRing() {
   };
 
   const addGame = () => { // when we click this, dont start new game, update the one started previously
-    const newGame = {
+    // const newGame = {
+    //   game_date: formatDate(gameDate),
+    //   game_notes: gameNotes,
+    //   target_name: targetName,
+    //   target_score_value: targetScore, // what is this representing??? -- decide later
+    //   total_game_score: totalRoundScores, // this is representing the total score of all the rounds for the game
+    // };
+
+    const gameData = {
+      game_id: newGameId,
       game_date: formatDate(gameDate),
       game_notes: gameNotes,
       target_name: targetName,
       target_score_value: targetScore, // what is this representing??? -- decide later
       total_game_score: totalRoundScores, // this is representing the total score of all the rounds for the game
-    };
+    }
 
     // Dispatch the action with the new target data
-    dispatch({ type: "ADD_GAME", payload: newGame });
+    // dispatch({ type: "ADD_GAME", payload: newGame });
+    dispatch({ type: "EDIT_GAME" , payload: gameData });
 
     // Clear the fields
     setGameDate(gameDate);
@@ -280,7 +290,7 @@ export default function ThreeRing() {
       <div className="top-buttons">
         <button
           onClick={() => {
-            resetScore(); // Call your resetScores() function here
+            resetScore();
             history.push("/games");
           }}
         >
