@@ -266,7 +266,7 @@ export default function ThreeRing() {
     setTotalScore(0);
     setTargetName("");
     alert("Added Game!");
-    // history.push("/results");
+    history.push("/results");
     resetScore();
   };
 

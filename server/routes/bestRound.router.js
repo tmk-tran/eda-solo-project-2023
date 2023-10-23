@@ -10,15 +10,27 @@ const {
  */
 router.get("/", rejectUnauthenticated, (req, res) => {
   console.log("req.user:", req.user);
-  const queryText = `SELECT u.user_id AS user_id,
-  g.game_id,
-  s.round_score AS best_round_score
-  FROM "user" u
-  JOIN games g ON u.user_id = g.user_id
-  JOIN rounds r ON g.game_id = r.game_id
-  JOIN scores s ON r.round_id = s.round_id
-  WHERE u.user_id = $1
-  ORDER BY s.round_score DESC;`; // removed LIMIT 1 here, let's see what happens LOL
+  // const queryText = `SELECT u.user_id AS user_id,
+  // g.game_id,
+  // s.round_score AS best_round_score
+  // FROM "user" u
+  // JOIN games g ON u.user_id = g.user_id
+  // JOIN rounds r ON g.game_id = r.game_id
+  // JOIN scores s ON r.round_id = s.round_id
+  // WHERE u.user_id = $1
+  // ORDER BY s.round_score DESC;`; // removed LIMIT 1 here, let's see what happens LOL
+ const queryText = `SELECT g.game_id,
+ g.game_date,
+ g.game_notes,
+ g.total_game_score,
+ r.round_id,
+ r.round_number,
+ s.round_score
+FROM games g
+JOIN rounds r ON g.game_id = r.game_id
+JOIN scores s ON r.round_id = s.round_id
+WHERE g.user_id = $1
+ORDER BY game_id DESC;`;
   pool
     .query(queryText, [req.user.user_id])
     .then((result) => {

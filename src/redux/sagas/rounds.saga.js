@@ -6,7 +6,7 @@ function* fetchRoundsSaga() {
     const items = yield axios.get("/api/rounds");
     console.log(
       "FETCH request from rounds.saga, GAME_ID = ",
-      items.data[0].game_id
+      items.data[items.data.length-1].game_id
     );
     yield put({ type: "SET_ROUNDS", payload: items.data });
   } catch {

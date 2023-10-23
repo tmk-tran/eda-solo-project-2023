@@ -1,5 +1,6 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import EmojiEventsOutlinedIcon from "@mui/icons-material/EmojiEventsOutlined";
 import {
@@ -21,22 +22,25 @@ import {
 import "./Results.css";
 
 export default function Results() {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   const currentGame = useSelector((store) => store.gamesReducer);
   console.log("CURRENT GAME = ", currentGame);
   const currGameId = currentGame[currentGame.length - 1].game_id;
   console.log("CURRENT GAME ID = ", currGameId);
   const rounds = useSelector((store) => store.roundReducer);
   console.log("ROUNDS ARE:", rounds);
-  const roundNumberMatchGameId = rounds.filter(
-    (roundScore) => roundScore.game_id === currGameId
-  );
-  console.log("ROUND NUMBER MATCH GAME ID IS:", roundNumberMatchGameId);
   const bestRoundScore = useSelector((store) => store.bestRound);
   console.log("BEST ROUND SCORE = ", bestRoundScore);
   const roundsMatchGameId = bestRoundScore.filter(
     (rounds) => rounds.game_id === currGameId
-  ); // change back to currGameId after
+  );
   console.log("ROUNDS MATCH GAME ID = ", roundsMatchGameId);
+
+  useEffect(() => {
+    dispatch({ type: "FETCH_BEST" });
+  }, []);
 
   return (
     <div>
@@ -59,12 +63,12 @@ export default function Results() {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {roundNumberMatchGameId.map((round, i) => (
+                    {roundsMatchGameId.map((round, i) => (
                       <TableRow key={i}>
                         <TableCell>Round # {round.round_number}</TableCell>
                         <TableCell>
                           {roundsMatchGameId[i] &&
-                            `${roundsMatchGameId[i].best_round_score} Points`}
+                            `${roundsMatchGameId[i].round_score} Points`}
                         </TableCell>
                       </TableRow>
                     ))}
@@ -74,6 +78,9 @@ export default function Results() {
             </CardContent>
           </Card>
         </CardContent>
+        <FormControl className="form-control" fullWidth>
+        <Button variant="contained" onClick={() => history.push("/games")}>Finish</Button>
+        </FormControl>
       </Card>
     </div>
   );
