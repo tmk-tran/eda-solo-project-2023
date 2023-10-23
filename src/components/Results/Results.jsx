@@ -36,7 +36,9 @@ export default function Results() {
   const roundsMatchGameId = bestRoundScore.filter(
     (rounds) => rounds.game_id === currGameId
   );
-  console.log("ROUNDS MATCH GAME ID = ", roundsMatchGameId);
+  console.log("ROUNDS MATCH:", roundsMatchGameId);
+  const finalGameScore = roundsMatchGameId[0].total_game_score;
+  console.log("ROUNDS MATCH GAME ID = ", roundsMatchGameId[0].total_game_score);
 
   useEffect(() => {
     dispatch({ type: "FETCH_BEST" });
@@ -49,7 +51,7 @@ export default function Results() {
         <CardContent>
           <h2 className="results-display-head">
             <EmojiEventsOutlinedIcon style={{ fontSize: "40px" }} />
-            Score: Display Best Here
+            Score: {finalGameScore} points
             <EmojiEventsOutlinedIcon style={{ fontSize: "40px" }} />
           </h2>
           <Card style={{ width: "80%", margin: "0 auto" }}>
@@ -65,7 +67,7 @@ export default function Results() {
                   <TableBody>
                     {roundsMatchGameId.map((round, i) => (
                       <TableRow key={i}>
-                        <TableCell>Round # {round.round_number}</TableCell>
+                        <TableCell># {round.round_number}</TableCell>
                         <TableCell>
                           {roundsMatchGameId[i] &&
                             `${roundsMatchGameId[i].round_score} Points`}
