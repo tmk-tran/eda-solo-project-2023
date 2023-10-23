@@ -25,23 +25,34 @@ export default function Results() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  // useEffect(() => {
+  //   dispatch({ type: "FETCH_BEST" });
+  // }, []);
+
+  const bestScoreRound = useSelector((store) => store.totalRounds);
+  console.log("BEST SCORE ROUND IS: ", bestScoreRound); //
   const currentGame = useSelector((store) => store.gamesReducer);
   console.log("CURRENT GAME = ", currentGame);
   const currGameId = currentGame[currentGame.length - 1].game_id;
   console.log("CURRENT GAME ID = ", currGameId);
+
   const rounds = useSelector((store) => store.roundReducer);
   console.log("ROUNDS ARE:", rounds);
+  console.log("CURRENT ROUND ID = ", rounds[rounds.length - 1].game_id);
   const bestRoundScore = useSelector((store) => store.bestRound);
-  console.log("BEST ROUND SCORE = ", bestRoundScore);
+  console.log("SHOULD MATCH GAME ID = ", bestRoundScore);
+  const finalGameScore = bestRoundScore[0].total_game_score;
+  console.log("CURRENT ROUND SCORE = ", bestRoundScore[0].total_game_score);
   const roundsMatchGameId = bestRoundScore.filter(
     (rounds) => rounds.game_id === currGameId
   );
   console.log("ROUNDS MATCH:", roundsMatchGameId);
-  const finalGameScore = roundsMatchGameId[0].total_game_score;
-  console.log("ROUNDS MATCH GAME ID = ", roundsMatchGameId[0].total_game_score);
+
+    // LOOK THROUGH ROUNDS, WHERE = GAME_ID
+    // LOOK THROUGH SCORES
 
   useEffect(() => {
-    dispatch({ type: "FETCH_BEST" });
+    dispatch({ type: "FETCH_BEST", payload: currGameId });
   }, []);
 
   return (

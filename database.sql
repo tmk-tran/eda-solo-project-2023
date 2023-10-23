@@ -85,6 +85,11 @@ SELECT *
 FROM games
 WHERE user_id = 1;
 
+-- To retrieve the round information and their related scores using game_id
+SELECT r.round_number, s.round_score
+FROM rounds r
+JOIN scores s ON r.round_id = s.round_id
+WHERE r.game_id = $1;
 
 -- Retrieve all games for a specific user (by user_id), including round details
 SELECT g.game_id,

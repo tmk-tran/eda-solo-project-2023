@@ -9,11 +9,10 @@ const {
  * Get all of the games from DB
  */
 router.get("/", rejectUnauthenticated, (req, res) => {
-  console.log("req.user:", req.user);
   pool
     .query(`SELECT * FROM "games" ORDER BY game_id ASC;`)
     .then((result) => {
-      console.log(result.rows);
+      console.log("FROM games.router: ", result.rows);
       res.send(result.rows);
     })
     .catch((err) => {

@@ -9,7 +9,6 @@ const {
  * Retrieve the best round data of games played by a specific user using USER_ID
  */
 router.get("/", rejectUnauthenticated, (req, res) => {
-  console.log("req.user:", req.user);
   const queryText = `SELECT u.user_id,
   u.username,
   COUNT(r.round_id) AS total_rounds_played
@@ -21,7 +20,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   pool
     .query(queryText, [req.user.user_id])
     .then((result) => {
-      console.log(result.rows);
+      console.log("FROM totalRounds.router: ", result.rows);
       res.send(result.rows);
     })
     .catch((err) => {

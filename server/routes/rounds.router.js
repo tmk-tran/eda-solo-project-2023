@@ -9,7 +9,7 @@ const {
  * Get all of the rounds for the logged in user
  */
 router.get("/", rejectUnauthenticated, (req, res) => {
-  console.log("req.body:", req.body);
+  console.log("req.body from rounds.router:", req.body);
   pool
     .query(`SELECT * FROM "rounds";`)
     .then((result) => {

@@ -9,11 +9,10 @@ const {
  * Get all of the roundScores for the logged in user
  */
 router.get("/", rejectUnauthenticated, (req, res) => {
-  console.log("req.user:", req.user);
   pool
     .query(`SELECT * FROM "scores";`)
     .then((result) => {
-      console.log(result.rows);
+      console.log("FROM scores.router: ", result.rows);
       res.send(result.rows);
     })
     .catch((err) => {
@@ -37,10 +36,11 @@ router.post("/", rejectUnauthenticated, (req, res) => {
     .query(queryText, [item.round_id, item.round_score])
     .then((result) => {
       const newRoundId = result.rows[0].round_id;
-      res.status(201).json({
-        message: "Values inserted into scores!",
-        round_id: newRoundId,
-      });
+      res.status(201).send(`New Round ID: ${newRoundId}`);
+      // res.status(201).json({
+      //   message: "Values inserted into scores!",
+      //   round_id: newRoundId,
+      // });
     })
     .catch((error) => {
       console.log("Error in POST for scores: ", error);

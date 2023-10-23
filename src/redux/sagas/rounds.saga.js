@@ -23,7 +23,7 @@ function* addRoundSaga(action) {
       "ADD_ROUND request from addRoundSaga, ROUND_NUMBER = ",
       roundId
     );
-    yield put({ type: "FETCH_ROUNDS" });
+    yield put({ type: "FETCH_ROUNDS", payload: roundId });
   } catch (error) {
     console.log("error in addRoundSaga", error);
   }

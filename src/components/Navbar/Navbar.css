@@ -1,3 +1,30 @@
 .profile-nav:hover {
     transform: scale(1.2);
 }
+
+/* Navbar styles for screens smaller than 768px (mobile view) */
+@media (max-width: 767px) {
+    .profile-nav {
+      justify-content: center;
+      flex-direction: column;
+    }
+    /* Set bottom position for small screens */
+    .MuiBottomNavigation-root {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  }
+  
+  /* Navbar styles for screens larger than 768px (desktop view) */
+  @media (min-width: 768px) {
+    /* Set top position for larger screens */
+    .MuiBottomNavigation-root {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+  }
+  

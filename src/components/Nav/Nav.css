@@ -1,4 +1,5 @@
 .nav {
+  margin-top: 35px;
   /* flex box layout */
   display: flex;
   justify-content: space-between;
