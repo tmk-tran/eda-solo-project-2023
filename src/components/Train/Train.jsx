@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import Grid from "@mui/material/Grid";
@@ -36,111 +36,119 @@ const darkTheme = createTheme({ palette: { mode: "dark" } });
 const lightTheme = createTheme({ palette: { mode: "light" } });
 
 export default function Train() {
+  const [darkMode, setDarkMode] = useState(false); // Default to light mode
+
   const history = useHistory();
+
+  const theme = darkMode ? darkTheme : lightTheme;
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
 
   return (
     <div style={{ display: "flex" }}>
+      <Button onClick={toggleDarkMode}>
+        {darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+      </Button>
+
       <Grid container spacing={2} style={{ margin: "0 auto" }}>
-        {[lightTheme, darkTheme].map((theme, index) => (
-          <Grid item xs={4} key={index}>
-            <ThemeProvider theme={theme}>
-              <Box
-                sx={{
-                  p: 3,
-                  borderRadius: 2,
-                  bgcolor: "background.default",
-                  display: "column",
-                  gridTemplateColumns: { md: "1fr 1fr" },
-                  gap: 2,
-                }}
-              >
-                <Paper elevation={7}>
-                  {" "}
-                  <Typography variant="h5">Start Training</Typography>
-                  <Typography variant="h6">Quick Start</Typography>
-                  <FormControl fullWidth>
-                    <Button
-                      variant="contained"
-                      style={{ margin: "0 5px" }}
-                      onClick={() => history.push("/games")}
-                    >
-                      Start a Game
-                    </Button>
-                  </FormControl>
-                  <Typography variant="h6">Quick Game</Typography>
-                  <Box sx={{ width: "100%" }}>
-                    <Grid
-                      container
-                      rowSpacing={1}
-                      columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-                    >
-                      <Grid item xs={6}>
-                        <Item elevation={4}>
-                          <Typography>
-                            <img
-                              id="three-ring-game"
-                              src="images/three-ring.png"
-                              alt="A Three Ring Target"
-                              onClick={() => {
-                                dispatch({ type: "ADD_GAME" });
-                                history.push("/3-ring");
-                              }}
-                            ></img>
-                          </Typography>
-                        </Item>
-                      </Grid>
-                      <Grid item xs={6}>
-                        <Item elevation={4}>
-                          <Typography>
-                            <img
-                              id="four-ring-game"
-                              src="images/four-ring.png"
-                              alt="A Four Ring Target"
-                              onClick={() => {
-                                dispatch({ type: "ADD_GAME" });
-                                history.push("/4-ring");
-                              }}
-                            ></img>
-                          </Typography>
-                        </Item>
-                      </Grid>
-                      <Grid item xs={6}>
-                        <Item elevation={4}>
-                          <Typography>
-                            <img
-                              id="five-ring-game"
-                              src="images/five-ring.png"
-                              alt="A Five Ring Target"
-                              onClick={() => {
-                                dispatch({ type: "ADD_GAME" });
-                                history.push("/5-ring");
-                              }}
-                            ></img>{" "}
-                          </Typography>
-                        </Item>
-                      </Grid>
-                      <Grid item xs={6}>
-                        <Item elevation={4}>
-                          <Typography>
-                            <img
-                              id="trap-game"
-                              src="images/clay.png"
-                              alt="A Trap Clay Target, Shattering"
-                              onClick={() => {
-                                dispatch({ type: "ADD_GAME" });
-                                history.push("/trap");
-                              }}
-                            ></img>{" "}
-                          </Typography>
-                        </Item>
-                      </Grid>
+        <ThemeProvider theme={theme}>
+          <Grid item xs={7}>
+            <Box
+              sx={{
+                p: 3,
+                borderRadius: 2,
+                bgcolor: "background.default",
+                display: "column",
+                gridTemplateColumns: { md: "1fr 1fr" },
+                gap: 2,
+              }}
+            >
+              <Paper elevation={7}>
+                <Typography variant="h5">Start Training</Typography>
+                <Typography variant="h6">Quick Start</Typography>
+                <FormControl fullWidth>
+                  <Button
+                    variant="contained"
+                    style={{ margin: "0 5px" }}
+                    onClick={() => history.push("/games")}
+                  >
+                    Start a Game
+                  </Button>
+                </FormControl>
+                <Typography variant="h6">Quick Game</Typography>
+                <Box sx={{ width: "100%" }}>
+                  <Grid
+                    container
+                    rowSpacing={1}
+                    columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+                  >
+                    <Grid item xs={6}>
+                      <Item elevation={4}>
+                        <Typography>
+                          <img
+                            id="three-ring-game"
+                            src="images/three-ring.png"
+                            alt="A Three Ring Target"
+                            onClick={() => {
+                              dispatch({ type: "ADD_GAME" });
+                              history.push("/3-ring");
+                            }}
+                          ></img>
+                        </Typography>
+                      </Item>
                     </Grid>
-                  </Box>
-                </Paper>
-              </Box>
-            </ThemeProvider>
+                    <Grid item xs={6}>
+                      <Item elevation={4}>
+                        <Typography>
+                          <img
+                            id="four-ring-game"
+                            src="images/four-ring.png"
+                            alt="A Four Ring Target"
+                            onClick={() => {
+                              dispatch({ type: "ADD_GAME" });
+                              history.push("/4-ring");
+                            }}
+                          ></img>
+                        </Typography>
+                      </Item>
+                    </Grid>
+                    <Grid item xs={6}>
+                      <Item elevation={4}>
+                        <Typography>
+                          <img
+                            id="five-ring-game"
+                            src="images/five-ring.png"
+                            alt="A Five Ring Target"
+                            onClick={() => {
+                              dispatch({ type: "ADD_GAME" });
+                              history.push("/5-ring");
+                            }}
+                          ></img>{" "}
+                        </Typography>
+                      </Item>
+                    </Grid>
+                    <Grid item xs={6}>
+                      <Item elevation={4}>
+                        <Typography>
+                          <img
+                            id="trap-game"
+                            src="images/clay.png"
+                            alt="A Trap Clay Target, Shattering"
+                            onClick={() => {
+                              dispatch({ type: "ADD_GAME" });
+                              history.push("/trap");
+                            }}
+                          ></img>{" "}
+                        </Typography>
+                      </Item>
+                    </Grid>
+                  </Grid>
+                </Box>
+              </Paper>
+            </Box>
           </Grid>
-        ))}
+        </ThemeProvider>
       </Grid>
     </div>
   );
