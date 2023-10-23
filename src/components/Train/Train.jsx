@@ -75,16 +75,64 @@ export default function Train() {
                       columnSpacing={{ xs: 1, sm: 2, md: 3 }}
                     >
                       <Grid item xs={6}>
-                        <Item elevation={4}>Game 1</Item>
+                        <Item elevation={4}>
+                          <Typography>
+                            <img
+                              id="three-ring-game"
+                              src="images/three-ring.png"
+                              alt="A Three Ring Target"
+                              onClick={() => {
+                                dispatch({ type: "ADD_GAME" });
+                                history.push("/3-ring");
+                              }}
+                            ></img>
+                          </Typography>
+                        </Item>
                       </Grid>
                       <Grid item xs={6}>
-                        <Item elevation={4}>Game 2</Item>
+                        <Item elevation={4}>
+                          <Typography>
+                            <img
+                              id="four-ring-game"
+                              src="images/four-ring.png"
+                              alt="A Four Ring Target"
+                              onClick={() => {
+                                dispatch({ type: "ADD_GAME" });
+                                history.push("/4-ring");
+                              }}
+                            ></img>
+                          </Typography>
+                        </Item>
                       </Grid>
                       <Grid item xs={6}>
-                        <Item elevation={4}>Game 3</Item>
+                        <Item elevation={4}>
+                          <Typography>
+                            <img
+                              id="five-ring-game"
+                              src="images/five-ring.png"
+                              alt="A Five Ring Target"
+                              onClick={() => {
+                                dispatch({ type: "ADD_GAME" });
+                                history.push("/5-ring");
+                              }}
+                            ></img>{" "}
+                          </Typography>
+                        </Item>
                       </Grid>
                       <Grid item xs={6}>
-                        <Item elevation={4}>Game 4</Item>
+                        <Item elevation={4}>
+                          <Typography>
+                            <img
+                              id="trap-game"
+                              src="images/clay.png"
+                              alt="A Trap Clay Target, Shattering"
+                              onClick={() => {
+                                dispatch({ type: "ADD_GAME" });
+                                history.push("/trap");
+                              }}
+                            ></img>{" "}
+                          </Typography>
+                        </Item>
                       </Grid>
                     </Grid>
                   </Box>
