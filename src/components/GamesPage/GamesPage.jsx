@@ -51,7 +51,10 @@ export default function GamesPage() {
               id="four-ring-game"
               src="images/four-ring.png"
               alt="A Four Ring Target"
-              onClick={() => history.push("/4-ring")}
+              onClick={() => {
+                dispatch({ type: "ADD_GAME" });
+                history.push("/4-ring");
+              }}
             ></img>
           </Typography>
         </AccordionDetails>
@@ -70,7 +73,10 @@ export default function GamesPage() {
               id="five-ring-game"
               src="images/five-ring.png"
               alt="A Five Ring Target"
-              onClick={() => history.push("/5-ring")}
+              onClick={() => {
+                dispatch({ type: "ADD_GAME" });
+                history.push("/5-ring");
+              }}
             ></img>{" "}
           </Typography>
         </AccordionDetails>
@@ -89,7 +95,10 @@ export default function GamesPage() {
               id="trap-game"
               src="images/trap_clay.png"
               alt="A Trap Clay Target, Shattering"
-              onClick={() => history.push("/trap")}
+              onClick={() => {
+                dispatch({ type: "ADD_GAME" });
+                history.push("/trap");
+              }}
             ></img>{" "}
           </Typography>
         </AccordionDetails>
@@ -108,7 +117,10 @@ export default function GamesPage() {
               id="hits-game"
               src="images/crosshair.png"
               alt="An image of a crosshair target"
-              onClick={() => history.push("/quickround")}
+              onClick={() => {
+                dispatch({ type: "ADD_GAME" });
+                history.push("/quickround");
+              }}
             ></img>{" "}
           </Typography>
         </AccordionDetails>

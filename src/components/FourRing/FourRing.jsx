@@ -220,7 +220,16 @@ export default function FourRing() {
   };
 
   const addGame = () => {
-    const newGame = {
+    // const newGame = {
+    //   game_date: formatDate(gameDate),
+    //   game_notes: gameNotes,
+    //   target_name: targetName,
+    //   target_score_value: targetScore, // what is this representing??? -- decide later
+    //   total_game_score: totalRoundScores, // this is representing the total score of all the rounds for the game
+    // };
+
+    const gameData = {
+      game_id: newGameId,
       game_date: formatDate(gameDate),
       game_notes: gameNotes,
       target_name: targetName,
@@ -229,7 +238,7 @@ export default function FourRing() {
     };
 
     // Dispatch the action with the new target data
-    dispatch({ type: "ADD_GAME", payload: newGame });
+    dispatch({ type: "EDIT_GAME", payload: gameData });
 
     // Clear the input fields
     setGameDate(gameDate);
@@ -237,7 +246,7 @@ export default function FourRing() {
     setTotalScore(0);
     setTargetName("");
     alert("Added Game!");
-    history.push("/success");
+    history.push("/results");
     resetScore();
   };
 

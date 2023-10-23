@@ -24,6 +24,14 @@ import {
 //   lineHeight: "60px",
 // }));
 
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));
+
 const darkTheme = createTheme({ palette: { mode: "dark" } });
 const lightTheme = createTheme({ palette: { mode: "light" } });
 
@@ -50,9 +58,37 @@ export default function Train() {
                   {" "}
                   <Typography variant="h5">Start Training</Typography>
                   <Typography variant="h6">Quick Start</Typography>
+                  <FormControl fullWidth>
+                    <Button
+                      variant="contained"
+                      style={{ margin: "0 5px" }}
+                      onClick={() => history.push("/games")}
+                    >
+                      Start a Game
+                    </Button>
+                  </FormControl>
                   <Typography variant="h6">Quick Game</Typography>
+                  <Box sx={{ width: "100%" }}>
+                    <Grid
+                      container
+                      rowSpacing={1}
+                      columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+                    >
+                      <Grid item xs={6}>
+                        <Item elevation={4}>Game 1</Item>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Item elevation={4}>Game 2</Item>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Item elevation={4}>Game 3</Item>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Item elevation={4}>Game 4</Item>
+                      </Grid>
+                    </Grid>
+                  </Box>
                 </Paper>
-                <Button onClick={() => history.push("/games")}>Start</Button>
               </Box>
             </ThemeProvider>
           </Grid>
