@@ -75,10 +75,8 @@ export default function GamesList({ target }) {
       <Card style={{ width: "65%", margin: "0 auto" }}>
         <CardContent>
           <div className="list-header">
-            <Typography variant="h5">Game Data</Typography>
             <Button onClick={handleEdit}>Edit</Button>
           </div>
-          Game ID: {target.game_id} <br />
           <hr />
           {edit ? (
             // Render an input field in edit mode
@@ -138,13 +136,13 @@ export default function GamesList({ target }) {
                   </span>
                 ))} */}
               </div>
-              Notes: {target.game_notes}
+              Notes: {target.game_notes !== null ? target.game_notes : "empty - icon?"}
               <br />
-              Target Name: {target.target_name}
+              Target Name: {target.target_name !== null ? target.target_name : "No Name - icon?"}
               <br />
               Total Game Score: {target.total_game_score}
               <br />
-              Target Total: {target.target_score_value !== null ? target.target_score_value : "none"}
+              Target Value: {target.target_score_value !== null ? target.target_score_value : "None Set - icon?"}
               <br />
             </>
           )}

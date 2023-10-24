@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import ClearIcon from '@mui/icons-material/Clear';
+import ClearIcon from "@mui/icons-material/Clear";
 import EmojiEventsOutlinedIcon from "@mui/icons-material/EmojiEventsOutlined";
 import { styled } from "@mui/material/styles";
 import {
@@ -67,15 +67,24 @@ export default function Results() {
     <div className="page-container">
       <Card>
         <CardContent>
-          <Button variant="outlined" onClick={() => history.push("./train")}><ClearIcon /></Button>
+          <Button variant="outlined" onClick={() => history.push("./train")}>
+            <ClearIcon />
+          </Button>
           <Celebration />
           <h1 className="results-header">Results</h1>
           <h2 className="results-display-head">
-            <EmojiEventsOutlinedIcon style={{ fontSize: "40px" }} />
-            Score: {finalGameScore} points
-            <EmojiEventsOutlinedIcon style={{ fontSize: "40px" }} />
+            <Card style={{ width: "50%", margin: "0 auto" }} elevation={6}>
+              <CardContent>
+                <EmojiEventsOutlinedIcon style={{ fontSize: "40px" }} />
+                Score: {finalGameScore} points
+                <EmojiEventsOutlinedIcon style={{ fontSize: "40px" }} />
+              </CardContent>
+            </Card>
           </h2>
-          <Card style={{ width: "80%", margin: "0 auto", borderRadius: "10px" }} elevation={8}>
+          <Card
+            style={{ width: "50%", margin: "0 auto", borderRadius: "10px" }}
+            elevation={8}
+          >
             <CardContent>
               <TableContainer component={Paper} elevation={6}>
                 <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -92,8 +101,12 @@ export default function Results() {
                   <TableBody>
                     {roundsMatchGameId.map((round, i) => (
                       <StyledTableRow key={i}>
-                        <StyledTableCell># {round.round_number}</StyledTableCell>
-                        <StyledTableCell>{round.round_score} Points</StyledTableCell>
+                        <StyledTableCell>
+                          # {round.round_number}
+                        </StyledTableCell>
+                        <StyledTableCell>
+                          {round.round_score} Points
+                        </StyledTableCell>
                       </StyledTableRow>
                     ))}
                   </TableBody>
