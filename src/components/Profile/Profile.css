@@ -9,7 +9,22 @@
   justify-content: space-between;
 }
 
-/* .custom-confirm-button {
-  background-color: blue;
-  color: red;
+/* Default styles for larger screens */
+.page-container {
+  /* display: flex;
+  flex-direction: row; */
+  margin-top: 55px;
+}
+
+/* .card {
+  flex: 1;
+  margin: 10px;
 } */
+
+/* Styles for mobile screens */
+@media (max-width: 767px) {
+  .page-container {
+    flex-direction: column;
+    margin-top: 0px; 
+  }
+}

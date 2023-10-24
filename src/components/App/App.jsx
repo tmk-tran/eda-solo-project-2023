@@ -8,7 +8,6 @@ import {
 
 import { useDispatch, useSelector } from "react-redux";
 
-import Nav from "../Nav/Nav";
 import Navbar from "../Navbar/Navbar";
 // import Footer from "../Footer/Footer";
 
@@ -52,7 +51,7 @@ function App() {
   return (
     <Router>
       <div>
-        <Nav />
+        {/* <Nav /> */}
         {/* <MiniDrawer /> */}
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}

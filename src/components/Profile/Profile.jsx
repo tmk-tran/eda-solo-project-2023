@@ -82,7 +82,7 @@ export default function Profile() {
   };
 
   return (
-    <div>
+    <div className="page-container">
       <Card>
         <CardContent>
           <AccountMenu />

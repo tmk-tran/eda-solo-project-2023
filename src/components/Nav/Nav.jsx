@@ -24,12 +24,12 @@ function Nav() {
         {/* If a user is logged in, show these links */}
         {user.user_id && (
           <>
-            <Link className="navLink" to="/games-admin">
+            {/* <Link className="navLink" to="/games-admin">
               Games Admin
             </Link>
             <Link className="navLink" to="/rounds-admin">
               Rounds Admin
-            </Link>
+            </Link> */}
             {/* <Link className="navLink" to="/profile">
               Profile
             </Link>
@@ -54,7 +54,7 @@ function Nav() {
             <Link className="navLink" to="/quickround">
               Quick Round
             </Link> */}
-            <Link className="navLink" to="/success">
+            {/* <Link className="navLink" to="/success">
               Success Page
             </Link>
             <Link className="navLink" to="/results">
@@ -62,7 +62,7 @@ function Nav() {
             </Link>
             <Link className="navLink" to="/test">
               Test Comp
-            </Link>
+            </Link> */}
             {/* <LogOutButton className="navLink" /> */}
           </>
         )}

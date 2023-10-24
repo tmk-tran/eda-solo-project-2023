@@ -14,7 +14,7 @@ export default function GamesPage() {
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <div className="page-container">
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}

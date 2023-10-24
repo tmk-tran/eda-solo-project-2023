@@ -13,7 +13,7 @@ export default function History() {
   const reversedGameList = [...gameList].reverse();
 
   return (
-    <>
+    <div className="page-container">
       <h1>History</h1>
       <div>
         {reversedGameList.map((target) => (
@@ -22,6 +22,6 @@ export default function History() {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }
