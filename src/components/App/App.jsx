@@ -34,6 +34,7 @@ import SuccessPage from "../SuccessPage/SuccessPage";
 import TestComp from "../TestComponent/TestComponent";
 import MiniDrawer from "../MiniDrawer/MiniDrawer";
 import Train from "../Train/Train";
+import SpeedDial from "../SpeedDial/SpeedDial";
 
 function App() {
   const dispatch = useDispatch();
@@ -176,6 +177,7 @@ function App() {
             <h1>404</h1>
           </Route>
         </Switch>
+        <SpeedDial />
         <Navbar />
       </div>
     </Router>
