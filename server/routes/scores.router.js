@@ -27,11 +27,14 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 router.post("/", rejectUnauthenticated, (req, res) => {
   const item = req.body;
   const user = req.user;
-  console.log("ITEM: ", item);
-  console.log("USER: ", user);
+  console.log("ITEM in scores.router: ", item.round_id);
+  console.log("USER in scores.router: ", user);
   const queryText = `INSERT INTO "scores" ("round_id", "round_score")
                                     VALUES ($1, $2) RETURNING round_id;`;
 
+  // Extract the roundId from the response of the first route
+  const roundId = req.body.round_id;
+  console.log("ROUND_ID in scores.router: ", roundId);
   pool
     .query(queryText, [item.round_id, item.round_score])
     .then((result) => {

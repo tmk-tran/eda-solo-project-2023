@@ -184,12 +184,12 @@ export default function ThreeRing() {
     };
     console.log("ROUND DATA IS: ", roundData); // remove after confirmation
     const roundScoreData = {
-      round_id: roundId,
-      round_score: newRoundScore,
+      // round_id: roundId,
+      round_score: Number(newRoundScore),
     };
     console.log("ROUND SCORE DATA IS: ", roundScoreData); // remove after confirmation
 
-    dispatch({ type: "ADD_ROUND", payload: roundData });
+    dispatch({ type: "ADD_ROUND", payload: roundData }); // --> send to a new reducer?
     dispatch({ type: "ADD_ROUND_SCORE", payload: roundScoreData }); // check roundScoreData
 
     setRoundNumber(roundNumber + 1);

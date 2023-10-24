@@ -22,6 +22,9 @@ import CelebrationIcon from "@mui/icons-material/Celebration";
 export default function SuccessPage() {
   const history = useHistory();
 
+  const scores = useSelector((store) => store.scoresReducer);
+  console.log("Scores in Success Page: ", scores);
+
   return (
     <div>
       <h1 className="results-header">Success</h1>

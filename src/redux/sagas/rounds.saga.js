@@ -39,8 +39,19 @@ function* deleteRoundSaga(action) {
   }
 }
 
+// function* getRoundIdSaga(action) {
+//   try {
+//     const response = yield axios.get(`/api/rounds/${action.payload}`);
+//     console.log("ROUND_ID in getRoundId Saga = ", response.data.round_id);
+//     yield put({ type: "SET_ROUND_ID", roundId: response.data.round_id });
+//   } catch (error) {
+//     console.log("error in getRoundIdSaga", error);
+//   }
+// }
+
 export default function* itemsSaga() {
   yield takeEvery("FETCH_ROUNDS", fetchRoundsSaga);
   yield takeEvery("ADD_ROUND", addRoundSaga);
   yield takeEvery("DELETE_ROUND", deleteRoundSaga);
+  // yield takeEvery("FETCH_ROUND_ID", getRoundIdSaga);
 }
