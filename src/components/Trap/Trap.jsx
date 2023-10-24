@@ -161,17 +161,18 @@ export default function Trap() {
     const roundData = {
       game_id: newGameId,
       round_number: roundNumber,
-    };
-    console.log("ROUND DATA IS: ", roundData); // remove after confirmation
-    const roundScoreData = {
-      round_id: roundId,
       round_score: newRoundScore,
     };
-    console.log("ROUND SCORE DATA IS: ", roundScoreData); // remove after confirmation
+    console.log("ROUND DATA IS: ", roundData); // remove after confirmation
+    // const roundScoreData = {
+    //   round_id: roundId,
+    //   round_score: newRoundScore,
+    // };
+    // console.log("ROUND SCORE DATA IS: ", roundScoreData); // remove after confirmation
 
     dispatch({ type: "ADD_ROUND", payload: roundData });
     // dispatch({ type: "FETCH_ROUNDS", payload: roundId });
-    dispatch({ type: "ADD_ROUND_SCORE", payload: roundScoreData }); // check roundScoreData
+    // dispatch({ type: "ADD_ROUND_SCORE", payload: roundScoreData }); // check roundScoreData
 
     setRoundNumber(roundNumber + 1);
     console.log("ROUND NUMBER IS: ", roundNumber); // remove after confirmation
@@ -185,6 +186,7 @@ export default function Trap() {
 
   const addGame = () => {
     const newGame = {
+      game_id: newGameId,
       game_date: formatDate(gameDate),
       game_notes: gameNotes,
       target_name: targetName,
@@ -193,7 +195,7 @@ export default function Trap() {
     };
 
     // Dispatch the action with the new target data
-    dispatch({ type: "ADD_GAME", payload: newGame });
+    dispatch({ type: "EDIT_GAME", payload: newGame });
 
     // Clear the input fields
     setGameDate(gameDate);
@@ -202,7 +204,7 @@ export default function Trap() {
     setTargetName("");
     setTargetScore(0);
     alert("Added Game!");
-    history.push("/success");
+    history.push("/results");
     resetScore();
   };
 
@@ -216,7 +218,7 @@ export default function Trap() {
   };
 
   return (
-    <>
+    <div className="page-container">
       <div className="top-buttons">
         <button
           onClick={() => {
@@ -354,6 +356,6 @@ export default function Trap() {
           Add Round
         </Button>
       </FormControl>
-    </>
+    </div>
   );
 }
