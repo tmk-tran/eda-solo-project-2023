@@ -117,8 +117,6 @@ export default function CustomizedTables() {
   // Define state to manage round scores and round headers
   // const [roundScores, setRoundScores] = useState([]); // Array to store round scores
   // const [roundHeaders, setRoundHeaders] = useState([1]); // Array to store round headers
-  const rounds = useSelector((store) => store.roundReducer);
-  console.log("SCORES: ", rounds);
 
 
   return (

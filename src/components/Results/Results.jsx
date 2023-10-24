@@ -73,9 +73,9 @@ export default function Results() {
             Score: {finalGameScore} points
             <EmojiEventsOutlinedIcon style={{ fontSize: "40px" }} />
           </h2>
-          <Card style={{ width: "80%", margin: "0 auto" }} elevation={8}>
+          <Card style={{ width: "80%", margin: "0 auto", borderRadius: "10px" }} elevation={8}>
             <CardContent>
-              <TableContainer component={Paper} elevation={5}>
+              <TableContainer component={Paper} elevation={6}>
                 <Table sx={{ minWidth: 700 }} aria-label="customized table">
                   <TableHead>
                     <TableRow>
@@ -98,16 +98,6 @@ export default function Results() {
                 </Table>
               </TableContainer>
             </CardContent>
-            <FormControl className="form-control" fullWidth>
-              <Button
-                variant="contained"
-                onClick={() => history.push("/games")}
-                style={{ margin: "0 4px" }}
-              >
-                Finish
-              </Button>
-              <br />
-            </FormControl>
           </Card>
         </CardContent>
       </Card>

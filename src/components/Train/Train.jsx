@@ -18,16 +18,6 @@ import {
 } from "@mui/material";
 import "./Train.css";
 
-// import Stack from "@mui/material/Stack";
-
-// const Item = styled(Paper)(({ theme }) => ({
-//   ...theme.typography.body2,
-//   textAlign: "center",
-//   color: theme.palette.text.secondary,
-//   height: 60,
-//   lineHeight: "60px",
-// }));
-
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -54,15 +44,15 @@ export default function Train() {
     <div style={{ display: "flex", justifyContent: "center" }}>
       <Grid container spacing={3}>
         <ThemeProvider theme={theme}>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} >
             <Box
               sx={{
-                p: 1,
-                borderRadius: 6,
+                p: 1,  
                 bgcolor: "background.paper",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
+                height: "100vh",
               }}
             >
               <Paper elevation={6} style={{ padding: theme.spacing(4) }}>

@@ -32,6 +32,7 @@ import QuickRound from "../QuickRound/QuickRound";
 import Results from "../Results/Results";
 import SuccessPage from "../SuccessPage/SuccessPage";
 import TestComp from "../TestComponent/TestComponent";
+import MiniDrawer from "../MiniDrawer/MiniDrawer";
 import Train from "../Train/Train";
 
 function App() {
@@ -133,7 +134,7 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute exact path="/test">
-            <TestComp />
+            <MiniDrawer />
           </ProtectedRoute>
 
           <Route exact path="/login">
