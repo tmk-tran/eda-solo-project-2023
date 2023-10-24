@@ -2,3 +2,7 @@
 .results-display-head {
   text-align: center;
 }
+
+.bold-point {
+  font-weight: bold;
+}

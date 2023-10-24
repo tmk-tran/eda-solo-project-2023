@@ -2,7 +2,9 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
+import ClearIcon from '@mui/icons-material/Clear';
 import EmojiEventsOutlinedIcon from "@mui/icons-material/EmojiEventsOutlined";
+import { styled } from "@mui/material/styles";
 import {
   Card,
   CardContent,
@@ -16,18 +18,34 @@ import {
   TableHead,
   TableRow,
   Paper,
-  TableCell,
 } from "@mui/material";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 
 import "./Results.css";
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  "&:nth-of-type(odd)": {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  // "&:last-child td, &:last-child th": {
+  //   border: 0,
+  // },
+}));
 
 export default function Results() {
   const dispatch = useDispatch();
   const history = useHistory();
-
-  // useEffect(() => {
-  //   dispatch({ type: "FETCH_BEST" });
-  // }, []);
 
   const currentGame = useSelector((store) => store.gamesReducer);
   console.log("CURRENT GAME = ", currentGame);
@@ -44,14 +62,11 @@ export default function Results() {
   );
   console.log("ROUNDS MATCH:", roundsMatchGameId);
 
-  useEffect(() => {
-    // dispatch({ type: "FETCH_BEST", payload: currGameId });
-  }, []);
-
   return (
     <div>
       <Card>
         <CardContent>
+          <Button variant="outlined" onClick={() => history.push("./train")}><ClearIcon /></Button>
           <h1 className="results-header">Results</h1>
           <h2 className="results-display-head">
             <EmojiEventsOutlinedIcon style={{ fontSize: "40px" }} />
@@ -64,31 +79,37 @@ export default function Results() {
                 <Table sx={{ minWidth: 700 }} aria-label="customized table">
                   <TableHead>
                     <TableRow>
-                      <TableCell>Round</TableCell>
-                      <TableCell>Round Score</TableCell>
+                      <StyledTableCell style={{ fontWeight: "bold" }}>
+                        Round
+                      </StyledTableCell>
+                      <StyledTableCell style={{ fontWeight: "bold" }}>
+                        Round Score
+                      </StyledTableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
                     {roundsMatchGameId.map((round, i) => (
-                      <TableRow key={i}>
-                        <TableCell># {round.round_number}</TableCell>
-                        <TableCell>
-                          {roundsMatchGameId[i] &&
-                            `${roundsMatchGameId[i].round_score} Points`}
-                        </TableCell>
-                      </TableRow>
+                      <StyledTableRow key={i}>
+                        <StyledTableCell># {round.round_number}</StyledTableCell>
+                        <StyledTableCell>{round.round_score} Points</StyledTableCell>
+                      </StyledTableRow>
                     ))}
                   </TableBody>
                 </Table>
               </TableContainer>
             </CardContent>
+            <FormControl className="form-control" fullWidth>
+              <Button
+                variant="contained"
+                onClick={() => history.push("/games")}
+                style={{ margin: "0 4px" }}
+              >
+                Finish
+              </Button>
+              <br />
+            </FormControl>
           </Card>
         </CardContent>
-        <FormControl className="form-control" fullWidth>
-          <Button variant="contained" onClick={() => history.push("/games")}>
-            Finish
-          </Button>
-        </FormControl>
       </Card>
     </div>
   );
