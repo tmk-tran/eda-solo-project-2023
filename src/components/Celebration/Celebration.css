@@ -1,45 +1,5 @@
-/* body {
-  background: black;
-  margin: 0;
-  overflow: hidden;
-}
-
-.firework {
+.celebration-component {
   position: absolute;
-  width: 8px;
-  height: 8px;
-  background: rgb(19, 113, 181);
-  border-radius: 50%;
-  animation: explode 1s linear infinite, fade 1s linear forwards;
-}
-
-@keyframes explode {
-  0% {
-    transform: scale(1);
-    background: rgb(12, 26, 178);
-  }
-  100% {
-    transform: scale(50);
-    background: transparent;
-  }
-}
-
-@keyframes fade {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-} */
-
-
-/* celebration.css */
-
-body {
-  background: black;
-  margin: 0;
-  overflow: hidden;
 }
 
 .star {
@@ -51,31 +11,54 @@ body {
   border-bottom: 120px solid #ff0; /* Adjust the color as needed */
 
   /* Create the star shape using pseudo-elements */
- 
 
   animation: explode 1s linear infinite, fade 1s linear forwards;
 }
 
 .star {
   width: 150px;
-  clip-path: polygon(96.94% 67.23%,64.48% 71.60%,48.12% 99.96%,33.94% 70.44%,1.90% 63.65%,25.59% 41.04%,22.16% 8.47%,50.98% 24.02%,80.89% 10.69%,75.01% 42.90%,96.94% 67.23%,64.48% 71.60%,calc(64.48% - 3.47px) calc(71.60% - 5.18px),calc(96.94% - 11.26px) calc(67.23% - 4.14px),calc(75.01% - 6.00px) calc(42.90% - -1.70px),calc(80.89% - 7.41px) calc(10.69% - -9.44px),calc(50.98% - 0.24px) calc(24.02% - -6.24px),calc(22.16% - -6.68px) calc(8.47% - -9.97px),calc(25.59% - -5.86px) calc(41.04% - -2.15px),calc(1.90% - -11.54px) calc(63.65% - 3.28px),calc(33.94% - -3.86px) calc(70.44% - 4.91px),calc(48.12% - -0.45px) calc(99.96% - 11.99px),calc(64.48% - 3.47px) calc(71.60% - 5.18px),calc(96.94% - 11.26px) calc(67.23% - 4.14px));
+  clip-path: polygon(
+    96.94% 67.23%,
+    64.48% 71.6%,
+    48.12% 99.96%,
+    33.94% 70.44%,
+    1.9% 63.65%,
+    25.59% 41.04%,
+    22.16% 8.47%,
+    50.98% 24.02%,
+    80.89% 10.69%,
+    75.01% 42.9%,
+    96.94% 67.23%,
+    64.48% 71.6%,
+    calc(64.48% - 3.47px) calc(71.6% - 5.18px),
+    calc(96.94% - 11.26px) calc(67.23% - 4.14px),
+    calc(75.01% - 6px) calc(42.9% - -1.7px),
+    calc(80.89% - 7.41px) calc(10.69% - -9.44px),
+    calc(50.98% - 0.24px) calc(24.02% - -6.24px),
+    calc(22.16% - -6.68px) calc(8.47% - -9.97px),
+    calc(25.59% - -5.86px) calc(41.04% - -2.15px),
+    calc(1.9% - -11.54px) calc(63.65% - 3.28px),
+    calc(33.94% - -3.86px) calc(70.44% - 4.91px),
+    calc(48.12% - -0.45px) calc(99.96% - 11.99px),
+    calc(64.48% - 3.47px) calc(71.6% - 5.18px),
+    calc(96.94% - 11.26px) calc(67.23% - 4.14px)
+  );
 }
 
 @keyframes explode {
   0% {
-      transform: scale(1);
+    transform: scale(1);
   }
   100% {
-      transform: scale(2);
+    transform: scale(2);
   }
 }
 
 @keyframes fade {
   0% {
-      opacity: 1;
+    opacity: 1;
   }
   100% {
-      opacity: 0;
+    opacity: 0;
   }
 }
-
