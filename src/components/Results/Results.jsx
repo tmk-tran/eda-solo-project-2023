@@ -22,6 +22,7 @@ import {
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 
 import "./Results.css";
+import Celebration from "../Celebration/Celebration";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -67,6 +68,7 @@ export default function Results() {
       <Card>
         <CardContent>
           <Button variant="outlined" onClick={() => history.push("./train")}><ClearIcon /></Button>
+          <Celebration />
           <h1 className="results-header">Results</h1>
           <h2 className="results-display-head">
             <EmojiEventsOutlinedIcon style={{ fontSize: "40px" }} />

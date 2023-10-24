@@ -36,7 +36,7 @@ export default function AccountMenu() {
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
           >
-            <Settings style={{ color: "black" }}/>
+            <Settings style={{ color: "black" }} />
           </IconButton>
         </Tooltip>
       </Box>

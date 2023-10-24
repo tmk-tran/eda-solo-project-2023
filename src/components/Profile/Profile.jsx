@@ -16,6 +16,7 @@ import "./Profile.css";
 import BarChart from "../Chart/Chart";
 import LineDot from "../LineDot/LineDot";
 import AccountMenu from "../AccountMenu/AccountMenu";
+import Celebration from "../Celebration/Celebration";
 // import PieChart from "../AreaChart/AreaChart";
 // ~~~~~~~~~~~~~~~ Sweet Alert ~~~~~~~~~~~~~~~~~~
 import Swal from "sweetalert2";
