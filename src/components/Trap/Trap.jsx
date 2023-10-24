@@ -170,6 +170,7 @@ export default function Trap() {
     console.log("ROUND SCORE DATA IS: ", roundScoreData); // remove after confirmation
 
     dispatch({ type: "ADD_ROUND", payload: roundData });
+    // dispatch({ type: "FETCH_ROUNDS", payload: roundId });
     dispatch({ type: "ADD_ROUND_SCORE", payload: roundScoreData }); // check roundScoreData
 
     setRoundNumber(roundNumber + 1);

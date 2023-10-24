@@ -28,17 +28,18 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 router.post("/", rejectUnauthenticated, (req, res) => {
   const item = req.body;
   const user = req.user;
-  console.log("ITEM: ", item, "USER: ", user);
+  console.log("ITEM in rounds.router: ", item, "USER: ", user);
+  console.log("round_score from rounds.router: ", item.round_score); // Add this line to check the value
+
   const queryText = `
-    INSERT INTO "rounds" ("game_id", "round_number")
-    VALUES ($1, $2)
+    INSERT INTO "rounds" ("game_id", "round_number", "round_score")
+    VALUES ($1, $2, $3)
     RETURNING "round_id";
   `;
-  let roundId;
   pool
-    .query(queryText, [item.game_id, item.round_number])
+    .query(queryText, [item.game_id, item.round_number, item.round_score])
     .then((result) => {
-      roundId = result.rows[0].round_id; // Access the round_id from the result
+      const roundId = result.rows[0].round_id; // Access the round_id from the result
       console.log("Returned round_id from rounds.router: ", roundId); // Log the round_id
       res.send({ round_id: roundId }).status(201);
       // .json({ message: "Values inserted!", roundId: roundId }); // Send the round_id in the response
@@ -89,52 +90,6 @@ router.post("/", rejectUnauthenticated, (req, res) => {
 //           console.log("Error in combined POST for scores and rounds: ", error);
 //           res.sendStatus(500);
 //         });
-//       // Catch for first query
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       res.sendStatus(500);
-//     });
-// });
-
-// router.post("/", (req, res) => {
-//   console.log(req.body);
-//   // RETURNING "id" will give us back the id of the created movie
-//   const insertMovieQuery = `
-//   INSERT INTO "movies" ("title", "poster", "description")
-//   VALUES ($1, $2, $3)
-//   RETURNING "id";`;
-
-//   // FIRST QUERY MAKES MOVIE
-//   pool
-//     .query(insertMovieQuery, [
-//       req.body.title,
-//       req.body.poster,
-//       req.body.description,
-//     ])
-//     .then((result) => {
-//       console.log("New Movie Id:", result.rows[0].id); //ID IS HERE!
-
-//       const createdMovieId = result.rows[0].id;
-
-//       // Now handle the genre reference
-//       const insertMovieGenreQuery = `
-//       INSERT INTO "movies_genres" ("movie_id", "genre_id")
-//       VALUES  ($1, $2);
-//       `;
-//       // SECOND QUERY ADDS GENRE FOR THAT NEW MOVIE
-//       pool
-//         .query(insertMovieGenreQuery, [createdMovieId, req.body.genre_id])
-//         .then((result) => {
-//           //Now that both are done, send back success!
-//           res.sendStatus(201);
-//         })
-//         .catch((err) => {
-//           // catch for second query
-//           console.log(err);
-//           res.sendStatus(500);
-//         });
-
 //       // Catch for first query
 //     })
 //     .catch((err) => {

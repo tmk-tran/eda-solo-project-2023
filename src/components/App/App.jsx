@@ -42,7 +42,7 @@ function App() {
   useEffect(() => {
     dispatch({ type: "FETCH_USER" });
     dispatch({ type: "FETCH_GAMES" });
-    dispatch({ type: "FETCH_BEST" });
+    // dispatch({ type: "FETCH_BEST" });
     dispatch({ type: "FETCH_ROUNDS" });
     dispatch({ type: "FETCH_TOTAL_ROUNDS" });
   }, [dispatch]);

@@ -20,10 +20,10 @@ function* addRoundSaga(action) {
     console.log("ROUND_ID = ", response.data.round_id);
     const roundId = response.data.round_id;
     console.log(
-      "ADD_ROUND request from addRoundSaga, ROUND_NUMBER = ",
+      "ADD_ROUND request from addRoundSaga, ROUND_ID = ",
       roundId
     );
-    yield put({ type: "FETCH_ROUNDS", payload: roundId });
+    yield put({ type: "FETCH_ROUNDS" });
   } catch (error) {
     console.log("error in addRoundSaga", error);
   }
