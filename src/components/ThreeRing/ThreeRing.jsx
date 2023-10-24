@@ -246,7 +246,7 @@ export default function ThreeRing() {
   };
 
   return (
-    <>
+    <div className="page-container">
       <div className="top-buttons">
         <button
           onClick={() => {
@@ -367,6 +367,6 @@ export default function ThreeRing() {
           Add Round
         </Button>
       </FormControl>
-    </>
+    </div>
   );
 }

@@ -205,7 +205,7 @@ export default function QuickRound() {
       game_date: formatDate(gameDate),
       game_notes: gameNotes,
       target_name: targetName,
-      target_score_value: shotTotal, // the total shots taken by user 
+      target_score_value: shotTotal, // the total shots taken by user
       total_game_score: totalRoundScores, // this is representing the total score of all the rounds for the game
     };
 
@@ -239,7 +239,7 @@ export default function QuickRound() {
   };
 
   return (
-    <>
+    <div className="page-container">
       <div className="top-buttons">
         <button
           onClick={() => {
@@ -403,6 +403,6 @@ export default function QuickRound() {
           Add Round
         </Button>
       </FormControl>
-    </>
+    </div>
   );
 }

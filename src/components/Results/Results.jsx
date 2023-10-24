@@ -64,7 +64,7 @@ export default function Results() {
   console.log("ROUNDS MATCH:", roundsMatchGameId);
 
   return (
-    <div>
+    <div className="page-container">
       <Card>
         <CardContent>
           <Button variant="outlined" onClick={() => history.push("./train")}><ClearIcon /></Button>

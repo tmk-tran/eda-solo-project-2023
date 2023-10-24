@@ -62,7 +62,7 @@ export default function Games() {
   }
 
   return (
-    <>
+    <div className="page-container">
       <h1>Games Admin</h1>
       <div>
         <Card style={{ width: "60%", margin: "0 auto" }}>
@@ -142,6 +142,6 @@ export default function Games() {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }

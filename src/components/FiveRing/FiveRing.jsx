@@ -287,7 +287,7 @@ export default function FourRing() {
   };
 
   return (
-    <>
+    <div className="page-container">
       <div className="top-buttons">
         <button
           onClick={() => {
@@ -411,6 +411,6 @@ export default function FourRing() {
           Add Round
         </Button>
       </FormControl>
-    </>
+    </div>
   );
 }

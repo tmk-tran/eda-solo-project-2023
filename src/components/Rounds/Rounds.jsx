@@ -35,7 +35,7 @@ export default function Rounds() {
   };
 
   return (
-    <div>
+    <div className="page-container">
       <h1>Rounds Admin Page</h1>
       <Card style={{ width: "50%", margin: "0 auto" }}>
         <CardContent>
