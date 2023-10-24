@@ -212,16 +212,17 @@ export default function FourRing() {
     const roundData = {
       game_id: newGameId,
       round_number: roundNumber,
-    };
-    console.log("ROUND DATA IS: ", roundData); // remove after confirmation
-    const roundScoreData = {
-      round_id: roundId,
       round_score: newRoundScore,
     };
-    console.log("ROUND SCORE DATA IS: ", roundScoreData); // remove after confirmation
+    console.log("ROUND DATA IS: ", roundData); // remove after confirmation
+    // const roundScoreData = {
+    //   round_id: roundId,
+    //   round_score: newRoundScore,
+    // };
+    // console.log("ROUND SCORE DATA IS: ", roundScoreData); // remove after confirmation
 
     dispatch({ type: "ADD_ROUND", payload: roundData });
-    dispatch({ type: "ADD_ROUND_SCORE", payload: roundScoreData }); // check roundScoreData
+    // dispatch({ type: "ADD_ROUND_SCORE", payload: roundScoreData }); // check roundScoreData
 
     setRoundNumber(roundNumber + 1);
     console.log("ROUND NUMBER IS: ", roundNumber); // remove after confirmation
@@ -237,14 +238,6 @@ export default function FourRing() {
   };
 
   const addGame = () => {
-    // const newGame = {
-    //   game_date: formatDate(gameDate),
-    //   game_notes: gameNotes,
-    //   target_name: targetName,
-    //   target_score_value: targetScore, // what is this representing??? -- decide later
-    //   total_game_score: totalRoundScores, // this is representing the total score of all the rounds for the game
-    // };
-
     const gameData = {
       game_id: newGameId,
       game_date: formatDate(gameDate),
