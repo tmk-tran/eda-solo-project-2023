@@ -12,10 +12,10 @@ import {
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import EmojiEventsOutlinedIcon from "@mui/icons-material/EmojiEventsOutlined";
-import SettingsIcon from "@mui/icons-material/Settings";
 import "./Profile.css";
 import BarChart from "../Chart/Chart";
 import LineDot from "../LineDot/LineDot";
+import AccountMenu from "../AccountMenu/AccountMenu";
 // import PieChart from "../AreaChart/AreaChart";
 // ~~~~~~~~~~~~~~~ Sweet Alert ~~~~~~~~~~~~~~~~~~
 import Swal from "sweetalert2";
@@ -84,7 +84,7 @@ export default function Profile() {
     <div>
       <Card>
         <CardContent>
-          <SettingsIcon onClick={() => console.log("WIRE ME FOR SETTINGS")} />
+          <AccountMenu />
           <Typography variant="h6">Profile</Typography>
           <br />
           <div className="profile-head">
