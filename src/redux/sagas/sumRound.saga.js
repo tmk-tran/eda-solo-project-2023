@@ -11,6 +11,6 @@ function* fetchBestRound() {
   }
 }
 
-export default function* bestRoundSaga() {
+export default function* sumRoundSaga() {
   yield takeEvery("FETCH_BEST", fetchBestRound);
 }

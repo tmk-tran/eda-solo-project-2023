@@ -98,7 +98,6 @@ router.post("/", rejectUnauthenticated, (req, res) => {
 //     });
 // });
 
-
 router.delete("/:id", rejectUnauthenticated, (req, res) => {
   // endpoint functionality
   console.log("REQ: ", req.params.id);

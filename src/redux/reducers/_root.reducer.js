@@ -6,7 +6,7 @@ import user from "./user.reducer";
 import gamesReducer from "./games.reducer";
 import roundReducer from "./rounds.reducer";
 import scoresReducer from "./scores.reducer";
-import bestRound from "./bestRound.reducer";
+import sumRound from "./sumRound.reducer";
 import totalRounds from "./totalRounds.reducer";
 
 // rootReducer is the primary reducer for our entire project
@@ -23,7 +23,7 @@ const rootReducer = combineReducers({
   gamesReducer,
   roundReducer,
   scoresReducer,
-  bestRound,
+  sumRound,
   totalRounds,
 });
 

@@ -29,27 +29,23 @@ export default function Results() {
   //   dispatch({ type: "FETCH_BEST" });
   // }, []);
 
-  // const bestScoreRound = useSelector((store) => store.totalRounds);
-  // console.log("BEST SCORE ROUND IS: ", bestScoreRound); //
-  // const currentGame = useSelector((store) => store.gamesReducer);
-  // console.log("CURRENT GAME = ", currentGame);
-  // const currGameId = currentGame[currentGame.length - 1].game_id;
-  // console.log("CURRENT GAME ID = ", currGameId);
 
-  // const rounds = useSelector((store) => store.roundReducer);
-  // console.log("ROUNDS ARE:", rounds);
+  const currentGame = useSelector((store) => store.gamesReducer);
+  console.log("CURRENT GAME = ", currentGame);
+  const currGameId = currentGame[currentGame.length - 1].game_id;
+  console.log("CURRENT GAME ID = ", currGameId);
+
+  const rounds = useSelector((store) => store.roundReducer);
+  console.log("ROUNDS ARE:", rounds);
   // console.log("CURRENT ROUND ID = ", rounds[rounds.length - 1].game_id);
   // const bestRoundScore = useSelector((store) => store.bestRound);
   // console.log("SHOULD MATCH GAME ID = ", bestRoundScore);
   // const finalGameScore = bestRoundScore[0].total_game_score;
   // console.log("CURRENT ROUND SCORE = ", bestRoundScore[0].total_game_score);
-  // const roundsMatchGameId = bestRoundScore.filter(
-  //   (rounds) => rounds.game_id === currGameId
-  // );
-  // console.log("ROUNDS MATCH:", roundsMatchGameId);
-
-    // LOOK THROUGH ROUNDS, WHERE = GAME_ID
-    // LOOK THROUGH SCORES
+  const roundsMatchGameId = rounds.filter(
+    (rounds) => rounds.game_id === currGameId
+  );
+  console.log("ROUNDS MATCH:", roundsMatchGameId);
 
   useEffect(() => {
     // dispatch({ type: "FETCH_BEST", payload: currGameId });
@@ -75,7 +71,7 @@ export default function Results() {
                       <TableCell>Round Score</TableCell>
                     </TableRow>
                   </TableHead>
-                  {/* <TableBody>
+                  <TableBody>
                     {roundsMatchGameId.map((round, i) => (
                       <TableRow key={i}>
                         <TableCell># {round.round_number}</TableCell>
@@ -85,7 +81,7 @@ export default function Results() {
                         </TableCell>
                       </TableRow>
                     ))}
-                  </TableBody> */}
+                  </TableBody>
                 </Table>
               </TableContainer>
             </CardContent>

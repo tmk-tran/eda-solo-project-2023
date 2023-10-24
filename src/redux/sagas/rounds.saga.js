@@ -6,7 +6,7 @@ function* fetchRoundsSaga() {
     const items = yield axios.get("/api/rounds");
     console.log(
       "FETCH request from rounds.saga, GAME_ID = ",
-      items.data[items.data.length-1].game_id
+      items.data[items.data.length - 1].game_id
     );
     yield put({ type: "SET_ROUNDS", payload: items.data });
   } catch {
@@ -19,10 +19,7 @@ function* addRoundSaga(action) {
     const response = yield axios.post("/api/rounds", action.payload); // this is how we access the round_id from the response to get to the front end
     console.log("ROUND_ID = ", response.data.round_id);
     const roundId = response.data.round_id;
-    console.log(
-      "ADD_ROUND request from addRoundSaga, ROUND_ID = ",
-      roundId
-    );
+    console.log("ADD_ROUND request from addRoundSaga, ROUND_ID = ", roundId);
     yield put({ type: "FETCH_ROUNDS" });
   } catch (error) {
     console.log("error in addRoundSaga", error);

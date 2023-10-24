@@ -192,7 +192,7 @@ export default function ThreeRing() {
 
     dispatch({ type: "ADD_ROUND", payload: roundData }); // --> send to a new reducer?
     // dispatch({ type: "FETCH_ROUNDS", payload: roundId });
-    // console.log("in threering: ", roundId); 
+    // console.log("in threering: ", roundId);
     // dispatch({ type: "ADD_ROUND_SCORE", payload: roundScoreData }); // check roundScoreData
 
     setRoundNumber(roundNumber + 1);
@@ -207,7 +207,6 @@ export default function ThreeRing() {
   };
 
   const addGame = () => {
-
     const gameData = {
       game_id: newGameId,
       game_date: formatDate(gameDate),

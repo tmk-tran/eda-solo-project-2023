@@ -1,4 +1,4 @@
-const bestRound = (state = [], action) => {
+const sumRound = (state = [], action) => {
   switch (action.type) {
     case "SET_BEST_ROUND":
       return action.payload;
@@ -7,4 +7,4 @@ const bestRound = (state = [], action) => {
   }
 };
 
-export default bestRound;
+export default sumRound;
