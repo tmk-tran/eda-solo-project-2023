@@ -1,6 +1,6 @@
 const sumRound = (state = [], action) => {
   switch (action.type) {
-    case "SET_BEST_ROUND":
+    case "SET_ROUND_TOTAL":
       return action.payload;
     default:
       return state;

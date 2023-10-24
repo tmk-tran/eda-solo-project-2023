@@ -29,19 +29,16 @@ export default function Results() {
   //   dispatch({ type: "FETCH_BEST" });
   // }, []);
 
-
   const currentGame = useSelector((store) => store.gamesReducer);
   console.log("CURRENT GAME = ", currentGame);
   const currGameId = currentGame[currentGame.length - 1].game_id;
   console.log("CURRENT GAME ID = ", currGameId);
+  const finalGameScore = currentGame[currentGame.length - 1].total_game_score;
+  console.log("GAME SCORE in Results = ", finalGameScore);
 
   const rounds = useSelector((store) => store.roundReducer);
   console.log("ROUNDS ARE:", rounds);
-  // console.log("CURRENT ROUND ID = ", rounds[rounds.length - 1].game_id);
-  // const bestRoundScore = useSelector((store) => store.bestRound);
-  // console.log("SHOULD MATCH GAME ID = ", bestRoundScore);
-  // const finalGameScore = bestRoundScore[0].total_game_score;
-  // console.log("CURRENT ROUND SCORE = ", bestRoundScore[0].total_game_score);
+
   const roundsMatchGameId = rounds.filter(
     (rounds) => rounds.game_id === currGameId
   );
@@ -53,21 +50,21 @@ export default function Results() {
 
   return (
     <div>
-      <h1 className="results-header">Results</h1>
       <Card>
         <CardContent>
+          <h1 className="results-header">Results</h1>
           <h2 className="results-display-head">
             <EmojiEventsOutlinedIcon style={{ fontSize: "40px" }} />
-            {/* Score: {finalGameScore} points */}
+            Score: {finalGameScore} points
             <EmojiEventsOutlinedIcon style={{ fontSize: "40px" }} />
           </h2>
-          <Card style={{ width: "80%", margin: "0 auto" }}>
+          <Card style={{ width: "80%", margin: "0 auto" }} elevation={8}>
             <CardContent>
-              <TableContainer component={Paper}>
+              <TableContainer component={Paper} elevation={5}>
                 <Table sx={{ minWidth: 700 }} aria-label="customized table">
                   <TableHead>
                     <TableRow>
-                      <TableCell>Round Number</TableCell>
+                      <TableCell>Round</TableCell>
                       <TableCell>Round Score</TableCell>
                     </TableRow>
                   </TableHead>
