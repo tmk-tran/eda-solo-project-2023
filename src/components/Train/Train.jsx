@@ -41,13 +41,16 @@ export default function Train() {
   };
 
   return (
-    <div className="page-container" style={{ display: "flex", justifyContent: "center" }}>
+    <div
+      className="page-container"
+      style={{ display: "flex", justifyContent: "center" }}
+    >
       <Grid container spacing={3}>
         <ThemeProvider theme={theme}>
-          <Grid item xs={12} >
+          <Grid item xs={12}>
             <Box
               sx={{
-                p: 1,  
+                p: 1,
                 bgcolor: "background.paper",
                 display: "flex",
                 flexDirection: "column",
