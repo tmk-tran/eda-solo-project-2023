@@ -30,7 +30,7 @@ function* addGameSaga(action) {
 function* deleteGameSaga(action) {
   try {
     yield axios.delete(`/api/games/${action.payload}`);
-    alert("Game Deleted!");
+    // alert("Game Deleted!");
     yield put({ type: "FETCH_GAMES" });
   } catch (error) {
     console.log("error with DELETE saga request", error);

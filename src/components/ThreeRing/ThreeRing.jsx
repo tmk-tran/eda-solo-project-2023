@@ -251,6 +251,7 @@ export default function ThreeRing() {
         <button
           onClick={() => {
             resetScore();
+            dispatch({ type: "DELETE_GAME", payload: newGameId })
             history.push("/games");
           }}
         >

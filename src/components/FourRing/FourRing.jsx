@@ -265,7 +265,8 @@ export default function FourRing() {
       <div className="top-buttons">
         <button
           onClick={() => {
-            resetScore(); // Call your resetScores() function here
+            resetScore();
+            dispatch({ type: "DELETE_GAME", payload: newGameId })
             history.push("/games");
           }}
         >

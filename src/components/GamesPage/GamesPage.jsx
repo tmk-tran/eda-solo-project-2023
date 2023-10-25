@@ -35,6 +35,11 @@ export default function GamesPage() {
                   id="three-ring-game"
                   src="images/three-ring.png"
                   alt="A Three Ring Target"
+                  onClick={() => {
+                    dispatch({ type: "ADD_GAME" });
+                    history.push("/3-ring");
+                  }}
+                  style={{ width: "50px", height: "50px" }}
                 ></img>
               </Typography>
             </AccordionSummary>
@@ -63,6 +68,7 @@ export default function GamesPage() {
                     dispatch({ type: "ADD_GAME" });
                     history.push("/4-ring");
                   }}
+                  style={{ width: "50px", height: "50px" }}
                 ></img>
               </Typography>
             </AccordionSummary>
@@ -92,6 +98,7 @@ export default function GamesPage() {
                     dispatch({ type: "ADD_GAME" });
                     history.push("/5-ring");
                   }}
+                  style={{ width: "50px", height: "50px" }}
                 ></img>
               </Typography>
             </AccordionSummary>
@@ -121,6 +128,7 @@ export default function GamesPage() {
                     dispatch({ type: "ADD_GAME" });
                     history.push("/trap");
                   }}
+                  style={{ width: "50px", height: "50px" }}
                 ></img>
               </Typography>
             </AccordionSummary>
@@ -145,6 +153,7 @@ export default function GamesPage() {
                     dispatch({ type: "ADD_GAME" });
                     history.push("/quickround");
                   }}
+                  style={{ width: "50px", height: "50px" }}
                 ></img>
               </Typography>
             </AccordionSummary>
