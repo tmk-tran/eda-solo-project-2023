@@ -61,9 +61,14 @@
   /* justify-content: space-between; */
 }
 
+#games-list-card {
+  width: 50%;
+  margin: 0 auto;
+}
+
 /* Media query for smaller screens (e.g., mobile) */
 @media (max-width: 768px) {
-  .Card {
+  #games-list-card {
     width: 100%;
     /* margin: 0 auto; */
   }
@@ -71,6 +76,4 @@
   .list-header {
     display: block;
   }
-
-  /* Add your CSS rules for smaller screens here */
 }

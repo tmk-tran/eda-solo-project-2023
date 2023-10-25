@@ -67,7 +67,7 @@ export default function GamesList({ target }) {
   }
 
   return (
-    <Card style={{ margin: "0 auto" }}>
+    <Card id="games-list-card" style={{ margin: "0 auto" }}>
       <CardContent>
         <div className="list-header">
           <Button

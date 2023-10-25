@@ -25,7 +25,7 @@ export default function GamesPage() {
     <div className="page-container">
       <Grid container spacing={1}>
         <Grid item xs={6}>
-          <Card elevation={6} style={{ height: "100vh", backgroundColor: "aliceblue" }}>
+          <Card id="games-page-card" elevation={6}>
             <CardContent>
               <Typography variant="h5">Targets</Typography>
               <Accordion elevation={6}>
@@ -109,7 +109,7 @@ export default function GamesPage() {
                     ></img>
                   </Typography>
                 </AccordionSummary>
-                <AccordionDetails>
+                <AccordionDetails sx={{ overflowY: "auto" }}>
                   <Typography variant="body1" style={{ textAlign: "center" }}>
                     Experience the thrill of precision shooting with the 5-Ring
                     Target Game Mode. Test your accuracy and focus as you aim
@@ -125,7 +125,7 @@ export default function GamesPage() {
         </Grid>
         {/* New Card for displaying items */}
         <Grid item xs={6}>
-          <Card elevation={6} style={{ height: "100vh", backgroundColor: "aliceblue" }}>
+          <Card id="games-page-card" elevation={6}>
             <CardContent>
               <Typography variant="h5">Game Modes</Typography>
               <Accordion elevation={6}>

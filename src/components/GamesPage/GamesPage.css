@@ -19,10 +19,23 @@
 #five-ring-game:hover,
 #trap-game:hover,
 #hits-game:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 #hits-game {
   width: 100px;
   height: 100px;
+}
+
+#games-page-card {
+  height: 100vh;
+  background-color: aliceblue;
+  overflow-y: auto;
+}
+
+/* Media query for smaller screens (e.g., mobile) */
+@media (max-width: 768px) {
+  #games-page-card {
+    height: 100vh;
+  }
 }
