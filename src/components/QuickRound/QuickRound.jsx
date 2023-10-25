@@ -157,7 +157,7 @@ export default function QuickRound() {
     //   if (newGameId) {
 
     // Calculate the total score for the current round
-    const newRoundScore = Number(hit);
+    const newRoundScore = Number(hitDisplay);
     // Create a new array of round scores with the current total score
     const newRoundScores = [...roundScores, newRoundScore];
     console.log("NEW ROUND SCORES: ", newRoundScores); // confirmed
