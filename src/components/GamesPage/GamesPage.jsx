@@ -23,7 +23,7 @@ export default function GamesPage() {
 
   return (
     <div className="page-container">
-      <Grid container spacing={2}>
+      <Grid container spacing={1}>
         <Grid item xs={6}>
           <Card elevation={6} style={{ height: "100vh", backgroundColor: "aliceblue" }}>
             <CardContent>

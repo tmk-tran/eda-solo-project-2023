@@ -16,10 +16,10 @@
   margin-top: 55px;
 }
 
-/* .card {
-  flex: 1;
-  margin: 10px;
-} */
+#profile-card {
+  width: 50%;
+  margin: 0 auto;
+}
 
 /* Styles for mobile screens */
 @media (max-width: 767px) {
@@ -28,8 +28,8 @@
     margin-top: 0px; 
   }
 
-  .card {
-    width: 80%; /* Adjust the width as needed for mobile layout */
+  #profile-card {
+    width: 100%; /* Adjust the width as needed for mobile layout */
     margin: 10px 0; /* Add some spacing between cards */
   }
 }

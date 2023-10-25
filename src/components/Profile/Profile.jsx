@@ -83,7 +83,7 @@ export default function Profile() {
 
   return (
     <div className="page-container">
-      <Card elevation={6} style={{ width: "50%", margin: "0 auto" }}>
+      <Card id="profile-card" elevation={6}>
         <CardContent>
           <AccountMenu />
           <Typography variant="h6">Profile</Typography>

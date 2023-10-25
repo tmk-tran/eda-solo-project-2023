@@ -8,9 +8,17 @@ import {
   FormControl,
   Button,
   Typography,
+  List,
+  ListItem,
+  ListItemText,
 } from "@mui/material";
+
 import "./GamesList.css";
 import EmojiEventsOutlinedIcon from "@mui/icons-material/EmojiEventsOutlined";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import SpeakerNotesOffIcon from "@mui/icons-material/SpeakerNotesOff";
+import VideogameAssetOffIcon from "@mui/icons-material/VideogameAssetOff";
+import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 
 export default function GamesList({ target }) {
   const dispatch = useDispatch();
@@ -24,18 +32,6 @@ export default function GamesList({ target }) {
   const [editTargetName, setEditTargetName] = useState(target.target_name);
   const [editScore, setEditScore] = useState(target.target_score_value);
   const [editTotalScore, setEditTotalScore] = useState(target.total_game_score);
-  // const [bestRoundGameId, setBestRoundGameId] = useState(target.game_id);
-  // console.log(bestRoundGameId);
-
-  // const bestRound = useSelector((store) => store.bestRound);
-  // const bestScore = bestRound.map((game) => {
-  //   if (game.game_id === 57) {
-  //     return game.best_round_score;
-  //   }
-  //   // You can choose to return a default value or null for games that don't match the specificGameId.
-  //   return null;
-  // });
-  // console.log(bestRound);
 
   function handleEdit() {
     setEdit(!edit);
@@ -71,97 +67,132 @@ export default function GamesList({ target }) {
   }
 
   return (
-    <div>
-      <Card style={{ width: "65%", margin: "0 auto" }}>
-        <CardContent>
-          <div className="list-header">
-            <Button onClick={handleEdit}>Edit</Button>
-          </div>
-          <hr />
-          {edit ? (
-            // Render an input field in edit mode
-            <div className="edit-mode">
-              <div className="edit-field">
+    <Card style={{ margin: "0 auto" }}>
+      <CardContent>
+        <div className="list-header">
+          <Button
+            variant="outlined"
+            color="inherit"
+            onClick={handleEdit}
+            style={{ marginLeft: "auto" }}
+          >
+            <MoreHorizIcon />
+          </Button>
+        </div>
+        <hr />
+        {target.user_id && edit ? (
+          // Render an input field in edit mode
+          <div className="edit-mode">
+            <List>
+              <ListItem>
                 <label>Date:</label>
-                <input
+                <TextField
                   type="date"
                   value={editGameDate}
                   onChange={(e) => setEditGameDate(e.target.value)}
                 />
-              </div>
-              <div className="edit-field">
-                <label>Notes:</label>
-                <textarea
-                  type="text"
+              </ListItem>
+              <ListItem>
+                <TextField
+                  label="Notes"
+                  multiline
+                  maxRows={5}
                   value={editGameNotes}
-                  rows={3}
                   onChange={(e) => setEditGameNotes(e.target.value)}
                 />
-              </div>
-              <div className="edit-field">
+              </ListItem>
+              <ListItem>
                 <label>Name:</label>
-                <input
+                <TextField
                   type="text"
                   value={editTargetName}
                   onChange={(e) => setEditTargetName(e.target.value)}
                 />
-              </div>
-              <div className="edit-field">
+              </ListItem>
+              <ListItem>
                 <label>Score:</label>
-                <input
+                <TextField
                   type="text"
                   value={editScore}
                   onChange={(e) => setEditScore(e.target.value)}
                 />
-              </div>
-              <div className="edit-field">
+              </ListItem>
+              <ListItem>
                 <label>Total Score:</label>
-                <input
+                <TextField
                   type="text"
                   value={editTotalScore}
                   onChange={(e) => setEditTotalScore(e.target.value)}
                 />
-              </div>
-              <Button onClick={saveEdit}>Save</Button>
-            </div>
-          ) : (
-            // Render the formatted date in non-edit mode
-            <>
-              Date: {formatDate(target.game_date)}
-              <div className="game-data-line">
-                <EmojiEventsOutlinedIcon />
-                {/* {bestRound.map((best) => (
+              </ListItem>
+              {target.user_id &&
+                edit && ( // Check if user.id exists AND edit mode=true
+                  <div className="list-buttons">
+                    <Button
+                      onClick={() =>
+                        dispatch({
+                          type: "DELETE_GAME",
+                          payload: target.game_id,
+                        })
+                      }
+                      variant="contained"
+                      style={{ backgroundColor: "crimson" }}
+                    >
+                      Delete
+                    </Button>
+                    <Button onClick={saveEdit}>Save</Button>
+                  </div>
+                )}
+            </List>
+          </div>
+        ) : (
+          // Render the formatted date in non-edit mode
+          <List
+            sx={{
+              "--ListItem-minHeight": "45px",
+              "--List-padding": "5px",
+              "--List-radius": "20px",
+              "--List-gap": "5px",
+            }}
+          >
+            Date: {formatDate(target.game_date)}
+            <div className="game-data-line">
+              <EmojiEventsOutlinedIcon />
+              {/* {bestRound.map((best) => (
                   <span key={best.game_id} style={{ marginBottom: "15px" }}>
                     {best.best_round_score}
                   </span>
                 ))} */}
-              </div>
-              Notes: {target.game_notes !== null ? target.game_notes : "empty - icon?"}
+            </div>
+            <ListItem>
+              Notes:{" "}
+              {target.game_notes !== (null || "") ? (
+                target.game_notes
+              ) : (
+                <SpeakerNotesOffIcon />
+              )}
+            </ListItem>
+            <ListItem>
+              Target Name:{" "}
+              {target.target_name !== (null || "") ? (
+                target.target_name
+              ) : (
+                <DriveFileRenameOutlineIcon />
+              )}
+            </ListItem>
+            <ListItem>Total Game Score: {target.total_game_score}</ListItem>
+            <ListItem>
+              Target Value:{" "}
+              {target.target_score_value !== (null || 0) ? (
+                target.target_score_value
+              ) : (
+                <VideogameAssetOffIcon />
+              )}
               <br />
-              Target Name: {target.target_name !== null ? target.target_name : "No Name - icon?"}
-              <br />
-              Total Game Score: {target.total_game_score}
-              <br />
-              Target Value: {target.target_score_value !== null ? target.target_score_value : "None Set - icon?"}
-              <br />
-            </>
-          )}
-          {target.user_id &&
-            !edit && ( // Check if user.id exists AND edit mode=false
-              <div className="list-buttons">
-                <Button
-                  onClick={() =>
-                    dispatch({ type: "DELETE_GAME", payload: target.game_id })
-                  }
-                  variant="contained"
-                  style={{ backgroundColor: "crimson" }}
-                >
-                  Delete
-                </Button>
-              </div>
-            )}
-        </CardContent>
-      </Card>
-    </div>
+            </ListItem>
+          </List>
+        )}
+      </CardContent>
+    </Card>
   );
 }
