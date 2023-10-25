@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import GameTimer from "../GameTimer/GameTimer"; // timer keeps resetting, figure out issue
 import { useDispatch, useSelector } from "react-redux";
@@ -53,18 +53,13 @@ export default function QuickRound() {
   console.log("TARGET SCORE = ", targetScore);
   // State for Quick Round Scoring ~~~~~~~~~~~~~~~~~~~~~~~~~
   const [hit, setHit] = useState(getCookie("hit_quick") || 0); // hit count for game
-  const [hitDisplay, setHitDisplay] = useState(getCookie("hit_quick_display") || 0); // hit count for display
+  const [hitDisplay, setHitDisplay] = useState(
+    getCookie("hit_quick_display") || 0
+  ); // hit count for display
   const [miss, setMiss] = useState(getCookie("miss_quick") || 0);
   const [totalShots, setTotalShots] = useState(0); // for user to set total shots per round
   const [userTargetInput, setUserTargetInput] = useState(false);
   console.log("USER TARGET INPUT IS: ", userTargetInput);
-
-  // useEffect(() => {
-  //   // Calculate the total score whenever any of the individual scores change
-  //   const totalScore = Number(hit) + Number(totalRoundScores); // add something here
-
-  //   // Update the total score in the component state
-  // }, []);
 
   // Bring in Rounds
   const rounds = useSelector((store) => store.roundReducer);
@@ -152,8 +147,9 @@ export default function QuickRound() {
     e.preventDefault();
     //  Ensure there's a game_id before adding rounds
     //   if (newGameId) {
-      
+
     document.cookie = `hit_quick=${hit}`;
+    document.cookie = `miss_quick=${miss}`;
     // Calculate the total score for the current round
     const newRoundScore = Number(hitDisplay);
     // Create a new array of round scores with the current total score
@@ -222,6 +218,8 @@ export default function QuickRound() {
   const resetScore = () => {
     // Clear the cookies related to the score (e.g., hits)
     document.cookie = "hit_quick=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    document.cookie = "miss_quick=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    document.cookie = "totalShots=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
 
     // Reset the related state variables if needed
     setRoundScores([]);

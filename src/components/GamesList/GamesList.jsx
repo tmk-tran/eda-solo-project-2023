@@ -37,10 +37,6 @@ export default function GamesList({ target }) {
   // });
   // console.log(bestRound);
 
-  useEffect(() => {
-    dispatch({ type: "FETCH_GAMES" });
-  }, []);
-
   function handleEdit() {
     setEdit(!edit);
     setEditGameDate(formatDate(target.game_date));
