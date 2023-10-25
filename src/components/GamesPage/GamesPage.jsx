@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
+import Card from "@mui/material/Card";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -14,7 +15,8 @@ export default function GamesPage() {
   const dispatch = useDispatch();
 
   return (
-    <div className="page-container">
+    <div className="page-container" >
+      <Card elevation={6} style={{ width: "50%", margin: "0 auto" }}>
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -93,7 +95,7 @@ export default function GamesPage() {
           <Typography>
             <img
               id="trap-game"
-              src="images/trap_clay.png"
+              src="images/clay.png"
               alt="A Trap Clay Target, Shattering"
               onClick={() => {
                 dispatch({ type: "ADD_GAME" });
@@ -101,6 +103,7 @@ export default function GamesPage() {
               }}
             ></img>{" "}
           </Typography>
+          <Typography variant="body1">Record your shooting scores for each round of trap shooting</Typography>
         </AccordionDetails>
       </Accordion>
       <Accordion>
@@ -123,8 +126,10 @@ export default function GamesPage() {
               }}
             ></img>{" "}
           </Typography>
+          <Typography variant="body1">Record Hits/Misses on a target</Typography>
         </AccordionDetails>
       </Accordion>
+      </Card>
     </div>
   );
 }
