@@ -10,7 +10,7 @@ const {
  */
 router.get("/", rejectUnauthenticated, (req, res) => {
   pool
-    .query(`SELECT * FROM "games" ORDER BY game_date DESC;`)
+    .query(`SELECT * FROM "games" ORDER BY game_id ASC;`)
     .then((result) => {
       console.log("FROM games.router: ", result.rows);
       res.send(result.rows);

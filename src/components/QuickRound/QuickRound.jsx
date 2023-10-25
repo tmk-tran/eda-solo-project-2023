@@ -45,7 +45,6 @@ export default function QuickRound() {
   const [roundNumber, setRoundNumber] = useState(1);
   // from Games ~~~~~~~~~~~~~~~~~~~~~~~~~
   const [notes, setNotes] = useState(getCookie("notes") || "Notes");
-  const [totalScore, setTotalScore] = useState(0); // UNNAMED, NEED TO ASSIGN
   const [gameDate, setGameDate] = useState(new Date()); // Initialize with the current date
   console.log("GAME DATE IS:", gameDate);
   const [gameNotes, setGameNotes] = useState("");
@@ -55,18 +54,19 @@ export default function QuickRound() {
   // State for Quick Round Scoring ~~~~~~~~~~~~~~~~~~~~~~~~~
   const [hit, setHit] = useState(getCookie("hit_quick") || 0); // hit count for game
   const [hitDisplay, setHitDisplay] = useState(getCookie("hit_quick_display") || 0); // hit count for display
+  const [totalHits, setTotalHits] = useState(0); // count total hits
   const [miss, setMiss] = useState(getCookie("miss_quick") || 0);
   const [totalShots, setTotalShots] = useState(0); // for user to set total shots per round
   const [userTargetInput, setUserTargetInput] = useState(false);
   console.log("USER TARGET INPUT IS: ", userTargetInput);
 
-  useEffect(() => {
-    // Calculate the total score whenever any of the individual scores change
-    const totalScore = Number(hit) + Number(totalRoundScores); // add something here
+  // useEffect(() => {
+  //   // Calculate the total score whenever any of the individual scores change
+  //   const totalScore = Number(hit) + Number(totalRoundScores); // add something here
 
-    // Update the total score in the component state
-    setTotalScore(totalScore);
-  }, [hit]);
+  //   // Update the total score in the component state
+  //   setTotalHits(totalHits);
+  // }, [hit]);
 
   // Bring in Rounds
   const rounds = useSelector((store) => store.roundReducer);
@@ -127,7 +127,7 @@ export default function QuickRound() {
     setGameDate(gameDate);
     setNotes("Notes");
     setHit(0);
-    setTotalScore(0);
+    setTotalHits(0);
     setTargetScore(0);
     setRoundNumber(1);
     resetScore();
@@ -193,7 +193,7 @@ export default function QuickRound() {
     // setHit(0);
     setHitDisplay(0);
     setTargetScore(sumRoundScores);
-    // setTotalScore(0);
+    // setTotalHits(0);
   };
 
   const shotTotal = Number(hit + miss);
@@ -215,7 +215,7 @@ export default function QuickRound() {
     // Clear counters
     setGameDate(gameDate);
     setGameNotes("Notes");
-    setTotalScore(0);
+    // setTotalHits(0);
     setTargetName("");
     setTargetScore(0);
     alert("Added Game!");
