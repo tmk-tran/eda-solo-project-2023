@@ -11,8 +11,8 @@
 
 /* Default styles for larger screens */
 .page-container {
-  /* display: flex;
-  flex-direction: row; */
+  /* display: flex; */
+  /* flex-direction: row; */
   margin-top: 55px;
 }
 
@@ -26,5 +26,10 @@
   .page-container {
     flex-direction: column;
     margin-top: 0px; 
+  }
+
+  .card {
+    width: 80%; /* Adjust the width as needed for mobile layout */
+    margin: 10px 0; /* Add some spacing between cards */
   }
 }
