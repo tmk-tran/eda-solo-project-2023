@@ -53,7 +53,8 @@ export default function QuickRound() {
   const [targetScore, setTargetScore] = useState(0); // for this component, we want to record total shots taken, too
   console.log("TARGET SCORE = ", targetScore);
   // State for Quick Round Scoring ~~~~~~~~~~~~~~~~~~~~~~~~~
-  const [hit, setHit] = useState(getCookie("hit_quick") || 0);
+  const [hit, setHit] = useState(getCookie("hit_quick") || 0); // hit count for game
+  const [hitDisplay, setHitDisplay] = useState(getCookie("hit_quick_display") || 0); // hit count for display
   const [miss, setMiss] = useState(getCookie("miss_quick") || 0);
   const [totalShots, setTotalShots] = useState(0); // for user to set total shots per round
   const [userTargetInput, setUserTargetInput] = useState(false);
@@ -111,6 +112,7 @@ export default function QuickRound() {
   // Record Hits
   const targetHit = () => {
     setHit(hit + 1);
+    setHitDisplay(hitDisplay + 1);
   };
 
   // Record Misses
@@ -176,16 +178,12 @@ export default function QuickRound() {
     const roundData = {
       game_id: newGameId,
       round_number: roundNumber,
-    };
-    console.log("ROUND DATA IS: ", roundData); // remove after confirmation
-    const roundScoreData = {
-      round_id: roundId,
       round_score: newRoundScore,
     };
-    console.log("ROUND SCORE DATA IS: ", roundScoreData); // remove after confirmation
+    console.log("ROUND DATA IS: ", roundData); // remove after confirmation
 
     dispatch({ type: "ADD_ROUND", payload: roundData });
-    dispatch({ type: "ADD_ROUND_SCORE", payload: roundScoreData }); // check roundScoreData
+    // dispatch({ type: "ADD_ROUND_SCORE", payload: roundScoreData }); // check roundScoreData
 
     setRoundNumber(roundNumber + 1);
     console.log("ROUND NUMBER IS: ", roundNumber); // remove after confirmation
@@ -193,6 +191,7 @@ export default function QuickRound() {
     setRoundScores(newRoundScores);
     setRoundHeaders([...roundHeaders, newRoundHeader]);
     // setHit(0);
+    setHitDisplay(0);
     setTargetScore(sumRoundScores);
     // setTotalScore(0);
   };
@@ -202,6 +201,7 @@ export default function QuickRound() {
 
   const addGame = () => {
     const newGame = {
+      game_id: newGameId,
       game_date: formatDate(gameDate),
       game_notes: gameNotes,
       target_name: targetName,
@@ -210,16 +210,16 @@ export default function QuickRound() {
     };
 
     // Dispatch the action with the new target data
-    dispatch({ type: "ADD_GAME", payload: newGame });
+    dispatch({ type: "EDIT_GAME", payload: newGame });
 
-    // Clear the input fields
+    // Clear counters
     setGameDate(gameDate);
     setGameNotes("Notes");
     setTotalScore(0);
     setTargetName("");
     setTargetScore(0);
     alert("Added Game!");
-    history.push("/success");
+    history.push("/results");
     resetScore();
   };
 
@@ -371,6 +371,7 @@ export default function QuickRound() {
           </div>
           <div className="trap-hit-display">
             <p>Hits: {hit}</p>
+            <p>Hit Display: {hitDisplay}</p>
           </div>
           <div className="trap-hit-button">
             <Button variant="contained" onClick={targetHit}>

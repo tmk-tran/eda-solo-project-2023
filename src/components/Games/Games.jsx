@@ -32,7 +32,7 @@ export default function Games() {
   }, []);
 
   const gameList = useSelector((store) => store.gamesReducer);
-  const reversedGameList = [...gameList].reverse();
+  // const reversedGameList = [...gameList].reverse();
   // const bestRound = useSelector((store) => store.bestRound);
 
   const startNewGame = () => {
@@ -135,7 +135,7 @@ export default function Games() {
         <br />
         <br />
         <div>
-          {reversedGameList.map((target) => (
+          {gameList.map((target) => (
             <div key={target.game_id} style={{ marginBottom: "15px" }}>
               <GamesList target={target} />
             </div>
