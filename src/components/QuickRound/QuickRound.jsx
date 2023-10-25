@@ -54,7 +54,6 @@ export default function QuickRound() {
   // State for Quick Round Scoring ~~~~~~~~~~~~~~~~~~~~~~~~~
   const [hit, setHit] = useState(getCookie("hit_quick") || 0); // hit count for game
   const [hitDisplay, setHitDisplay] = useState(getCookie("hit_quick_display") || 0); // hit count for display
-  const [totalHits, setTotalHits] = useState(0); // count total hits
   const [miss, setMiss] = useState(getCookie("miss_quick") || 0);
   const [totalShots, setTotalShots] = useState(0); // for user to set total shots per round
   const [userTargetInput, setUserTargetInput] = useState(false);
@@ -65,8 +64,7 @@ export default function QuickRound() {
   //   const totalScore = Number(hit) + Number(totalRoundScores); // add something here
 
   //   // Update the total score in the component state
-  //   setTotalHits(totalHits);
-  // }, [hit]);
+  // }, []);
 
   // Bring in Rounds
   const rounds = useSelector((store) => store.roundReducer);
@@ -127,7 +125,6 @@ export default function QuickRound() {
     setGameDate(gameDate);
     setNotes("Notes");
     setHit(0);
-    setTotalHits(0);
     setTargetScore(0);
     setRoundNumber(1);
     resetScore();
@@ -155,7 +152,8 @@ export default function QuickRound() {
     e.preventDefault();
     //  Ensure there's a game_id before adding rounds
     //   if (newGameId) {
-
+      
+    document.cookie = `hit_quick=${hit}`;
     // Calculate the total score for the current round
     const newRoundScore = Number(hitDisplay);
     // Create a new array of round scores with the current total score
@@ -193,7 +191,6 @@ export default function QuickRound() {
     // setHit(0);
     setHitDisplay(0);
     setTargetScore(sumRoundScores);
-    // setTotalHits(0);
   };
 
   const shotTotal = Number(hit + miss);
@@ -215,7 +212,6 @@ export default function QuickRound() {
     // Clear counters
     setGameDate(gameDate);
     setGameNotes("Notes");
-    // setTotalHits(0);
     setTargetName("");
     setTargetScore(0);
     alert("Added Game!");
