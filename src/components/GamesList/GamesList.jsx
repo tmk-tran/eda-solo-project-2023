@@ -187,7 +187,7 @@ export default function GamesList({ target, roundScores }) {
                     Best Round Score:
                     {roundScores.map((round, index) => (
                       <div key={index}>
-                        Round {index + 1} Score: {round.round_score}
+                        Round {index + 1}: Score: {round.round_score}
                         {/* Add more round information here as needed */}
                       </div>
                     ))}
@@ -230,7 +230,15 @@ export default function GamesList({ target, roundScores }) {
                 </TableRow>
               </TableBody>
             </Table>
-            <div className="round-info">Round Info</div>
+            <div className="round-info">
+              <Typography variant="h5">Round Info</Typography>
+              {roundScores.map((round, index) => (
+                      <div key={index}>
+                        Round {index + 1}: Score: {round.round_score}
+                        {/* Add more round information here as needed */}
+                      </div>
+                    ))}
+            </div>
           </div>
         )}
       </CardContent>
