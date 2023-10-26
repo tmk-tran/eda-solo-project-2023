@@ -12,6 +12,11 @@ import {
   ListItem,
   ListItemText,
   Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
 } from "@mui/material";
 
 import "./GamesList.css";
@@ -45,8 +50,8 @@ export default function GamesList({ target }) {
   const saveEdit = () => {
     console.log("clicked saveEdit");
     if (editScore === "") {
-      // update later, when decided on what score is used for
       editScore = 0;
+      // update later, when decided on what score is used for
     }
 
     const editedItem = {
@@ -111,7 +116,7 @@ export default function GamesList({ target }) {
                   <TextField
                     label="Notes"
                     multiline
-                    maxRows={5}
+                    maxRows={3}
                     value={editGameNotes}
                     onChange={(e) => setEditGameNotes(e.target.value)}
                   />
@@ -160,56 +165,58 @@ export default function GamesList({ target }) {
           </div>
         ) : (
           // Render the formatted date in non-edit mode
-          <Table color="neutral" variant="soft">
-            <thead>
-              <tr>
-                <th style={{ width: "40%" }}>
-                  Date: {formatDate(target.game_date)}
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <EmojiEventsOutlinedIcon />
-                </td>
-              </tr>
-              <tr>
-                <td className="game-history">
+          <Table sx={{ minWidth: 200 }} size="small">
+            <TableHead>
+              <TableRow sx={{ "&:last-child th": { border: 0 } }}>
+                <TableCell style={{ width: "40%" }}>
+                  <Typography variant="h6">
+                    Date: {formatDate(target.game_date)}
+                  </Typography>
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow>
+                <TableCell>
+                  <EmojiEventsOutlinedIcon />Best Round Score:
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell className="game-history">
                   Notes:{" "}
                   {target.game_notes !== (null || "") ? (
                     target.game_notes
                   ) : (
                     <SpeakerNotesOffIcon />
                   )}
-                </td>
-              </tr>
-              <tr>
-                <td className="game-history">
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell className="game-history">
                   Target Name:{" "}
                   {target.target_name !== (null || "") ? (
                     target.target_name
                   ) : (
                     <DriveFileRenameOutlineIcon />
                   )}
-                </td>
-              </tr>
-              <tr>
-                <td className="game-history">
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell className="game-history">
                   Total Game Score: {target.total_game_score}
-                </td>
-              </tr>
-              <tr>
-                <td className="game-history">
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell className="game-history">
                   Target Value:{" "}
                   {target.target_score_value !== (null || 0) ? (
                     target.target_score_value
                   ) : (
                     <VideogameAssetOffIcon />
                   )}
-                </td>
-              </tr>
-            </tbody>
+                </TableCell>
+              </TableRow>
+            </TableBody>
           </Table>
           // <List
           //   sx={{
