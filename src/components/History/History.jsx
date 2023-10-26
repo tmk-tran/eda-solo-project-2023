@@ -38,11 +38,6 @@ export default function History() {
       <h1>History</h1>
       <Box sx={{ width: "100%" }}>
         <List>
-          {/* {reversedGameList.map((target) => (
-          <ListItem key={target.game_id} style={{ marginBottom: "15px" }}>
-            <GamesList target={target} />
-          </ListItem>
-        ))} */}
           {reversedGameList.map((target) => (
             <ListItem key={target.game_id} style={{ marginBottom: "15px" }}>
               <GamesList

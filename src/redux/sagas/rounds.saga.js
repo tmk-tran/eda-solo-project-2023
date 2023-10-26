@@ -14,15 +14,15 @@ function* fetchRoundsSaga() {
   }
 }
 
-function* roundScores(action) {
-  try {
-    const roundInfo = yield axios.get(`/api/rounds/${action.payload}`);
-    console.log("roundInfo in roundsSaga", roundInfo.data);
-    yield put({ type: "SET_ROUND_SCORES", payload: roundInfo.data });
-  } catch (error) {
-    console.log("error with GET roundScores saga request", error);
-  }
-}
+// function* roundScores(action) {
+//   try {
+//     const roundInfo = yield axios.get(`/api/rounds/${action.payload}`);
+//     console.log("roundInfo in roundsSaga", roundInfo.data);
+//     yield put({ type: "SET_ROUND_SCORES", payload: roundInfo.data });
+//   } catch (error) {
+//     console.log("error with GET roundScores saga request", error);
+//   }
+// }
 
 function* addRoundSaga(action) {
   try {
@@ -48,7 +48,7 @@ function* deleteRoundSaga(action) {
 
 export default function* itemsSaga() {
   yield takeEvery("FETCH_ROUNDS", fetchRoundsSaga);
-  yield takeEvery("FETCH_ROUND_SCORES", roundScores);
+  // yield takeEvery("FETCH_ROUND_SCORES", roundScores);
   yield takeEvery("ADD_ROUND", addRoundSaga);
   yield takeEvery("DELETE_ROUND", deleteRoundSaga);
 }

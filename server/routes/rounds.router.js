@@ -22,24 +22,24 @@ router.get("/", rejectUnauthenticated, (req, res) => {
     });
 });
 
-router.get("/:id", rejectUnauthenticated, (req, res) => {
-  console.log("req in rounds.router: ", req.params.id);
-  pool
-    .query(
-      `SELECT r.round_number, r.round_score
-  FROM rounds r
-  WHERE r.game_id = $1`,
-      [req.params.id]
-    )
-    .then((results) => {
-      console.log("results.rows in rounds.router: ", results.rows);
-      res.send(results.rows).status(200);
-    })
-    .catch((error) => {
-      console.log("Error in GET ROUNDS with game_id", error);
-      res.sendStatus(500);
-    });
-});
+// router.get("/:id", rejectUnauthenticated, (req, res) => {
+//   console.log("req in rounds.router: ", req.params.id);
+//   pool
+//     .query(
+//       `SELECT r.round_number, r.round_score
+//   FROM rounds r
+//   WHERE r.game_id = $1`,
+//       [req.params.id]
+//     )
+//     .then((results) => {
+//       console.log("results.rows in rounds.router: ", results.rows);
+//       res.send(results.rows).status(200);
+//     })
+//     .catch((error) => {
+//       console.log("Error in GET ROUNDS with game_id", error);
+//       res.sendStatus(500);
+//     });
+// });
 
 /**
  * Add a round for the logged in user to the Rounds page

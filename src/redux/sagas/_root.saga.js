@@ -6,7 +6,6 @@ import userSaga from "./user.saga";
 // import tableItemDescrSaga from './table.item.descr.saga';
 import gamesSaga from "./games.saga";
 import roundsSaga from "./rounds.saga";
-import scoresSaga from "./scores.saga";
 import sumRound from "./sumRound.saga";
 import totalRounds from "./totalRounds.saga";
 // rootSaga is the primary saga.
@@ -23,7 +22,6 @@ export default function* rootSaga() {
     userSaga(),
     gamesSaga(),
     roundsSaga(),
-    scoresSaga(),
     sumRound(),
     totalRounds(),
   ]);

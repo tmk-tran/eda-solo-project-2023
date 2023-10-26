@@ -71,6 +71,11 @@
   margin: 0 auto;
 }
 
+/* Style for game information table display */
+.game-list-display-container {
+  display: flex;
+}
+
 /* Media query for smaller screens (e.g., mobile) */
 @media (max-width: 768px) {
   #games-list-card {

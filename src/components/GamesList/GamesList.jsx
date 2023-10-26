@@ -169,111 +169,69 @@ export default function GamesList({ target, roundScores }) {
           </div>
         ) : (
           // Render the formatted date in non-edit mode
-          <Table sx={{ minWidth: 200 }} size="small">
-            <TableHead>
-              <TableRow sx={{ "&:last-child th": { border: 0 } }}>
-                <TableCell style={{ width: "40%" }}>
-                  <Typography variant="h6">
-                    Date: {formatDate(target.game_date)}
-                  </Typography>
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              <TableRow>
-                <TableCell>
-                  <EmojiEventsOutlinedIcon />
-                  Best Round Score:
-                  {roundScores.map((round, index) => (
-                    <div key={index}>
-                      Round {index + 1} Score: {round.round_score}
-                      {/* Add more round information here as needed */}
-                    </div>
-                  ))}
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell className="game-history">
-                  Notes:{" "}
-                  {target.game_notes !== (null || "") ? (
-                    target.game_notes
-                  ) : (
-                    <SpeakerNotesOffIcon />
-                  )}
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell className="game-history">
-                  Target Name:{" "}
-                  {target.target_name !== (null || "") ? (
-                    target.target_name
-                  ) : (
-                    <DriveFileRenameOutlineIcon />
-                  )}
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell className="game-history">
-                  Total Game Score: {target.total_game_score}
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell className="game-history">
-                  Target Value:{" "}
-                  {target.target_score_value !== (null || 0) ? (
-                    target.target_score_value
-                  ) : (
-                    <VideogameAssetOffIcon />
-                  )}
-                </TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-
-          // <List
-          //   sx={{
-          //     "--ListItem-minHeight": "45px",
-          //     "--List-padding": "5px",
-          //     "--List-radius": "20px",
-          //     "--List-gap": "5px",
-          //   }}
-          // >
-          //   Date: {formatDate(target.game_date)}
-          //   <div className="game-data-line">
-          //     <EmojiEventsOutlinedIcon />
-          //     {/* {bestRound.map((best) => (
-          //         <span key={best.game_id} style={{ marginBottom: "15px" }}>
-          //           {best.best_round_score}
-          //         </span>
-          //       ))} */}
-          //   </div>
-          //   <ListItem>
-          //     Notes:{" "}
-          //     {target.game_notes !== (null || "") ? (
-          //       target.game_notes
-          //     ) : (
-          //       <SpeakerNotesOffIcon />
-          //     )}
-          //   </ListItem>
-          //   <ListItem>
-          // Target Name:{" "}
-          // {target.target_name !== (null || "") ? (
-          //   target.target_name
-          // ) : (
-          //   <DriveFileRenameOutlineIcon />
-          // )}
-          //   </ListItem>
-          //   <ListItem>Total Game Score: {target.total_game_score}</ListItem>
-          //   <ListItem>
-          // Target Value:{" "}
-          // {target.target_score_value !== (null || 0) ? (
-          //   target.target_score_value
-          // ) : (
-          //   <VideogameAssetOffIcon />
-          // )}
-          //     <br />
-          //   </ListItem>
-          // </List>
+          <div className="game-list-display-container">
+            <Table sx={{ minWidth: 200 }} size="small">
+              <TableHead>
+                <TableRow sx={{ "&:last-child th": { border: 0 } }}>
+                  <TableCell style={{ width: "40%" }}>
+                    <Typography variant="h6">
+                      Date: {formatDate(target.game_date)}
+                    </Typography>
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableRow>
+                  <TableCell>
+                    <EmojiEventsOutlinedIcon />
+                    Best Round Score:
+                    {roundScores.map((round, index) => (
+                      <div key={index}>
+                        Round {index + 1} Score: {round.round_score}
+                        {/* Add more round information here as needed */}
+                      </div>
+                    ))}
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="game-history">
+                    Notes:{" "}
+                    {target.game_notes !== (null || "") ? (
+                      target.game_notes
+                    ) : (
+                      <SpeakerNotesOffIcon />
+                    )}
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="game-history">
+                    Target Name:{" "}
+                    {target.target_name !== (null || "") ? (
+                      target.target_name
+                    ) : (
+                      <DriveFileRenameOutlineIcon />
+                    )}
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="game-history">
+                    Total Game Score: {target.total_game_score}
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="game-history">
+                    Target Value:{" "}
+                    {target.target_score_value !== (null || 0) ? (
+                      target.target_score_value
+                    ) : (
+                      <VideogameAssetOffIcon />
+                    )}
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+            <div className="round-info">Round Info</div>
+          </div>
         )}
       </CardContent>
     </Card>
