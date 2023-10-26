@@ -12,6 +12,7 @@ import {
   List,
   ListItem,
   ListItemText,
+  ListItemIcon,
   Table,
   TableBody,
   TableContainer,
@@ -27,7 +28,7 @@ import VideogameAssetOffIcon from "@mui/icons-material/VideogameAssetOff";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 // ~~~~~~~~~~~~~~~ Sweet Alert ~~~~~~~~~~~~~~~~~~
 import Swal from "sweetalert2/dist/sweetalert2.js";
-import 'animate.css';
+import "animate.css";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -91,6 +92,7 @@ export default function GamesList({ target, roundScores }) {
     dispatch({ type: "EDIT_GAME", payload: editedItem });
 
     setEdit(false);
+    savedAlert();
   };
 
   // format the date to mm/dd/yyyy
@@ -135,15 +137,16 @@ export default function GamesList({ target, roundScores }) {
 
   const savedAlert = () => {
     Swal.fire({
-      title: 'Custom animation with Animate.css',
+      title: "Game Saved!",
       showClass: {
-        popup: 'animate__animated animate__fadeInDown'
+        popup: "animate__animated animate__fadeInDown",
       },
       hideClass: {
-        popup: 'animate__animated animate__fadeOutUp'
-      }
-    })
-  }
+        popup: "animate__animated animate__fadeOutUp",
+      },
+      confirmButtonColor: "#3085d6",
+    });
+  };
 
   return (
     <Card id="games-list-card">
@@ -229,7 +232,6 @@ export default function GamesList({ target, roundScores }) {
                   >
                     Delete
                   </Button>
-                  <button onClick={savedAlert}>S</button>
                   <Button onClick={saveEdit}>Save</Button>
                 </div>
               </List>
@@ -255,7 +257,7 @@ export default function GamesList({ target, roundScores }) {
                 </TableRow>
                 <StyledTableRow>
                   <StyledTableCell className="game-history">
-                    Notes:{" "}
+                    <ListItemText primary="Notes: " />
                     {target.game_notes !== (null || "") ? (
                       target.game_notes
                     ) : (
@@ -265,34 +267,57 @@ export default function GamesList({ target, roundScores }) {
                 </StyledTableRow>
                 <StyledTableRow>
                   <StyledTableCell className="game-history">
-                    Target:{" "}
-                    {target.target_name !== (null || "") ? (
-                      target.target_name
-                    ) : (
-                      <DriveFileRenameOutlineIcon />
-                    )}
+                    <ListItem
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <ListItemText primary="Target: " />
+                      {target.target_name !== (null || "") ? (
+                        target.target_name
+                      ) : (
+                        <DriveFileRenameOutlineIcon />
+                      )}
+                    </ListItem>
                   </StyledTableCell>
                 </StyledTableRow>
                 <StyledTableRow>
                   <StyledTableCell className="game-history">
-                    Total Score: {target.total_game_score}
+                    <ListItem
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <ListItemText primary="Total Score: " />
+                      {target.total_game_score}
+                    </ListItem>
                   </StyledTableCell>
                 </StyledTableRow>
                 <StyledTableRow>
                   <StyledTableCell className="game-history">
-                    Game Score:{" "}
-                    {target.target_score_value !== (null || 0) ? (
-                      target.target_score_value
-                    ) : (
-                      <VideogameAssetOffIcon />
-                    )}
+                    <ListItem
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <ListItemText primary="Game Score: " />
+                      {target.target_score_value !== (null || 0)
+                        ? target.target_score_value
+                        : "None Set"}
+                    </ListItem>
                   </StyledTableCell>
                 </StyledTableRow>
               </TableBody>
             </Table>
             <Card className="round-info" elevation={7}>
               <CardContent>
-                <Typography variant="h5" style={{ fontSize: "16px" }}>Round Info</Typography>
+                <Typography variant="h5" style={{ fontSize: "16px" }}>
+                  Round Info
+                </Typography>
+                <br />
                 {roundScores.map((round, index) => (
                   <Typography id="round-scores" key={index} variant="body2">
                     #{index + 1}: {round.round_score} points
