@@ -1,0 +1,41 @@
+.game-type-link {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Games Link Image Style */
+
+#three-ring-game,
+#four-ring-game,
+#five-ring-game,
+#trap-game {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+#three-ring-game:hover,
+#four-ring-game:hover,
+#five-ring-game:hover,
+#trap-game:hover,
+#hits-game:hover {
+  transform: scale(1.1);
+}
+
+#hits-game {
+  width: 100px;
+  height: 100px;
+}
+
+#games-page-card {
+  height: 100vh;
+  background-color: aliceblue;
+  overflow-y: auto;
+}
+
+/* Media query for smaller screens (e.g., mobile) */
+@media (max-width: 768px) {
+  #games-page-card {
+    height: 100vh;
+  }
+}

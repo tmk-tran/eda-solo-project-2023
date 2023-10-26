@@ -29,9 +29,9 @@ export default function ThreeRing() {
   const [roundName, setRoundName] = useState(getCookie("round") || "3-Ring");
   // Define state to manage round scores and round headers
   const [roundScores, setRoundScores] = useState([]); // Array to store round scores
-  const [roundHeaders, setRoundHeaders] = useState([1]); // Array to store round headers
+  const [roundHeaders, setRoundHeaders] = useState([]); // Array to store round headers
   const [totalRoundScores, setTotalRoundScores] = useState(0);
-  console.log("TOTAL SCORES OF ROUNDS = ", totalRoundScores);
+  // console.log("TOTAL SCORES OF ROUNDS = ", totalRoundScores);
 
   // State to manage round numbers
   const [roundNumber, setRoundNumber] = useState(1);
@@ -42,7 +42,7 @@ export default function ThreeRing() {
     pointsOuter + pointsInner + bulls
   );
   const [gameDate, setGameDate] = useState(new Date()); // Initialize with the current date
-  console.log("GAME DATE IS:", gameDate);
+  // console.log("GAME DATE IS:", gameDate);
   const [gameNotes, setGameNotes] = useState("");
   const [targetName, setTargetName] = useState("3-Ring");
   const [targetScore, setTargetScore] = useState(0); // update this when we decide what it is for
@@ -58,7 +58,7 @@ export default function ThreeRing() {
 
   // Bring in Rounds
   const rounds = useSelector((store) => store.roundReducer);
-  console.log("SCORES: ", rounds);
+  console.log("ROUNDS store in ThreeRing: ", rounds);
   const roundIds = rounds.map((round, i) => {
     // Check if it's the last score in the array
     if (i === rounds.length - 1) {
@@ -181,16 +181,19 @@ export default function ThreeRing() {
     const roundData = {
       game_id: newGameId,
       round_number: roundNumber,
-    };
-    console.log("ROUND DATA IS: ", roundData); // remove after confirmation
-    const roundScoreData = {
-      round_id: roundId,
       round_score: newRoundScore,
     };
-    console.log("ROUND SCORE DATA IS: ", roundScoreData); // remove after confirmation
+    console.log("ROUND DATA IS: ", roundData); // remove after confirmation
+    // const roundScoreData = {
+    //   round_id: roundId,
+    //   round_score: Number(newRoundScore),
+    // };
+    // console.log("ROUND SCORE DATA IS: ", roundScoreData); // remove after confirmation
 
-    dispatch({ type: "ADD_ROUND", payload: roundData });
-    dispatch({ type: "ADD_ROUND_SCORE", payload: roundScoreData }); // check roundScoreData
+    dispatch({ type: "ADD_ROUND", payload: roundData }); // --> send to a new reducer?
+    // dispatch({ type: "FETCH_ROUNDS", payload: roundId });
+    // console.log("in threering: ", roundId);
+    // dispatch({ type: "ADD_ROUND_SCORE", payload: roundScoreData }); // check roundScoreData
 
     setRoundNumber(roundNumber + 1);
     console.log("ROUND NUMBER IS: ", roundNumber); // remove after confirmation
@@ -204,7 +207,8 @@ export default function ThreeRing() {
   };
 
   const addGame = () => {
-    const newGame = {
+    const gameData = {
+      game_id: newGameId,
       game_date: formatDate(gameDate),
       game_notes: gameNotes,
       target_name: targetName,
@@ -213,16 +217,17 @@ export default function ThreeRing() {
     };
 
     // Dispatch the action with the new target data
-    dispatch({ type: "ADD_GAME", payload: newGame });
+    // dispatch({ type: "ADD_GAME", payload: newGame });
+    dispatch({ type: "EDIT_GAME", payload: gameData });
 
-    // Clear the input fields
+    // Clear the fields
     setGameDate(gameDate);
     setGameNotes("Notes");
     setTotalScore(0);
     setTargetName("");
-    setTargetScore(0);
     alert("Added Game!");
-    history.push("/games");
+    history.push("/results");
+    resetScore();
   };
 
   const resetScore = () => {
@@ -235,14 +240,23 @@ export default function ThreeRing() {
     setPointsOuter(0);
     setPointsInner(0);
     setBulls(0);
+    setTotalScore(0);
     setRoundScores([]);
     setRoundHeaders([]);
   };
 
   return (
-    <>
+    <div className="page-container">
       <div className="top-buttons">
-        <button onClick={() => history.push("/games")}>Cancel</button>
+        <button
+          onClick={() => {
+            resetScore();
+            dispatch({ type: "DELETE_GAME", payload: newGameId })
+            history.push("/games");
+          }}
+        >
+          Cancel
+        </button>{" "}
         <button onClick={addGame}>Finish</button>
       </div>
       <div>
@@ -354,6 +368,6 @@ export default function ThreeRing() {
           Add Round
         </Button>
       </FormControl>
-    </>
+    </div>
   );
 }

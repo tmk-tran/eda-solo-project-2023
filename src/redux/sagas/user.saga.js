@@ -41,7 +41,7 @@ function* editUser(action) {
       config
     );
     console.log(response);
-    alert("Username updated!");
+    // alert("Username updated!"); // removed after adding sweet alerts
 
     // now that the session has given us a user object
     // with an id and username set the client-side user object to let

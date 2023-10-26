@@ -9,11 +9,10 @@ const {
  * Get all of the games from DB
  */
 router.get("/", rejectUnauthenticated, (req, res) => {
-  console.log("req.user:", req.user);
   pool
     .query(`SELECT * FROM "games" ORDER BY game_id ASC;`)
     .then((result) => {
-      console.log(result.rows);
+      console.log("FROM games.router: ", result.rows);
       res.send(result.rows);
     })
     .catch((err) => {
@@ -23,7 +22,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 });
 
 /**
- * Add an item for the logged in user to the target area
+ * Add a game for the logged in user
  */
 router.post("/", rejectUnauthenticated, (req, res) => {
   const item = req.body;
@@ -51,56 +50,8 @@ router.post("/", rejectUnauthenticated, (req, res) => {
     });
 });
 
-// START HERE ON RETURN
-
-// router.post("/", (req, res) => {
-//   console.log(req.body);
-//   // RETURNING "id" will give us back the id of the created movie
-//   const insertMovieQuery = `
-//   INSERT INTO "movies" ("title", "poster", "description")
-//   VALUES ($1, $2, $3)
-//   RETURNING "id";`;
-
-//   // FIRST QUERY MAKES MOVIE
-//   pool
-//     .query(insertMovieQuery, [
-//       req.body.title,
-//       req.body.poster,
-//       req.body.description,
-//     ])
-//     .then((result) => {
-//       console.log("New Movie Id:", result.rows[0].id); //ID IS HERE!
-
-//       const createdMovieId = result.rows[0].id;
-
-//       // Now handle the genre reference
-//       const insertMovieGenreQuery = `
-//       INSERT INTO "movies_genres" ("movie_id", "genre_id")
-//       VALUES  ($1, $2);
-//       `;
-//       // SECOND QUERY ADDS GENRE FOR THAT NEW MOVIE
-//       pool
-//         .query(insertMovieGenreQuery, [createdMovieId, req.body.genre_id])
-//         .then((result) => {
-//           //Now that both are done, send back success!
-//           res.sendStatus(201);
-//         })
-//         .catch((err) => {
-//           // catch for second query
-//           console.log(err);
-//           res.sendStatus(500);
-//         });
-
-//       // Catch for first query
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       res.sendStatus(500);
-//     });
-// });
-
 /**
- * Delete an item if it's something the logged in user added
+ * Delete a game if it's one the logged in user added
  */
 router.delete("/:id", rejectUnauthenticated, (req, res) => {
   // endpoint functionality
@@ -121,7 +72,7 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
 });
 
 /**
- * Update an item if it's something the logged in user added
+ * Update a game if it's one the logged in user added
  */
 router.put("/:id", rejectUnauthenticated, (req, res) => {
   const game = req.body;

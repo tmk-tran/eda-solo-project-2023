@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import GameTimer from "../GameTimer/GameTimer"; // timer keeps resetting, figure out issue
 import { useDispatch, useSelector } from "react-redux";
@@ -45,22 +45,21 @@ export default function QuickRound() {
   const [roundNumber, setRoundNumber] = useState(1);
   // from Games ~~~~~~~~~~~~~~~~~~~~~~~~~
   const [notes, setNotes] = useState(getCookie("notes") || "Notes");
-  const [totalScore, setTotalScore] = useState(0); // change once named
   const [gameDate, setGameDate] = useState(new Date()); // Initialize with the current date
   console.log("GAME DATE IS:", gameDate);
   const [gameNotes, setGameNotes] = useState("");
   const [targetName, setTargetName] = useState("Quick Round");
   const [targetScore, setTargetScore] = useState(0); // for this component, we want to record total shots taken, too
+  console.log("TARGET SCORE = ", targetScore);
   // State for Quick Round Scoring ~~~~~~~~~~~~~~~~~~~~~~~~~
-  const [hit, setHit] = useState(getCookie("hit_quick") || 0);
-
-  useEffect(() => {
-    // Calculate the total score whenever any of the individual scores change
-    const totalScore = Number(hit) + Number(totalRoundScores); // add something here
-
-    // Update the total score in the component state
-    setTotalScore(totalScore);
-  }, [hit]);
+  const [hit, setHit] = useState(getCookie("hit_quick") || 0); // hit count for game
+  const [hitDisplay, setHitDisplay] = useState(
+    getCookie("hit_quick_display") || 0
+  ); // hit count for display
+  const [miss, setMiss] = useState(getCookie("miss_quick") || 0);
+  const [totalShots, setTotalShots] = useState(0); // for user to set total shots per round
+  const [userTargetInput, setUserTargetInput] = useState(false);
+  console.log("USER TARGET INPUT IS: ", userTargetInput);
 
   // Bring in Rounds
   const rounds = useSelector((store) => store.roundReducer);
@@ -106,6 +105,12 @@ export default function QuickRound() {
   // Record Hits
   const targetHit = () => {
     setHit(hit + 1);
+    setHitDisplay(hitDisplay + 1);
+  };
+
+  // Record Misses
+  const targetMiss = () => {
+    setMiss(miss + 1);
   };
 
   const clearScores = (e) => {
@@ -115,7 +120,6 @@ export default function QuickRound() {
     setGameDate(gameDate);
     setNotes("Notes");
     setHit(0);
-    setTotalScore(0);
     setTargetScore(0);
     setRoundNumber(1);
     resetScore();
@@ -144,8 +148,10 @@ export default function QuickRound() {
     //  Ensure there's a game_id before adding rounds
     //   if (newGameId) {
 
+    document.cookie = `hit_quick=${hit}`;
+    document.cookie = `miss_quick=${miss}`;
     // Calculate the total score for the current round
-    const newRoundScore = Number(hit);
+    const newRoundScore = Number(hitDisplay);
     // Create a new array of round scores with the current total score
     const newRoundScores = [...roundScores, newRoundScore];
     console.log("NEW ROUND SCORES: ", newRoundScores); // confirmed
@@ -166,62 +172,78 @@ export default function QuickRound() {
     const roundData = {
       game_id: newGameId,
       round_number: roundNumber,
-    };
-    console.log("ROUND DATA IS: ", roundData); // remove after confirmation
-    const roundScoreData = {
-      round_id: roundId,
       round_score: newRoundScore,
     };
-    console.log("ROUND SCORE DATA IS: ", roundScoreData); // remove after confirmation
+    console.log("ROUND DATA IS: ", roundData); // remove after confirmation
 
     dispatch({ type: "ADD_ROUND", payload: roundData });
-    dispatch({ type: "ADD_ROUND_SCORE", payload: roundScoreData }); // check roundScoreData
+    // dispatch({ type: "ADD_ROUND_SCORE", payload: roundScoreData }); // check roundScoreData
 
     setRoundNumber(roundNumber + 1);
     console.log("ROUND NUMBER IS: ", roundNumber); // remove after confirmation
 
     setRoundScores(newRoundScores);
     setRoundHeaders([...roundHeaders, newRoundHeader]);
-    setHit(0);
+    // setHit(0);
+    setHitDisplay(0);
     setTargetScore(sumRoundScores);
-    // setTotalScore(0);
   };
+
+  const shotTotal = Number(hit + miss);
+  console.log("SHOT TOTAL IS: ", shotTotal);
 
   const addGame = () => {
     const newGame = {
+      game_id: newGameId,
       game_date: formatDate(gameDate),
       game_notes: gameNotes,
       target_name: targetName,
-      target_score_value: targetScore, // what is this representing??? -- decide later
+      target_score_value: shotTotal, // the total shots taken by user
       total_game_score: totalRoundScores, // this is representing the total score of all the rounds for the game
     };
 
     // Dispatch the action with the new target data
-    dispatch({ type: "ADD_GAME", payload: newGame });
+    dispatch({ type: "EDIT_GAME", payload: newGame });
 
-    // Clear the input fields
+    // Clear counters
     setGameDate(gameDate);
     setGameNotes("Notes");
-    setTotalScore(0);
     setTargetName("");
     setTargetScore(0);
     alert("Added Game!");
-    history.push("/games");
+    history.push("/results");
+    resetScore();
   };
 
   const resetScore = () => {
     // Clear the cookies related to the score (e.g., hits)
     document.cookie = "hit_quick=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    document.cookie = "miss_quick=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    document.cookie = "totalShots=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
 
     // Reset the related state variables if needed
     setRoundScores([]);
     setRoundHeaders([]);
   };
 
+  const saveTotalShots = (e) => {
+    e.preventDefault();
+    document.cookie = `totalShots=${totalShots}`;
+    setUserTargetInput(false);
+  };
+
   return (
-    <>
+    <div className="page-container">
       <div className="top-buttons">
-        <button onClick={() => history.push("/games")}>Cancel</button>
+        <button
+          onClick={() => {
+            resetScore();
+            dispatch({ type: "DELETE_GAME", payload: newGameId })
+            history.push("/games");
+          }}
+        >
+          Cancel
+        </button>{" "}
         <button onClick={addGame}>Finish</button>
       </div>
       <div>
@@ -344,13 +366,29 @@ export default function QuickRound() {
           </div>
           <div className="trap-hit-display">
             <p>Hits: {hit}</p>
+            <p>Hit Display: {hitDisplay}</p>
           </div>
           <div className="trap-hit-button">
             <Button variant="contained" onClick={targetHit}>
               <ModeStandbyIcon />
               Hit
             </Button>
+            <Button onClick={targetMiss}>Miss</Button>
+            <p>Miss: {miss}</p>
           </div>
+          <button onClick={() => setUserTargetInput(!userTargetInput)}>
+            total shots
+          </button>
+          {userTargetInput ? (
+            <input
+              placeholder="Total Shots"
+              value={totalShots}
+              onChange={(e) => setTotalShots(e.target.value)}
+              onBlur={saveTotalShots}
+            ></input>
+          ) : (
+            <p>Total Shots: {totalShots}</p>
+          )}
         </CardContent>
       </Card>
       <FormControl className="form-control" fullWidth>
@@ -361,6 +399,6 @@ export default function QuickRound() {
           Add Round
         </Button>
       </FormControl>
-    </>
+    </div>
   );
 }

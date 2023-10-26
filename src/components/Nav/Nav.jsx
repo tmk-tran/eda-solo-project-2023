@@ -10,7 +10,7 @@ function Nav() {
   return (
     <div className="nav">
       <Link to="/home">
-        <h2 className="nav-title">Han SOLO</h2>
+        <h2 className="nav-title"></h2>
       </Link>
       <div>
         {/* If no user is logged in, show these links */}
@@ -24,19 +24,22 @@ function Nav() {
         {/* If a user is logged in, show these links */}
         {user.user_id && (
           <>
-            <Link className="navLink" to="/games">
+            {/* <Link className="navLink" to="/games-admin">
               Games Admin
             </Link>
-            <Link className="navLink" to="/rounds">
+            <Link className="navLink" to="/rounds-admin">
               Rounds Admin
-            </Link>
-            <Link className="navLink" to="/profile">
+            </Link> */}
+            {/* <Link className="navLink" to="/profile">
               Profile
             </Link>
             <Link className="navLink" to="/history">
               History
-            </Link>
-            <Link className="navLink" to="/3-ring">
+            </Link> */}
+            {/* <Link className="navLink" to="/games">
+              Games
+            </Link> */}
+            {/* <Link className="navLink" to="/3-ring">
               3-Ring
             </Link>
             <Link className="navLink" to="/4-ring">
@@ -50,8 +53,8 @@ function Nav() {
             </Link>
             <Link className="navLink" to="/quickround">
               Quick Round
-            </Link>
-            <Link className="navLink" to="/success">
+            </Link> */}
+            {/* <Link className="navLink" to="/success">
               Success Page
             </Link>
             <Link className="navLink" to="/results">
@@ -59,14 +62,14 @@ function Nav() {
             </Link>
             <Link className="navLink" to="/test">
               Test Comp
-            </Link>
-            <LogOutButton className="navLink" />
+            </Link> */}
+            {/* <LogOutButton className="navLink" /> */}
           </>
         )}
 
-        <Link className="navLink" to="/about">
+        {/* <Link className="navLink" to="/about">
           About
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

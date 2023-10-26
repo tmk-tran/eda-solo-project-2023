@@ -4,12 +4,14 @@ import { takeEvery, put } from "redux-saga/effects";
 function* fetchGameSaga() {
   try {
     const items = yield axios.get("/api/games");
+    const currentGame = items.data[items.data.length - 1].game_id;
+
     console.log(
       "FETCH request from games.saga",
       "GAME_ID = ",
-      items.data[0].game_id
+      items.data[items.data.length - 1].game_id
     );
-    yield put({ type: "SET_GAMES", payload: items.data });
+    yield put({ type: "SET_GAMES", payload: items.data, currentGame });
   } catch {
     console.log("error in fetchTargetsSaga");
   }
@@ -28,7 +30,7 @@ function* addGameSaga(action) {
 function* deleteGameSaga(action) {
   try {
     yield axios.delete(`/api/games/${action.payload}`);
-    alert("Game Deleted!");
+    // alert("Game Deleted!");
     yield put({ type: "FETCH_GAMES" });
   } catch (error) {
     console.log("error with DELETE saga request", error);
@@ -36,10 +38,9 @@ function* deleteGameSaga(action) {
 }
 
 function* editGameSaga(action) {
-  console.log("ACTION IS: ", action);
   try {
     yield axios.put(`/api/games/${action.payload}`, action.payload);
-    alert("Game Edited!");
+    // alert("Game Edited!");
     yield put({ type: "FETCH_GAMES" });
   } catch (error) {
     console.log("error with EDIT saga request", error);

@@ -8,7 +8,6 @@ import {
 
 import { useDispatch, useSelector } from "react-redux";
 
-import Nav from "../Nav/Nav";
 import Navbar from "../Navbar/Navbar";
 // import Footer from "../Footer/Footer";
 
@@ -23,6 +22,7 @@ import Games from "../Games/Games";
 import Rounds from "../Rounds/Rounds";
 import Profile from "../Profile/Profile";
 import History from "../History/History";
+import GamesPage from "../GamesPage/GamesPage";
 import ThreeRing from "../ThreeRing/ThreeRing";
 import FourRing from "../FourRing/FourRing";
 import FiveRing from "../FiveRing/FiveRing";
@@ -31,6 +31,10 @@ import QuickRound from "../QuickRound/QuickRound";
 import Results from "../Results/Results";
 import SuccessPage from "../SuccessPage/SuccessPage";
 import TestComp from "../TestComponent/TestComponent";
+import MiniDrawer from "../MiniDrawer/MiniDrawer";
+import Train from "../Train/Train";
+import SpeedDial from "../SpeedDial/SpeedDial";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -39,12 +43,17 @@ function App() {
 
   useEffect(() => {
     dispatch({ type: "FETCH_USER" });
+    dispatch({ type: "FETCH_GAMES" });
+    // dispatch({ type: "FETCH_BEST" });
+    dispatch({ type: "FETCH_ROUNDS" });
+    dispatch({ type: "FETCH_TOTAL_ROUNDS" });
   }, [dispatch]);
 
   return (
     <Router>
       <div>
-        <Nav />
+        {/* <Nav /> */}
+        {/* <MiniDrawer /> */}
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
@@ -70,11 +79,11 @@ function App() {
             <UserPage />
           </ProtectedRoute>
 
-          <ProtectedRoute exact path="/games">
+          <ProtectedRoute exact path="/games-admin">
             <Games />
           </ProtectedRoute>
 
-          <ProtectedRoute exact path="/rounds">
+          <ProtectedRoute exact path="/rounds-admin">
             <Rounds />
           </ProtectedRoute>
 
@@ -84,6 +93,14 @@ function App() {
 
           <ProtectedRoute exact path="/history">
             <History />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/train">
+            <Train />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/games">
+            <GamesPage />
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -119,7 +136,7 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute exact path="/test">
-            <TestComp />
+            <MiniDrawer />
           </ProtectedRoute>
 
           <Route exact path="/login">
@@ -160,6 +177,7 @@ function App() {
             <h1>404</h1>
           </Route>
         </Switch>
+        <SpeedDial />
         <Navbar />
       </div>
     </Router>

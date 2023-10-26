@@ -3,3 +3,33 @@
   flex-direction: row;
   justify-content: space-between;
 }
+
+.profile-name-icon {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Default styles for larger screens */
+.page-container {
+  /* display: flex; */
+  /* flex-direction: row; */
+  margin-top: 55px;
+}
+
+#profile-card {
+  /* width: 150vh; */
+  margin: 0 auto;
+}
+
+/* Styles for mobile screens */
+@media (max-width: 767px) {
+  .page-container {
+    flex-direction: column;
+    margin-top: 0px; 
+  }
+
+  #profile-card {
+    width: 100%; /* Adjust the width as needed for mobile layout */
+    margin: 10px 0; /* Add some spacing between cards */
+  }
+}

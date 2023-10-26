@@ -212,16 +212,17 @@ export default function FourRing() {
     const roundData = {
       game_id: newGameId,
       round_number: roundNumber,
-    };
-    console.log("ROUND DATA IS: ", roundData); // remove after confirmation
-    const roundScoreData = {
-      round_id: roundId,
       round_score: newRoundScore,
     };
-    console.log("ROUND SCORE DATA IS: ", roundScoreData); // remove after confirmation
+    console.log("ROUND DATA IS: ", roundData); // remove after confirmation
+    // const roundScoreData = {
+    //   round_id: roundId,
+    //   round_score: newRoundScore,
+    // };
+    // console.log("ROUND SCORE DATA IS: ", roundScoreData); // remove after confirmation
 
     dispatch({ type: "ADD_ROUND", payload: roundData });
-    dispatch({ type: "ADD_ROUND_SCORE", payload: roundScoreData }); // check roundScoreData
+    // dispatch({ type: "ADD_ROUND_SCORE", payload: roundScoreData }); // check roundScoreData
 
     setRoundNumber(roundNumber + 1);
     console.log("ROUND NUMBER IS: ", roundNumber); // remove after confirmation
@@ -237,7 +238,8 @@ export default function FourRing() {
   };
 
   const addGame = () => {
-    const newGame = {
+    const gameData = {
+      game_id: newGameId,
       game_date: formatDate(gameDate),
       game_notes: gameNotes,
       target_name: targetName,
@@ -246,7 +248,7 @@ export default function FourRing() {
     };
 
     // Dispatch the action with the new target data
-    dispatch({ type: "ADD_GAME", payload: newGame });
+    dispatch({ type: "EDIT_GAME", payload: gameData });
 
     // Clear the input fields
     setGameDate(gameDate);
@@ -255,7 +257,8 @@ export default function FourRing() {
     setTargetName("");
     setTargetScore(0);
     alert("Added Game!");
-    history.push("/games");
+    history.push("/results");
+    resetScore();
   };
 
   const resetScore = () => {
@@ -271,14 +274,23 @@ export default function FourRing() {
     setPointsOuter(0);
     setPointsInner(0);
     setBulls(0);
+    setTotalScore(0);
     setRoundScores([]);
     setRoundHeaders([]);
   };
 
   return (
-    <>
+    <div className="page-container">
       <div className="top-buttons">
-        <button onClick={() => history.push("/games")}>Cancel</button>
+        <button
+          onClick={() => {
+            resetScore();
+            dispatch({ type: "DELETE_GAME", payload: newGameId })
+            history.push("/games");
+          }}
+        >
+          Cancel
+        </button>{" "}
         <button onClick={addGame}>Finish</button>
       </div>
       <div>
@@ -393,6 +405,6 @@ export default function FourRing() {
           Add Round
         </Button>
       </FormControl>
-    </>
+    </div>
   );
 }

@@ -19,25 +19,25 @@
   flex-wrap: wrap;
 }
 
-.edit-field {
-  flex-basis: 50%; /* Two fields per row, adjust as needed */
-  margin-bottom: 10px;
-}
+/* .edit-field { */
+  /* flex-basis: 50%; Two fields per row, adjust as needed */
+  /* margin-bottom: 10px;
+} */
 
 /* Style labels in edit mode */
-.edit-field label {
+/* .edit-field label {
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
-}
+} */
 
 /* Style input fields in edit mode */
-.edit-field input,
+/* .edit-field input,
 .edit-field textarea {
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;
-}
+} */
 
 .list-buttons {
   margin-top: 10px;
@@ -47,11 +47,34 @@
 
 /* Style the Delete button */
 .list-buttons button {
-  margin-left: 10px;
-  background-color: crimson;
-  color: white;
-  border: none;
+  /* margin-left: 10px; */
+  /* color: white; */
+  /* border: none; */
   border-radius: 5px;
-  padding: 5px 10px;
+  /* padding: 5px 10px; */
   cursor: pointer;
+}
+
+/* Style the line under Date */
+.game-data-line {
+  display: flex;
+  /* justify-content: space-between; */
+}
+
+/* Style for the Game history data */
+.game-history {
+  text-align: left;
+} 
+
+#games-list-card {
+  width: 50%;
+  margin: 0 auto;
+}
+
+/* Media query for smaller screens (e.g., mobile) */
+@media (max-width: 768px) {
+  #games-list-card {
+    width: 100%;
+    /* margin: 0 auto; */
+  }
 }

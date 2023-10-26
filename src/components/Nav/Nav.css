@@ -1,11 +1,12 @@
 .nav {
+  margin-top: 35px;
   /* flex box layout */
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   /* margin: 0 0 30px; */
-  background-color: #00acb0;
+  background-color: #dde7e7;
   overflow: hidden;
 }
 
@@ -24,7 +25,7 @@
 .navLink {
   display: inline-block;
   color: #f2f2f2;
-  background-color: #00acb0;
+  /* background-color: #00acb0; */
   text-align: center;
   padding: 24px 10px;
   text-decoration: none;

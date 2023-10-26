@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   Card,
@@ -8,8 +8,20 @@ import {
   FormControl,
   Button,
   Typography,
+  List,
+  ListItem,
+  ListItemText,
+  Table,
 } from "@mui/material";
+
 import "./GamesList.css";
+import EmojiEventsOutlinedIcon from "@mui/icons-material/EmojiEventsOutlined";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import SpeakerNotesOffIcon from "@mui/icons-material/SpeakerNotesOff";
+import VideogameAssetOffIcon from "@mui/icons-material/VideogameAssetOff";
+import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
+// ~~~~~~~~~~~~~~~ Sweet Alert ~~~~~~~~~~~~~~~~~~
+import Swal from "sweetalert2";
 
 export default function GamesList({ target }) {
   const dispatch = useDispatch();
@@ -58,92 +70,193 @@ export default function GamesList({ target }) {
   }
 
   return (
-    <div>
-      <Card style={{ width: "65%", margin: "0 auto" }}>
-        <CardContent>
-          <div className="list-header">
-            <Typography variant="h5">Game Data</Typography>
-            <Button onClick={handleEdit}>Edit</Button>
-          </div>
-          Game ID: {target.game_id} <br />
-          <hr />
-          {edit ? (
-            // Render an input field in edit mode
-            <div className="edit-mode">
-              <div className="edit-field">
-                <label>Date:</label>
-                <input
-                  type="date"
-                  value={editGameDate}
-                  onChange={(e) => setEditGameDate(e.target.value)}
-                />
-              </div>
-              <div className="edit-field">
-                <label>Notes:</label>
-                <textarea
-                  type="text"
-                  value={editGameNotes}
-                  rows={3}
-                  onChange={(e) => setEditGameNotes(e.target.value)}
-                />
-              </div>
-              <div className="edit-field">
-                <label>Name:</label>
-                <input
-                  type="text"
-                  value={editTargetName}
-                  onChange={(e) => setEditTargetName(e.target.value)}
-                />
-              </div>
-              <div className="edit-field">
-                <label>Score:</label>
-                <input
-                  type="text"
-                  value={editScore}
-                  onChange={(e) => setEditScore(e.target.value)}
-                />
-              </div>
-              <div className="edit-field">
-                <label>Total Score:</label>
-                <input
-                  type="text"
-                  value={editTotalScore}
-                  onChange={(e) => setEditTotalScore(e.target.value)}
-                />
-              </div>
-              <Button onClick={saveEdit}>Save</Button>
-            </div>
-          ) : (
-            // Render the formatted date in non-edit mode
-            <>
-              Date: {formatDate(target.game_date)}
-              <br />
-              Notes: {target.game_notes}
-              <br />
-              Target Name: {target.target_name}
-              <br />
-              Total Game Score: {target.total_game_score}
-              <br />
-              Max Score?: {target.target_score_value}
-              <br />
-            </>
-          )}
-          {target.user_id &&
-            !edit && ( // Check if user.id exists AND edit mode=false
-              <div className="list-buttons">
-                <Button
-                  onClick={() =>
-                    dispatch({ type: "DELETE_GAME", payload: target.game_id })
-                  }
-                  variant="contained"
-                  style={{ backgroundColor: "crimson" }}
+    <Card id="games-list-card">
+      <CardContent>
+        <div className="list-header">
+          <Button
+            variant="outlined"
+            color="inherit"
+            onClick={handleEdit}
+            style={{ marginLeft: "auto" }}
+          >
+            <MoreHorizIcon />
+          </Button>
+        </div>
+        <hr />
+        {target.user_id && edit ? (
+          // Render an input field in edit mode
+          <div className="edit-mode">
+            <Card elevation={8} style={{ margin: "0 auto" }}>
+              <List>
+                <Typography
+                  variant="h5"
+                  style={{
+                    textAlign: "center",
+                    backgroundColor: "black",
+                    color: "ghostwhite",
+                  }}
                 >
-                  Delete
-                </Button>
-              </div>
-            )}
-        </CardContent>
-      </Card>
-    </div>
+                  Edit Game
+                </Typography>
+                <br />
+                <ListItem>
+                  <TextField
+                    label="Date"
+                    type="date"
+                    value={editGameDate}
+                    onChange={(e) => setEditGameDate(e.target.value)}
+                  />
+                </ListItem>
+                <ListItem>
+                  <TextField
+                    label="Notes"
+                    multiline
+                    maxRows={5}
+                    value={editGameNotes}
+                    onChange={(e) => setEditGameNotes(e.target.value)}
+                  />
+                </ListItem>
+                <ListItem>
+                  <TextField
+                    label="Target Name"
+                    type="text"
+                    value={editTargetName}
+                    onChange={(e) => setEditTargetName(e.target.value)}
+                  />
+                </ListItem>
+                <ListItem>
+                  <TextField
+                    label="Total Game Score"
+                    type="text"
+                    value={editScore}
+                    onChange={(e) => setEditScore(e.target.value)}
+                  />
+                </ListItem>
+                <ListItem>
+                  <TextField
+                    label="Target Score Value"
+                    type="text"
+                    value={editTotalScore}
+                    onChange={(e) => setEditTotalScore(e.target.value)}
+                  />
+                </ListItem>
+                <div className="list-buttons">
+                  <Button
+                    onClick={() =>
+                      dispatch({
+                        type: "DELETE_GAME",
+                        payload: target.game_id,
+                      })
+                    }
+                    variant="contained"
+                    style={{ backgroundColor: "crimson" }}
+                  >
+                    Delete
+                  </Button>
+                  <Button onClick={saveEdit}>Save</Button>
+                </div>
+              </List>
+            </Card>
+          </div>
+        ) : (
+          // Render the formatted date in non-edit mode
+          <Table color="neutral" variant="soft">
+            <thead>
+              <tr>
+                <th style={{ width: "40%" }}>
+                  Date: {formatDate(target.game_date)}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <EmojiEventsOutlinedIcon />
+                </td>
+              </tr>
+              <tr>
+                <td className="game-history">
+                  Notes:{" "}
+                  {target.game_notes !== (null || "") ? (
+                    target.game_notes
+                  ) : (
+                    <SpeakerNotesOffIcon />
+                  )}
+                </td>
+              </tr>
+              <tr>
+                <td className="game-history">
+                  Target Name:{" "}
+                  {target.target_name !== (null || "") ? (
+                    target.target_name
+                  ) : (
+                    <DriveFileRenameOutlineIcon />
+                  )}
+                </td>
+              </tr>
+              <tr>
+                <td className="game-history">
+                  Total Game Score: {target.total_game_score}
+                </td>
+              </tr>
+              <tr>
+                <td className="game-history">
+                  Target Value:{" "}
+                  {target.target_score_value !== (null || 0) ? (
+                    target.target_score_value
+                  ) : (
+                    <VideogameAssetOffIcon />
+                  )}
+                </td>
+              </tr>
+            </tbody>
+          </Table>
+          // <List
+          //   sx={{
+          //     "--ListItem-minHeight": "45px",
+          //     "--List-padding": "5px",
+          //     "--List-radius": "20px",
+          //     "--List-gap": "5px",
+          //   }}
+          // >
+          //   Date: {formatDate(target.game_date)}
+          //   <div className="game-data-line">
+          //     <EmojiEventsOutlinedIcon />
+          //     {/* {bestRound.map((best) => (
+          //         <span key={best.game_id} style={{ marginBottom: "15px" }}>
+          //           {best.best_round_score}
+          //         </span>
+          //       ))} */}
+          //   </div>
+          //   <ListItem>
+          //     Notes:{" "}
+          //     {target.game_notes !== (null || "") ? (
+          //       target.game_notes
+          //     ) : (
+          //       <SpeakerNotesOffIcon />
+          //     )}
+          //   </ListItem>
+          //   <ListItem>
+          // Target Name:{" "}
+          // {target.target_name !== (null || "") ? (
+          //   target.target_name
+          // ) : (
+          //   <DriveFileRenameOutlineIcon />
+          // )}
+          //   </ListItem>
+          //   <ListItem>Total Game Score: {target.total_game_score}</ListItem>
+          //   <ListItem>
+          // Target Value:{" "}
+          // {target.target_score_value !== (null || 0) ? (
+          //   target.target_score_value
+          // ) : (
+          //   <VideogameAssetOffIcon />
+          // )}
+          //     <br />
+          //   </ListItem>
+          // </List>
+        )}
+      </CardContent>
+    </Card>
   );
 }

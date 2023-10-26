@@ -41,7 +41,7 @@ export default function Trap() {
   console.log("GAME DATE IS:", gameDate);
   const [gameNotes, setGameNotes] = useState("");
   const [targetName, setTargetName] = useState("Trap");
-  const [targetScore, setTargetScore] = useState(25); // update this when we decide what it is for
+  const [targetScore, setTargetScore] = useState(0); // update this when we decide what it is for
   // State for Trap Round Scoring ~~~~~~~~~~~~~~~~~~~~~~~~~
   const [trapHit, setTrapHit] = useState(getCookie("hits") || 0);
 
@@ -161,16 +161,18 @@ export default function Trap() {
     const roundData = {
       game_id: newGameId,
       round_number: roundNumber,
-    };
-    console.log("ROUND DATA IS: ", roundData); // remove after confirmation
-    const roundScoreData = {
-      round_id: roundId,
       round_score: newRoundScore,
     };
-    console.log("ROUND SCORE DATA IS: ", roundScoreData); // remove after confirmation
+    console.log("ROUND DATA IS: ", roundData); // remove after confirmation
+    // const roundScoreData = {
+    //   round_id: roundId,
+    //   round_score: newRoundScore,
+    // };
+    // console.log("ROUND SCORE DATA IS: ", roundScoreData); // remove after confirmation
 
     dispatch({ type: "ADD_ROUND", payload: roundData });
-    dispatch({ type: "ADD_ROUND_SCORE", payload: roundScoreData }); // check roundScoreData
+    // dispatch({ type: "FETCH_ROUNDS", payload: roundId });
+    // dispatch({ type: "ADD_ROUND_SCORE", payload: roundScoreData }); // check roundScoreData
 
     setRoundNumber(roundNumber + 1);
     console.log("ROUND NUMBER IS: ", roundNumber); // remove after confirmation
@@ -184,6 +186,7 @@ export default function Trap() {
 
   const addGame = () => {
     const newGame = {
+      game_id: newGameId,
       game_date: formatDate(gameDate),
       game_notes: gameNotes,
       target_name: targetName,
@@ -192,7 +195,7 @@ export default function Trap() {
     };
 
     // Dispatch the action with the new target data
-    dispatch({ type: "ADD_GAME", payload: newGame });
+    dispatch({ type: "EDIT_GAME", payload: newGame });
 
     // Clear the input fields
     setGameDate(gameDate);
@@ -201,7 +204,8 @@ export default function Trap() {
     setTargetName("");
     setTargetScore(0);
     alert("Added Game!");
-    history.push("/games");
+    history.push("/results");
+    resetScore();
   };
 
   const resetScore = () => {
@@ -214,9 +218,17 @@ export default function Trap() {
   };
 
   return (
-    <>
+    <div className="page-container">
       <div className="top-buttons">
-        <button onClick={() => history.push("/games")}>Cancel</button>
+        <button
+          onClick={() => {
+            resetScore();
+            dispatch({ type: "DELETE_GAME", payload: newGameId })
+            history.push("/games");
+          }}
+        >
+          Cancel
+        </button>{" "}
         <button onClick={addGame}>Finish</button>
       </div>
       <div>
@@ -324,7 +336,7 @@ export default function Trap() {
                 fontWeight: "bold",
               }}
             >
-              {targetScore}
+              25
             </Typography>
             <br />
             <Typography variant="h6">Hits: {trapHit}</Typography>
@@ -345,6 +357,6 @@ export default function Trap() {
           Add Round
         </Button>
       </FormControl>
-    </>
+    </div>
   );
 }

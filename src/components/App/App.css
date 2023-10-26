@@ -7,11 +7,11 @@ body,
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin: 0px;
-  background-color: #444;
+  background-color: #6d6a6a;
 }
 
 h1 {
-  color: ghostwhite;
+  color: rgb(20, 20, 22);
 }
 
 img {
@@ -24,6 +24,7 @@ Container
 -------------------------------------------------------------------------------- */
 
 .container {
+  display: flex;
   padding: 20px;
 }
 
