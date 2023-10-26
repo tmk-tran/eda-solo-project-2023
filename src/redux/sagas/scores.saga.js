@@ -22,6 +22,6 @@ function* addScoreSaga(action) {
 }
 
 export default function* roundScoreSaga() {
-  yield takeEvery("FETCH_ROUND_SCORES", fetchScoreSaga);
+  // yield takeEvery("FETCH_ROUND_SCORES", fetchScoreSaga);
   yield takeEvery("ADD_ROUND_SCORE", addScoreSaga);
 }

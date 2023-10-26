@@ -28,7 +28,7 @@ import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutli
 // ~~~~~~~~~~~~~~~ Sweet Alert ~~~~~~~~~~~~~~~~~~
 import Swal from "sweetalert2";
 
-export default function GamesList({ target }) {
+export default function GamesList({ target, roundScores }) {
   const dispatch = useDispatch();
 
   const [edit, setEdit] = useState(false);
@@ -40,6 +40,10 @@ export default function GamesList({ target }) {
   const [editTargetName, setEditTargetName] = useState(target.target_name);
   const [editScore, setEditScore] = useState(target.target_score_value);
   const [editTotalScore, setEditTotalScore] = useState(target.total_game_score);
+
+  // const rounds = useSelector((store) => store.roundReducer);
+  // const roundScores = rounds.map((round) => round.round_score);
+  // console.log(roundScores);
 
   function handleEdit() {
     setEdit(!edit);
@@ -178,7 +182,14 @@ export default function GamesList({ target }) {
             <TableBody>
               <TableRow>
                 <TableCell>
-                  <EmojiEventsOutlinedIcon />Best Round Score:
+                  <EmojiEventsOutlinedIcon />
+                  Best Round Score:
+                  {roundScores.map((round, index) => (
+                    <div key={index}>
+                      Round {index + 1} Score: {round.round_score}
+                      {/* Add more round information here as needed */}
+                    </div>
+                  ))}
                 </TableCell>
               </TableRow>
               <TableRow>
@@ -218,6 +229,7 @@ export default function GamesList({ target }) {
               </TableRow>
             </TableBody>
           </Table>
+
           // <List
           //   sx={{
           //     "--ListItem-minHeight": "45px",
