@@ -11,6 +11,7 @@ import {
   List,
   ListItem,
   ListItemText,
+  Table,
 } from "@mui/material";
 
 import "./GamesList.css";
@@ -19,6 +20,8 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import SpeakerNotesOffIcon from "@mui/icons-material/SpeakerNotesOff";
 import VideogameAssetOffIcon from "@mui/icons-material/VideogameAssetOff";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
+// ~~~~~~~~~~~~~~~ Sweet Alert ~~~~~~~~~~~~~~~~~~
+import Swal from "sweetalert2";
 
 export default function GamesList({ target }) {
   const dispatch = useDispatch();
@@ -67,7 +70,7 @@ export default function GamesList({ target }) {
   }
 
   return (
-    <Card id="games-list-card" style={{ margin: "0 auto" }}>
+    <Card id="games-list-card">
       <CardContent>
         <div className="list-header">
           <Button
@@ -83,114 +86,175 @@ export default function GamesList({ target }) {
         {target.user_id && edit ? (
           // Render an input field in edit mode
           <div className="edit-mode">
-            <List>
-              <ListItem>
-                <label>Date:</label>
-                <TextField
-                  type="date"
-                  value={editGameDate}
-                  onChange={(e) => setEditGameDate(e.target.value)}
-                />
-              </ListItem>
-              <ListItem>
-                <TextField
-                  label="Notes"
-                  multiline
-                  maxRows={5}
-                  value={editGameNotes}
-                  onChange={(e) => setEditGameNotes(e.target.value)}
-                />
-              </ListItem>
-              <ListItem>
-                <label>Name:</label>
-                <TextField
-                  type="text"
-                  value={editTargetName}
-                  onChange={(e) => setEditTargetName(e.target.value)}
-                />
-              </ListItem>
-              <ListItem>
-                <label>Score:</label>
-                <TextField
-                  type="text"
-                  value={editScore}
-                  onChange={(e) => setEditScore(e.target.value)}
-                />
-              </ListItem>
-              <ListItem>
-                <label>Total Score:</label>
-                <TextField
-                  type="text"
-                  value={editTotalScore}
-                  onChange={(e) => setEditTotalScore(e.target.value)}
-                />
-              </ListItem>
-              {target.user_id &&
-                edit && ( // Check if user.id exists AND edit mode=true
-                  <div className="list-buttons">
-                    <Button
-                      onClick={() =>
-                        dispatch({
-                          type: "DELETE_GAME",
-                          payload: target.game_id,
-                        })
-                      }
-                      variant="contained"
-                      style={{ backgroundColor: "crimson" }}
-                    >
-                      Delete
-                    </Button>
-                    <Button onClick={saveEdit}>Save</Button>
-                  </div>
-                )}
-            </List>
+            <Card elevation={8} style={{ margin: "0 auto" }}>
+              <List>
+                <Typography
+                  variant="h5"
+                  style={{
+                    textAlign: "center",
+                    backgroundColor: "black",
+                    color: "ghostwhite",
+                  }}
+                >
+                  Edit Game
+                </Typography>
+                <br />
+                <ListItem>
+                  <TextField
+                    label="Date"
+                    type="date"
+                    value={editGameDate}
+                    onChange={(e) => setEditGameDate(e.target.value)}
+                  />
+                </ListItem>
+                <ListItem>
+                  <TextField
+                    label="Notes"
+                    multiline
+                    maxRows={5}
+                    value={editGameNotes}
+                    onChange={(e) => setEditGameNotes(e.target.value)}
+                  />
+                </ListItem>
+                <ListItem>
+                  <TextField
+                    label="Target Name"
+                    type="text"
+                    value={editTargetName}
+                    onChange={(e) => setEditTargetName(e.target.value)}
+                  />
+                </ListItem>
+                <ListItem>
+                  <TextField
+                    label="Total Game Score"
+                    type="text"
+                    value={editScore}
+                    onChange={(e) => setEditScore(e.target.value)}
+                  />
+                </ListItem>
+                <ListItem>
+                  <TextField
+                    label="Target Score Value"
+                    type="text"
+                    value={editTotalScore}
+                    onChange={(e) => setEditTotalScore(e.target.value)}
+                  />
+                </ListItem>
+                <div className="list-buttons">
+                  <Button
+                    onClick={() =>
+                      dispatch({
+                        type: "DELETE_GAME",
+                        payload: target.game_id,
+                      })
+                    }
+                    variant="contained"
+                    style={{ backgroundColor: "crimson" }}
+                  >
+                    Delete
+                  </Button>
+                  <Button onClick={saveEdit}>Save</Button>
+                </div>
+              </List>
+            </Card>
           </div>
         ) : (
           // Render the formatted date in non-edit mode
-          <List
-            sx={{
-              "--ListItem-minHeight": "45px",
-              "--List-padding": "5px",
-              "--List-radius": "20px",
-              "--List-gap": "5px",
-            }}
-          >
-            Date: {formatDate(target.game_date)}
-            <div className="game-data-line">
-              <EmojiEventsOutlinedIcon />
-              {/* {bestRound.map((best) => (
-                  <span key={best.game_id} style={{ marginBottom: "15px" }}>
-                    {best.best_round_score}
-                  </span>
-                ))} */}
-            </div>
-            <ListItem>
-              Notes:{" "}
-              {target.game_notes !== (null || "") ? (
-                target.game_notes
-              ) : (
-                <SpeakerNotesOffIcon />
-              )}
-            </ListItem>
-            <ListItem>
-              Target Name:{" "}
-              {target.target_name !== (null || "") ? (
-                target.target_name
-              ) : (
-                <DriveFileRenameOutlineIcon />
-              )}
-            </ListItem>
-            <ListItem>Total Game Score: {target.total_game_score}</ListItem>
-            <ListItem>
-              Target Value:{" "}
-              {target.target_score_value !== (null || 0) ? (
-                target.target_score_value
-              ) : (
-                <VideogameAssetOffIcon />
-              )}
-              <br />
-            </ListItem>
-          </List>
+          <Table color="neutral" variant="soft">
+            <thead>
+              <tr>
+                <th style={{ width: "40%" }}>
+                  Date: {formatDate(target.game_date)}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <EmojiEventsOutlinedIcon />
+                </td>
+              </tr>
+              <tr>
+                <td className="game-history">
+                  Notes:{" "}
+                  {target.game_notes !== (null || "") ? (
+                    target.game_notes
+                  ) : (
+                    <SpeakerNotesOffIcon />
+                  )}
+                </td>
+              </tr>
+              <tr>
+                <td className="game-history">
+                  Target Name:{" "}
+                  {target.target_name !== (null || "") ? (
+                    target.target_name
+                  ) : (
+                    <DriveFileRenameOutlineIcon />
+                  )}
+                </td>
+              </tr>
+              <tr>
+                <td className="game-history">
+                  Total Game Score: {target.total_game_score}
+                </td>
+              </tr>
+              <tr>
+                <td className="game-history">
+                  Target Value:{" "}
+                  {target.target_score_value !== (null || 0) ? (
+                    target.target_score_value
+                  ) : (
+                    <VideogameAssetOffIcon />
+                  )}
+                </td>
+              </tr>
+            </tbody>
+          </Table>
+          // <List
+          //   sx={{
+          //     "--ListItem-minHeight": "45px",
+          //     "--List-padding": "5px",
+          //     "--List-radius": "20px",
+          //     "--List-gap": "5px",
+          //   }}
+          // >
+          //   Date: {formatDate(target.game_date)}
+          //   <div className="game-data-line">
+          //     <EmojiEventsOutlinedIcon />
+          //     {/* {bestRound.map((best) => (
+          //         <span key={best.game_id} style={{ marginBottom: "15px" }}>
+          //           {best.best_round_score}
+          //         </span>
+          //       ))} */}
+          //   </div>
+          //   <ListItem>
+          //     Notes:{" "}
+          //     {target.game_notes !== (null || "") ? (
+          //       target.game_notes
+          //     ) : (
+          //       <SpeakerNotesOffIcon />
+          //     )}
+          //   </ListItem>
+          //   <ListItem>
+          // Target Name:{" "}
+          // {target.target_name !== (null || "") ? (
+          //   target.target_name
+          // ) : (
+          //   <DriveFileRenameOutlineIcon />
+          // )}
+          //   </ListItem>
+          //   <ListItem>Total Game Score: {target.total_game_score}</ListItem>
+          //   <ListItem>
+          // Target Value:{" "}
+          // {target.target_score_value !== (null || 0) ? (
+          //   target.target_score_value
+          // ) : (
+          //   <VideogameAssetOffIcon />
+          // )}
+          //     <br />
+          //   </ListItem>
+          // </List>
         )}
       </CardContent>
     </Card>

@@ -61,6 +61,11 @@
   /* justify-content: space-between; */
 }
 
+/* Style for the Game history data */
+.game-history {
+  text-align: left;
+} 
+
 #games-list-card {
   width: 50%;
   margin: 0 auto;
@@ -71,9 +76,5 @@
   #games-list-card {
     width: 100%;
     /* margin: 0 auto; */
-  }
-
-  .list-header {
-    display: block;
   }
 }
