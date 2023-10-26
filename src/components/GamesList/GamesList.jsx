@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import { styled } from "@mui/material/styles";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import {
   Card,
   CardContent,
@@ -13,7 +14,6 @@ import {
   ListItemText,
   Table,
   TableBody,
-  TableCell,
   TableContainer,
   TableHead,
   TableRow,
@@ -26,7 +26,27 @@ import SpeakerNotesOffIcon from "@mui/icons-material/SpeakerNotesOff";
 import VideogameAssetOffIcon from "@mui/icons-material/VideogameAssetOff";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 // ~~~~~~~~~~~~~~~ Sweet Alert ~~~~~~~~~~~~~~~~~~
-import Swal from "sweetalert2";
+import Swal from "sweetalert2/dist/sweetalert2.js";
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  "&:nth-of-type(odd)": {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  "&:last-child td, &:last-child th": {
+    border: 0,
+  },
+}));
 
 export default function GamesList({ target, roundScores }) {
   const dispatch = useDispatch();
@@ -78,10 +98,46 @@ export default function GamesList({ target, roundScores }) {
     return date.toLocaleDateString("en-US");
   }
 
+  // Find the largest score using reduce
+  const largestScore = roundScores.reduce((maxScore, round) => {
+    return Math.max(maxScore, round.round_score);
+  }, -Infinity); // Start with negative infinity to ensure any score is greater
+
+  // Now, `largestScore` contains the largest score
+
+  const sweetAlert = () => {
+    Swal.fire({
+      title: "Custom width, padding, color, background.",
+      width: 600,
+      padding: "3em",
+      color: "#716add",
+      // background: "#fff url(/images/trees.png)",
+      backdrop: `
+      rgba(0,0,123,0.4)
+      url("/images/nyan-cat.gif")
+      left top
+      no-repeat
+    `,
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch({
+              type: "DELETE_GAME",
+              payload: target.game_id,
+            })
+        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+      }
+    });
+  };
+
   return (
     <Card id="games-list-card">
       <CardContent>
         <div className="list-header">
+          <button onClick={sweetAlert}>F</button>
           <Button
             variant="outlined"
             color="inherit"
@@ -151,12 +207,13 @@ export default function GamesList({ target, roundScores }) {
                 </ListItem>
                 <div className="list-buttons">
                   <Button
-                    onClick={() =>
-                      dispatch({
-                        type: "DELETE_GAME",
-                        payload: target.game_id,
-                      })
-                    }
+                    // onClick={() =>
+                    //   dispatch({
+                    //     type: "DELETE_GAME",
+                    //     payload: target.game_id,
+                    //   })
+                    // }
+                    onClick={sweetAlert}
                     variant="contained"
                     style={{ backgroundColor: "crimson" }}
                   >
@@ -170,75 +227,71 @@ export default function GamesList({ target, roundScores }) {
         ) : (
           // Render the formatted date in non-edit mode
           <div className="game-list-display-container">
-            <Table sx={{ minWidth: 200 }} size="small">
+            <Table sx={{ minWidth: 200, marginLeft: "auto" }} size="small">
               <TableHead>
                 <TableRow sx={{ "&:last-child th": { border: 0 } }}>
-                  <TableCell style={{ width: "40%" }}>
-                    <Typography variant="h6">
-                      Date: {formatDate(target.game_date)}
-                    </Typography>
-                  </TableCell>
+                  <StyledTableCell>
+                    Date: {formatDate(target.game_date)}
+                  </StyledTableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 <TableRow>
-                  <TableCell>
+                  <StyledTableCell>
                     <EmojiEventsOutlinedIcon />
-                    Best Round Score:
-                    {roundScores.map((round, index) => (
-                      <div key={index}>
-                        Round {index + 1}: Score: {round.round_score}
-                        {/* Add more round information here as needed */}
-                      </div>
-                    ))}
-                  </TableCell>
+                    {largestScore} points
+                  </StyledTableCell>
                 </TableRow>
-                <TableRow>
-                  <TableCell className="game-history">
+                <StyledTableRow>
+                  <StyledTableCell className="game-history">
                     Notes:{" "}
                     {target.game_notes !== (null || "") ? (
                       target.game_notes
                     ) : (
                       <SpeakerNotesOffIcon />
                     )}
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="game-history">
-                    Target Name:{" "}
+                  </StyledTableCell>
+                </StyledTableRow>
+                <StyledTableRow>
+                  <StyledTableCell className="game-history">
+                    Target:{" "}
                     {target.target_name !== (null || "") ? (
                       target.target_name
                     ) : (
                       <DriveFileRenameOutlineIcon />
                     )}
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="game-history">
-                    Total Game Score: {target.total_game_score}
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="game-history">
-                    Target Value:{" "}
+                  </StyledTableCell>
+                </StyledTableRow>
+                <StyledTableRow>
+                  <StyledTableCell className="game-history">
+                    Total Score: {target.total_game_score}
+                  </StyledTableCell>
+                </StyledTableRow>
+                <StyledTableRow>
+                  <StyledTableCell className="game-history">
+                    Game Score:{" "}
                     {target.target_score_value !== (null || 0) ? (
                       target.target_score_value
                     ) : (
                       <VideogameAssetOffIcon />
                     )}
-                  </TableCell>
-                </TableRow>
+                  </StyledTableCell>
+                </StyledTableRow>
               </TableBody>
             </Table>
-            <div className="round-info">
-              <Typography variant="h5">Round Info</Typography>
-              {roundScores.map((round, index) => (
-                      <div key={index}>
-                        Round {index + 1}: Score: {round.round_score}
-                        {/* Add more round information here as needed */}
-                      </div>
-                    ))}
-            </div>
+            <Card className="round-info" elevation={7}>
+              <CardContent>
+                <Typography variant="h5">Round Info</Typography>
+                {roundScores.map((round, index) => (
+                  <Typography id="round-scores" key={index} variant="body1">
+                    Round {index + 1}: Score: {round.round_score}
+                    <>
+                      <hr />
+                    </>
+                  </Typography>
+                ))}
+              </CardContent>
+            </Card>
           </div>
         )}
       </CardContent>

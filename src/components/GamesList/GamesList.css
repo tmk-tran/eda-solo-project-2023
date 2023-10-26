@@ -76,6 +76,15 @@
   display: flex;
 }
 
+.round-info {
+  border: 1px solid rgb(1, 34, 1);
+  width:60%;
+}
+
+#round-scores {
+  margin-left: 5px;
+}
+
 /* Media query for smaller screens (e.g., mobile) */
 @media (max-width: 768px) {
   #games-list-card {
@@ -84,5 +93,12 @@
   }
   .Table {
     width: 100%;
+  }
+
+  .round-info {
+    width: 100%;
+  }
+  ul {
+    margin-bottom: 5px;
   }
 }
