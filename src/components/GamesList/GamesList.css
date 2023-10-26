@@ -19,30 +19,14 @@
   flex-wrap: wrap;
 }
 
-/* .edit-field { */
-  /* flex-basis: 50%; Two fields per row, adjust as needed */
-  /* margin-bottom: 10px;
-} */
-
-/* Style labels in edit mode */
-/* .edit-field label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-} */
-
-/* Style input fields in edit mode */
-/* .edit-field input,
-.edit-field textarea {
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-} */
+#edit-card {
+  width: 100%;
+}
 
 .list-buttons {
-  margin-top: 10px;
+  margin: 5px 20px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
 /* Style the Delete button */
@@ -50,7 +34,7 @@
   /* margin-left: 10px; */
   /* color: white; */
   /* border: none; */
-  border-radius: 5px;
+  border-radius: 10px;
   /* padding: 5px 10px; */
   cursor: pointer;
 }

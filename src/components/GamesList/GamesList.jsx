@@ -27,6 +27,7 @@ import VideogameAssetOffIcon from "@mui/icons-material/VideogameAssetOff";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 // ~~~~~~~~~~~~~~~ Sweet Alert ~~~~~~~~~~~~~~~~~~
 import Swal from "sweetalert2/dist/sweetalert2.js";
+import 'animate.css';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -102,12 +103,11 @@ export default function GamesList({ target, roundScores }) {
   const largestScore = roundScores.reduce((maxScore, round) => {
     return Math.max(maxScore, round.round_score);
   }, -Infinity); // Start with negative infinity to ensure any score is greater
-
   // Now, `largestScore` contains the largest score
 
   const sweetAlert = () => {
     Swal.fire({
-      title: "Custom width, padding, color, background.",
+      title: "Delete Game?",
       width: 600,
       padding: "3em",
       color: "#716add",
@@ -121,26 +121,37 @@ export default function GamesList({ target, roundScores }) {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Confirm",
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch({
-              type: "DELETE_GAME",
-              payload: target.game_id,
-            })
+          type: "DELETE_GAME",
+          payload: target.game_id,
+        });
         Swal.fire("Deleted!", "Your file has been deleted.", "success");
       }
     });
   };
 
+  const savedAlert = () => {
+    Swal.fire({
+      title: 'Custom animation with Animate.css',
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      }
+    })
+  }
+
   return (
     <Card id="games-list-card">
       <CardContent>
         <div className="list-header">
-          <button onClick={sweetAlert}>F</button>
           <Button
             variant="outlined"
-            color="inherit"
+            color="info"
             onClick={handleEdit}
             style={{ marginLeft: "auto" }}
           >
@@ -151,7 +162,7 @@ export default function GamesList({ target, roundScores }) {
         {target.user_id && edit ? (
           // Render an input field in edit mode
           <div className="edit-mode">
-            <Card elevation={8} style={{ margin: "0 auto" }}>
+            <Card id="edit-card" elevation={8} style={{ margin: "0 auto" }}>
               <List>
                 <Typography
                   variant="h5"
@@ -170,6 +181,7 @@ export default function GamesList({ target, roundScores }) {
                     type="date"
                     value={editGameDate}
                     onChange={(e) => setEditGameDate(e.target.value)}
+                    fullWidth
                   />
                 </ListItem>
                 <ListItem>
@@ -179,6 +191,7 @@ export default function GamesList({ target, roundScores }) {
                     maxRows={3}
                     value={editGameNotes}
                     onChange={(e) => setEditGameNotes(e.target.value)}
+                    fullWidth
                   />
                 </ListItem>
                 <ListItem>
@@ -187,38 +200,36 @@ export default function GamesList({ target, roundScores }) {
                     type="text"
                     value={editTargetName}
                     onChange={(e) => setEditTargetName(e.target.value)}
+                    fullWidth
                   />
                 </ListItem>
                 <ListItem>
                   <TextField
                     label="Total Game Score"
-                    type="text"
+                    type="number"
                     value={editScore}
                     onChange={(e) => setEditScore(e.target.value)}
+                    fullWidth
+                    style={{ marginRight: "5px" }}
                   />
-                </ListItem>
-                <ListItem>
                   <TextField
                     label="Target Score Value"
-                    type="text"
+                    type="number"
                     value={editTotalScore}
                     onChange={(e) => setEditTotalScore(e.target.value)}
+                    fullWidth
+                    style={{ marginLeft: "5px" }}
                   />
                 </ListItem>
                 <div className="list-buttons">
                   <Button
-                    // onClick={() =>
-                    //   dispatch({
-                    //     type: "DELETE_GAME",
-                    //     payload: target.game_id,
-                    //   })
-                    // }
                     onClick={sweetAlert}
                     variant="contained"
                     style={{ backgroundColor: "crimson" }}
                   >
                     Delete
                   </Button>
+                  <button onClick={savedAlert}>S</button>
                   <Button onClick={saveEdit}>Save</Button>
                 </div>
               </List>
@@ -281,10 +292,10 @@ export default function GamesList({ target, roundScores }) {
             </Table>
             <Card className="round-info" elevation={7}>
               <CardContent>
-                <Typography variant="h5">Round Info</Typography>
+                <Typography variant="h5" style={{ fontSize: "16px" }}>Round Info</Typography>
                 {roundScores.map((round, index) => (
-                  <Typography id="round-scores" key={index} variant="body1">
-                    Round {index + 1}: Score: {round.round_score}
+                  <Typography id="round-scores" key={index} variant="body2">
+                    #{index + 1}: {round.round_score} points
                     <>
                       <hr />
                     </>
