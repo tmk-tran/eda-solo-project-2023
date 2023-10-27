@@ -20,6 +20,7 @@ import { styled } from "@mui/material/styles";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import EditIcon from "@mui/icons-material/Edit";
+import ClearAllIcon from "@mui/icons-material/ClearAll";
 // ~~~~~~~~~~~~~~~ Hooks ~~~~~~~~~~~~~~~~~~
 import getCookie from "../../hooks/cookie";
 
@@ -70,7 +71,7 @@ export default function ThreeRing() {
       fontSize: 14,
     },
   }));
-  
+
   const StyledTableRow = styled(TableRow)(({ theme }) => ({
     "&:nth-of-type(odd)": {
       backgroundColor: theme.palette.action.hover,
@@ -277,7 +278,11 @@ export default function ThreeRing() {
         >
           Cancel
         </Button>{" "}
-        <Button variant="outlined" onClick={addGame} style={{ backgroundColor: "#1e9521", color: "white" }}>
+        <Button
+          variant="outlined"
+          onClick={addGame}
+          style={{ backgroundColor: "#1e9521", color: "white" }}
+        >
           Finish
         </Button>
       </div>
@@ -305,19 +310,18 @@ export default function ThreeRing() {
               <div className="settings-div">
                 <div className="round-edit">
                   <Button
-                    variant="outlined"
                     onClick={() => setReplaceName(!replaceName)}
                     style={{ fontSize: "10px" }}
                   >
                     <EditIcon />
-                    Edit
+                    Edit Name
                   </Button>
                   <br />
                 </div>
                 <div className="round-table">
-                <Table sx={{ minWidth: 250 }} size="small">
+                  <Table sx={{ minWidth: 250 }} size="small">
                     <TableHead>
-                    <TableRow sx={{ "&:last-child th": { border: 0 } }}>
+                      <TableRow sx={{ "&:last-child th": { border: 0 } }}>
                         {roundHeaders.map((header) => (
                           <StyledTableCell key={header} className="header">
                             Round {header}
@@ -343,15 +347,18 @@ export default function ThreeRing() {
                   <p style={{ fontWeight: "bold" }}>
                     Total: {totalScore} points
                   </p>
-                  <button onClick={clearScores}>Clear</button>
+                  <Button onClick={clearScores} style={{ color: "red" }}>
+                    <ClearAllIcon /> Clear
+                  </Button>
                 </div>
               </div>
             ) : (
               <>
                 {isEdit ? (
                   // Render an input field in edit mode
-                  <input
+                  <TextField
                     type="text"
+                    label="Game Notes"
                     value={gameNotes}
                     onChange={(e) => setGameNotes(e.target.value)}
                     onBlur={saveNotes}

@@ -10,7 +10,14 @@ import {
   FormControl,
   Button,
   Typography,
+  Table,
+  TableBody,
+  TableContainer,
+  TableHead,
+  TableRow,
 } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import EditIcon from "@mui/icons-material/Edit";
 import "./FourRing.css";
@@ -62,6 +69,26 @@ export default function FourRing() {
     // Update the total score in the component state
     setTotalScore(totalScore);
   }, [pointsFourth, pointsOuter, pointsInner, bulls]);
+
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }));
+
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    "&:nth-of-type(odd)": {
+      backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    "&:last-child td, &:last-child th": {
+      border: 0,
+    },
+  }));
 
   // Bring in Rounds
   const rounds = useSelector((store) => store.roundReducer);
@@ -221,7 +248,6 @@ export default function FourRing() {
   };
 
   const addGame = () => {
-
     const gameData = {
       game_id: newGameId,
       game_date: formatDate(gameDate),
@@ -265,16 +291,22 @@ export default function FourRing() {
   return (
     <div className="page-container">
       <div className="top-buttons">
-        <button
+        <Button
           onClick={() => {
             resetScore();
-            dispatch({ type: "DELETE_GAME", payload: newGameId })
+            dispatch({ type: "DELETE_GAME", payload: newGameId });
             history.push("/games");
           }}
+          style={{ backgroundColor: "#5d0606", color: "white" }}
         >
           Cancel
-        </button>{" "}
-        <button onClick={addGame}>Finish</button>
+        </Button>{" "}
+        <Button
+          onClick={addGame}
+          style={{ backgroundColor: "#1e9521", color: "white" }}
+        >
+          Finish
+        </Button>
       </div>
       <div>
         <Card>
@@ -287,14 +319,14 @@ export default function FourRing() {
               ) : (
                 <input
                   type="text"
-                  value={roundName}
-                  onChange={(e) => setRoundName(e.target.value)}
+                  value={targetName}
+                  onChange={(e) => setTargetName(e.target.value)}
                   onBlur={saveName}
                 />
               )}
-              <button variant="contained" onClick={toggleSettings}>
+              <Button variant="contained" onClick={toggleSettings}>
                 <MoreHorizIcon />
-              </button>
+              </Button>
             </div>
             {showSettings ? (
               <div className="settings-div">
@@ -305,31 +337,31 @@ export default function FourRing() {
                     style={{ fontSize: "10px" }}
                   >
                     <EditIcon />
-                    Edit
+                    Edit Name
                   </Button>
                   <br />
                 </div>
                 <div className="round-table">
-                  <table>
-                    <thead>
-                      <tr>
+                <Table sx={{ minWidth: 250 }} size="small">
+                <TableHead>
+                <TableRow sx={{ "&:last-child th": { border: 0 } }}>
                         {roundHeaders.map((header) => (
-                          <th key={header} className="header">
-                            Round {header}
-                          </th>
+                          <StyledTableCell key={header} className="header">
+                          Round {header}
+                          </StyledTableCell>
                         ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                    <StyledTableRow>
                         {roundScores.map((score, index) => (
                           <td key={index} className="score">
                             {score}
                           </td>
                         ))}
-                      </tr>
-                    </tbody>
-                  </table>
+                      </StyledTableRow>
+                    </TableBody>
+                  </Table>
                 </div>
                 <div style={{ textAlign: "right", fontSize: "12px" }}>
                   <p>7's: {pointsFourth}</p>
@@ -346,10 +378,11 @@ export default function FourRing() {
               <>
                 {isEdit ? (
                   // Render an input field in edit mode
-                  <input
+                  <TextField
                     type="text"
-                    value={notes}
-                    onChange={(e) => setNotes(e.target.value)}
+                    label="Game Notes"
+                    value={gameNotes}
+                    onChange={(e) => setGameNotes(e.target.value)}
                     onBlur={saveNotes}
                   />
                 ) : (
