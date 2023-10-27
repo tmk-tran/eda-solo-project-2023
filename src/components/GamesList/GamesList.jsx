@@ -334,7 +334,7 @@ export default function GamesList({ target, roundScores }) {
                     fontSize: "16px",
                     fontWeight: "bold",
                     textAlign: "center",
-                    color: "ghostwhite",
+                    color: "#cbcbd3",
                   }}
                 >
                   Round
