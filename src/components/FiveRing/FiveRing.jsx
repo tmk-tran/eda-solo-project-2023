@@ -11,9 +11,17 @@ import {
   FormControl,
   Button,
   Typography,
+  Table,
+  TableBody,
+  TableContainer,
+  TableHead,
+  TableRow,
 } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import EditIcon from "@mui/icons-material/Edit";
+import ClearAllIcon from "@mui/icons-material/ClearAll";
 // ~~~~~~~~~~~~~~~ Hooks ~~~~~~~~~~~~~~~~~~
 import getCookie from "../../hooks/cookie";
 
@@ -43,13 +51,12 @@ export default function FourRing() {
   const [roundNumber, setRoundNumber] = useState(1);
 
   // Game State ~~~~~~~~~~~~~~~~~~~~~~~~~
-  const [notes, setNotes] = useState(getCookie("notes") || "Notes");
   const [totalScore, setTotalScore] = useState(
     pointsFifth + pointsFourth + pointsOuter + pointsInner + bulls
   );
   const [gameDate, setGameDate] = useState(new Date()); // Initialize with the current date
   console.log("GAME DATE IS:", gameDate);
-  const [gameNotes, setGameNotes] = useState("");
+  const [gameNotes, setGameNotes] = useState(getCookie("notes") || "Notes");
   const [targetName, setTargetName] = useState("5-Ring");
   const [targetScore, setTargetScore] = useState(0); // update this when we decide what it is for
 
@@ -65,6 +72,26 @@ export default function FourRing() {
     // Update the total score in the component state
     setTotalScore(totalScore);
   }, [pointsFifth, pointsFourth, pointsOuter, pointsInner, bulls]);
+
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }));
+
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    "&:nth-of-type(odd)": {
+      backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    "&:last-child td, &:last-child th": {
+      border: 0,
+    },
+  }));
 
   // Bring in Rounds
   const rounds = useSelector((store) => store.roundReducer);
@@ -112,7 +139,7 @@ export default function FourRing() {
 
     // Clear the input fields
     setGameDate(gameDate);
-    setNotes("Notes");
+    setGameNotes("Notes");
     setPointsFifth(0);
     setPointsFourth(0);
     setPointsOuter(0);
@@ -170,13 +197,13 @@ export default function FourRing() {
 
   const saveNotes = (e) => {
     e.preventDefault();
-    document.cookie = `notes=${notes}`;
+    document.cookie = `notes=${gameNotes}`;
     setIsEdit(false);
   };
 
   const saveName = (e) => {
     e.preventDefault();
-    document.cookie = `round=${roundName}`;
+    document.cookie = `round=${targetName}`;
     setReplaceName(false);
   };
 
@@ -215,14 +242,8 @@ export default function FourRing() {
       round_score: newRoundScore,
     };
     console.log("ROUND DATA IS: ", roundData); // remove after confirmation
-    // const roundScoreData = {
-    //   round_id: roundId,
-    //   round_score: newRoundScore,
-    // };
-    // console.log("ROUND SCORE DATA IS: ", roundScoreData); // remove after confirmation
 
     dispatch({ type: "ADD_ROUND", payload: roundData });
-    // dispatch({ type: "ADD_ROUND_SCORE", payload: roundScoreData }); // check roundScoreData
 
     setRoundNumber(roundNumber + 1);
     console.log("ROUND NUMBER IS: ", roundNumber); // remove after confirmation
@@ -284,16 +305,22 @@ export default function FourRing() {
   return (
     <div className="page-container">
       <div className="top-buttons">
-        <button
+        <Button
           onClick={() => {
             resetScore();
-            dispatch({ type: "DELETE_GAME", payload: newGameId })
+            dispatch({ type: "DELETE_GAME", payload: newGameId });
             history.push("/games");
           }}
+          style={{ backgroundColor: "#5d0606", color: "white" }}
         >
           Cancel
-        </button>{" "}
-        <button onClick={addGame}>Finish</button>
+        </Button>{" "}
+        <Button
+          onClick={addGame}
+          style={{ backgroundColor: "#1e9521", color: "white" }}
+        >
+          Finish
+        </Button>
       </div>
       <div>
         <Card>
@@ -301,19 +328,19 @@ export default function FourRing() {
             <div className="game-header">
               {!replaceName ? (
                 <div>
-                  <Typography variant="h6">{roundName}</Typography>
+                  <Typography variant="h6">{targetName}</Typography>
                 </div>
               ) : (
                 <input
                   type="text"
-                  value={roundName}
-                  onChange={(e) => setRoundName(e.target.value)}
+                  value={targetName}
+                  onChange={(e) => setTargetName(e.target.value)}
                   onBlur={saveName}
                 />
               )}
-              <button variant="contained" onClick={toggleSettings}>
+              <Button variant="contained" onClick={toggleSettings}>
                 <MoreHorizIcon />
-              </button>
+              </Button>
             </div>
             {showSettings ? (
               <div className="settings-div">
@@ -324,31 +351,31 @@ export default function FourRing() {
                     style={{ fontSize: "10px" }}
                   >
                     <EditIcon />
-                    Edit
+                    Edit Name
                   </Button>
                   <br />
                 </div>
                 <div className="round-table">
-                  <table>
-                    <thead>
-                      <tr>
+                  <Table sx={{ minWidth: 250 }} size="small">
+                    <TableHead>
+                      <TableRow sx={{ "&:last-child th": { border: 0 } }}>
                         {roundHeaders.map((header) => (
-                          <th key={header} className="header">
+                          <StyledTableCell key={header} className="header">
                             Round {header}
-                          </th>
+                          </StyledTableCell>
                         ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      <StyledTableRow>
                         {roundScores.map((score, index) => (
                           <td key={index} className="score">
                             {score}
                           </td>
                         ))}
-                      </tr>
-                    </tbody>
-                  </table>
+                      </StyledTableRow>
+                    </TableBody>
+                  </Table>
                 </div>
                 <div style={{ textAlign: "right", fontSize: "12px" }}>
                   <p>6's: {pointsFifth}</p>
@@ -359,8 +386,9 @@ export default function FourRing() {
                   <p style={{ fontWeight: "bold" }}>
                     Total: {totalScore} points
                   </p>
-                  <button onClick={clearScores}>Clear</button>
-                </div>
+                  <Button onClick={clearScores} style={{ color: "red" }}>
+                    <ClearAllIcon /> Clear
+                  </Button>                </div>
               </div>
             ) : (
               <>
@@ -368,8 +396,8 @@ export default function FourRing() {
                   // Render an input field in edit mode
                   <input
                     type="text"
-                    value={notes}
-                    onChange={(e) => setNotes(e.target.value)}
+                    value={gameNotes}
+                    onChange={(e) => setGameNotes(e.target.value)}
                     onBlur={saveNotes}
                   />
                 ) : (
@@ -382,7 +410,7 @@ export default function FourRing() {
                         setIsEdit(!isEdit);
                       }}
                     >
-                      {notes}
+                      {gameNotes}
                     </Typography>
                   </>
                 )}

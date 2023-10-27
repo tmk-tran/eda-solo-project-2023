@@ -335,18 +335,18 @@ export default function FourRing() {
                   <br />
                 </div>
                 <div className="round-table">
-                <Table sx={{ minWidth: 250 }} size="small">
-                <TableHead>
-                <TableRow sx={{ "&:last-child th": { border: 0 } }}>
+                  <Table sx={{ minWidth: 250 }} size="small">
+                    <TableHead>
+                      <TableRow sx={{ "&:last-child th": { border: 0 } }}>
                         {roundHeaders.map((header) => (
                           <StyledTableCell key={header} className="header">
-                          Round {header}
+                            Round {header}
                           </StyledTableCell>
                         ))}
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                    <StyledTableRow>
+                      <StyledTableRow>
                         {roundScores.map((score, index) => (
                           <td key={index} className="score">
                             {score}
@@ -364,8 +364,9 @@ export default function FourRing() {
                   <p style={{ fontWeight: "bold" }}>
                     Total: {totalScore} points
                   </p>
-                  <button onClick={clearScores}>Clear</button>
-                </div>
+                  <Button onClick={clearScores} style={{ color: "red" }}>
+                    <ClearAllIcon /> Clear
+                  </Button>                </div>
               </div>
             ) : (
               <>

@@ -13,7 +13,8 @@
 }
 
 .fourth-ring:hover {
-  background-color: rgba(255, 255, 0, 0.778);
+  background-color: #d5d50b;
+  transform: scale(1.1);
 }
 
 .third-ring {
@@ -28,7 +29,7 @@
 }
 
 .third-ring:hover {
-  background-color: rgba(0, 0, 0, 0.778);
+  transform: scale(1.1);
 }
 
 /* Media query for screens with a maximum width of 600px (typical for iPhones) */
