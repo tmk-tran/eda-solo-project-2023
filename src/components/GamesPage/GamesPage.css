@@ -28,14 +28,18 @@
 }
 
 #games-page-card {
-  height: 100vh;
+  /* height: 100vh; */
+  border-radius: 10px;
   background-color: aliceblue;
   overflow-y: auto;
+  margin: 5vh auto;
+  height: 100%;
 }
 
 /* Media query for smaller screens (e.g., mobile) */
 @media (max-width: 768px) {
   #games-page-card {
-    height: 100vh;
+    width: 100vh;
+    height: auto;
   }
 }

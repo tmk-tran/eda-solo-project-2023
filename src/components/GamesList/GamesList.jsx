@@ -240,11 +240,13 @@ export default function GamesList({ target, roundScores }) {
         ) : (
           // Render the formatted date in non-edit mode
           <div className="game-list-display-container">
-            <Table sx={{ minWidth: 200, marginLeft: "auto" }} size="small">
+            <Table sx={{ minWidth: 250, marginLeft: "auto" }} size="small">
               <TableHead>
                 <TableRow sx={{ "&:last-child th": { border: 0 } }}>
                   <StyledTableCell>
-                    Date: {formatDate(target.game_date)}
+                    <Typography variant="h6">
+                      Date: {formatDate(target.game_date)}
+                    </Typography>
                   </StyledTableCell>
                 </TableRow>
               </TableHead>
@@ -274,11 +276,13 @@ export default function GamesList({ target, roundScores }) {
                       }}
                     >
                       <ListItemText primary="Target: " />
-                      {target.target_name !== (null || "") ? (
-                        target.target_name
-                      ) : (
-                        <DriveFileRenameOutlineIcon />
-                      )}
+                      <Typography style={{ fontWeight: "bold" }}>
+                        {target.target_name !== (null || "") ? (
+                          target.target_name
+                        ) : (
+                          <DriveFileRenameOutlineIcon />
+                        )}
+                      </Typography>
                     </ListItem>
                   </StyledTableCell>
                 </StyledTableRow>
@@ -291,7 +295,9 @@ export default function GamesList({ target, roundScores }) {
                       }}
                     >
                       <ListItemText primary="Total Score: " />
-                      {target.total_game_score}
+                      <Typography style={{ fontWeight: "bold" }}>
+                        {target.total_game_score}
+                      </Typography>
                     </ListItem>
                   </StyledTableCell>
                 </StyledTableRow>
@@ -304,27 +310,39 @@ export default function GamesList({ target, roundScores }) {
                       }}
                     >
                       <ListItemText primary="Game Score: " />
-                      {target.target_score_value !== (null || 0)
-                        ? target.target_score_value
-                        : "None Set"}
+                      <Typography style={{ fontWeight: "bold" }}>
+                        {target.target_score_value !== (null || 0)
+                          ? target.target_score_value
+                          : "None Set"}
+                      </Typography>
                     </ListItem>
                   </StyledTableCell>
                 </StyledTableRow>
               </TableBody>
             </Table>
-            <Card className="round-info" elevation={7}>
+            <Card
+              className="round-info"
+              elevation={7}
+              style={{ backgroundColor: "#e0ffe0" }}
+            >
               <CardContent>
-                <Typography variant="h5" style={{ fontSize: "16px" }}>
+                <Typography
+                  variant="h5"
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: "bold",
+                    textAlign: "center",
+                  }}
+                >
                   Round Info
                 </Typography>
                 <br />
                 {roundScores.map((round, index) => (
-                  <Typography id="round-scores" key={index} variant="body2">
-                    #{index + 1}: {round.round_score} points
-                    <>
-                      <hr />
-                    </>
-                  </Typography>
+                  <div key={index} style={{ display: "flex" }}>
+                    <Typography id="round-scores" variant="body1">
+                      #{index + 1}: {round.round_score} points
+                    </Typography>
+                  </div>
                 ))}
               </CardContent>
             </Card>
