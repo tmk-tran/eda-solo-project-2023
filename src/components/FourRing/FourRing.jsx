@@ -20,6 +20,7 @@ import { styled } from "@mui/material/styles";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import EditIcon from "@mui/icons-material/Edit";
+import ClearAllIcon from "@mui/icons-material/ClearAll";
 import "./FourRing.css";
 // ~~~~~~~~~~~~~~~ Hooks ~~~~~~~~~~~~~~~~~~
 import getCookie from "../../hooks/cookie";
@@ -47,13 +48,12 @@ export default function FourRing() {
   const [roundNumber, setRoundNumber] = useState(1);
 
   // Game State ~~~~~~~~~~~~~~~~~~~~~~~~~
-  const [notes, setNotes] = useState(getCookie("notes") || "Notes");
   const [totalScore, setTotalScore] = useState(
     pointsFourth + pointsOuter + pointsInner + bulls
   );
   const [gameDate, setGameDate] = useState(new Date()); // Initialize with the current date
   console.log("GAME DATE IS:", gameDate);
-  const [gameNotes, setGameNotes] = useState("");
+  const [gameNotes, setGameNotes] = useState(getCookie("notes") || "Notes");
   const [targetName, setTargetName] = useState("4-Ring");
   const [targetScore, setTargetScore] = useState(0); // update this when we decide what it is for
 
@@ -135,7 +135,7 @@ export default function FourRing() {
 
     // Clear the input fields
     setGameDate(gameDate);
-    setNotes("Notes");
+    setGameNotes("Notes");
     setPointsFourth(0);
     setPointsOuter(0);
     setPointsInner(0);
@@ -389,7 +389,7 @@ export default function FourRing() {
                         setIsEdit(!isEdit);
                       }}
                     >
-                      {notes}
+                      {gameNotes}
                     </Typography>
                   </>
                 )}
