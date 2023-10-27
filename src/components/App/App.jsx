@@ -37,7 +37,6 @@ import Train from "../Train/Train";
 import SpeedDial from "../SpeedDial/SpeedDial";
 import { Paper, Switch as MuiSwitch } from "@mui/material";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
-import getCookie from "../../hooks/cookie";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -47,12 +46,12 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-const darkTheme = createTheme({ palette: { mode: "dark" } });
-const lightTheme = createTheme({ palette: { mode: "light" } });
+const darkTheme = createTheme({ palette: { mode: "dark" }, typography: { fontFamily: "verdana" } });
+const lightTheme = createTheme({ palette: { mode: "light" }, typography: { fontFamily: "verdana" } });
 
 function App() {
   const dispatch = useDispatch();
-  const [darkMode, setDarkMode] = useState(getCookie("mode") || "false"); // Default to dark mode
+  const [darkMode, setDarkMode] = useState(true);
   const theme = darkMode ? darkTheme : lightTheme;
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);

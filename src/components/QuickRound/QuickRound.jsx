@@ -415,9 +415,13 @@ export default function QuickRound() {
               backgroundColor: "lightblue",
             }}
           >
-            <ListItemText><Typography variant="h5" style={{fontFamily: "avenir"}}>Hits: {hit}</Typography></ListItemText>
+            <ListItemText>
+              <Typography variant="h5">Hits: {hit}</Typography>
+            </ListItemText>
             <br />
-            <ListItemText><Typography variant="h6" style={{fontFamily: "avenir"}}>Miss: {miss}</Typography></ListItemText>
+            <ListItemText>
+              <Typography variant="h6">Miss: {miss}</Typography>
+            </ListItemText>
           </div>
           <div className="trap-hit-button">
             <Button

@@ -63,10 +63,6 @@ export default function GamesList({ target, roundScores }) {
   const [editScore, setEditScore] = useState(target.target_score_value);
   const [editTotalScore, setEditTotalScore] = useState(target.total_game_score);
 
-  // const rounds = useSelector((store) => store.roundReducer);
-  // const roundScores = rounds.map((round) => round.round_score);
-  // console.log(roundScores);
-
   function handleEdit() {
     setEdit(!edit);
     setEditGameDate(formatDate(target.game_date));
@@ -153,7 +149,7 @@ export default function GamesList({ target, roundScores }) {
       <CardContent>
         <div className="list-header">
           <Button
-            variant="outlined"
+            variant="contained"
             color="inherit"
             onClick={handleEdit}
             style={{ marginLeft: "auto" }}
@@ -173,7 +169,6 @@ export default function GamesList({ target, roundScores }) {
                     textAlign: "center",
                     backgroundColor: "rgb(18 29 94)",
                     color: "ghostwhite",
-                    fontFamily: "avenir",
                   }}
                 >
                   Edit Game
@@ -247,10 +242,7 @@ export default function GamesList({ target, roundScores }) {
                   <TableHead>
                     <TableRow sx={{ "&:last-child th": { border: 0 } }}>
                       <StyledTableCell>
-                        <Typography
-                          variant="h6"
-                          style={{ fontFamily: "avenir" }}
-                        >
+                        <Typography variant="h6">
                           Date: {formatDate(target.game_date)}
                         </Typography>
                       </StyledTableCell>
@@ -258,16 +250,13 @@ export default function GamesList({ target, roundScores }) {
                   </TableHead>
                   <TableBody>
                     <TableRow>
-                      <StyledTableCell style={{ fontFamily: "avenir" }}>
+                      <StyledTableCell>
                         <EmojiEventsOutlinedIcon />
                         Best Round: {largestScore} points
                       </StyledTableCell>
                     </TableRow>
                     <StyledTableRow>
-                      <StyledTableCell
-                        className="game-history"
-                        style={{ fontFamily: "avenir" }}
-                      >
+                      <StyledTableCell className="game-history">
                         <ListItemText primary="Notes: " />
                         {target.game_notes !== (null || "Notes") ? (
                           target.game_notes
@@ -285,9 +274,7 @@ export default function GamesList({ target, roundScores }) {
                           }}
                         >
                           <ListItemText primary="Target: " />
-                          <Typography
-                            style={{ fontWeight: "bold", fontFamily: "avenir" }}
-                          >
+                          <Typography style={{ fontWeight: "bold" }}>
                             {target.target_name !== (null || "") ? (
                               target.target_name
                             ) : (
@@ -306,9 +293,7 @@ export default function GamesList({ target, roundScores }) {
                           }}
                         >
                           <ListItemText primary="Total Score: " />
-                          <Typography
-                            style={{ fontWeight: "bold", fontFamily: "avenir" }}
-                          >
+                          <Typography style={{ fontWeight: "bold" }}>
                             {target.total_game_score}
                           </Typography>
                         </ListItem>
@@ -323,9 +308,7 @@ export default function GamesList({ target, roundScores }) {
                           }}
                         >
                           <ListItemText primary="Game Score: " />
-                          <Typography
-                            style={{ fontWeight: "bold", fontFamily: "avenir" }}
-                          >
+                          <Typography style={{ fontWeight: "bold" }}>
                             {target.target_score_value !== (null || 0)
                               ? target.target_score_value
                               : "None Set"}

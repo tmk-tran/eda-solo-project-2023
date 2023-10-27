@@ -82,7 +82,7 @@ export default function Profile() {
       <Card id="profile-card" elevation={6}>
         <CardContent>
           <AccountMenu />
-          <Typography variant="h6" style={{fontFamily: "avenir"}}>Profile</Typography>
+          <Typography variant="h6">Profile</Typography>
           <br />
           <div className="profile-head">
             <div className="profile-name-icon">
@@ -97,7 +97,6 @@ export default function Profile() {
                       Total Rounds Played: {rounds.total_rounds_played}
                     </Typography>
                   </div>
-                  
                 ))}
                 <br />
               </div>
@@ -106,7 +105,7 @@ export default function Profile() {
               <ArrowForwardIosIcon />
             </Button>
           </div>
-          <Typography variant="h6" style={{fontFamily: "avenir"}}>Dashboard</Typography>
+          <Typography variant="h6">Dashboard</Typography>
           <br />
           <Card elevation={12}>
             <CardContent>

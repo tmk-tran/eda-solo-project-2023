@@ -1,0 +1,8 @@
+#safety-line {
+  font-weight: bold;
+  background-color: yellow;
+  border-radius: 4px;
+  color: black;
+  height: 3vh;
+  padding: 2px;
+}

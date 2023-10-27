@@ -39,7 +39,6 @@ export default function History() {
         style={{
           color: "ghostwhite",
           textAlign: "center",
-          fontFamily: "avenir",
         }}
       >
         Game History
