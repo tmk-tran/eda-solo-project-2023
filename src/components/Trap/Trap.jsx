@@ -43,7 +43,6 @@ export default function Trap() {
   // State to manage round numbers
   const [roundNumber, setRoundNumber] = useState(1);
   // from Games ~~~~~~~~~~~~~~~~~~~~~~~~~
-  const [notes, setNotes] = useState(getCookie("notes") || "Notes");
   const [totalScore, setTotalScore] = useState(0); // change once named
   const [gameDate, setGameDate] = useState(new Date()); // Initialize with the current date
   console.log("GAME DATE IS:", gameDate);
@@ -246,7 +245,7 @@ export default function Trap() {
         <Button
           onClick={() => {
             resetScore();
-            dispatch({ type: "DELETE_GAME", payload: newGameId })
+            dispatch({ type: "DELETE_GAME", payload: newGameId });
             history.push("/games");
           }}
           style={{ backgroundColor: "#5d0606", color: "white" }}
@@ -295,17 +294,17 @@ export default function Trap() {
                   <br />
                 </div>
                 <div className="round-table">
-                <Table sx={{ minWidth: 250 }} size="small">
-                <TableHead>
-                <TableRow sx={{ "&:last-child th": { border: 0 } }}>
+                  <Table sx={{ minWidth: 250 }} size="small">
+                    <TableHead>
+                      <TableRow sx={{ "&:last-child th": { border: 0 } }}>
                         {roundHeaders.map((header) => (
                           <StyledTableCell key={header} className="header">
                             Round {header}
                           </StyledTableCell>
                         ))}
                       </TableRow>
-                      </TableHead>
-                      <TableBody>
+                    </TableHead>
+                    <TableBody>
                       <StyledTableRow>
                         {roundScores.map((score, index) => (
                           <td key={index} className="score">
@@ -313,8 +312,8 @@ export default function Trap() {
                           </td>
                         ))}
                       </StyledTableRow>
-                      </TableBody>
-                      </Table>
+                    </TableBody>
+                  </Table>
                 </div>
                 <div style={{ textAlign: "right", fontSize: "12px" }}>
                   <p>Hits: {trapHit}</p>
@@ -323,7 +322,8 @@ export default function Trap() {
                   </p>
                   <Button onClick={clearScores} style={{ color: "red" }}>
                     <ClearAllIcon /> Clear
-                  </Button>                </div>
+                  </Button>{" "}
+                </div>
               </div>
             ) : (
               <>

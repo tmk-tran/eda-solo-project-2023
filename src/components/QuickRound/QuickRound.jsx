@@ -17,13 +17,35 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import TableCell, { tableCellClasses } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import EditIcon from "@mui/icons-material/Edit";
 import ModeStandbyIcon from "@mui/icons-material/ModeStandby";
+import ClearAllIcon from "@mui/icons-material/ClearAll";
 // ~~~~~~~~~~~~~~~ Hooks ~~~~~~~~~~~~~~~~~~
 import getCookie from "../../hooks/cookie";
 import CustomizedTables from "../TestComponent/TestComponent";
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  "&:nth-of-type(odd)": {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  "&:last-child td, &:last-child th": {
+    border: 0,
+  },
+}));
 
 export default function QuickRound() {
   const dispatch = useDispatch();
@@ -47,7 +69,7 @@ export default function QuickRound() {
   const [notes, setNotes] = useState(getCookie("notes") || "Notes");
   const [gameDate, setGameDate] = useState(new Date()); // Initialize with the current date
   console.log("GAME DATE IS:", gameDate);
-  const [gameNotes, setGameNotes] = useState("");
+  const [gameNotes, setGameNotes] = useState(getCookie("notes") || "Notes");
   const [targetName, setTargetName] = useState("Quick Round");
   const [targetScore, setTargetScore] = useState(0); // for this component, we want to record total shots taken, too
   console.log("TARGET SCORE = ", targetScore);
@@ -118,7 +140,7 @@ export default function QuickRound() {
 
     // Clear the input fields
     setGameDate(gameDate);
-    setNotes("Notes");
+    setGameNotes("Notes");
     setHit(0);
     setTargetScore(0);
     setRoundNumber(1);
@@ -133,13 +155,13 @@ export default function QuickRound() {
 
   const saveNotes = (e) => {
     e.preventDefault();
-    document.cookie = `notes=${notes}`;
+    document.cookie = `notes=${gameNotes}`;
     setIsEdit(false);
   };
 
   const saveName = (e) => {
     e.preventDefault();
-    document.cookie = `round=${roundName}`;
+    document.cookie = `round=${targetName}`;
     setReplaceName(false);
   };
 
@@ -237,16 +259,24 @@ export default function QuickRound() {
   return (
     <div className="page-container">
       <div className="top-buttons">
-        <button
+        <Button
+          variant="outlined"
           onClick={() => {
             resetScore();
-            dispatch({ type: "DELETE_GAME", payload: newGameId })
+            dispatch({ type: "DELETE_GAME", payload: newGameId });
             history.push("/games");
           }}
+          style={{ backgroundColor: "#5d0606", color: "white" }}
         >
           Cancel
-        </button>{" "}
-        <button onClick={addGame}>Finish</button>
+        </Button>{" "}
+        <Button
+          variant="outlined"
+          onClick={addGame}
+          style={{ backgroundColor: "#1e9521", color: "white" }}
+        >
+          Finish
+        </Button>
       </div>
       <div>
         <Card>
@@ -254,19 +284,19 @@ export default function QuickRound() {
             <div className="game-header">
               {!replaceName ? (
                 <div>
-                  <Typography variant="h6">{roundName}</Typography>
+                  <Typography variant="h6">{targetName}</Typography>
                 </div>
               ) : (
                 <input
                   type="text"
-                  value={roundName}
-                  onChange={(e) => setRoundName(e.target.value)}
+                  value={targetName}
+                  onChange={(e) => setTargetName(e.target.value)}
                   onBlur={saveName}
                 />
               )}
-              <button variant="contained" onClick={toggleSettings}>
+              <Button variant="contained" onClick={toggleSettings}>
                 <MoreHorizIcon />
-              </button>
+              </Button>
             </div>
             {showSettings ? (
               <div className="settings-div">
@@ -282,33 +312,35 @@ export default function QuickRound() {
                   <br />
                 </div>
                 <div className="round-table">
-                  <table>
-                    <thead>
-                      <tr>
+                  <Table sx={{ minWidth: 250 }} size="small">
+                    <TableHead>
+                      <TableRow sx={{ "&:last-child th": { border: 0 } }}>
                         {roundHeaders.map((header) => (
-                          <th key={header} className="header">
+                          <StyledTableCell key={header} className="header">
                             Round {header}
-                          </th>
+                          </StyledTableCell>
                         ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      <StyledTableRow>
                         {roundScores.map((score, index) => (
                           <td key={index} className="score">
                             {score}
                           </td>
                         ))}
-                      </tr>
-                    </tbody>
-                  </table>
+                      </StyledTableRow>
+                    </TableBody>
+                  </Table>
                 </div>
                 <div style={{ textAlign: "right", fontSize: "12px" }}>
                   <p>Hits: {hit}</p>
                   <p style={{ fontWeight: "bold" }}>
                     Total: {targetScore} points
                   </p>
-                  <button onClick={clearScores}>Clear</button>
+                  <Button onClick={clearScores} style={{ color: "red" }}>
+                    <ClearAllIcon /> Clear
+                  </Button>
                 </div>
               </div>
             ) : (
@@ -317,8 +349,9 @@ export default function QuickRound() {
                   // Render an input field in edit mode
                   <input
                     type="text"
-                    value={notes}
-                    onChange={(e) => setNotes(e.target.value)}
+                    label="Game Notes"
+                    value={gameNotes}
+                    onChange={(e) => setGameNotes(e.target.value)}
                     onBlur={saveNotes}
                   />
                 ) : (
@@ -331,7 +364,7 @@ export default function QuickRound() {
                         setIsEdit(!isEdit);
                       }}
                     >
-                      {notes}
+                      {gameNotes}
                     </Typography>
                   </>
                 )}
