@@ -6,3 +6,33 @@
 .bold-point {
   font-weight: bold;
 }
+#results-card-container {
+  width: 75%;
+  margin: 0 auto;
+  background-color: rgb(159 176 200);
+  border-radius: 10px;
+}
+
+#results-card {
+  border-radius: 10px;
+  background-color: rgb(5, 6, 9);
+  color: rgb(239, 246, 246);
+}
+
+#results-card2 {
+  /* width: 50%; */
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+/* Media query for smaller screens (e.g., mobile) */
+@media (max-width: 768px) {
+  .results-table {
+    width: 100vh;
+    /* margin: 0 auto; */
+  }
+  #results-card,
+  #results-card2 {
+    width: 100vh;
+  }
+}

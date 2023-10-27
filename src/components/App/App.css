@@ -10,10 +10,6 @@ body {
   background-color: black;
 }
 
-h1 {
-  color: rgb(20, 20, 22);
-}
-
 img {
   display: inline-block;
   max-width: 100%;

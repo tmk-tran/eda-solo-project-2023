@@ -65,7 +65,7 @@ export default function Results() {
 
   return (
     <div className="page-container">
-      <Card>
+      <Card id="results-card-container">
         <CardContent>
           <Button variant="outlined" onClick={() => history.push("./train")}>
             <ClearIcon />
@@ -73,7 +73,7 @@ export default function Results() {
           <Celebration />
           <h1 className="results-header">Results</h1>
           <h2 className="results-display-head">
-            <Card style={{ width: "50%", margin: "0 auto" }} elevation={6}>
+            <Card id="results-card" elevation={10}>
               <CardContent>
                 <EmojiEventsOutlinedIcon style={{ fontSize: "40px" }} />
                 Score: {finalGameScore} points
@@ -82,12 +82,12 @@ export default function Results() {
             </Card>
           </h2>
           <Card
-            style={{ width: "50%", margin: "0 auto", borderRadius: "10px" }}
+            id="results-card2"
             elevation={8}
           >
             <CardContent>
               <TableContainer component={Paper} elevation={6}>
-                <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                <Table sx={{ minWidth: 100 }} className="results-table">
                   <TableHead>
                     <TableRow>
                       <StyledTableCell style={{ fontWeight: "bold" }}>

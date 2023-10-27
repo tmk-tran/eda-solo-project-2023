@@ -24,7 +24,7 @@ import "./GamesList.css";
 import EmojiEventsOutlinedIcon from "@mui/icons-material/EmojiEventsOutlined";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import SpeakerNotesOffIcon from "@mui/icons-material/SpeakerNotesOff";
-import VideogameAssetOffIcon from "@mui/icons-material/VideogameAssetOff";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 // ~~~~~~~~~~~~~~~ Sweet Alert ~~~~~~~~~~~~~~~~~~
 import Swal from "sweetalert2/dist/sweetalert2.js";
@@ -158,7 +158,8 @@ export default function GamesList({ target, roundScores }) {
             onClick={handleEdit}
             style={{ marginLeft: "auto" }}
           >
-            <MoreHorizIcon />
+            {!edit ? (<MoreHorizIcon />):(<ArrowBackIcon />)}
+            {/* <MoreHorizIcon /> */}
           </Button>
         </div>
         <hr />
@@ -171,8 +172,9 @@ export default function GamesList({ target, roundScores }) {
                   variant="h5"
                   style={{
                     textAlign: "center",
-                    backgroundColor: "black",
+                    backgroundColor: "rgb(18 29 94)",
                     color: "ghostwhite",
+                    fontFamily: "avenir",
                   }}
                 >
                   Edit Game
@@ -254,7 +256,7 @@ export default function GamesList({ target, roundScores }) {
                 <TableRow>
                   <StyledTableCell>
                     <EmojiEventsOutlinedIcon />
-                    {largestScore} points
+                    Best Round: {largestScore} points
                   </StyledTableCell>
                 </TableRow>
                 <StyledTableRow>
@@ -323,7 +325,7 @@ export default function GamesList({ target, roundScores }) {
             <Card
               className="round-info"
               elevation={7}
-              style={{ backgroundColor: "#e0ffe0" }}
+              style={{ backgroundColor: "#131434cf" }}
             >
               <CardContent>
                 <Typography
@@ -332,9 +334,10 @@ export default function GamesList({ target, roundScores }) {
                     fontSize: "16px",
                     fontWeight: "bold",
                     textAlign: "center",
+                    color: "ghostwhite",
                   }}
                 >
-                  Round Info
+                  Round
                 </Typography>
                 <br />
                 {roundScores.map((round, index) => (

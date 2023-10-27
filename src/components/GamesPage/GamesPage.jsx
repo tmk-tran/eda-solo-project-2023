@@ -39,7 +39,6 @@ export default function GamesPage() {
                     dispatch({ type: "ADD_GAME" });
                     history.push("/3-ring");
                   }}
-                  
                 ></img>
               </Typography>
               <br />

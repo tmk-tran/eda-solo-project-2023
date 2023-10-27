@@ -53,6 +53,8 @@
 #games-list-card {
   width: 50%;
   margin: 0 auto;
+  background-color: rgba(240, 248, 255, 0.939);
+  border-radius: 10px;
 }
 
 /* Style for game information table display */
@@ -68,6 +70,9 @@
 
 #round-scores {
   margin-left: 5px;
+  color: ghostwhite;
+  text-align: center;
+  padding: 15px;
 }
 
 /* Media query for smaller screens (e.g., mobile) */

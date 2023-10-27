@@ -31,7 +31,7 @@ const lightTheme = createTheme({ palette: { mode: "light" } });
 
 export default function Train() {
   const dispatch = useDispatch();
-  const [darkMode, setDarkMode] = useState(false); // Default to light mode
+  const [darkMode, setDarkMode] = useState(true); // Default to light mode
 
   const history = useHistory();
 
@@ -125,6 +125,33 @@ export default function Train() {
                           dispatch({ type: "ADD_GAME" });
                           history.push("/5-ring");
                         }}
+                      />
+                    </Item>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Item elevation={4}>
+                      <img
+                        id="trap-game"
+                        src="images/clay.png"
+                        alt="A Trap Clay Target, Shattering"
+                        onClick={() => {
+                          dispatch({ type: "ADD_GAME" });
+                          history.push("/trap");
+                        }}
+                      />
+                    </Item>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Item elevation={4}>
+                      <img
+                        id="hits-game"
+                        src="images/crosshair.png"
+                        alt="An image of a crosshair reticle"
+                        onClick={() => {
+                          dispatch({ type: "ADD_GAME" });
+                          history.push("/quickround");
+                        }}
+                        style={{ borderRadius: "50%" }}
                       />
                     </Item>
                   </Grid>
