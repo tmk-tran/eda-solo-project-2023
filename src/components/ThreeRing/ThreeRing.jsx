@@ -33,7 +33,6 @@ export default function ThreeRing() {
   const [showSettings, setShowSettings] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [replaceName, setReplaceName] = useState(false);
-  const [roundName, setRoundName] = useState(getCookie("round") || "3-Ring");
   // Define state to manage round scores and round headers
   const [roundScores, setRoundScores] = useState([]); // Array to store round scores
   const [roundHeaders, setRoundHeaders] = useState([]); // Array to store round headers
@@ -44,13 +43,12 @@ export default function ThreeRing() {
   const [roundNumber, setRoundNumber] = useState(1);
 
   // from Games ~~~~~~~~~~~~~~~~~~~~~~~~~
-  const [notes, setNotes] = useState(getCookie("notes") || "Notes");
   const [totalScore, setTotalScore] = useState(
     pointsOuter + pointsInner + bulls
   );
   const [gameDate, setGameDate] = useState(new Date()); // Initialize with the current date
   // console.log("GAME DATE IS:", gameDate);
-  const [gameNotes, setGameNotes] = useState("");
+  const [gameNotes, setGameNotes] = useState(getCookie("notes") || "Notes");
   const [targetName, setTargetName] = useState("3-Ring");
   const [targetScore, setTargetScore] = useState(0); // update this when we decide what it is for
 
@@ -129,7 +127,7 @@ export default function ThreeRing() {
 
     // Clear the input fields
     setGameDate(gameDate);
-    setNotes("Notes");
+    setGameNotes("Notes");
     setPointsOuter(0);
     setPointsInner(0);
     setBulls(0);
@@ -170,13 +168,13 @@ export default function ThreeRing() {
 
   const saveNotes = (e) => {
     e.preventDefault();
-    document.cookie = `notes=${notes}`;
+    document.cookie = `notes=${gameNotes}`;
     setIsEdit(false);
   };
 
   const saveName = (e) => {
     e.preventDefault();
-    document.cookie = `round=${roundName}`;
+    document.cookie = `round=${targetName}`;
     setReplaceName(false);
   };
 
@@ -289,13 +287,13 @@ export default function ThreeRing() {
             <div className="game-header">
               {!replaceName ? (
                 <div>
-                  <Typography variant="h6">{roundName}</Typography>
+                  <Typography variant="h6">{targetName}</Typography>
                 </div>
               ) : (
                 <input
                   type="text"
-                  value={roundName}
-                  onChange={(e) => setRoundName(e.target.value)}
+                  value={targetName}
+                  onChange={(e) => setTargetName(e.target.value)}
                   onBlur={saveName}
                 />
               )}
@@ -328,13 +326,13 @@ export default function ThreeRing() {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      <TableRow>
+                      <StyledTableRow>
                         {roundScores.map((score, index) => (
                           <td key={index} className="score">
                             {score}
                           </td>
                         ))}
-                      </TableRow>
+                      </StyledTableRow>
                     </TableBody>
                   </Table>
                 </div>
@@ -354,8 +352,8 @@ export default function ThreeRing() {
                   // Render an input field in edit mode
                   <input
                     type="text"
-                    value={notes}
-                    onChange={(e) => setNotes(e.target.value)}
+                    value={gameNotes}
+                    onChange={(e) => setGameNotes(e.target.value)}
                     onBlur={saveNotes}
                   />
                 ) : (
@@ -368,7 +366,7 @@ export default function ThreeRing() {
                         setIsEdit(!isEdit);
                       }}
                     >
-                      {notes}
+                      {gameNotes}
                     </Typography>
                   </>
                 )}
