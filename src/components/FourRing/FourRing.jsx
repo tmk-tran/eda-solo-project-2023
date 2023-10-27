@@ -250,6 +250,8 @@ export default function FourRing() {
     document.cookie = "outer=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
     document.cookie = "inner=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
     document.cookie = "bulls=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    document.cookie = "notes=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    document.cookie = "round=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
 
     setPointsFourth(0);
     setPointsOuter(0);

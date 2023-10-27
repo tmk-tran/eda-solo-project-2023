@@ -235,6 +235,8 @@ export default function ThreeRing() {
     document.cookie = "outer=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
     document.cookie = "inner=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
     document.cookie = "bulls=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    document.cookie = "notes=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    document.cookie = "round=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
 
     // Reset the related state variables if needed
     setPointsOuter(0);

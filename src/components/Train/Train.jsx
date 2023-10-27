@@ -158,12 +158,12 @@ export default function Train() {
                   <Grid item xs={6}>
                     <Item elevation={4}>
                       <img
-                        id="trap-game"
-                        src="images/clay.png"
-                        alt="A Trap Clay Target, Shattering"
+                        id="hits-game"
+                        src="images/bullseye.png"
+                        alt="An image of a target with bullseye hit"
                         onClick={() => {
                           dispatch({ type: "ADD_GAME" });
-                          history.push("/trap");
+                          history.push("/bulls");
                         }}
                       />
                     </Item>

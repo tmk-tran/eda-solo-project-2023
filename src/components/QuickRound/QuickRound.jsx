@@ -229,6 +229,8 @@ export default function QuickRound() {
   const saveTotalShots = (e) => {
     e.preventDefault();
     document.cookie = `totalShots=${totalShots}`;
+    document.cookie = "notes=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    document.cookie = "round=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
     setUserTargetInput(false);
   };
 

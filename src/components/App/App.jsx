@@ -28,6 +28,7 @@ import FourRing from "../FourRing/FourRing";
 import FiveRing from "../FiveRing/FiveRing";
 import Trap from "../Trap/Trap";
 import QuickRound from "../QuickRound/QuickRound";
+import Bulls from "../Bulls/Bulls";
 import Results from "../Results/Results";
 import SuccessPage from "../SuccessPage/SuccessPage";
 import TestComp from "../TestComponent/TestComponent";
@@ -123,16 +124,20 @@ function App() {
             <Trap />
           </ProtectedRoute>
 
+          <ProtectedRoute exact path="/quickround">
+            <QuickRound />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/bulls">
+            <Bulls />
+          </ProtectedRoute>
+
           <ProtectedRoute exact path="/success">
             <SuccessPage />
           </ProtectedRoute>
 
           <ProtectedRoute exact path="/results">
             <Results />
-          </ProtectedRoute>
-
-          <ProtectedRoute exact path="/quickround">
-            <QuickRound />
           </ProtectedRoute>
 
           <ProtectedRoute exact path="/test">
