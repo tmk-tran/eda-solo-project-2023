@@ -10,7 +10,14 @@ import {
   FormControl,
   Button,
   Typography,
+  Table,
+  TableBody,
+  TableContainer,
+  TableHead,
+  TableRow,
 } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import EditIcon from "@mui/icons-material/Edit";
 // ~~~~~~~~~~~~~~~ Hooks ~~~~~~~~~~~~~~~~~~
@@ -55,6 +62,26 @@ export default function ThreeRing() {
     // Update the total score in the component state
     setTotalScore(totalScore);
   }, [pointsOuter, pointsInner, bulls]);
+
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }));
+  
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    "&:nth-of-type(odd)": {
+      backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    "&:last-child td, &:last-child th": {
+      border: 0,
+    },
+  }));
 
   // Bring in Rounds
   const rounds = useSelector((store) => store.roundReducer);
@@ -184,16 +211,8 @@ export default function ThreeRing() {
       round_score: newRoundScore,
     };
     console.log("ROUND DATA IS: ", roundData); // remove after confirmation
-    // const roundScoreData = {
-    //   round_id: roundId,
-    //   round_score: Number(newRoundScore),
-    // };
-    // console.log("ROUND SCORE DATA IS: ", roundScoreData); // remove after confirmation
 
     dispatch({ type: "ADD_ROUND", payload: roundData }); // --> send to a new reducer?
-    // dispatch({ type: "FETCH_ROUNDS", payload: roundId });
-    // console.log("in threering: ", roundId);
-    // dispatch({ type: "ADD_ROUND_SCORE", payload: roundScoreData }); // check roundScoreData
 
     setRoundNumber(roundNumber + 1);
     console.log("ROUND NUMBER IS: ", roundNumber); // remove after confirmation
@@ -217,7 +236,6 @@ export default function ThreeRing() {
     };
 
     // Dispatch the action with the new target data
-    // dispatch({ type: "ADD_GAME", payload: newGame });
     dispatch({ type: "EDIT_GAME", payload: gameData });
 
     // Clear the fields
@@ -250,16 +268,20 @@ export default function ThreeRing() {
   return (
     <div className="page-container">
       <div className="top-buttons">
-        <button
+        <Button
+          variant="outlined"
           onClick={() => {
             resetScore();
-            dispatch({ type: "DELETE_GAME", payload: newGameId })
+            dispatch({ type: "DELETE_GAME", payload: newGameId });
             history.push("/games");
           }}
+          style={{ backgroundColor: "#5d0606", color: "white" }}
         >
           Cancel
-        </button>{" "}
-        <button onClick={addGame}>Finish</button>
+        </Button>{" "}
+        <Button variant="outlined" onClick={addGame} style={{ backgroundColor: "#1e9521", color: "white" }}>
+          Finish
+        </Button>
       </div>
       <div>
         <Card>
@@ -277,9 +299,9 @@ export default function ThreeRing() {
                   onBlur={saveName}
                 />
               )}
-              <button variant="contained" onClick={toggleSettings}>
+              <Button variant="contained" onClick={toggleSettings}>
                 <MoreHorizIcon />
-              </button>
+              </Button>
             </div>
             {showSettings ? (
               <div className="settings-div">
@@ -295,26 +317,26 @@ export default function ThreeRing() {
                   <br />
                 </div>
                 <div className="round-table">
-                  <table>
-                    <thead>
-                      <tr>
+                <Table sx={{ minWidth: 250 }} size="small">
+                    <TableHead>
+                    <TableRow sx={{ "&:last-child th": { border: 0 } }}>
                         {roundHeaders.map((header) => (
-                          <th key={header} className="header">
+                          <StyledTableCell key={header} className="header">
                             Round {header}
-                          </th>
+                          </StyledTableCell>
                         ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      <TableRow>
                         {roundScores.map((score, index) => (
                           <td key={index} className="score">
                             {score}
                           </td>
                         ))}
-                      </tr>
-                    </tbody>
-                  </table>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
                 </div>
                 <div style={{ textAlign: "right", fontSize: "12px" }}>
                   <p>8's: {pointsOuter}</p>

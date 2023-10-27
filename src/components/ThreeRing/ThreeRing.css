@@ -13,6 +13,7 @@
 
 .three-ring:hover {
   background-color: rgba(0, 0, 0, 0.778);
+  transform: scale(1.1);
 }
 
 .three-ring-inner {
@@ -27,6 +28,7 @@
 
 .three-ring-inner:hover {
   background-color: rgba(255, 255, 0, 0.778);
+  transform: scale(1.1);
 }
 
 .three-ring-bulls {
@@ -37,6 +39,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.three-ring-bulls:hover {
+  transform: scale(1.1);
 }
 
 .small-ring-bulls:hover {
@@ -51,6 +57,31 @@
   align-items: center;
   justify-content: center;
 }
+
+.ripple-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background-color: lightblue;
+  overflow: hidden;
+}
+
+.ripple {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple-animation 0.5s linear;
+  pointer-events: none;
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
 
 /* Media query for screens with a maximum width of 600px (typical for iPhones) */
 @media (max-width: 600px) {
