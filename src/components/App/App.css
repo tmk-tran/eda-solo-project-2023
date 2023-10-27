@@ -5,7 +5,7 @@ body,
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: avenir;
   margin: 0px;
   background-color: black;
 }
@@ -13,6 +13,12 @@ body {
 img {
   display: inline-block;
   max-width: 100%;
+}
+
+h1 {
+  color: ghostwhite;
+  text-align: center;
+  font-family: avenir;
 }
 
 /* --------------------------------------------------------------------------------

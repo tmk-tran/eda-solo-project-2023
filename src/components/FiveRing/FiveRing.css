@@ -13,6 +13,7 @@
 
 .fifth-ring:hover {
   background-color: rgba(0, 0, 0, 0.778);
+  transform: scale(1.1);
 }
 
 .fourth-ring2 {
@@ -28,6 +29,7 @@
 
 .fourth-ring2:hover {
   background-color: rgba(255, 255, 0, 0.778);
+  transform: scale(1.1);
 }
 
 .third-ring2 {
@@ -43,6 +45,7 @@
 
 .third-ring2:hover {
   background-color: rgba(0, 0, 0, 0.778);
+  transform: scale(1.1);
 }
 
 .fifth-bulls {
@@ -57,6 +60,7 @@
 
 .fifth-bulls:hover {
   background-color: crimson;
+  transform: scale(1.1);
 }
 
 /* Media query for screens with a maximum width of 600px (typical for iPhones) */

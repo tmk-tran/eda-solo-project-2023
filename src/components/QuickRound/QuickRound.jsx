@@ -9,6 +9,9 @@ import {
   TextField,
   FormControl,
   Button,
+  List,
+  ListItem,
+  ListItemText,
   Typography,
   Table,
   TableBody,
@@ -23,6 +26,8 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import EditIcon from "@mui/icons-material/Edit";
 import ModeStandbyIcon from "@mui/icons-material/ModeStandby";
 import ClearAllIcon from "@mui/icons-material/ClearAll";
+import DoDisturbAltIcon from "@mui/icons-material/DoDisturbAlt";
+import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 // ~~~~~~~~~~~~~~~ Hooks ~~~~~~~~~~~~~~~~~~
 import getCookie from "../../hooks/cookie";
 import CustomizedTables from "../TestComponent/TestComponent";
@@ -54,9 +59,6 @@ export default function QuickRound() {
   const [showSettings, setShowSettings] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [replaceName, setReplaceName] = useState(false);
-  const [roundName, setRoundName] = useState(
-    getCookie("round") || "Quick Round"
-  );
   // Define state to manage round scores and round headers
   const [roundScores, setRoundScores] = useState([]); // Array to store round scores
   const [roundHeaders, setRoundHeaders] = useState([1]); // Array to store round headers
@@ -66,7 +68,6 @@ export default function QuickRound() {
   // State to manage round numbers
   const [roundNumber, setRoundNumber] = useState(1);
   // from Games ~~~~~~~~~~~~~~~~~~~~~~~~~
-  const [notes, setNotes] = useState(getCookie("notes") || "Notes");
   const [gameDate, setGameDate] = useState(new Date()); // Initialize with the current date
   console.log("GAME DATE IS:", gameDate);
   const [gameNotes, setGameNotes] = useState(getCookie("notes") || "Notes");
@@ -79,10 +80,6 @@ export default function QuickRound() {
     getCookie("hit_quick_display") || 0
   ); // hit count for display
   const [miss, setMiss] = useState(getCookie("miss_quick") || 0);
-  const [totalShots, setTotalShots] = useState(0); // for user to set total shots per round
-  const [userTargetInput, setUserTargetInput] = useState(false);
-  console.log("USER TARGET INPUT IS: ", userTargetInput);
-
   // Bring in Rounds
   const rounds = useSelector((store) => store.roundReducer);
   console.log("SCORES: ", rounds);
@@ -241,8 +238,6 @@ export default function QuickRound() {
     // Clear the cookies related to the score (e.g., hits)
     document.cookie = "hit_quick=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
     document.cookie = "miss_quick=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-    document.cookie = "totalShots=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-
     // Reset the related state variables if needed
     setRoundScores([]);
     setRoundHeaders([]);
@@ -250,10 +245,8 @@ export default function QuickRound() {
 
   const saveTotalShots = (e) => {
     e.preventDefault();
-    document.cookie = `totalShots=${totalShots}`;
     document.cookie = "notes=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
     document.cookie = "round=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-    setUserTargetInput(false);
   };
 
   return (
@@ -377,53 +370,69 @@ export default function QuickRound() {
       <Card className="trap-hit-card">
         <CardContent>
           <div className="round-display">
-            <table>
-              <thead>
-                <tr>
+            <Table sx={{ minWidth: 250 }} size="small">
+              <TableHead>
+                <TableRow sx={{ "&:last-child th": { border: 1 } }}>
                   {roundHeaders.map((header) => (
-                    <th key={header} className="header">
+                    <StyledTableCell key={header} className="header">
                       Round {header}
-                    </th>
+                    </StyledTableCell>
                   ))}
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <StyledTableRow>
                   {roundScores.map((score, index) => (
                     <td key={index} className="score">
                       {score}
                     </td>
                   ))}
-                </tr>
-              </tbody>
-            </table>
+                </StyledTableRow>
+              </TableBody>
+            </Table>
             {/* <CustomizedTables addRound={addRound}/> */}
           </div>
-          <div className="trap-hit-display">
-            <p>Hits: {hit}</p>
-            <p>Hit Display: {hitDisplay}</p>
+          <div
+            className="trap-hit-display"
+            style={{
+              border: "1px solid black",
+              borderRadius: "15px",
+              margin: "20px auto",
+              width: "50vh",
+              backgroundColor: "lightblue",
+            }}
+          >
+            <ListItemText><Typography variant="h5" style={{fontFamily: "avenir"}}>Hits: {hit}</Typography></ListItemText>
+            <br />
+            <ListItemText><Typography variant="h6" style={{fontFamily: "avenir"}}>Miss: {miss}</Typography></ListItemText>
           </div>
           <div className="trap-hit-button">
-            <Button variant="contained" onClick={targetHit}>
-              <ModeStandbyIcon />
-              Hit
+            <Button
+              variant="contained"
+              onClick={targetHit}
+              style={{
+                borderRadius: "15px",
+                marginBottom: "10px",
+                width: "50vh",
+                height: "7vh",
+              }}
+            >
+              <ThumbUpOffAltIcon />
             </Button>
-            <Button onClick={targetMiss}>Miss</Button>
-            <p>Miss: {miss}</p>
+            <Button
+              variant="outlined"
+              onClick={targetMiss}
+              style={{
+                borderRadius: "15px",
+                backgroundColor: "#e56969",
+                color: "ghostwhite",
+                width: "50vh",
+                height: "7vh",
+              }}
+            >
+              <DoDisturbAltIcon />
+            </Button>
           </div>
-          <button onClick={() => setUserTargetInput(!userTargetInput)}>
-            total shots
-          </button>
-          {userTargetInput ? (
-            <input
-              placeholder="Total Shots"
-              value={totalShots}
-              onChange={(e) => setTotalShots(e.target.value)}
-              onBlur={saveTotalShots}
-            ></input>
-          ) : (
-            <p>Total Shots: {totalShots}</p>
-          )}
         </CardContent>
       </Card>
       <FormControl className="form-control" fullWidth>

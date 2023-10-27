@@ -11,7 +11,6 @@ import {
 } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import EmojiEventsOutlinedIcon from "@mui/icons-material/EmojiEventsOutlined";
 import "./Profile.css";
 import BarChart from "../Chart/Chart";
 import LineDot from "../LineDot/LineDot";
@@ -113,14 +112,6 @@ export default function Profile() {
           <Card style={{ backgroundColor: "antiquewhite" }}>
             <CardContent>
               <Typography variant="h6">
-                <BarChart />
-              </Typography>
-            </CardContent>
-          </Card>
-          <br />
-          <Card style={{ backgroundColor: "antiquewhite" }}>
-            <CardContent>
-              <Typography variant="h6" type="graph">
                 <LineDot />
               </Typography>
             </CardContent>
@@ -128,7 +119,15 @@ export default function Profile() {
           <br />
           <Card style={{ backgroundColor: "antiquewhite" }}>
             <CardContent>
-              <Typography variant="h6">{/* <PieChart /> */}</Typography>
+              <Typography variant="h6" type="graph">
+                <BarChart />
+              </Typography>
+            </CardContent>
+          </Card>
+          <br />
+          <Card style={{ backgroundColor: "antiquewhite" }}>
+            <CardContent>
+              <Typography variant="h6"></Typography>
             </CardContent>
           </Card>
         </CardContent>
