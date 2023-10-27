@@ -37,7 +37,6 @@ export default function FourRing() {
   const [showSettings, setShowSettings] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [replaceName, setReplaceName] = useState(false);
-  const [roundName, setRoundName] = useState(getCookie("round") || "4-Ring");
   // Round scores and round headers
   const [roundScores, setRoundScores] = useState([]); // Array to store round scores
   const [roundHeaders, setRoundHeaders] = useState([1]); // Array to store round headers
@@ -185,13 +184,13 @@ export default function FourRing() {
 
   const saveNotes = (e) => {
     e.preventDefault();
-    document.cookie = `notes=${notes}`;
+    document.cookie = `notes=${gameNotes}`;
     setIsEdit(false);
   };
 
   const saveName = (e) => {
     e.preventDefault();
-    document.cookie = `round=${roundName}`;
+    document.cookie = `round=${targetName}`;
     setReplaceName(false);
   };
 
@@ -226,14 +225,8 @@ export default function FourRing() {
       round_score: newRoundScore,
     };
     console.log("ROUND DATA IS: ", roundData); // remove after confirmation
-    // const roundScoreData = {
-    //   round_id: roundId,
-    //   round_score: newRoundScore,
-    // };
-    // console.log("ROUND SCORE DATA IS: ", roundScoreData); // remove after confirmation
 
     dispatch({ type: "ADD_ROUND", payload: roundData });
-    // dispatch({ type: "ADD_ROUND_SCORE", payload: roundScoreData }); // check roundScoreData
 
     setRoundNumber(roundNumber + 1);
     console.log("ROUND NUMBER IS: ", roundNumber); // remove after confirmation
@@ -314,7 +307,7 @@ export default function FourRing() {
             <div className="game-header">
               {!replaceName ? (
                 <div>
-                  <Typography variant="h6">{roundName}</Typography>
+                  <Typography variant="h6">{targetName}</Typography>
                 </div>
               ) : (
                 <input
