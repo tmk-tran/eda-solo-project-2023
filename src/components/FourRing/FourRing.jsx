@@ -24,6 +24,7 @@ import ClearAllIcon from "@mui/icons-material/ClearAll";
 import "./FourRing.css";
 // ~~~~~~~~~~~~~~~ Hooks ~~~~~~~~~~~~~~~~~~
 import getCookie from "../../hooks/cookie";
+import Swal from "sweetalert2";
 
 export default function FourRing() {
   const dispatch = useDispatch();
@@ -250,6 +251,7 @@ export default function FourRing() {
       total_game_score: totalRoundScores, // this is representing the total score of all the rounds for the game
     };
 
+    savedAlert();
     // Dispatch the action with the new target data
     dispatch({ type: "EDIT_GAME", payload: gameData });
 
@@ -258,7 +260,6 @@ export default function FourRing() {
     setGameNotes("Notes");
     setTotalScore(0);
     setTargetName("");
-    alert("Added Game!");
     history.push("/results");
     resetScore();
   };
@@ -279,6 +280,19 @@ export default function FourRing() {
     setTotalScore(0);
     setRoundScores([]);
     setRoundHeaders([]);
+  };
+
+  const savedAlert = () => {
+    Swal.fire({
+      title: "Game Saved!",
+      showClass: {
+        popup: "animate__animated animate__fadeInDown",
+      },
+      hideClass: {
+        popup: "animate__animated animate__fadeOutUp",
+      },
+      confirmButtonColor: "#3085d6",
+    });
   };
 
   return (

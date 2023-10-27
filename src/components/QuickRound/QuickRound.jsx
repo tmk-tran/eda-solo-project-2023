@@ -30,7 +30,7 @@ import DoDisturbAltIcon from "@mui/icons-material/DoDisturbAlt";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 // ~~~~~~~~~~~~~~~ Hooks ~~~~~~~~~~~~~~~~~~
 import getCookie from "../../hooks/cookie";
-import CustomizedTables from "../TestComponent/TestComponent";
+import Swal from "sweetalert2";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -221,6 +221,7 @@ export default function QuickRound() {
       total_game_score: totalRoundScores, // this is representing the total score of all the rounds for the game
     };
 
+    savedAlert();
     // Dispatch the action with the new target data
     dispatch({ type: "EDIT_GAME", payload: newGame });
 
@@ -229,7 +230,6 @@ export default function QuickRound() {
     setGameNotes("Notes");
     setTargetName("");
     setTargetScore(0);
-    alert("Added Game!");
     history.push("/results");
     resetScore();
   };
@@ -247,6 +247,19 @@ export default function QuickRound() {
     e.preventDefault();
     document.cookie = "notes=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
     document.cookie = "round=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+  };
+
+  const savedAlert = () => {
+    Swal.fire({
+      title: "Game Saved!",
+      showClass: {
+        popup: "animate__animated animate__fadeInDown",
+      },
+      hideClass: {
+        popup: "animate__animated animate__fadeOutUp",
+      },
+      confirmButtonColor: "#3085d6",
+    });
   };
 
   return (

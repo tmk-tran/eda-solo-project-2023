@@ -24,7 +24,7 @@ import "./GamesList.css";
 import EmojiEventsOutlinedIcon from "@mui/icons-material/EmojiEventsOutlined";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import SpeakerNotesOffIcon from "@mui/icons-material/SpeakerNotesOff";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 // ~~~~~~~~~~~~~~~ Sweet Alert ~~~~~~~~~~~~~~~~~~
 import Swal from "sweetalert2/dist/sweetalert2.js";
@@ -154,12 +154,11 @@ export default function GamesList({ target, roundScores }) {
         <div className="list-header">
           <Button
             variant="outlined"
-            color="info"
+            color="inherit"
             onClick={handleEdit}
             style={{ marginLeft: "auto" }}
           >
-            {!edit ? (<MoreHorizIcon />):(<ArrowBackIcon />)}
-            {/* <MoreHorizIcon /> */}
+            {!edit ? <MoreHorizIcon /> : <ArrowBackIcon />}
           </Button>
         </div>
         <hr />
@@ -242,89 +241,105 @@ export default function GamesList({ target, roundScores }) {
         ) : (
           // Render the formatted date in non-edit mode
           <div className="game-list-display-container">
-            <Table sx={{ minWidth: 250, marginLeft: "auto" }} size="small">
-              <TableHead>
-                <TableRow sx={{ "&:last-child th": { border: 0 } }}>
-                  <StyledTableCell>
-                    <Typography variant="h6">
-                      Date: {formatDate(target.game_date)}
-                    </Typography>
-                  </StyledTableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                <TableRow>
-                  <StyledTableCell>
-                    <EmojiEventsOutlinedIcon />
-                    Best Round: {largestScore} points
-                  </StyledTableCell>
-                </TableRow>
-                <StyledTableRow>
-                  <StyledTableCell className="game-history">
-                    <ListItemText primary="Notes: " />
-                    {target.game_notes !== (null || "") ? (
-                      target.game_notes
-                    ) : (
-                      <SpeakerNotesOffIcon />
-                    )}
-                  </StyledTableCell>
-                </StyledTableRow>
-                <StyledTableRow>
-                  <StyledTableCell className="game-history">
-                    <ListItem
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <ListItemText primary="Target: " />
-                      <Typography style={{ fontWeight: "bold" }}>
-                        {target.target_name !== (null || "") ? (
-                          target.target_name
+            <Card elevation={8} style={{ width: "100vh", marginRight: "5px" }}>
+              <CardContent>
+                <Table sx={{ minWidth: 250, marginLeft: "auto" }} size="small">
+                  <TableHead>
+                    <TableRow sx={{ "&:last-child th": { border: 0 } }}>
+                      <StyledTableCell>
+                        <Typography
+                          variant="h6"
+                          style={{ fontFamily: "avenir" }}
+                        >
+                          Date: {formatDate(target.game_date)}
+                        </Typography>
+                      </StyledTableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    <TableRow>
+                      <StyledTableCell style={{ fontFamily: "avenir" }}>
+                        <EmojiEventsOutlinedIcon />
+                        Best Round: {largestScore} points
+                      </StyledTableCell>
+                    </TableRow>
+                    <StyledTableRow>
+                      <StyledTableCell
+                        className="game-history"
+                        style={{ fontFamily: "avenir" }}
+                      >
+                        <ListItemText primary="Notes: " />
+                        {target.game_notes !== (null || "") ? (
+                          target.game_notes
                         ) : (
-                          <DriveFileRenameOutlineIcon />
+                          <SpeakerNotesOffIcon />
                         )}
-                      </Typography>
-                    </ListItem>
-                  </StyledTableCell>
-                </StyledTableRow>
-                <StyledTableRow>
-                  <StyledTableCell className="game-history">
-                    <ListItem
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <ListItemText primary="Total Score: " />
-                      <Typography style={{ fontWeight: "bold" }}>
-                        {target.total_game_score}
-                      </Typography>
-                    </ListItem>
-                  </StyledTableCell>
-                </StyledTableRow>
-                <StyledTableRow>
-                  <StyledTableCell className="game-history">
-                    <ListItem
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <ListItemText primary="Game Score: " />
-                      <Typography style={{ fontWeight: "bold" }}>
-                        {target.target_score_value !== (null || 0)
-                          ? target.target_score_value
-                          : "None Set"}
-                      </Typography>
-                    </ListItem>
-                  </StyledTableCell>
-                </StyledTableRow>
-              </TableBody>
-            </Table>
+                      </StyledTableCell>
+                    </StyledTableRow>
+                    <StyledTableRow>
+                      <StyledTableCell className="game-history">
+                        <ListItem
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <ListItemText primary="Target: " />
+                          <Typography
+                            style={{ fontWeight: "bold", fontFamily: "avenir" }}
+                          >
+                            {target.target_name !== (null || "") ? (
+                              target.target_name
+                            ) : (
+                              <DriveFileRenameOutlineIcon />
+                            )}
+                          </Typography>
+                        </ListItem>
+                      </StyledTableCell>
+                    </StyledTableRow>
+                    <StyledTableRow>
+                      <StyledTableCell className="game-history">
+                        <ListItem
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <ListItemText primary="Total Score: " />
+                          <Typography
+                            style={{ fontWeight: "bold", fontFamily: "avenir" }}
+                          >
+                            {target.total_game_score}
+                          </Typography>
+                        </ListItem>
+                      </StyledTableCell>
+                    </StyledTableRow>
+                    <StyledTableRow>
+                      <StyledTableCell className="game-history">
+                        <ListItem
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <ListItemText primary="Game Score: " />
+                          <Typography
+                            style={{ fontWeight: "bold", fontFamily: "avenir" }}
+                          >
+                            {target.target_score_value !== (null || 0)
+                              ? target.target_score_value
+                              : "None Set"}
+                          </Typography>
+                        </ListItem>
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
             <Card
               className="round-info"
-              elevation={7}
+              elevation={8}
               style={{ backgroundColor: "#131434cf" }}
             >
               <CardContent>
@@ -337,7 +352,7 @@ export default function GamesList({ target, roundScores }) {
                     color: "#cbcbd3",
                   }}
                 >
-                  Round
+                  Round Data
                 </Typography>
                 <br />
                 {roundScores.map((round, index) => (

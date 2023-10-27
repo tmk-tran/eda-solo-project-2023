@@ -10,11 +10,20 @@ import {
   FormControl,
   Button,
   Typography,
+  Table,
+  TableBody,
+  TableContainer,
+  TableHead,
+  TableRow,
 } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import EditIcon from "@mui/icons-material/Edit";
+import ClearAllIcon from "@mui/icons-material/ClearAll";
 // ~~~~~~~~~~~~~~~ Hooks ~~~~~~~~~~~~~~~~~~
 import getCookie from "../../hooks/cookie";
+import Swal from "sweetalert2";
 
 export default function Bulls() {
   const dispatch = useDispatch();
@@ -37,14 +46,13 @@ export default function Bulls() {
   const [roundNumber, setRoundNumber] = useState(1);
 
   // from Games ~~~~~~~~~~~~~~~~~~~~~~~~~
-  const [notes, setNotes] = useState(getCookie("notes") || "Notes");
   const [totalScore, setTotalScore] = useState(
     pointsOuter + pointsInner + bulls
   );
   const [gameDate, setGameDate] = useState(new Date()); // Initialize with the current date
   // console.log("GAME DATE IS:", gameDate);
-  const [gameNotes, setGameNotes] = useState("");
-  const [targetName, setTargetName] = useState("3-Ring");
+  const [gameNotes, setGameNotes] = useState(getCookie("notes") || "Notes");
+  const [targetName, setTargetName] = useState("Bullseye Only");
   const [targetScore, setTargetScore] = useState(0); // update this when we decide what it is for
 
   useEffect(() => {
@@ -55,6 +63,26 @@ export default function Bulls() {
     // Update the total score in the component state
     setTotalScore(totalScore);
   }, [pointsOuter, pointsInner, bulls]);
+
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }));
+
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    "&:nth-of-type(odd)": {
+      backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    "&:last-child td, &:last-child th": {
+      border: 0,
+    },
+  }));
 
   // Bring in Rounds
   const rounds = useSelector((store) => store.roundReducer);
@@ -102,7 +130,7 @@ export default function Bulls() {
 
     // Clear the input fields
     setGameDate(gameDate);
-    setNotes("Notes");
+    setGameNotes("Notes");
     setPointsOuter(0);
     setPointsInner(0);
     setBulls(0);
@@ -126,13 +154,13 @@ export default function Bulls() {
 
   const saveNotes = (e) => {
     e.preventDefault();
-    document.cookie = `notes=${notes}`;
+    document.cookie = `notes=${gameNotes}`;
     setIsEdit(false);
   };
 
   const saveName = (e) => {
     e.preventDefault();
-    document.cookie = `round=${roundName}`;
+    document.cookie = `round=${targetName}`;
     setReplaceName(false);
   };
 
@@ -191,6 +219,7 @@ export default function Bulls() {
       total_game_score: totalRoundScores, // this is representing the total score of all the rounds for the game
     };
 
+    savedAlert();
     // Dispatch the action with the new target data
     dispatch({ type: "EDIT_GAME", payload: gameData });
 
@@ -199,15 +228,12 @@ export default function Bulls() {
     setGameNotes("Notes");
     setTotalScore(0);
     setTargetName("");
-    alert("Added Game!");
     history.push("/results");
     resetScore();
   };
 
   const resetScore = () => {
     // Clear the cookies related to the score (e.g., outer, inner, bulls)
-    document.cookie = "outer=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-    document.cookie = "inner=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
     document.cookie = "bulls=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
     document.cookie = "notes=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
     document.cookie = "round=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
@@ -221,19 +247,38 @@ export default function Bulls() {
     setRoundHeaders([]);
   };
 
+  const savedAlert = () => {
+    Swal.fire({
+      title: "Game Saved!",
+      showClass: {
+        popup: "animate__animated animate__fadeInDown",
+      },
+      hideClass: {
+        popup: "animate__animated animate__fadeOutUp",
+      },
+      confirmButtonColor: "#3085d6",
+    });
+  };
+
   return (
     <div className="page-container">
       <div className="top-buttons">
-        <button
+        <Button
           onClick={() => {
             resetScore();
-            dispatch({ type: "DELETE_GAME", payload: newGameId })
+            dispatch({ type: "DELETE_GAME", payload: newGameId });
             history.push("/games");
           }}
+          style={{ backgroundColor: "#5d0606", color: "white" }}
         >
           Cancel
-        </button>{" "}
-        <button onClick={addGame}>Finish</button>
+        </Button>{" "}
+        <Button
+          onClick={addGame}
+          style={{ backgroundColor: "#1e9521", color: "white" }}
+        >
+          Finish
+        </Button>
       </div>
       <div>
         <Card>
@@ -241,19 +286,19 @@ export default function Bulls() {
             <div className="game-header">
               {!replaceName ? (
                 <div>
-                  <Typography variant="h6">{roundName}</Typography>
+                  <Typography variant="h6">{targetName}</Typography>
                 </div>
               ) : (
                 <input
                   type="text"
-                  value={roundName}
-                  onChange={(e) => setRoundName(e.target.value)}
+                  value={targetName}
+                  onChange={(e) => setTargetName(e.target.value)}
                   onBlur={saveName}
                 />
               )}
-              <button variant="contained" onClick={toggleSettings}>
+              <Button variant="contained" onClick={toggleSettings}>
                 <MoreHorizIcon />
-              </button>
+              </Button>
             </div>
             {showSettings ? (
               <div className="settings-div">
@@ -264,38 +309,40 @@ export default function Bulls() {
                     style={{ fontSize: "10px" }}
                   >
                     <EditIcon />
-                    Edit
+                    Edit Name
                   </Button>
                   <br />
                 </div>
                 <div className="round-table">
-                  <table>
-                    <thead>
-                      <tr>
+                  <Table sx={{ minWidth: 250 }} size="small">
+                    <TableHead>
+                      <TableRow sx={{ "&:last-child th": { border: 0 } }}>
                         {roundHeaders.map((header) => (
-                          <th key={header} className="header">
+                          <StyledTableCell key={header} className="header">
                             Round {header}
-                          </th>
+                          </StyledTableCell>
                         ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      <StyledTableRow>
                         {roundScores.map((score, index) => (
                           <td key={index} className="score">
                             {score}
                           </td>
                         ))}
-                      </tr>
-                    </tbody>
-                  </table>
+                      </StyledTableRow>
+                    </TableBody>
+                  </Table>
                 </div>
                 <div style={{ textAlign: "right", fontSize: "12px" }}>
                   <p>Bull's: {bulls}</p>
                   <p style={{ fontWeight: "bold" }}>
                     Total: {totalScore} points
                   </p>
-                  <button onClick={clearScores}>Clear</button>
+                  <Button onClick={clearScores} style={{ color: "red" }}>
+                    <ClearAllIcon /> Clear
+                  </Button>
                 </div>
               </div>
             ) : (
@@ -304,8 +351,8 @@ export default function Bulls() {
                   // Render an input field in edit mode
                   <input
                     type="text"
-                    value={notes}
-                    onChange={(e) => setNotes(e.target.value)}
+                    value={gameNotes}
+                    onChange={(e) => setGameNotes(e.target.value)}
                     onBlur={saveNotes}
                   />
                 ) : (
@@ -318,7 +365,7 @@ export default function Bulls() {
                         setIsEdit(!isEdit);
                       }}
                     >
-                      {notes}
+                      {gameNotes}
                     </Typography>
                   </>
                 )}

@@ -12,14 +12,11 @@ import {
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import "./Profile.css";
-import BarChart from "../Chart/Chart";
 import LineDot from "../LineDot/LineDot";
+import HorizontalBars from "../HorizontalBars/HorizontalBars";
 import AccountMenu from "../AccountMenu/AccountMenu";
-import Celebration from "../Celebration/Celebration";
-// import PieChart from "../AreaChart/AreaChart";
 // ~~~~~~~~~~~~~~~ Sweet Alert ~~~~~~~~~~~~~~~~~~
 import Swal from "sweetalert2";
-// import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -85,7 +82,7 @@ export default function Profile() {
       <Card id="profile-card" elevation={6}>
         <CardContent>
           <AccountMenu />
-          <Typography variant="h6">Profile</Typography>
+          <Typography variant="h6" style={{fontFamily: "avenir"}}>Profile</Typography>
           <br />
           <div className="profile-head">
             <div className="profile-name-icon">
@@ -100,16 +97,18 @@ export default function Profile() {
                       Total Rounds Played: {rounds.total_rounds_played}
                     </Typography>
                   </div>
+                  
                 ))}
+                <br />
               </div>
             </div>
             <Button onClick={showAlert}>
               <ArrowForwardIosIcon />
             </Button>
           </div>
-          <Typography variant="h6">Dashboard</Typography>
+          <Typography variant="h6" style={{fontFamily: "avenir"}}>Dashboard</Typography>
           <br />
-          <Card style={{ backgroundColor: "antiquewhite" }}>
+          <Card style={{ backgroundColor: "#ced5d7" }}>
             <CardContent>
               <Typography variant="h6">
                 <LineDot />
@@ -117,19 +116,14 @@ export default function Profile() {
             </CardContent>
           </Card>
           <br />
-          <Card style={{ backgroundColor: "antiquewhite" }}>
+          <Card style={{ backgroundColor: "#ced5d7" }}>
             <CardContent>
               <Typography variant="h6" type="graph">
-                <BarChart />
+                <HorizontalBars />
               </Typography>
             </CardContent>
           </Card>
           <br />
-          <Card style={{ backgroundColor: "antiquewhite" }}>
-            <CardContent>
-              <Typography variant="h6"></Typography>
-            </CardContent>
-          </Card>
         </CardContent>
       </Card>
     </div>

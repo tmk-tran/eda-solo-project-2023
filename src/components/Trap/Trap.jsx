@@ -25,6 +25,7 @@ import ClearAllIcon from "@mui/icons-material/ClearAll";
 import "./Trap.css";
 // ~~~~~~~~~~~~~~~ Hooks ~~~~~~~~~~~~~~~~~~
 import getCookie from "../../hooks/cookie";
+import Swal from "sweetalert2";
 
 export default function Trap() {
   const dispatch = useDispatch();
@@ -214,6 +215,7 @@ export default function Trap() {
       total_game_score: totalRoundScores, // this is representing the total score of all the rounds for the game
     };
 
+    savedAlert();
     // Dispatch the action with the new target data
     dispatch({ type: "EDIT_GAME", payload: newGame });
 
@@ -223,7 +225,6 @@ export default function Trap() {
     setTotalScore(0);
     setTargetName("");
     setTargetScore(0);
-    alert("Added Game!");
     history.push("/results");
     resetScore();
   };
@@ -237,6 +238,19 @@ export default function Trap() {
     // Reset the related state variables if needed
     setRoundScores([]);
     setRoundHeaders([]);
+  };
+
+  const savedAlert = () => {
+    Swal.fire({
+      title: "Game Saved!",
+      showClass: {
+        popup: "animate__animated animate__fadeInDown",
+      },
+      hideClass: {
+        popup: "animate__animated animate__fadeOutUp",
+      },
+      confirmButtonColor: "#3085d6",
+    });
   };
 
   return (
