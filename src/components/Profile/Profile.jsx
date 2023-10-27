@@ -108,7 +108,7 @@ export default function Profile() {
           </div>
           <Typography variant="h6" style={{fontFamily: "avenir"}}>Dashboard</Typography>
           <br />
-          <Card style={{ backgroundColor: "#ced5d7" }}>
+          <Card elevation={12}>
             <CardContent>
               <Typography variant="h6">
                 <LineDot />
@@ -116,7 +116,7 @@ export default function Profile() {
             </CardContent>
           </Card>
           <br />
-          <Card style={{ backgroundColor: "#ced5d7" }}>
+          <Card elevation={12}>
             <CardContent>
               <Typography variant="h6" type="graph">
                 <HorizontalBars />

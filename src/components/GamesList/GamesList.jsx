@@ -269,7 +269,7 @@ export default function GamesList({ target, roundScores }) {
                         style={{ fontFamily: "avenir" }}
                       >
                         <ListItemText primary="Notes: " />
-                        {target.game_notes !== (null || "") ? (
+                        {target.game_notes !== (null || "Notes") ? (
                           target.game_notes
                         ) : (
                           <SpeakerNotesOffIcon />

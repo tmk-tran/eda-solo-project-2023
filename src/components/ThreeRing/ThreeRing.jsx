@@ -373,6 +373,7 @@ export default function ThreeRing() {
                   <TextField
                     type="text"
                     label="Game Notes"
+                    placeholder="Game Notes"
                     value={gameNotes}
                     onChange={(e) => setGameNotes(e.target.value)}
                     onBlur={saveNotes}

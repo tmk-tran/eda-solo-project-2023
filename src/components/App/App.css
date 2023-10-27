@@ -33,14 +33,19 @@ Container
 /* --------------------------------------------------------------------------------
 Button
 -------------------------------------------------------------------------------- */
+#fixed-button {
+  position: fixed;
+  top: 10px; /* Adjust the top value to set the desired distance from the top */
+  z-index: 999; /* Ensure it's above other elements */
+}
 
 .btn {
-  display: inline-block;
+  /* display: inline-block; */
   padding: 10px 20px;
   border-color: #014041;
   border-width: 1px 1px 3px;
   border-radius: 4px;
-  background-color: #00acb0;
+  background-color: #4770ea;
   color: #f8f8f8;
   font-size: 1.1rem;
   outline: 0;
@@ -63,7 +68,7 @@ Button
 }
 
 .btn:hover {
-  background-color: #008183;
+  background-color: #7c99f0;
   text-decoration: none;
 }
 
@@ -80,7 +85,7 @@ Button
 
 .btn_asLink:hover {
   background-color: transparent;
-  border-color: #008183;
+  border-color: #7a87f5ec;
   color: #008183;
 }
 

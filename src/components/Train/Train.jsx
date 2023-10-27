@@ -46,7 +46,7 @@ export default function Train() {
       style={{ display: "flex", justifyContent: "center" }}
     >
       <Grid container spacing={3}>
-        <ThemeProvider theme={theme}>
+        {/* <ThemeProvider theme={theme}> */}
           <Grid item xs={12}>
             <Box
               sx={{
@@ -172,7 +172,7 @@ export default function Train() {
               </Paper>
             </Box>
           </Grid>
-        </ThemeProvider>
+        {/* </ThemeProvider> */}
       </Grid>
     </div>
   );
