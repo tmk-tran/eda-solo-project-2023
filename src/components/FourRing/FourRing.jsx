@@ -366,7 +366,8 @@ export default function FourRing() {
                   </p>
                   <Button onClick={clearScores} style={{ color: "red" }}>
                     <ClearAllIcon /> Clear
-                  </Button>                </div>
+                  </Button>{" "}
+                </div>
               </div>
             ) : (
               <>
