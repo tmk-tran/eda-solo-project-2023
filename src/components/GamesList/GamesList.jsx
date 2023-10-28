@@ -50,6 +50,12 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
+const StyledTableRowRound = styled(TableRow)(({ theme }) => ({
+  "&:nth-of-type(odd)": {
+    backgroundColor: "rgb(164 165 193 / 81%)",
+  },
+}));
+
 export default function GamesList({ target, roundScores }) {
   const dispatch = useDispatch();
 
@@ -221,11 +227,12 @@ export default function GamesList({ target, roundScores }) {
                     onClick={sweetAlert}
                     variant="outlined"
                     sx={{
-                      '&:hover': {
-                        backgroundColor: 'crimson', // Background color on hover
-                        color: 'white', // Text color on hover (if needed)
+                      "&:hover": {
+                        backgroundColor: "crimson", // Background color on hover
+                        color: "white", // Text color on hover (if needed)
                       },
-                    }}                  >
+                    }}
+                  >
                     Delete
                   </Button>
                   <Button onClick={saveEdit}>Save</Button>
@@ -323,7 +330,7 @@ export default function GamesList({ target, roundScores }) {
             <Card
               className="round-info"
               elevation={8}
-              style={{ backgroundColor: "#131434cf" }}
+              style={{ backgroundColor: "rgb(130 132 173 / 81%)" }}
             >
               <CardContent>
                 <Typography
@@ -338,13 +345,29 @@ export default function GamesList({ target, roundScores }) {
                   Round Data
                 </Typography>
                 <br />
-                {roundScores.map((round, index) => (
+                {/* {roundScores.map((round, index) => (
                   <div key={index} style={{ display: "flex" }}>
                     <Typography id="round-scores" variant="body1">
                       #{index + 1}: {round.round_score} points
                     </Typography>
                   </div>
-                ))}
+                ))} */}
+                <Table sx={{ minWidth: 250 }} size="small">
+        <TableHead>
+          <TableRow sx={{ "&:last-child th": { border: 0 } }}>
+            <StyledTableCell>#</StyledTableCell>
+            <StyledTableCell>Score</StyledTableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {roundScores.map((round, index) => (
+            <StyledTableRowRound key={index}>
+              <TableCell>{index + 1}</TableCell>
+              <TableCell>{round.round_score} points</TableCell>
+            </StyledTableRowRound>
+          ))}
+        </TableBody>
+      </Table>
               </CardContent>
             </Card>
           </div>

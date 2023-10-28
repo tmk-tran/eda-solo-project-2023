@@ -51,7 +51,6 @@
 } 
 
 #games-list-card {
-  width: 50%;
   margin: 0 auto;
   border-radius: 10px;
 }
@@ -64,7 +63,7 @@
 /* Card for Round info */
 .round-info {
   border: 1px solid rgb(1, 34, 1);
-  width:60%;
+  width: 40%;
 }
 
 #round-scores {
@@ -77,6 +76,7 @@
 #history-paper {
   width: 65%;
   margin: 0 auto;
+  border-radius: 10px;
 }
 
 /* Media query for smaller screens (e.g., mobile) */
@@ -85,10 +85,6 @@
     width: 100%;
     height: 50%;
     /* margin: 0 auto; */
-  }
-
-  .Table {
-    width: 50vh;
   }
 
   .round-info {
