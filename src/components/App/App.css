@@ -118,3 +118,8 @@ input {
   margin: 5px;
   margin-bottom: 10px;
 }
+
+#login-card {
+  width: 50%;
+  margin: 0 auto;
+}
