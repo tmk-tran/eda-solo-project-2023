@@ -145,11 +145,11 @@ export default function GamesList({ target, roundScores }) {
   };
 
   return (
-    <Card id="games-list-card">
+    <Card id="games-list-card" elevation={12}>
       <CardContent>
         <div className="list-header">
           <Button
-            variant="contained"
+            variant="outlined"
             color="inherit"
             onClick={handleEdit}
             style={{ marginLeft: "auto" }}
@@ -162,7 +162,7 @@ export default function GamesList({ target, roundScores }) {
           // Render an input field in edit mode
           <div className="edit-mode">
             <Card id="edit-card" elevation={8} style={{ margin: "0 auto" }}>
-              <List>
+              <CardContent>
                 <Typography
                   variant="h5"
                   style={{
@@ -174,63 +174,63 @@ export default function GamesList({ target, roundScores }) {
                   Edit Game
                 </Typography>
                 <br />
-                <ListItem>
-                  <TextField
-                    label="Date"
-                    type="date"
-                    value={editGameDate}
-                    onChange={(e) => setEditGameDate(e.target.value)}
-                    fullWidth
-                  />
-                </ListItem>
-                <ListItem>
-                  <TextField
-                    label="Notes"
-                    multiline
-                    maxRows={3}
-                    value={editGameNotes}
-                    onChange={(e) => setEditGameNotes(e.target.value)}
-                    fullWidth
-                  />
-                </ListItem>
-                <ListItem>
-                  <TextField
-                    label="Target Name"
-                    type="text"
-                    value={editTargetName}
-                    onChange={(e) => setEditTargetName(e.target.value)}
-                    fullWidth
-                  />
-                </ListItem>
-                <ListItem>
-                  <TextField
-                    label="Total Game Score"
-                    type="number"
-                    value={editScore}
-                    onChange={(e) => setEditScore(e.target.value)}
-                    fullWidth
-                    style={{ marginRight: "5px" }}
-                  />
-                  <TextField
-                    label="Target Score Value"
-                    type="number"
-                    value={editTotalScore}
-                    onChange={(e) => setEditTotalScore(e.target.value)}
-                    fullWidth
-                    style={{ marginLeft: "5px" }}
-                  />
-                </ListItem>
+
+                <TextField
+                  label="Date"
+                  type="date"
+                  value={editGameDate}
+                  onChange={(e) => setEditGameDate(e.target.value)}
+                  fullWidth
+                />
+
+                <TextField
+                  label="Notes"
+                  multiline
+                  maxRows={3}
+                  value={editGameNotes}
+                  onChange={(e) => setEditGameNotes(e.target.value)}
+                  fullWidth
+                />
+
+                <TextField
+                  label="Target Name"
+                  type="text"
+                  value={editTargetName}
+                  onChange={(e) => setEditTargetName(e.target.value)}
+                  fullWidth
+                />
+
+                <TextField
+                  label="Total Game Score"
+                  type="number"
+                  value={editScore}
+                  onChange={(e) => setEditScore(e.target.value)}
+                  fullWidth
+                  style={{ marginRight: "5px" }}
+                />
+                <TextField
+                  label="Target Score Value"
+                  type="number"
+                  value={editTotalScore}
+                  onChange={(e) => setEditTotalScore(e.target.value)}
+                  fullWidth
+                />
+
                 <div className="list-buttons">
                   <Button
                     onClick={sweetAlert}
-                    variant="contained"
-                    style={{ backgroundColor: "crimson" }}
-                  >
+                    variant="outlined"
+                    sx={{
+                      '&:hover': {
+                        backgroundColor: 'crimson', // Background color on hover
+                        color: 'white', // Text color on hover (if needed)
+                      },
+                    }}                  >
                     Delete
                   </Button>
                   <Button onClick={saveEdit}>Save</Button>
                 </div>
-              </List>
+              </CardContent>
             </Card>
           </div>
         ) : (
@@ -238,7 +238,7 @@ export default function GamesList({ target, roundScores }) {
           <div className="game-list-display-container">
             <Card elevation={8} style={{ width: "100vh", marginRight: "5px" }}>
               <CardContent>
-                <Table sx={{ minWidth: 250, marginLeft: "auto" }} size="small">
+                <Table sx={{ minWidth: 200, marginLeft: "auto" }} size="small">
                   <TableHead>
                     <TableRow sx={{ "&:last-child th": { border: 0 } }}>
                       <StyledTableCell>

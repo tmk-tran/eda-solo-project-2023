@@ -33,11 +33,6 @@ Container
 /* --------------------------------------------------------------------------------
 Button
 -------------------------------------------------------------------------------- */
-#fixed-button {
-  position: fixed;
-  top: 10px; /* Adjust the top value to set the desired distance from the top */
-  z-index: 999; /* Ensure it's above other elements */
-}
 
 .btn {
   /* display: inline-block; */

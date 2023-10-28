@@ -1,15 +1,11 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
+import {Box, Paper, List, ListItem, Card, CardContent} from "@mui/material";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
+
+
 
 // Component
 import GamesList from "../GamesList/GamesList";
@@ -44,18 +40,18 @@ export default function History() {
         Game History
       </h1>
       <Box sx={{ width: "100%" }}>
-        <List>
+        <Paper id="history-paper">
           {reversedGameList.map((target) => (
-            <ListItem key={target.game_id} style={{ marginBottom: "15px" }}>
+            <CardContent key={target.game_id} style={{ marginBottom: "15px" }}>
               <GamesList
                 target={target}
                 roundScores={rounds.filter(
                   (round) => round.game_id === target.game_id
                 )}
               />
-            </ListItem>
+            </CardContent>
           ))}
-        </List>
+        </Paper>
       </Box>
     </div>
   );

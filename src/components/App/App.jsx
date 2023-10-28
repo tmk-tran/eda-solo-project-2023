@@ -75,11 +75,12 @@ function App() {
       <Router>
         <div>
           <Navbar />
+          <div style={{position: "fixed"}}>
           <MuiSwitch
             id="fixed-button"
             defaultChecked
             onChange={toggleDarkMode}
-          ></MuiSwitch>
+          /></div>
           {darkMode ? "Light Mode" : "Dark Mode"}
           {/* <Nav /> */}
           {/* <MiniDrawer /> */}
