@@ -30,7 +30,7 @@
 #games-page-card {
   /* height: 100vh; */
   border-radius: 10px;
-  background-color: aliceblue;
+  /* background-color: aliceblue; */
   overflow-y: auto;
   height: 100%;
   margin-top: 45px;
