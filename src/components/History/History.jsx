@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { Box, Paper, List, ListItem, Card, CardContent } from "@mui/material";
+import { Box, Paper, List, ListItem, Card, CardContent, Typography } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 
@@ -29,14 +29,16 @@ export default function History() {
 
   return (
     <div className="page-container">
-      <h1
+      <Typography
+        variant="h4"
         style={{
           color: "ghostwhite",
           textAlign: "center",
         }}
       >
         Game History
-      </h1>
+      </Typography>
+      <br />
       <Box sx={{ width: "100%" }}>
         <Paper id="history-paper">
           {reversedGameList.map((target) => (

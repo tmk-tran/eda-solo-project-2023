@@ -46,9 +46,22 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
+const customTypography = { // coming back to visit
+  h5: {
+    fontSize: '1.2rem',
+    '@media (min-width:600px)': {
+      fontSize: '1.4rem',
+    },
+    '@media (min-width:960px)': {
+      fontSize: '1.6rem',
+    },
+  },
+  fontFamily: "verdana"
+};
+
 const darkTheme = createTheme({
   palette: { mode: "dark" },
-  typography: { fontFamily: "verdana" },
+  typography: customTypography,
 });
 const lightTheme = createTheme({
   palette: { mode: "light" },
