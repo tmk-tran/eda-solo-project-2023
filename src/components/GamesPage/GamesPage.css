@@ -33,6 +33,7 @@
   background-color: aliceblue;
   overflow-y: auto;
   height: 100%;
+  margin-top: 45px;
 }
 
 /* Media query for smaller screens (e.g., mobile) */
@@ -40,6 +41,7 @@
   #games-page-card {
     width: 100vh;
     height: auto;
+    margin-top: 45px;
   }
   .Grid {
     width: 100vh;

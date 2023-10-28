@@ -80,7 +80,6 @@ function App() {
     <ThemeProvider theme={theme}>
       <Router>
         <div>
-          <Navbar />
           <div style={{ position: "fixed" }}>
             <MuiSwitch
               id="fixed-button"
@@ -88,7 +87,7 @@ function App() {
               onChange={toggleDarkMode}
             />
           </div>
-          {darkMode ? "Light Mode" : "Dark Mode"}
+          <Navbar />
           {/* <Nav /> */}
           {/* <MiniDrawer /> */}
           <ReactRouterSwitch>
