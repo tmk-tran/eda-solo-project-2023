@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import {Box, Paper, List, ListItem, Card, CardContent} from "@mui/material";
+import { Box, Paper, List, ListItem, Card, CardContent } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
-
-
 
 // Component
 import GamesList from "../GamesList/GamesList";

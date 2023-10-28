@@ -178,7 +178,6 @@ export default function GamesList({ target, roundScores }) {
                   Edit Game
                 </Typography>
                 <br />
-
                 <TextField
                   label="Date"
                   type="date"
@@ -186,7 +185,6 @@ export default function GamesList({ target, roundScores }) {
                   onChange={(e) => setEditGameDate(e.target.value)}
                   fullWidth
                 />
-
                 <TextField
                   label="Notes"
                   multiline
@@ -195,7 +193,6 @@ export default function GamesList({ target, roundScores }) {
                   onChange={(e) => setEditGameNotes(e.target.value)}
                   fullWidth
                 />
-
                 <TextField
                   label="Target Name"
                   type="text"
@@ -203,7 +200,6 @@ export default function GamesList({ target, roundScores }) {
                   onChange={(e) => setEditTargetName(e.target.value)}
                   fullWidth
                 />
-
                 <TextField
                   label="Total Game Score"
                   type="number"
@@ -219,7 +215,6 @@ export default function GamesList({ target, roundScores }) {
                   onChange={(e) => setEditTotalScore(e.target.value)}
                   fullWidth
                 />
-
                 <div className="list-buttons">
                   <Button
                     onClick={sweetAlert}

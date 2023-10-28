@@ -23,8 +23,8 @@ export default function GamesPage() {
   const dispatch = useDispatch();
 
   return (
-    <div className="page-container">
-      <Grid container spacing={1}>
+    <div className="page-container" style={{ display: "flex", justifyContent: "center" }}>
+      <Grid id="grid-games" container spacing={1}>
         <Grid item xs={12} sm={6} md={4} lg={4}>
           <Card id="games-page-card">
             <br />

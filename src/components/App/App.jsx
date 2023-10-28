@@ -46,8 +46,14 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-const darkTheme = createTheme({ palette: { mode: "dark" }, typography: { fontFamily: "verdana" } });
-const lightTheme = createTheme({ palette: { mode: "light" }, typography: { fontFamily: "verdana" } });
+const darkTheme = createTheme({
+  palette: { mode: "dark" },
+  typography: { fontFamily: "verdana" },
+});
+const lightTheme = createTheme({
+  palette: { mode: "light" },
+  typography: { fontFamily: "verdana" },
+});
 
 function App() {
   const dispatch = useDispatch();
@@ -75,12 +81,13 @@ function App() {
       <Router>
         <div>
           <Navbar />
-          <div style={{position: "fixed"}}>
-          <MuiSwitch
-            id="fixed-button"
-            defaultChecked
-            onChange={toggleDarkMode}
-          /></div>
+          <div style={{ position: "fixed" }}>
+            <MuiSwitch
+              id="fixed-button"
+              defaultChecked
+              onChange={toggleDarkMode}
+            />
+          </div>
           {darkMode ? "Light Mode" : "Dark Mode"}
           {/* <Nav /> */}
           {/* <MiniDrawer /> */}

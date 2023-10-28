@@ -26,7 +26,7 @@
 @media (max-width: 767px) {
   .page-container {
     flex-direction: column;
-    margin-top: 0px; 
+    margin-top: 0px;
   }
 
   #profile-card {

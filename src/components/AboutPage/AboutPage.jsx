@@ -37,7 +37,7 @@ function AboutPage() {
       }}
     >
       <Card elevation={6} style={{ height: "100%" }}>
-        <CardContent style={{textAlign: "center"}}>
+        <CardContent style={{ textAlign: "center" }}>
           <Typography variant="h4" color="primary" gutterBottom>
             About ScoreMark
           </Typography>
@@ -49,26 +49,32 @@ function AboutPage() {
           <br />
           <br />
           <Typography variant="h6">Features:</Typography>
-          <Box style={{display: "inline-block", textAlign: "left", justifyContent: "center"}}>
-          <ul>
-            <li>
-              <Typography>Record and store your shooting scores</Typography>
-            </li>
-            <li>
-              <Typography>Track your progress over time</Typography>
-            </li>
-            <li>
-              <Typography>
-                View detailed statistics and analysis of your shooting
-                performance
-              </Typography>
-            </li>
-            <li>
-              <Typography>
-                Record notes/goals to further measure your improvement
-              </Typography>
-            </li>
-          </ul>
+          <Box
+            style={{
+              display: "inline-block",
+              textAlign: "left",
+              justifyContent: "center",
+            }}
+          >
+            <ul>
+              <li>
+                <Typography>Record and store your shooting scores</Typography>
+              </li>
+              <li>
+                <Typography>Track your progress over time</Typography>
+              </li>
+              <li>
+                <Typography>
+                  View detailed statistics and analysis of your shooting
+                  performance
+                </Typography>
+              </li>
+              <li>
+                <Typography>
+                  Record notes/goals to further measure your improvement
+                </Typography>
+              </li>
+            </ul>
           </Box>
           <br />
           <Typography variant="body1">

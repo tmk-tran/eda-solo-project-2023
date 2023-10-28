@@ -32,7 +32,6 @@
   border-radius: 10px;
   background-color: aliceblue;
   overflow-y: auto;
-  margin: 5vh auto;
   height: 100%;
 }
 
@@ -41,5 +40,8 @@
   #games-page-card {
     width: 100vh;
     height: auto;
+  }
+  .Grid {
+    width: 100vh;
   }
 }

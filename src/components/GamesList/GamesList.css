@@ -55,11 +55,12 @@
 /* Style for the Game history data */
 .game-history {
   text-align: left;
-} 
+}
 
 #games-list-card {
   margin: 0 auto;
   border-radius: 10px;
+  width: 100%;
 }
 
 /* Style for game information table display */
@@ -86,15 +87,14 @@
   width: 65%;
   margin: 0 auto;
   border-radius: 10px;
-  min-width: 700px;
+  min-width: 7vb;
 }
 
 /* Media query for smaller screens (e.g., mobile) */
 @media (max-width: 768px) {
-  #games-list-card, #edit-card {
+  #games-list-card,
+  #edit-card {
     width: 100%;
-    height: 50%;
-    /* margin: 0 auto; */
   }
 
   .round-info {

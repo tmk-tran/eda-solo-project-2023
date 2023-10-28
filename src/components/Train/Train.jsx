@@ -105,7 +105,7 @@ export default function Train() {
                         history.push("/4-ring");
                       }}
                     />
-                    <Typography>Four Ring</Typography>                   
+                    <Typography>Four Ring</Typography>
                   </Item>
                 </Grid>
                 <Grid item xs={6}>
@@ -119,7 +119,7 @@ export default function Train() {
                         history.push("/5-ring");
                       }}
                     />
-                    <Typography>Five Ring</Typography>                   
+                    <Typography>Five Ring</Typography>
                   </Item>
                 </Grid>
                 <Grid item xs={6}>
