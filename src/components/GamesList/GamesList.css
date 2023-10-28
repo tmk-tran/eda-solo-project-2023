@@ -45,6 +45,13 @@
   /* justify-content: space-between; */
 }
 
+/* Style for game history Card */
+#history-card {
+  width: 100vh;
+  margin-right: 5px;
+  min-width: 300px;
+}
+
 /* Style for the Game history data */
 .game-history {
   text-align: left;
@@ -64,6 +71,7 @@
 .round-info {
   border: 1px solid rgb(1, 34, 1);
   width: 40%;
+  min-width: 300px;
 }
 
 #round-scores {
@@ -73,10 +81,12 @@
   padding: 15px;
 }
 
+/* style for GamesList container, in History component */
 #history-paper {
   width: 65%;
   margin: 0 auto;
   border-radius: 10px;
+  min-width: 700px;
 }
 
 /* Media query for smaller screens (e.g., mobile) */

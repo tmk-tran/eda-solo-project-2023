@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { styled } from "@mui/material/styles";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import {
@@ -9,10 +9,8 @@ import {
   FormControl,
   Button,
   Typography,
-  List,
   ListItem,
   ListItemText,
-  ListItemIcon,
   Table,
   TableBody,
   TableContainer,
@@ -243,7 +241,7 @@ export default function GamesList({ target, roundScores }) {
         ) : (
           // Render the formatted date in non-edit mode
           <div className="game-list-display-container">
-            <Card elevation={8} style={{ width: "100vh", marginRight: "5px" }}>
+            <Card elevation={8} id="history-card">
               <CardContent>
                 <Table sx={{ minWidth: 200, marginLeft: "auto" }} size="small">
                   <TableHead>
@@ -339,7 +337,6 @@ export default function GamesList({ target, roundScores }) {
                     fontSize: "16px",
                     fontWeight: "bold",
                     textAlign: "center",
-                    color: "#cbcbd3",
                   }}
                 >
                   Round Data
@@ -353,21 +350,21 @@ export default function GamesList({ target, roundScores }) {
                   </div>
                 ))} */}
                 <Table sx={{ minWidth: 250 }} size="small">
-        <TableHead>
-          <TableRow sx={{ "&:last-child th": { border: 0 } }}>
-            <StyledTableCell>#</StyledTableCell>
-            <StyledTableCell>Score</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {roundScores.map((round, index) => (
-            <StyledTableRowRound key={index}>
-              <TableCell>{index + 1}</TableCell>
-              <TableCell>{round.round_score} points</TableCell>
-            </StyledTableRowRound>
-          ))}
-        </TableBody>
-      </Table>
+                  <TableHead>
+                    <TableRow sx={{ "&:last-child th": { border: 0 } }}>
+                      <StyledTableCell>#</StyledTableCell>
+                      <StyledTableCell>Score</StyledTableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {roundScores.map((round, index) => (
+                      <StyledTableRowRound key={index}>
+                        <TableCell>{index + 1}</TableCell>
+                        <TableCell>{round.round_score} points</TableCell>
+                      </StyledTableRowRound>
+                    ))}
+                  </TableBody>
+                </Table>
               </CardContent>
             </Card>
           </div>
