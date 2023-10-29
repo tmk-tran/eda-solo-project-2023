@@ -103,23 +103,20 @@ Alert
 Form Treatment
 -------------------------------------------------------------------------------- */
 
-.formPanel {
-  box-sizing: border-box;
-  width: 400px;
-  max-width: 100%;
-  padding: 25px;
-  margin: 0 auto 20px;
-  background-color: #efefef;
-  border-radius: 3px;
-  box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
-}
-
-input {
-  margin: 5px;
-  margin-bottom: 10px;
-}
-
 #login-card {
   width: 50%;
   margin: 0 auto;
+  border-radius: 10px;
+}
+
+/* --------------------------------------------------------------------------------
+Login Page Treatment
+---------------------------------------------------------------------------------- */
+
+#login-paper {
+  height: 100vh;
+  background-image: url(https://us.123rf.com/450wm/boonsom/boonsom2210/boonsom221000020/194115752-abstract-vector-blue-circle-pattern-background-with-laser-light-for-futuristic-science-technology.jpg?ver=6);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
