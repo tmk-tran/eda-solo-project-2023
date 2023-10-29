@@ -32,16 +32,6 @@ export default function History() {
 
   return (
     <div className="page-container">
-      <Typography
-        variant="h4"
-        style={{
-          color: "ghostwhite",
-          textAlign: "center",
-        }}
-      >
-        Game History
-      </Typography>
-      <br />
       <Box sx={{ width: "100%" }}>
         {/* <Paper id="history-paper">
           {reversedGameList.map((target) => (

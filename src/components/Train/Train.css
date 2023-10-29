@@ -5,6 +5,7 @@
 @media (max-width: 767px) {
   #train-box {
     height: 100%;
-    margin-bottom: 60px;
+    /* margin-bottom: 70px; */
+    width: 100%;
   }
 }
