@@ -56,6 +56,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+}
+
+.game-menu {
+  position: absolute;
+  top: 15px;
+  left: 0;
+}
+
+.game-menu2 {
+  position: absolute;
+  top: 15px;
+  right: 0;
+  margin-right: 10px;
 }
 
 .ripple-container {
@@ -113,6 +127,11 @@
   margin-bottom: 5px;
 }
 
+#finish-btn:hover {
+  background-color: #1e9521;
+  color: white;
+}
+
 /* ~~~~~~~~~~ Header ~~~~~~~~~~ */
 .game-header {
   display: flex;
@@ -128,7 +147,7 @@
 
 /* ~~~~~~~~~~ Round Table ~~~~~~~~~~ */
 /* Basic styling for the table */
-table {
+/* table {
   border-collapse: collapse;
   width: 40%;
   margin: 0 auto;
@@ -143,7 +162,7 @@ td {
 
 th {
   background-color: #f2f2f2;
-}
+} */
 
 /* Styling for the right column */
 td.score {

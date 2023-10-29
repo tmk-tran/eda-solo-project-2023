@@ -24,6 +24,9 @@ import ClearAllIcon from "@mui/icons-material/ClearAll";
 // ~~~~~~~~~~~~~~~ Hooks ~~~~~~~~~~~~~~~~~~
 import getCookie from "../../hooks/cookie";
 import Swal from "sweetalert2";
+// ~~~~~~~~~~~~~~~ Components ~~~~~~~~~~~~~~~~~~
+import GameInfo from "../GameInfo/GameInfo";
+import GameMenu from "../GameMenu/GameMenu";
 
 export default function ThreeRing() {
   const dispatch = useDispatch();
@@ -278,6 +281,9 @@ export default function ThreeRing() {
     });
   };
 
+  const buttonLabel = "Score";
+  const targetOptions = ["Option 1", "Option 2", "Option 3", "Option 4"];
+
   return (
     <div className="page-container">
       <div className="top-buttons">
@@ -293,6 +299,7 @@ export default function ThreeRing() {
           Cancel
         </Button>{" "}
         <Button
+          id="finish-btn"
           variant="outlined"
           onClick={addGame}
           style={{ backgroundColor: "#1e9521", color: "white" }}
@@ -398,6 +405,13 @@ export default function ThreeRing() {
         </Card>
       </div>
       <div className="container">
+        <div className="game-menu">
+          <GameInfo />
+        </div>
+        <div className="game-menu2">
+          {" "}
+          <GameMenu buttonLabel={buttonLabel} targetOptions={targetOptions} />
+        </div>
         <div className="three-ring" onClick={clickOuter}>
           <div className="three-ring-inner" onClick={clickInner}>
             <div className="three-ring-bulls" onClick={clickBull}></div>
@@ -405,10 +419,7 @@ export default function ThreeRing() {
         </div>
       </div>
       <FormControl className="form-control" fullWidth>
-        <Button
-          variant="contained"
-          onClick={addRound} // Make sure the button adds a round
-        >
+        <Button variant="contained" onClick={addRound}>
           Add Round
         </Button>
       </FormControl>
