@@ -83,7 +83,7 @@
   width: 50%;
   margin: 0 auto;
   border-radius: 10px;
-  min-width: 100vh;
+  min-width: 100%;
 }
 
 /* Media query for smaller screens (e.g., mobile) */

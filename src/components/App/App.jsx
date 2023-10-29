@@ -93,7 +93,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <Router>
         <div>
-          <div style={{ position: "fixed" }}>
+          <div className="dark-mode-btn">
             <MuiSwitch
               id="fixed-button"
               defaultChecked

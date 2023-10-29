@@ -63,12 +63,21 @@ Button
 }
 
 .btn:hover {
-  background-color: #7c99f0;
+  background-color: #5f6064;
   text-decoration: none;
 }
 
-/* This line makes the "Register" and "Login" buttons look like links */
+/* Dark / Light Mode button */
+.dark-mode-btn {
+  position: fixed;
+  bottom: 0;
+  background-color: rgb(73 75 90);
+  border-radius: 10px;
+}
 
+.dark-mode-btn:hover {
+  cursor: crosshair;
+}
 
 /* --------------------------------------------------------------------------------
 Alert
@@ -118,6 +127,12 @@ Login Page Treatment
     margin: 0;
     top: 0;
     border-radius: 0;
+  }
+
+  .dark-mode-btn {
+    position: fixed;
+    bottom: 55px;
+    background-color: transparent;
   }
 }
 

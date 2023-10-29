@@ -21,6 +21,7 @@ import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import EditIcon from "@mui/icons-material/Edit";
 import ClearAllIcon from "@mui/icons-material/ClearAll";
+import QueryStatsIcon from '@mui/icons-material/QueryStats';
 // ~~~~~~~~~~~~~~~ Hooks ~~~~~~~~~~~~~~~~~~
 import getCookie from "../../hooks/cookie";
 import Swal from "sweetalert2";
@@ -81,9 +82,12 @@ export default function ThreeRing() {
       backgroundColor: theme.palette.action.hover,
     },
     // hide last border
-    "&:last-child td, &:last-child th": {
-      border: 0,
-    },
+    // "&:last-child td, &:last-child th": {
+    //   border: 0,
+    // },
+    // "&:last-child": {
+    //   borderBottom: '1px solid white', // Add a border to the last row
+    // },
   }));
 
   // Bring in Rounds
@@ -281,12 +285,17 @@ export default function ThreeRing() {
     });
   };
 
-  const buttonLabel = "Score";
-  const targetOptions = ["Option 1", "Option 2", "Option 3", "Option 4"];
+  const buttonLabel = <QueryStatsIcon />;
+  const targetOptions = [
+    `8's: ${pointsOuter}`,
+    `9's: ${pointsInner}`,
+    `10's: ${bulls}`,
+    `Total = ${totalScore}`,
+  ]; 
 
   return (
     <div className="page-container">
-      <div className="top-buttons">
+      {/* <div className="top-buttons">
         <Button
           variant="outlined"
           onClick={() => {
@@ -294,7 +303,7 @@ export default function ThreeRing() {
             dispatch({ type: "DELETE_GAME", payload: newGameId });
             history.push("/games");
           }}
-          style={{ backgroundColor: "#5d0606", color: "white" }}
+          // style={{ backgroundColor: "#5d0606", color: "white" }}
         >
           Cancel
         </Button>{" "}
@@ -306,7 +315,7 @@ export default function ThreeRing() {
         >
           Finish
         </Button>
-      </div>
+      </div> */}
       <div>
         <Card>
           <CardContent>
@@ -323,7 +332,11 @@ export default function ThreeRing() {
                   onBlur={saveName}
                 />
               )}
-              <Button variant="contained" color="inherit" onClick={toggleSettings}>
+              <Button
+                variant="contained"
+                color="inherit"
+                onClick={toggleSettings}
+              >
                 <MoreHorizIcon />
               </Button>
             </div>
@@ -344,7 +357,10 @@ export default function ThreeRing() {
                     <TableHead>
                       <TableRow sx={{ "&:last-child th": { border: 0 } }}>
                         {roundHeaders.map((header) => (
-                          <StyledTableCell key={header} className="header">
+                          <StyledTableCell
+                            key={header}
+                            style={{ textAlign: "center" }}
+                          >
                             Round {header}
                           </StyledTableCell>
                         ))}
@@ -419,10 +435,31 @@ export default function ThreeRing() {
         </div>
       </div>
       <FormControl className="form-control" fullWidth>
-        <Button variant="contained" onClick={addRound} style={{zIndex: "0"}}>
+        <Button variant="contained" onClick={addRound}>
           Add Round
         </Button>
       </FormControl>
+      <div className="top-buttons">
+        <Button
+          variant="outlined"
+          onClick={() => {
+            resetScore();
+            dispatch({ type: "DELETE_GAME", payload: newGameId });
+            history.push("/games");
+          }}
+          // style={{ backgroundColor: "#5d0606", color: "white" }}
+        >
+          Cancel
+        </Button>{" "}
+        <Button
+          id="finish-btn"
+          variant="outlined"
+          onClick={addGame}
+          style={{ backgroundColor: "#1e9521", color: "white" }}
+        >
+          Finish
+        </Button>
+      </div>
     </div>
   );
 }

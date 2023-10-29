@@ -72,31 +72,6 @@
   margin-right: 10px;
 }
 
-.ripple-container {
-  position: relative;
-  width: 200px;
-  height: 200px;
-  background-color: lightblue;
-  overflow: hidden;
-}
-
-.ripple {
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.3);
-  border-radius: 50%;
-  transform: scale(0);
-  animation: ripple-animation 0.5s linear;
-  pointer-events: none;
-}
-
-@keyframes ripple-animation {
-  to {
-    transform: scale(4);
-    opacity: 0;
-  }
-}
-
-
 /* Media query for screens with a maximum width of 600px (typical for iPhones) */
 @media (max-width: 600px) {
   .container {
@@ -147,11 +122,6 @@
 
 /* ~~~~~~~~~~ Round Table ~~~~~~~~~~ */
 /* Basic styling for the table */
-/* table {
-  border-collapse: collapse;
-  width: 40%;
-  margin: 0 auto;
-}
 
 th,
 td {
