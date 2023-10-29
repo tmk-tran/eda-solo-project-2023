@@ -2,10 +2,19 @@
   border: 1px solid rgb(199, 198, 198);
 }
 
+#train-box-container {
+  width: 70%;
+  margin: 0 auto;
+}
+
 @media (max-width: 767px) {
   #train-box {
     height: 100%;
-    /* margin-bottom: 70px; */
+    margin-bottom: 70px;
+    width: 100%;
+  }
+
+  #train-box-container {
     width: 100%;
   }
 }

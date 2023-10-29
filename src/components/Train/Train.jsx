@@ -39,12 +39,11 @@ export default function Train() {
 
   return (
     <div className="page-container">
-      <Box>
-        <Paper
+      <Box id="train-box-container">
+        <Card
           id="train-box"
           elevation={6}
-          // style={{ padding: theme.spacing(4) }}
-          style={{ width: "100%" }}
+          style={{ width: "100%", padding: theme.spacing(4) }}
         >
           <Typography variant="h5" style={{ marginBottom: theme.spacing(2) }}>
             Start Training
@@ -151,7 +150,7 @@ export default function Train() {
               </Item>
             </Grid>
           </Grid>
-        </Paper>
+        </Card>
       </Box>
     </div>
   );
