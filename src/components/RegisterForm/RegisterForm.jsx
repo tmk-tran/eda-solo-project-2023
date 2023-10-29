@@ -20,8 +20,9 @@ function RegisterForm() {
   }; // end registerUser
 
   return (
-    <form className="formPanel" onSubmit={registerUser}>
+    <form style={{backgroundColor: "white"}} onSubmit={registerUser}>
       <h2>Register User</h2>
+      <h3>Please Enter Your Information:</h3>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
           {errors.registrationMessage}

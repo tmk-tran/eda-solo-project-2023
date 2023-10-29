@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import NewUser from "./NewUser";
 
 import {
   TextField,
@@ -35,8 +34,8 @@ function LoginForm() {
 
   return (
     <>
-      <div style={{ display: "flex" }}>
-        <Card id="login-card" elevation={10} style={{ opacity: 0.7 }}>
+      <div>
+        <Card id="login-card" elevation={5} style={{ opacity: 0.8 }}>
           <CardContent>
             <Typography variant="h5">Login</Typography>
             {errors.loginMessage && (
@@ -83,7 +82,6 @@ function LoginForm() {
             </form>
           </CardContent>
         </Card>
-        <NewUser />
       </div>
     </>
   );

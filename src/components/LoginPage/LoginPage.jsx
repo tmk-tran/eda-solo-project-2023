@@ -10,24 +10,20 @@ function LoginPage() {
   return (
     <>
       <Paper id="login-paper">
-        <Paper style={{ opacity: 0.7 }}>
-        <Typography variant="h4">Welcome To ScoreMark</Typography>
+        <Paper style={{ opacity: 0.8 }}>
+          <Typography variant="h4">Welcome To ScoreMark</Typography>
+          <Typography variant="h5">New User?</Typography>
+          <button
+            type="button"
+            className="btn btn_asLink"
+            onClick={() => {
+              history.push("/registration");
+            }}
+          >
+            Register
+          </button>
         </Paper>
-        <div>
-          <LoginForm />
-
-          <center>
-            <button
-              type="button"
-              className="btn btn_asLink"
-              onClick={() => {
-                history.push("/registration");
-              }}
-            >
-              Register
-            </button>
-          </center>
-        </div>
+        <LoginForm />
       </Paper>
     </>
   );
