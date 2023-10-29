@@ -136,7 +136,7 @@
 /* ~~~~~~~~~~ Round Table ~~~~~~~~~~ */
 /* Basic styling for the table */
 
-th,
+/* th,
 td {
   border: 1px solid #ccc;
   padding: 8px;
@@ -147,7 +147,8 @@ th {
   background-color: #f2f2f2;
 } */
 
+
 /* Styling for the right column */
-td.score {
+/* td.score {
   text-align: center;
-}
+} */

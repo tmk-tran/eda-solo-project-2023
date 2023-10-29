@@ -1,7 +1,7 @@
 import React from "react";
 import { List, ListItem, Typography } from "@mui/material";
 
-export default function ThreeRingInfo() {
+export default function GameHowTo() {
   return (
     <>
       <Typography>How to Play:</Typography>

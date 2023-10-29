@@ -119,7 +119,6 @@ Login Page Treatment
 @media (max-width: 768px) {
   #login-paper {
     background-size: 100vh 100vh;
-
   }
   #login-message {
     width: 100vh;
