@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety";
+import ContactInfo from "./ContactInfo";
 import "./AboutPage.css";
 
 // This is one of our simplest components
@@ -109,6 +110,7 @@ function AboutPage() {
             </Item>
           </Card>
         </CardContent>
+        <ContactInfo />
       </Card>
     </Box>
   );
