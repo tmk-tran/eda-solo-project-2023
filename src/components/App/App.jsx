@@ -137,7 +137,7 @@ function App() {
             </ProtectedRoute>
 
             <ProtectedRoute exact path="/profile">
-              <Profile />
+              <Profile user={user} />
             </ProtectedRoute>
 
             <ProtectedRoute exact path="/history">

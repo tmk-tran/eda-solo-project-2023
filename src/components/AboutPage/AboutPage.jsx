@@ -36,7 +36,7 @@ function AboutPage() {
         alignItems: "center",
       }}
     >
-      <Card elevation={6} style={{ height: "100%" }}>
+      <Card id="about-card" elevation={6} style={{ height: "100%" }}>
         <CardContent style={{ textAlign: "center" }}>
           <Typography variant="h4" color="primary" gutterBottom>
             About ScoreMark

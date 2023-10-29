@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -18,13 +18,24 @@ import AccountMenu from "../AccountMenu/AccountMenu";
 // ~~~~~~~~~~~~~~~ Sweet Alert ~~~~~~~~~~~~~~~~~~
 import Swal from "sweetalert2";
 
-export default function Profile() {
+export default function Profile({ user }) {
   const dispatch = useDispatch();
 
-  const user = useSelector((store) => store.user);
+  useEffect(() => {
+    if (user && user.user_id) {
+      // Fetch games and rounds based on user.user_id
+      dispatch({ type: "FETCH_GAMES", payload: user.user_id });
+      dispatch({ type: "FETCH_ROUNDS", payload: user.user_id });
+    }
+  }, [dispatch, user]);
+
+  // const user = useSelector((store) => store.user);
   const currentUser = user.username;
+  const userId = user.user_id;
+  console.log("FROM PROFILE: ", userId);
 
   const userRounds = useSelector((store) => store.totalRounds);
+  console.log("USER ROUNDS: ", userRounds);
 
   const showAlert = () => {
     Swal.fire({
@@ -98,6 +109,19 @@ export default function Profile() {
                     </Typography>
                   </div>
                 ))}
+                {/* {userRounds.map((rounds, index) => {
+                  if (rounds.user_id === userId) {
+                    return (
+                      <div key={index}>
+                        <Typography variant="body2">
+                          Total Rounds Played: {rounds.total_rounds_played}
+                        </Typography>
+                      </div>
+                    );
+                  } else {
+                    return null;
+                  }
+                })} */}
                 <br />
               </div>
             </div>
@@ -110,7 +134,7 @@ export default function Profile() {
           <Card elevation={12}>
             <CardContent>
               <Typography variant="h6">
-                <LineDot />
+                <LineDot userId={userId} />
               </Typography>
             </CardContent>
           </Card>

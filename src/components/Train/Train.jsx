@@ -45,9 +45,9 @@ export default function Train() {
       className="page-container"
       style={{ display: "flex", justifyContent: "center" }}
     >
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <Box
+      {/* <Grid container spacing={3}>
+        <Grid item xs={12}> */}
+          {/* <Box
             sx={{
               p: 1,
               bgcolor: "background.paper",
@@ -56,8 +56,8 @@ export default function Train() {
               alignItems: "center",
               height: "100vh",
             }}
-          >
-            <Paper elevation={6} style={{ padding: theme.spacing(4) }}>
+          > */}
+            <Paper id="train-box" elevation={6} style={{ padding: theme.spacing(4) }}>
               <Typography
                 variant="h4"
                 style={{ marginBottom: theme.spacing(2) }}
@@ -167,9 +167,9 @@ export default function Train() {
                 </Grid>
               </Grid>
             </Paper>
-          </Box>
-        </Grid>
-      </Grid>
+          {/* </Box> */}
+        {/* </Grid>
+      </Grid> */}
     </div>
   );
 }

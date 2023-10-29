@@ -2,30 +2,42 @@ import React from "react";
 import LoginForm from "../LoginForm/LoginForm";
 import { useHistory } from "react-router-dom";
 
-import { Typography, Card, CardContent, Button, Paper } from "@mui/material";
+import {
+  Typography,
+  Card,
+  CardContent,
+  FormControl,
+  Button,
+  Paper,
+} from "@mui/material";
 
 function LoginPage() {
   const history = useHistory();
 
   return (
-    <>
-      <Paper id="login-paper">
-        <Paper style={{ opacity: 0.8 }}>
+    <Paper id="login-paper" style={{ textAlign: "center" }}>
+      <Paper id="login-message">
+        <br />
+        <Paper id="login-header" elevation={9}>
           <Typography variant="h4">Welcome To ScoreMark</Typography>
-          <Typography variant="h5">New User?</Typography>
-          <button
-            type="button"
-            className="btn btn_asLink"
-            onClick={() => {
-              history.push("/registration");
-            }}
-          >
-            Register
-          </button>
         </Paper>
+        <br />
         <LoginForm />
+        <br />
+        <Typography variant="h5">New User?</Typography>
+
+        <Button
+          id="register-button"
+          onClick={() => {
+            history.push("/registration");
+          }}
+        >
+          Sign Up
+        </Button>
+        <br />
+        <br />
       </Paper>
-    </>
+    </Paper>
   );
 }
 

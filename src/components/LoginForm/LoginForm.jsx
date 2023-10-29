@@ -7,6 +7,7 @@ import {
   Typography,
   Card,
   CardContent,
+  FormControl,
   Button,
 } from "@mui/material";
 
@@ -35,7 +36,7 @@ function LoginForm() {
   return (
     <>
       <div>
-        <Card id="login-card" elevation={5} style={{ opacity: 0.8 }}>
+        <Card id="login-card" elevation={10} style={{ opacity: 0.8 }}>
           <CardContent>
             <Typography variant="h5">Login</Typography>
             {errors.loginMessage && (
@@ -71,13 +72,16 @@ function LoginForm() {
                 />
               </div>
               <div>
+                <FormControl fullWidth>
                 <Button
+                  id="login-button"
                   variant="contained"
                   type="submit"
                   style={{ marginTop: "10px" }}
                 >
                   Log In
                 </Button>
+                </FormControl>
               </div>
             </form>
           </CardContent>
