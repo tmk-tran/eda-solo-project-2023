@@ -4,11 +4,6 @@
   justify-content: space-between;
 }
 
-/* .list-header {
-  display: flex;
-  justify-content: space-between;
-} */
-
 .list-header {
   display: flex;
   justify-content: space-between;
@@ -85,7 +80,7 @@
 
 /* style for GamesList container, in History component */
 #history-paper {
-  width: 65%;
+  width: 50%;
   margin: 0 auto;
   border-radius: 10px;
   min-width: 100vh;

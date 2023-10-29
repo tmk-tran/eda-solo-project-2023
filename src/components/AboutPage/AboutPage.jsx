@@ -36,7 +36,7 @@ function AboutPage() {
         alignItems: "center",
       }}
     >
-      <Card id="about-card" elevation={6} style={{ height: "100%" }}>
+      <Card id="about-card" elevation={6}>
         <CardContent style={{ textAlign: "center" }}>
           <Typography variant="h4" color="primary" gutterBottom>
             About ScoreMark
@@ -89,18 +89,22 @@ function AboutPage() {
                   <HealthAndSafetyIcon style={{ fontSize: "5vh" }} />
                 </Typography>
                 <Typography variant="h6">Firearms:</Typography>
-                <Typography id="safety-line" variant="body1">
-                  Always treat every firearm as if it's loaded, keep it pointed
-                  in a safe direction, and never touch the trigger until you're
-                  ready to shoot
-                </Typography>
+                <Card elevation={5}>
+                  <Typography id="safety-line" variant="body1">
+                    Always treat every firearm as if it's loaded, keep it
+                    pointed in a safe direction, and never touch the trigger
+                    until you're ready to shoot
+                  </Typography>
+                </Card>
                 <br />
                 <Typography variant="h6">Archery:</Typography>
-                <Typography id="safety-line" variant="body1">
-                  Prioritize safety on the archery range: maintain a safe draw,
-                  never point an arrow at anyone, and be aware of your
-                  surroundings before releasing
-                </Typography>
+                <Card elevation={5}>
+                  <Typography id="safety-line" variant="body1">
+                    Prioritize safety on the archery range: maintain a safe
+                    draw, never point an arrow at anyone, and be aware of your
+                    surroundings before releasing
+                  </Typography>
+                </Card>
               </CardContent>
             </Item>
           </Card>
