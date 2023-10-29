@@ -141,7 +141,7 @@ const CustomTargetMenu = ({ buttonLabel, targetOptions }) => {
 
   return (
     <Stack direction="row" spacing={2}>
-      <div>
+      <div id="game-menu">
         <Button
           ref={anchorRef}
           id="custom-target-button"

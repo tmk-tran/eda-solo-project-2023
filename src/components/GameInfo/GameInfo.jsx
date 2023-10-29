@@ -9,11 +9,12 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ThreeRingInfo from "../ThreeRing/ThreeRingInfo";
+import "./GameInfo.css"
 
 export default function GameInfo() {
   return (
     <>
-      <Accordion style={{ width: "200px" }}>
+      <Accordion id="game-menu" style={{ width: "200px" }}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"

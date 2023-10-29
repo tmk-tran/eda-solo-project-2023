@@ -323,7 +323,7 @@ export default function ThreeRing() {
                   onBlur={saveName}
                 />
               )}
-              <Button variant="contained" onClick={toggleSettings}>
+              <Button variant="contained" color="inherit" onClick={toggleSettings}>
                 <MoreHorizIcon />
               </Button>
             </div>
@@ -419,7 +419,7 @@ export default function ThreeRing() {
         </div>
       </div>
       <FormControl className="form-control" fullWidth>
-        <Button variant="contained" onClick={addRound}>
+        <Button variant="contained" onClick={addRound} style={{zIndex: "0"}}>
           Add Round
         </Button>
       </FormControl>
