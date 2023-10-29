@@ -22,9 +22,13 @@ import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import EditIcon from "@mui/icons-material/Edit";
 import ClearAllIcon from "@mui/icons-material/ClearAll";
+import QueryStatsIcon from "@mui/icons-material/QueryStats";
 // ~~~~~~~~~~~~~~~ Hooks ~~~~~~~~~~~~~~~~~~
 import getCookie from "../../hooks/cookie";
 import Swal from "sweetalert2";
+// ~~~~~~~~~~~~~~~ Components ~~~~~~~~~~~~~
+import GameInfo from "../GameInfo/GameInfo";
+import GameMenu from "../GameMenu/GameMenu";
 
 export default function FourRing() {
   const dispatch = useDispatch();
@@ -316,23 +320,31 @@ export default function FourRing() {
     });
   };
 
+  const buttonLabel = <QueryStatsIcon />;
+  const targetOptions = [
+    `6's: ${pointsFifth}`,
+    `7's: ${pointsFourth}`,
+    `8's: ${pointsOuter}`,
+    `9's: ${pointsInner}`,
+    `10's: ${bulls}`,
+    `Total = ${totalScore}`,
+  ];
+
   return (
     <div className="page-container">
       <div className="top-buttons">
         <Button
+          id="cancel-button"
+          variant="outlined"
           onClick={() => {
             resetScore();
             dispatch({ type: "DELETE_GAME", payload: newGameId });
             history.push("/games");
           }}
-          style={{ backgroundColor: "#5d0606", color: "white" }}
         >
           Cancel
         </Button>{" "}
-        <Button
-          onClick={addGame}
-          style={{ backgroundColor: "#1e9521", color: "white" }}
-        >
+        <Button id="finish-btn" variant="outlined" onClick={addGame}>
           Finish
         </Button>
       </div>
@@ -411,7 +423,7 @@ export default function FourRing() {
                   // Render an input field in edit mode
                   <input
                     type="text"
-                    value={gameNotes}
+                    // value={gameNotes}
                     onChange={(e) => setGameNotes(e.target.value)}
                     onBlur={saveNotes}
                   />
@@ -435,6 +447,13 @@ export default function FourRing() {
         </Card>
       </div>
       <div className="container">
+        <div className="game-menu">
+          <GameInfo />
+        </div>
+        <div className="game-menu2">
+          {" "}
+          <GameMenu buttonLabel={buttonLabel} targetOptions={targetOptions} />
+        </div>
         <div className="fifth-ring" onClick={clickFifth}>
           <div className="fourth-ring2" onClick={clickFourth}>
             <div className="third-ring2" onClick={clickOuter}>

@@ -5,9 +5,6 @@ import {
   Box,
   Paper,
   Typography,
-  List,
-  ListItem,
-  ListItemText,
 } from "@mui/material";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety";

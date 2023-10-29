@@ -36,11 +36,7 @@ import {
   Drawer,
   Button,
   List,
-  ListItem,
-  ListItemText,
   Divider,
-  ListItemButton,
-  ListItemIcon,
 } from "@mui/material";
 import GameHowTo from "../ThreeRing/GameHowTo";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
@@ -76,6 +72,7 @@ export default function GameInfo() {
       <List>
         <GameHowTo />
       </List>
+      <Divider />
     </Box>
   );
 

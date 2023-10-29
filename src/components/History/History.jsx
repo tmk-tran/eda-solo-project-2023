@@ -45,6 +45,13 @@ export default function History() {
             </CardContent>
           ))}
         </Paper> */}
+        <Typography
+          variant="h4"
+          style={{ textAlign: "center", color: "white" }}
+        >
+          History
+        </Typography>
+        <br />
         <Paper id="history-paper">
           {reversedGameList.map((target) => {
             // Add a condition to check if the user_id matches the desired userId
