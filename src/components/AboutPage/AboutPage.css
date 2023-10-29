@@ -11,6 +11,10 @@
   height: 100%;
 }
 
+#email-link:hover {
+  color: blue;
+}
+
 @media (max-width: 767px) {
   #about-card {
     width: 100%;
