@@ -337,13 +337,6 @@ export default function GamesList({ target, roundScores }) {
                   Round Data
                 </Typography>
                 <br />
-                {/* {roundScores.map((round, index) => (
-                  <div key={index} style={{ display: "flex" }}>
-                    <Typography id="round-scores" variant="body1">
-                      #{index + 1}: {round.round_score} points
-                    </Typography>
-                  </div>
-                ))} */}
                 <Table sx={{ minWidth: 250 }} size="small">
                   <TableHead>
                     <TableRow sx={{ "&:last-child th": { border: 0 } }}>

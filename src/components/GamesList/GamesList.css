@@ -1,9 +1,3 @@
-.list-buttons {
-  margin-top: 15px;
-  display: flex;
-  justify-content: space-between;
-}
-
 .list-header {
   display: flex;
   justify-content: space-between;
@@ -27,11 +21,7 @@
 
 /* Style the Delete button */
 .list-buttons button {
-  /* margin-left: 10px; */
-  /* color: white; */
-  /* border: none; */
   border-radius: 10px;
-  /* padding: 5px 10px; */
   cursor: pointer;
 }
 
@@ -43,7 +33,7 @@
 
 /* Style for game history Card */
 #history-card {
-  width: 100vh;
+  width: 70%;
   margin-right: 5px;
   min-width: 50vh;
 }
@@ -53,10 +43,9 @@
   text-align: left;
 }
 
-#games-list-card {
+#games-list-card { /* no need to adjust, card within history-paper */
   margin: 0 auto;
   border-radius: 10px;
-  width: 100%;
 }
 
 /* Style for game information table display */
@@ -65,10 +54,10 @@
 }
 
 /* Card for Round info */
-.round-info {
+.round-info { /* no need to adjust */
   border: 1px solid rgb(1, 34, 1);
-  width: 40%;
-  min-width: 40vh;
+  width: 100%;
+  min-width: 25vh;
 }
 
 #round-scores {
@@ -82,8 +71,6 @@
 #history-paper {
   width: 50%;
   margin: 0 auto;
-  border-radius: 10px;
-  min-width: 100%;
 }
 
 /* Media query for smaller screens (e.g., mobile) */

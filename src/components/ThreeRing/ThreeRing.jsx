@@ -329,7 +329,7 @@ export default function ThreeRing() {
               )}
               <Button
                 variant="contained"
-                color="inherit"
+                color="primary"
                 onClick={toggleSettings}
               >
                 <MoreHorizIcon />
@@ -392,7 +392,7 @@ export default function ThreeRing() {
                     type="text"
                     label="Game Notes"
                     placeholder="Game Notes"
-                    value={gameNotes}
+                    // value={gameNotes}
                     onChange={(e) => setGameNotes(e.target.value)}
                     onBlur={saveNotes}
                   />
