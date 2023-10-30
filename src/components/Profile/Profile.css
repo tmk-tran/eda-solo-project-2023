@@ -20,6 +20,16 @@
   height: 100vh;
 }
 
+.user-page-container {
+  margin-top: 5vh;
+  background-image: url(https://img.freepik.com/premium-vector/abstract-technology-background_42421-335.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* This keeps the background fixed */
+  overflow: auto; /* Allows content to scroll on top of the background */
+  height: 100vh;
+}
+
 #profile-card {
   width: 50%;
   margin: 0 auto;

@@ -19,7 +19,7 @@ export default function HorizontalBars({ roundAvgArray }) {
         {
           // label: "Score",
           data: roundAvgArray,
-          color: "#4190ba",
+          color: "#2bde90de",
         },
       ]}
       width={700}
