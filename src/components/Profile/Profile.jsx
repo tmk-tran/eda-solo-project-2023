@@ -11,17 +11,17 @@ import {
 } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import "./Profile.css";
 import LineDot from "../LineDot/LineDot";
 import HorizontalBars from "../HorizontalBars/HorizontalBars";
 import AccountMenu from "../AccountMenu/AccountMenu";
+import InsightsIcon from "@mui/icons-material/Insights";
+import "./Profile.css";
 // ~~~~~~~~~~~~~~~ Sweet Alert ~~~~~~~~~~~~~~~~~~
 import Swal from "sweetalert2";
 
 export default function Profile({ user }) {
   const dispatch = useDispatch();
   const [viewLastTen, setViewLastTen] = useState(true);
-
 
   useEffect(() => {
     if (user && user.user_id) {
@@ -35,28 +35,20 @@ export default function Profile({ user }) {
     setViewLastTen(!viewLastTen);
   };
 
-  // const user = useSelector((store) => store.user);
   const currentUser = user.username;
   const userId = user.user_id;
-  console.log("FROM PROFILE: ", userId);
-
   const userRounds = useSelector((store) => store.totalRounds);
-  console.log("USER ROUNDS: ", userRounds);
-
   const games = useSelector((store) => store.gamesReducer);
 
   // Filter the games based on the user_id
   const filteredGames = games.filter((game) => game.user_id === userId);
-
+  // For last 5 games, and 10 games, filter
   const lastFiveGames = filteredGames.slice(-5);
-  console.log("Last five games: ", lastFiveGames);
-
   const lastTenGames = filteredGames.slice(-10);
-  console.log("Last ten games: ", lastTenGames);
-
+  // Variables to pass as props to LineDot and HorizontalBars
   const scoresArrayTen = lastTenGames.map((game) => game.total_game_score);
   const scoresArrayFive = lastFiveGames.map((game) => game.total_game_score);
-   
+
   const showAlert = () => {
     Swal.fire({
       title: "Edit Profile Username",
@@ -129,19 +121,6 @@ export default function Profile({ user }) {
                     </Typography>
                   </div>
                 ))}
-                {/* {userRounds.map((rounds, index) => {
-                  if (rounds.user_id === userId) {
-                    return (
-                      <div key={index}>
-                        <Typography variant="body2">
-                          Total Rounds Played: {rounds.total_rounds_played}
-                        </Typography>
-                      </div>
-                    );
-                  } else {
-                    return null;
-                  }
-                })} */}
                 <br />
               </div>
             </div>
@@ -154,14 +133,31 @@ export default function Profile({ user }) {
           <div style={{ display: "flex", flexDirection: "row" }}>
             <Card elevation={12} style={{ borderRadius: "10px" }}>
               <CardContent>
-              <button onClick={handleViewToggle}>
-        View Last {viewLastTen ? "5" : "10"} Games
-      </button>
-      <LineDot viewLastTen={viewLastTen} scoresArrayFive={scoresArrayFive} scoresArrayTen={scoresArrayTen} />
+                <div style={{ display: "flex", justifyContent: "right" }}>
+                  <Button
+                    variant="outlined"
+                    onClick={handleViewToggle}
+                    style={{ borderRadius: "10px" }}
+                  >
+                    <InsightsIcon />
+                    &nbsp;{viewLastTen ? "5" : "10"}
+                  </Button>
+                </div>
+                <LineDot
+                  viewLastTen={viewLastTen}
+                  scoresArrayFive={scoresArrayFive}
+                  scoresArrayTen={scoresArrayTen}
+                />
                 {/* <LineDot userId={userId} scoresArrayTen={scoresArrayTen} scoresArrayFive={scoresArrayFive} /> */}
                 <Card elevation={5} style={{ borderRadius: "10px" }}>
                   <CardContent style={{ textAlign: "center" }}>
-                  <Typography>Data from the last {viewLastTen ? "10" : "5"} games</Typography>
+                    <Typography>
+                      Data from the last{" "}
+                      <span style={{ fontWeight: "bold" }}>
+                        {viewLastTen ? "10" : "5"}
+                      </span>{" "}
+                      games
+                    </Typography>
                   </CardContent>
                 </Card>
               </CardContent>
