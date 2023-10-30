@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -20,6 +20,8 @@ import Swal from "sweetalert2";
 
 export default function Profile({ user }) {
   const dispatch = useDispatch();
+  const [viewLastTen, setViewLastTen] = useState(true);
+
 
   useEffect(() => {
     if (user && user.user_id) {
@@ -28,6 +30,10 @@ export default function Profile({ user }) {
       dispatch({ type: "FETCH_ROUNDS", payload: user.user_id });
     }
   }, [dispatch, user]);
+
+  const handleViewToggle = () => {
+    setViewLastTen(!viewLastTen);
+  };
 
   // const user = useSelector((store) => store.user);
   const currentUser = user.username;
@@ -148,10 +154,14 @@ export default function Profile({ user }) {
           <div style={{ display: "flex", flexDirection: "row" }}>
             <Card elevation={12} style={{ borderRadius: "10px" }}>
               <CardContent>
-                <LineDot userId={userId} scoresArrayTen={scoresArrayTen} scoresArrayFive={scoresArrayFive} />
+              <button onClick={handleViewToggle}>
+        View Last {viewLastTen ? "5" : "10"} Games
+      </button>
+      <LineDot viewLastTen={viewLastTen} scoresArrayFive={scoresArrayFive} scoresArrayTen={scoresArrayTen} />
+                {/* <LineDot userId={userId} scoresArrayTen={scoresArrayTen} scoresArrayFive={scoresArrayFive} /> */}
                 <Card elevation={5} style={{ borderRadius: "10px" }}>
                   <CardContent style={{ textAlign: "center" }}>
-                    <Typography>Data from the last 10 games</Typography>
+                  <Typography>Data from the last {viewLastTen ? "10" : "5"} games</Typography>
                   </CardContent>
                 </Card>
               </CardContent>
