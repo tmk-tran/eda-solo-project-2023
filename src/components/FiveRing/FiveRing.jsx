@@ -7,13 +7,11 @@ import "./FiveRing.css";
 import {
   Card,
   CardContent,
-  TextField,
   FormControl,
   Button,
   Typography,
   Table,
   TableBody,
-  TableContainer,
   TableHead,
   TableRow,
 } from "@mui/material";
@@ -331,7 +329,7 @@ export default function FourRing() {
   ];
 
   return (
-    <div className="page-container">
+    <div className="page-container" style={{ backgroundImage: "none" }}>
       <div className="top-buttons">
         <Button
           id="cancel-button"

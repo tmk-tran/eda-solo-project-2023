@@ -127,7 +127,7 @@ export default function Trap() {
     setTrapHit(trapHit + 1);
     if (trapHit >= 25) {
       setTrapHit(25);
-      alert("Perfect Score!");
+      perfectGame();
     }
   };
 
@@ -253,24 +253,34 @@ export default function Trap() {
     });
   };
 
+  const perfectGame = () => {
+    Swal.fire({
+      title: "Perfect Score!",
+      showClass: {
+        popup: "animate__animated animate__fadeInDown",
+      },
+      hideClass: {
+        popup: "animate__animated animate__fadeOutUp",
+      },
+      confirmButtonColor: "#1976D2",
+    });
+  };
+
   return (
-    <div className="page-container">
+    <div className="page-container" style={{ backgroundImage: "none" }}>
       <div className="top-buttons">
         <Button
+          id="cancel-button"
+          variant="outlined"
           onClick={() => {
             resetScore();
             dispatch({ type: "DELETE_GAME", payload: newGameId });
             history.push("/games");
           }}
-          style={{ backgroundColor: "#5d0606", color: "white" }}
         >
           Cancel
         </Button>{" "}
-        <Button
-          variant="outlined"
-          onClick={addGame}
-          style={{ backgroundColor: "#1e9521", color: "white" }}
-        >
+        <Button id="finish-btn" variant="outlined" onClick={addGame}>
           Finish
         </Button>
       </div>
@@ -346,7 +356,7 @@ export default function Trap() {
                   <TextField
                     type="text"
                     label="Game Notes"
-                    value={gameNotes}
+                    // value={gameNotes}
                     onChange={(e) => setGameNotes(e.target.value)}
                     onBlur={saveNotes}
                   />
@@ -355,6 +365,7 @@ export default function Trap() {
                   <>
                     {/* <GameTimer /> gameId={game_id} */}
                     <Typography
+                      id="notes-edit"
                       variant="h7"
                       onClick={() => {
                         setIsEdit(!isEdit);
@@ -369,7 +380,14 @@ export default function Trap() {
           </CardContent>
         </Card>
       </div>
-      <h1>Trap Page</h1>
+      <h1>Trap</h1>
+      <Typography style={{ textAlign: "center" }}>
+        <img
+          src="/images/clay.png"
+          alt="A set of trap clays"
+          style={{ height: "100px", width: "100px" }}
+        />
+      </Typography>
       <Card className="trap-hit-card">
         <CardContent>
           <div className="trap-hit-display">

@@ -308,7 +308,7 @@ export default function FourRing() {
   ];
 
   return (
-    <div className="page-container">
+    <div className="page-container" style={{ backgroundImage: "none" }}>
       <div className="top-buttons">
         <Button
           id="cancel-button"
@@ -425,7 +425,7 @@ export default function FourRing() {
         </Card>
       </div>
       <div className="container">
-      <div className="game-menu">
+        <div className="game-menu">
           <GameInfo />
         </div>
         <div className="game-menu2">

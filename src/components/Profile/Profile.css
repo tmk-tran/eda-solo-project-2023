@@ -13,8 +13,11 @@
 .page-container {
   /* display: flex; */
   /* flex-direction: row; */
-  /* margin-top: 55px; */
-  margin-top: 8vh;
+  margin-top: 5vh;
+  background-image: url(https://png.pngtree.com/thumb_back/fh260/background/20230712/pngtree-d-rendered-target-with-arrows-perfect-for-aiming-and-focus-on-image_3848509.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
 }
 
 #profile-card {
@@ -27,10 +30,10 @@
   .page-container {
     flex-direction: column;
     margin-top: 0px;
+    background-image: none;
   }
 
   #profile-card {
     width: 100%; /* Adjust the width as needed for mobile layout */
-    margin: 10px 0; /* Add some spacing between cards */
   }
 }

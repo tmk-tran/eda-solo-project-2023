@@ -263,24 +263,20 @@ export default function QuickRound() {
   };
 
   return (
-    <div className="page-container">
+    <div className="page-container" style={{ backgroundImage: "none" }}>
       <div className="top-buttons">
         <Button
+          id="cancel-button"
           variant="outlined"
           onClick={() => {
             resetScore();
             dispatch({ type: "DELETE_GAME", payload: newGameId });
             history.push("/games");
           }}
-          style={{ backgroundColor: "#5d0606", color: "white" }}
         >
           Cancel
         </Button>{" "}
-        <Button
-          variant="outlined"
-          onClick={addGame}
-          style={{ backgroundColor: "#1e9521", color: "white" }}
-        >
+        <Button id="finish-btn" variant="outlined" onClick={addGame}>
           Finish
         </Button>
       </div>
@@ -353,10 +349,10 @@ export default function QuickRound() {
               <>
                 {isEdit ? (
                   // Render an input field in edit mode
-                  <input
+                  <TextField
                     type="text"
                     label="Game Notes"
-                    value={gameNotes}
+                    // value={gameNotes}
                     onChange={(e) => setGameNotes(e.target.value)}
                     onBlur={saveNotes}
                   />
@@ -365,6 +361,7 @@ export default function QuickRound() {
                   <>
                     {/* <GameTimer /> gameId={game_id} */}
                     <Typography
+                      id="notes-edit"
                       variant="h7"
                       onClick={() => {
                         setIsEdit(!isEdit);

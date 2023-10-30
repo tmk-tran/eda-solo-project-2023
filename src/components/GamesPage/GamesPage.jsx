@@ -188,7 +188,7 @@ export default function GamesPage() {
                     alt="An icon of a bullseye target"
                     onClick={() => {
                       dispatch({ type: "ADD_GAME" });
-                      history.push("/trap");
+                      history.push("/bulls");
                     }}
                   ></img>
                 </Typography>

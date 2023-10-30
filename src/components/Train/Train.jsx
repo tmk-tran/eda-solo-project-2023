@@ -55,7 +55,7 @@ export default function Train() {
             <Button
               variant="contained"
               color="primary"
-              onClick={() => history.push("/games")}
+              onClick={() => history.push("/quickround")}
             >
               Start a Game
             </Button>

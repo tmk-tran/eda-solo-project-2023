@@ -98,7 +98,7 @@ export default function Profile({ user }) {
           <div className="profile-head">
             <div className="profile-name-icon">
               <AccountCircleIcon
-                style={{ fontSize: "30px", marginRight: "5px" }}
+                style={{ fontSize: "40px", marginRight: "5px" }}
               />
               <div className="current-user">
                 <Typography variant="body1">{currentUser}</Typography>
