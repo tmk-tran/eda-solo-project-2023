@@ -19,7 +19,7 @@ function LoginPage() {
       <Paper id="login-message">
         <br />
         <Paper id="login-header" elevation={9}>
-          <Typography variant="h4">Welcome To ScoreMark</Typography>
+          <Typography variant="h3">Welcome To ScoreMark</Typography>
         </Paper>
         <br />
         <LoginForm />

@@ -88,6 +88,7 @@ function App() {
     dispatch({ type: "FETCH_GAMES" });
     dispatch({ type: "FETCH_ROUNDS" });
     dispatch({ type: "FETCH_TOTAL_ROUNDS" });
+    dispatch({ type: "FETCH_ROUND_AVG" });
   }, [dispatch]);
 
   return (

@@ -99,7 +99,7 @@ Form Treatment
 -------------------------------------------------------------------------------- */
 
 #login-card {
-  width: 50%;
+  width: 90%;
   margin: 0 auto;
   border-radius: 10px;
 }
@@ -118,12 +118,13 @@ Login Page Treatment
 
 @media (max-width: 768px) {
   #login-paper {
-    background-size: 100vh 100vh;
+    background-image: none;
   }
   #login-message {
     width: 100vh;
     height: auto;
     margin: 0;
+    position: relative;
     top: 0;
     border-radius: 0;
   }
@@ -146,8 +147,8 @@ Login Page Treatment
   opacity: 0.9;
   position: relative;
   margin: 0 auto;
-  border-radius: 20px;
-  top: 30%;
+  border-radius: 25px;
+  top: 25%;
   width: 25%;
   min-width: 350px;
 }

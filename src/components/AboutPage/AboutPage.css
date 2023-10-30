@@ -12,7 +12,7 @@
 }
 
 #email-link:hover {
-  color: blue;
+  color: lightblue;
 }
 
 @media (max-width: 767px) {

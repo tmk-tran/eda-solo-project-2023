@@ -265,13 +265,13 @@ export default function Bulls() {
   };
 
   const buttonLabel = <QueryStatsIcon />;
-  const targetOptions = [
-    `Bull's: ${bulls}`,
-    `Total = ${totalScore}`,
-  ];
+  const targetOptions = [`Bull's: ${bulls}`, `Total = ${totalScore}`];
 
   return (
-    <div className="page-container" style={{ backgroundImage: "none" }}>
+    <div
+      className="page-container"
+      style={{ backgroundImage: "none", position: "relative", top: "10px" }}
+    >
       <div className="top-buttons">
         <Button
           id="cancel-button"
@@ -384,7 +384,7 @@ export default function Bulls() {
         </Card>
       </div>
       <div className="container">
-      <div className="game-menu">
+        <div className="game-menu">
           <GameInfo />
         </div>
         <div className="game-menu2">

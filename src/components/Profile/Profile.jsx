@@ -39,15 +39,19 @@ export default function Profile({ user }) {
   const userId = user.user_id;
   const userRounds = useSelector((store) => store.totalRounds);
   const games = useSelector((store) => store.gamesReducer);
+  const roundAvg = useSelector((store) => store.roundAvg);
+  console.log("roundAVG: ", roundAvg);
 
   // Filter the games based on the user_id
   const filteredGames = games.filter((game) => game.user_id === userId);
   // For last 5 games, and 10 games, filter
   const lastFiveGames = filteredGames.slice(-5);
   const lastTenGames = filteredGames.slice(-10);
+  const lastTenRounds = roundAvg.slice(-10);
   // Variables to pass as props to LineDot and HorizontalBars
   const scoresArrayTen = lastTenGames.map((game) => game.total_game_score);
   const scoresArrayFive = lastFiveGames.map((game) => game.total_game_score);
+  const roundAvgArray = lastTenRounds.map((round) => round.average_round_score);
 
   const showAlert = () => {
     Swal.fire({
@@ -130,47 +134,60 @@ export default function Profile({ user }) {
           </div>
           <Typography variant="h6">Dashboard</Typography>
           <br />
-          <div style={{ display: "flex", flexDirection: "row" }}>
-            <Card elevation={12} style={{ borderRadius: "10px" }}>
-              <CardContent>
-                <div style={{ display: "flex", justifyContent: "right" }}>
-                  <Button
-                    variant="outlined"
-                    onClick={handleViewToggle}
-                    style={{ borderRadius: "10px" }}
-                  >
-                    <InsightsIcon />
-                    &nbsp;{viewLastTen ? "5" : "10"}
-                  </Button>
-                </div>
-                <LineDot
-                  viewLastTen={viewLastTen}
-                  scoresArrayFive={scoresArrayFive}
-                  scoresArrayTen={scoresArrayTen}
-                />
-                {/* <LineDot userId={userId} scoresArrayTen={scoresArrayTen} scoresArrayFive={scoresArrayFive} /> */}
-                <Card elevation={5} style={{ borderRadius: "10px" }}>
-                  <CardContent style={{ textAlign: "center" }}>
-                    <Typography>
-                      Data from the last{" "}
-                      <span style={{ fontWeight: "bold" }}>
-                        {viewLastTen ? "10" : "5"}
-                      </span>{" "}
-                      games
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </CardContent>
-            </Card>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <Card elevation={12} style={{ borderRadius: "10px" }}>
+                <CardContent>
+                  <div style={{ display: "flex", justifyContent: "right" }}>
+                    <Button
+                      variant="outlined"
+                      onClick={handleViewToggle}
+                      style={{ borderRadius: "10px" }}
+                    >
+                      <InsightsIcon />
+                      &nbsp;{viewLastTen ? "5" : "10"}
+                    </Button>
+                  </div>
+                  <LineDot
+                    viewLastTen={viewLastTen}
+                    scoresArrayFive={scoresArrayFive}
+                    scoresArrayTen={scoresArrayTen}
+                  />
+                  <Card elevation={5} style={{ borderRadius: "10px" }}>
+                    <CardContent style={{ textAlign: "center" }}>
+                      <Typography>
+                        Data from the last{" "}
+                        <span style={{ fontWeight: "bold" }}>
+                          {viewLastTen ? "10" : "5"}
+                        </span>{" "}
+                        games
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </CardContent>
+              </Card>
+            </div>
+            <br />
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <Card elevation={12} style={{ borderRadius: "10px" }}>
+                <CardContent>
+                  <HorizontalBars roundAvgArray={roundAvgArray} />
+                  <Card elevation={5} style={{ borderRadius: "10px" }}>
+                    <CardContent>
+                      <Typography style={{ textAlign: "center" }}>(Last 10 Games)</Typography>
+                    </CardContent>
+                  </Card>
+                </CardContent>
+              </Card>
+            </div>
           </div>
-          <br />
-          <Card elevation={12}>
-            <CardContent>
-              <Typography variant="h6" type="graph">
-                <HorizontalBars />
-              </Typography>
-            </CardContent>
-          </Card>
           <br />
         </CardContent>
       </Card>

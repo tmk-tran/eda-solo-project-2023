@@ -294,7 +294,7 @@ export default function ThreeRing() {
   ];
 
   return (
-    <div className="page-container" style={{ backgroundImage: "none" }}>
+    <div className="page-container" style={{ backgroundImage: "none", position: "relative", top: "10px" }}>
       <div className="top-buttons">
         <Button
           id="cancel-button"

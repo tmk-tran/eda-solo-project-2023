@@ -58,10 +58,11 @@ export default function LineDot({
             {
               label: "Score",
               data: scoresArrayTen,
+              color: "#1976D2"
             },
           ]}
-          width={450}
-          height={300}
+          width={700}
+          height={275}
           minWidth={400}
         />
       ) : (
@@ -79,10 +80,11 @@ export default function LineDot({
             {
               label: "Score",
               data: scoresArrayFive,
+              // color: "#94e0f7"
             },
           ]}
-          width={450}
-          height={300}
+          width={700}
+          height={275}
           minWidth={400}
         />
       )}

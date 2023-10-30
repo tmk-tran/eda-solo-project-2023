@@ -42,14 +42,14 @@ export default function ContactInfo() {
             target="_blank"
             rel="noopener"
           >
-            <GitHubIcon style={{ fontSize: "30px" }} />
+            <GitHubIcon style={{ fontSize: "40px" }} />
           </Link>{" "}
           <Link
             href="https://www.linkedin.com/in/your-linkedin-profile"
             target="_blank"
             rel="noopener"
           >
-            <LinkedInIcon style={{ fontSize: "30px" }} />
+            <LinkedInIcon style={{ fontSize: "40px" }} />
           </Link>
         </Typography>
       </div>
