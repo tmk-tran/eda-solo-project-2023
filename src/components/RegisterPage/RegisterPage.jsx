@@ -8,25 +8,24 @@ function RegisterPage() {
   const history = useHistory();
 
   return (
-    <div>
+    <div id="login-paper">
       <RegisterForm />
 
       <center>
-        <br />
-        <Card style={{ width: "75%" }}>
+        <Card style={{ width: "35%", borderRadius: "15px" }}>
           <CardContent>
-          <Typography variant="h6">
-            Have an account?{" "}
-            <Button
-              variant="outlined"
-              onClick={() => {
-                history.push("/login");
-              }}
-            >
-              Login
-            </Button>{" "}
-            Here
-          </Typography>
+            <Typography variant="h6">
+              Have an account?{" "}
+              <Button
+                variant="outlined"
+                onClick={() => {
+                  history.push("/login");
+                }}
+              >
+                Login
+              </Button>{" "}
+              Here
+            </Typography>
           </CardContent>
         </Card>
       </center>

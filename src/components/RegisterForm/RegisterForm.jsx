@@ -30,9 +30,10 @@ function RegisterForm() {
   }; // end registerUser
 
   return (
-    <>
-    <center>
-      <Card style={{ width: "75%", margin: "0 auto" }}>
+    <div
+      style={{ padding: "50px", display: "flex", justifyContent: "center" }}
+    >
+      <Card style={{ width: "75%", height: "40vh" }}>
         <CardContent>
           <Typography variant="h5">Register User</Typography>
           <Typography variant="h6">Please Enter Your Information:</Typography>
@@ -72,8 +73,7 @@ function RegisterForm() {
           </FormControl>
         </CardContent>
       </Card>
-      </center>
-    </>
+    </div>
   );
 }
 

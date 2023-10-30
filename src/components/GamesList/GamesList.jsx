@@ -204,16 +204,16 @@ export default function GamesList({ target, roundScores }) {
                 <TextField
                   label="Total Game Score"
                   type="number"
-                  value={editScore}
-                  onChange={(e) => setEditScore(e.target.value)}
+                  value={editTotalScore}
+                  onChange={(e) => setEditTotalScore(e.target.value)}
                   fullWidth
                   style={{ marginRight: "5px" }}
                 />
                 <TextField
                   label="Target Score Value"
                   type="number"
-                  value={editTotalScore}
-                  onChange={(e) => setEditTotalScore(e.target.value)}
+                  value={editScore}
+                  onChange={(e) => setEditScore(e.target.value)}
                   fullWidth
                 />
                 <div className="list-buttons">
