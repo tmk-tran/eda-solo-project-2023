@@ -135,6 +135,7 @@ export default function Profile({ user }) {
           <Typography variant="h6">Dashboard</Typography>
           <br />
           <div
+            className="dashboard-container"
             style={{
               display: "flex",
               flexDirection: "column",

@@ -172,6 +172,7 @@ export default function GamesList({ target, roundScores }) {
                   style={{
                     textAlign: "center",
                     backgroundColor: "rgb(18 29 94)",
+                    borderRadius: "10px",
                     color: "ghostwhite",
                   }}
                 >

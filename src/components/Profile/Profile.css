@@ -44,7 +44,12 @@
     background-image: none;
   }
 
+  .dashboard-container {
+    width: 100%;
+  }
+
   #profile-card {
-    width: 100%; /* Adjust the width as needed for mobile layout */
+    width: 100%;
+    margin: 0;
   }
 }
