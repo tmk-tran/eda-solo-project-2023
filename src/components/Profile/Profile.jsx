@@ -50,7 +50,6 @@ export default function Profile({ user }) {
 
   const scoresArrayTen = lastTenGames.map((game) => game.total_game_score);
 
-
   const showAlert = () => {
     Swal.fire({
       title: "Edit Profile Username",
@@ -145,13 +144,18 @@ export default function Profile({ user }) {
           </div>
           <Typography variant="h6">Dashboard</Typography>
           <br />
-          <Card elevation={12}>
-            <CardContent>
-              <Typography variant="h6">
+          <div style={{ display: "flex", flexDirection: "row" }}>
+            <Card elevation={12}>
+              <CardContent>
                 <LineDot userId={userId} scoresArrayTen={scoresArrayTen} />
-              </Typography>
-            </CardContent>
-          </Card>
+                <Card elevation={5} style={{ borderRadius: "10px" }}>
+                  <CardContent style={{ textAlign: "center" }}>
+                    Data from the last 10 games
+                  </CardContent>
+                </Card>
+              </CardContent>
+            </Card>
+          </div>
           <br />
           <Card elevation={12}>
             <CardContent>

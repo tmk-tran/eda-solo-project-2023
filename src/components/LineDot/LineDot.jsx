@@ -21,36 +21,26 @@ export default function LineDot({ scoresArrayTen }) {
 
   return (
     <>
-      {/* <LineChart
-        xAxis={[{ label: "Games", data: [1, 2, 3, 4, 5, 6, 7, 8] }]}
+      <LineChart
+        xAxis={[
+          {
+            label: "Games",
+            data: Array.from(
+              { length: scoresArrayTen.length },
+              (_, index) => index + 1
+            ),
+          },
+        ]}
         series={[
           {
             label: "Score",
-            data:
-              scoresArrayTen.length > 0
-                ? scoresArrayTen
-                : new Array(8 - scoresArrayTen.length).fill(0).concat(scoresArrayTen),
+            data: scoresArrayTen,
           },
         ]}
-        width={500}
+        width={450}
         height={300}
-      /> */}
-       <LineChart
-      xAxis={[
-        {
-          label: "Games",
-          data: Array.from({ length: scoresArrayTen.length }, (_, index) => index + 1),
-        }
-      ]}
-      series={[
-        {
-          label: "Score",
-          data: scoresArrayTen,
-        },
-      ]}
-      width={500}
-      height={300}
-    />
+        minWidth={400}
+      />
     </>
   );
 }
