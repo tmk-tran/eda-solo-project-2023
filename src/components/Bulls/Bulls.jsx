@@ -56,7 +56,7 @@ export default function Bulls() {
   const [gameDate, setGameDate] = useState(new Date()); // Initialize with the current date
   // console.log("GAME DATE IS:", gameDate);
   const [gameNotes, setGameNotes] = useState(getCookie("notes") || "Notes");
-  const [targetName, setTargetName] = useState("Bullseye Only");
+  const [targetName, setTargetName] = useState("Bullseyes Only");
   const [targetScore, setTargetScore] = useState(0); // update this when we decide what it is for
 
   useEffect(() => {

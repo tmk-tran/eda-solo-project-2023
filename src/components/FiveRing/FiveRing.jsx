@@ -9,6 +9,7 @@ import {
   CardContent,
   FormControl,
   Button,
+  TextField,
   Typography,
   Table,
   TableBody,
@@ -419,8 +420,9 @@ export default function FourRing() {
               <>
                 {isEdit ? (
                   // Render an input field in edit mode
-                  <input
+                  <TextField
                     type="text"
+                    label="Game Notes"
                     // value={gameNotes}
                     onChange={(e) => setGameNotes(e.target.value)}
                     onBlur={saveNotes}
@@ -430,6 +432,7 @@ export default function FourRing() {
                   <>
                     {/* <GameTimer /> gameId={game_id} */}
                     <Typography
+                      id="notes-edit"
                       variant="h7"
                       onClick={() => {
                         setIsEdit(!isEdit);

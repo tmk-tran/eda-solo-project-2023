@@ -3,19 +3,11 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import {
-  Box,
   Card,
   CardContent,
   Grid,
-  TextField,
-  FormControl,
-  Button,
   Typography,
 } from "@mui/material";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import "./GamesPage.css";
 
 export default function GamesPage() {
@@ -29,7 +21,7 @@ export default function GamesPage() {
           variant="h4"
           style={{ textAlign: "center", color: "white" }}
         >
-          Games:
+          Games
         </Typography>
         <Grid id="grid-games" container spacing={1}>
           <Grid item xs={12} sm={6} md={4} lg={4}>

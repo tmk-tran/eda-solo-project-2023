@@ -37,6 +37,20 @@ export default function Profile({ user }) {
   const userRounds = useSelector((store) => store.totalRounds);
   console.log("USER ROUNDS: ", userRounds);
 
+  const games = useSelector((store) => store.gamesReducer);
+
+  // Filter the games based on the user_id
+  const filteredGames = games.filter((game) => game.user_id === userId);
+
+  const lastFiveGames = filteredGames.slice(-5);
+  console.log("Last five games: ", lastFiveGames);
+
+  const lastTenGames = filteredGames.slice(-10);
+  console.log("Last ten games: ", lastTenGames);
+
+  const scoresArrayTen = lastTenGames.map((game) => game.total_game_score);
+
+
   const showAlert = () => {
     Swal.fire({
       title: "Edit Profile Username",
@@ -134,7 +148,7 @@ export default function Profile({ user }) {
           <Card elevation={12}>
             <CardContent>
               <Typography variant="h6">
-                <LineDot userId={userId} />
+                <LineDot userId={userId} scoresArrayTen={scoresArrayTen} />
               </Typography>
             </CardContent>
           </Card>

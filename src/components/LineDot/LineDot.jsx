@@ -5,19 +5,19 @@ import { LineChart } from "@mui/x-charts/LineChart";
 import { ChartsXAxis } from "@mui/x-charts/ChartsXAxis";
 import { ChartsYAxis } from "@mui/x-charts/ChartsYAxis";
 
-export default function LineDot({ userId }) {
-  const games = useSelector((store) => store.gamesReducer);
-  console.log("Games from line dot: ", games);
+export default function LineDot({ scoresArrayTen }) {
+  // const games = useSelector((store) => store.gamesReducer);
 
   // Filter the games based on the user_id
-  const filteredGames = games.filter((game) => game.user_id === userId);
-  console.log("Filtered games: ", filteredGames);
+  // const filteredGames = games.filter((game) => game.user_id === userId);
 
-  const lastEightGames = filteredGames.slice(-8);
-  console.log("Last five games: ", lastEightGames);
+  // const lastFiveGames = filteredGames.slice(-5);
+  // console.log("Last five games: ", lastFiveGames);
 
-  const scoresArray = lastEightGames.map((game) => game.total_game_score);
-  console.log("Scores array: ", scoresArray);
+  // const lastTenGames = filteredGames.slice(-10);
+  // console.log("Last ten games: ", lastTenGames);
+
+  // const scoresArrayTen = lastTenGames.map((game) => game.total_game_score);
 
   return (
     <>
@@ -27,9 +27,9 @@ export default function LineDot({ userId }) {
           {
             label: "Score",
             data:
-              scoresArray.length > 0
-                ? scoresArray
-                : new Array(8 - scoresArray.length).fill(0).concat(scoresArray),
+              scoresArrayTen.length > 0
+                ? scoresArrayTen
+                : new Array(8 - scoresArrayTen.length).fill(0).concat(scoresArrayTen),
           },
         ]}
         width={500}
@@ -39,13 +39,13 @@ export default function LineDot({ userId }) {
       xAxis={[
         {
           label: "Games",
-          data: Array.from({ length: scoresArray.length }, (_, index) => index + 1),
+          data: Array.from({ length: scoresArrayTen.length }, (_, index) => index + 1),
         }
       ]}
       series={[
         {
           label: "Score",
-          data: scoresArray,
+          data: scoresArrayTen,
         },
       ]}
       width={500}
