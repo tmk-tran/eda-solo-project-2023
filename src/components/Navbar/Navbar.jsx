@@ -35,7 +35,7 @@ export default function SimpleBottomNavigation() {
         >
           <BottomNavigation
             showLabels
-            style={{ backgroundColor: "#2c2b2b" }}
+            style={{ backgroundColor: "rgb(73 75 90)" }}
             //   value={value}
             //   onChange={(event, newValue) => {
             //     setValue(newValue);

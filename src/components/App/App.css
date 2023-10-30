@@ -5,18 +5,20 @@ body,
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: avenir;
   margin: 0px;
-  background-color: #6d6a6a;
-}
-
-h1 {
-  color: rgb(20, 20, 22);
+  background-color: black;
 }
 
 img {
   display: inline-block;
   max-width: 100%;
+}
+
+h1 {
+  color: ghostwhite;
+  text-align: center;
+  font-family: avenir;
 }
 
 /* --------------------------------------------------------------------------------
@@ -33,12 +35,12 @@ Button
 -------------------------------------------------------------------------------- */
 
 .btn {
-  display: inline-block;
+  /* display: inline-block; */
   padding: 10px 20px;
   border-color: #014041;
   border-width: 1px 1px 3px;
   border-radius: 4px;
-  background-color: #00acb0;
+  background-color: #4770ea;
   color: #f8f8f8;
   font-size: 1.1rem;
   outline: 0;
@@ -61,25 +63,20 @@ Button
 }
 
 .btn:hover {
-  background-color: #008183;
+  background-color: #5f6064;
   text-decoration: none;
 }
 
-/* This line makes the "Register" and "Login" buttons look like links */
-.btn_asLink {
-  padding: 0;
-  border-width: 0;
-  border-bottom: 1px solid #444;
-  border-radius: 0;
-  background: none;
-  font: inherit;
-  color: #444;
+/* Dark / Light Mode button */
+.dark-mode-btn {
+  position: fixed;
+  bottom: 0;
+  background-color: rgb(73 75 90);
+  border-radius: 10px;
 }
 
-.btn_asLink:hover {
-  background-color: transparent;
-  border-color: #008183;
-  color: #008183;
+.dark-mode-btn:hover {
+  cursor: crosshair;
 }
 
 /* --------------------------------------------------------------------------------
@@ -101,18 +98,68 @@ Alert
 Form Treatment
 -------------------------------------------------------------------------------- */
 
-.formPanel {
-  box-sizing: border-box;
-  width: 400px;
-  max-width: 100%;
-  padding: 25px;
-  margin: 0 auto 20px;
-  background-color: #efefef;
-  border-radius: 3px;
-  box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
+#login-card {
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 10px;
 }
 
-input {
-  margin: 5px;
-  margin-bottom: 10px;
+/* --------------------------------------------------------------------------------
+Login Page Treatment
+---------------------------------------------------------------------------------- */
+
+#login-paper {
+  height: 100vh;
+  background-image: url(https://img.freepik.com/premium-vector/abstract-technology-background_42421-335.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+@media (max-width: 768px) {
+  #login-paper {
+    background-image: none;
+  }
+  #login-message {
+    width: 100vh;
+    height: auto;
+    margin: 0;
+    position: relative;
+    top: 0;
+    border-radius: 0;
+  }
+
+  .dark-mode-btn {
+    position: fixed;
+    bottom: 55px;
+    background-color: transparent;
+  }
+}
+
+#login-header {
+  background-color: #62a9c6;
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+#login-message {
+  opacity: 0.9;
+  position: relative;
+  margin: 0 auto;
+  border-radius: 25px;
+  top: 25%;
+  width: 25%;
+  min-width: 350px;
+}
+
+#login-button:hover {
+  background-color: #6ab3cd;
+  color: black;
+  cursor: crosshair;
+}
+
+#register-button:hover {
+  background-color: rgb(153 205 224);
+  color: white;
 }

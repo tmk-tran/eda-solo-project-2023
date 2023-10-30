@@ -64,54 +64,77 @@ export default function Results() {
   console.log("ROUNDS MATCH:", roundsMatchGameId);
 
   return (
-    <div className="page-container">
-      <Card>
+    <div className="results-background">
+      <Card id="results-card-container">
         <CardContent>
           <Button variant="outlined" onClick={() => history.push("./train")}>
             <ClearIcon />
           </Button>
           <Celebration />
-          <h1 className="results-header">Results</h1>
           <h2 className="results-display-head">
-            <Card style={{ width: "50%", margin: "0 auto" }} elevation={6}>
+            <Card id="results-card" elevation={10}>
               <CardContent>
-                <EmojiEventsOutlinedIcon style={{ fontSize: "40px" }} />
-                Score: {finalGameScore} points
-                <EmojiEventsOutlinedIcon style={{ fontSize: "40px" }} />
+                <Typography variant="h4">Results</Typography>
               </CardContent>
             </Card>
           </h2>
-          <Card
-            style={{ width: "50%", margin: "0 auto", borderRadius: "10px" }}
-            elevation={8}
-          >
+          <Card id="results-card2" elevation={10}>
             <CardContent>
-              <TableContainer component={Paper} elevation={6}>
-                <Table sx={{ minWidth: 700 }} aria-label="customized table">
-                  <TableHead>
-                    <TableRow>
-                      <StyledTableCell style={{ fontWeight: "bold" }}>
-                        Round
-                      </StyledTableCell>
-                      <StyledTableCell style={{ fontWeight: "bold" }}>
-                        Round Score
-                      </StyledTableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {roundsMatchGameId.map((round, i) => (
-                      <StyledTableRow key={i}>
-                        <StyledTableCell>
-                          # {round.round_number}
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <Card
+                  elevation={7}
+                  style={{ width: "50%", marginRight: "2px" }}
+                >
+                  <CardContent style={{ height: "88%" }}>
+                    <div
+                      style={{
+                        textAlign: "center",
+                        backgroundColor: "rgb(102 116 102)",
+                        borderRadius: "15px",
+                        height: "100%",
+                      }}
+                    >
+                      <EmojiEventsOutlinedIcon
+                        style={{ fontSize: "60px", margin: "20px auto" }}
+                      />
+                      <Typography variant="h6">Score Total:</Typography>
+                      <Typography variant="h5" style={{ fontWeight: "bold" }}>
+                        {finalGameScore} points
+                      </Typography>
+                    </div>
+                  </CardContent>
+                </Card>
+                <TableContainer
+                  component={Paper}
+                  elevation={6}
+                  style={{ width: "50%" }}
+                >
+                  <Table sx={{ minWidth: 100 }} className="results-table">
+                    <TableHead>
+                      <TableRow>
+                        <StyledTableCell style={{ fontWeight: "bold" }}>
+                          Round
                         </StyledTableCell>
-                        <StyledTableCell>
-                          {round.round_score} Points
+                        <StyledTableCell style={{ fontWeight: "bold" }}>
+                          Round Score
                         </StyledTableCell>
-                      </StyledTableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {roundsMatchGameId.map((round, i) => (
+                        <StyledTableRow key={i}>
+                          <StyledTableCell>
+                            # {round.round_number}
+                          </StyledTableCell>
+                          <StyledTableCell style={{ fontWeight: "bold" }}>
+                            {round.round_score} Points
+                          </StyledTableCell>
+                        </StyledTableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </div>
             </CardContent>
           </Card>
         </CardContent>

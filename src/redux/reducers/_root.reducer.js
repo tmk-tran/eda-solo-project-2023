@@ -5,10 +5,9 @@ import user from "./user.reducer";
 // import myItemsReducer from './myItems.reducer';
 import gamesReducer from "./games.reducer";
 import roundReducer from "./rounds.reducer";
-import scoresReducer from "./scores.reducer";
 import sumRound from "./sumRound.reducer";
 import totalRounds from "./totalRounds.reducer";
-
+import roundAvg from "./roundScoreAvg.reducer";
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -22,9 +21,9 @@ const rootReducer = combineReducers({
   // myItemsReducer,
   gamesReducer,
   roundReducer,
-  scoresReducer,
   sumRound,
   totalRounds,
+  roundAvg,
 });
 
 export default rootReducer;

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 // import GameTimer from "../GameTimer/GameTimer"; // timer keeps resetting, figure out issue
 import { useDispatch, useSelector } from "react-redux";
-import "./ThreeRing.css";
+import "./Bulls.css";
 import {
   Card,
   CardContent,
@@ -29,7 +29,7 @@ import Swal from "sweetalert2";
 import GameInfo from "../GameInfo/GameInfo";
 import GameMenu from "../GameMenu/GameMenu";
 
-export default function ThreeRing() {
+export default function Bulls() {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -39,6 +39,7 @@ export default function ThreeRing() {
   const [showSettings, setShowSettings] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [replaceName, setReplaceName] = useState(false);
+  const [roundName, setRoundName] = useState(getCookie("round") || "Bulls");
   // Define state to manage round scores and round headers
   const [roundScores, setRoundScores] = useState([]); // Array to store round scores
   const [roundHeaders, setRoundHeaders] = useState([]); // Array to store round headers
@@ -55,7 +56,7 @@ export default function ThreeRing() {
   const [gameDate, setGameDate] = useState(new Date()); // Initialize with the current date
   // console.log("GAME DATE IS:", gameDate);
   const [gameNotes, setGameNotes] = useState(getCookie("notes") || "Notes");
-  const [targetName, setTargetName] = useState("3-Ring");
+  const [targetName, setTargetName] = useState("Bullseyes Only");
   const [targetScore, setTargetScore] = useState(0); // update this when we decide what it is for
 
   useEffect(() => {
@@ -82,12 +83,9 @@ export default function ThreeRing() {
       backgroundColor: theme.palette.action.hover,
     },
     // hide last border
-    // "&:last-child td, &:last-child th": {
-    //   border: 0,
-    // },
-    // "&:last-child": {
-    //   borderBottom: '1px solid white', // Add a border to the last row
-    // },
+    "&:last-child td, &:last-child th": {
+      border: 0,
+    },
   }));
 
   // Bring in Rounds
@@ -144,23 +142,6 @@ export default function ThreeRing() {
     setRoundNumber(1);
     resetScore();
     // alert("Added Target!");
-  };
-
-  // Function to handle clicking on the zone and recording points
-  const clickOuter = () => {
-    const newCount = Number(pointsOuter) + 8;
-
-    // This is making a cookie called count with the newCount amount
-    // It will replace anything called count
-    document.cookie = `outer=${newCount}`;
-    setPointsOuter(newCount);
-  };
-
-  const clickInner = (e) => {
-    e.stopPropagation(); // Stop event propagation to prevent outer zone click action
-    const newCount = Number(pointsInner) + 9;
-    document.cookie = `inner=${newCount}`;
-    setPointsInner(newCount);
   };
 
   const clickBull = (e) => {
@@ -257,8 +238,6 @@ export default function ThreeRing() {
 
   const resetScore = () => {
     // Clear the cookies related to the score (e.g., outer, inner, bulls)
-    document.cookie = "outer=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-    document.cookie = "inner=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
     document.cookie = "bulls=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
     document.cookie = "notes=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
     document.cookie = "round=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
@@ -286,19 +265,16 @@ export default function ThreeRing() {
   };
 
   const buttonLabel = <QueryStatsIcon />;
-  const targetOptions = [
-    `8's: ${pointsOuter}`,
-    `9's: ${pointsInner}`,
-    `10's: ${bulls}`,
-    `Total = ${totalScore}`,
-  ];
+  const targetOptions = [`Bull's: ${bulls}`, `Total = ${totalScore}`];
 
   return (
-    <div className="page-container" style={{ backgroundImage: "none", position: "relative", top: "10px" }}>
+    <div
+      className="page-container"
+      style={{ backgroundImage: "none", position: "relative", top: "10px" }}
+    >
       <div className="top-buttons">
         <Button
           id="cancel-button"
-          variant="outlined"
           onClick={() => {
             resetScore();
             dispatch({ type: "DELETE_GAME", payload: newGameId });
@@ -327,11 +303,7 @@ export default function ThreeRing() {
                   onBlur={saveName}
                 />
               )}
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={toggleSettings}
-              >
+              <Button variant="contained" onClick={toggleSettings}>
                 <MoreHorizIcon />
               </Button>
             </div>
@@ -339,6 +311,7 @@ export default function ThreeRing() {
               <div className="settings-div">
                 <div className="round-edit">
                   <Button
+                    variant="outlined"
                     onClick={() => setReplaceName(!replaceName)}
                     style={{ fontSize: "10px" }}
                   >
@@ -352,10 +325,7 @@ export default function ThreeRing() {
                     <TableHead>
                       <TableRow sx={{ "&:last-child th": { border: 0 } }}>
                         {roundHeaders.map((header) => (
-                          <StyledTableCell
-                            key={header}
-                            style={{ textAlign: "center" }}
-                          >
+                          <StyledTableCell key={header} className="header">
                             Round {header}
                           </StyledTableCell>
                         ))}
@@ -373,8 +343,6 @@ export default function ThreeRing() {
                   </Table>
                 </div>
                 <div style={{ textAlign: "right", fontSize: "12px" }}>
-                  <p>8's: {pointsOuter}</p>
-                  <p>9's: {pointsInner}</p>
                   <p>Bull's: {bulls}</p>
                   <p style={{ fontWeight: "bold" }}>
                     Total: {totalScore} points
@@ -391,7 +359,6 @@ export default function ThreeRing() {
                   <TextField
                     type="text"
                     label="Game Notes"
-                    placeholder="Game Notes"
                     // value={gameNotes}
                     onChange={(e) => setGameNotes(e.target.value)}
                     onBlur={saveNotes}
@@ -424,14 +391,17 @@ export default function ThreeRing() {
           {" "}
           <GameMenu buttonLabel={buttonLabel} targetOptions={targetOptions} />
         </div>
-        <div className="three-ring" onClick={clickOuter}>
-          <div className="three-ring-inner" onClick={clickInner}>
-            <div className="three-ring-bulls" onClick={clickBull}></div>
+        <div className="bulls-ring">
+          <div className="bulls-ring-inner">
+            <div className="bulls" onClick={clickBull}></div>
           </div>
         </div>
       </div>
       <FormControl className="form-control" fullWidth>
-        <Button variant="contained" onClick={addRound}>
+        <Button
+          variant="contained"
+          onClick={addRound} // Make sure the button adds a round
+        >
           Add Round
         </Button>
       </FormControl>

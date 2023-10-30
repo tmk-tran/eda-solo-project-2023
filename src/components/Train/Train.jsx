@@ -31,122 +31,127 @@ const lightTheme = createTheme({ palette: { mode: "light" } });
 
 export default function Train() {
   const dispatch = useDispatch();
-  const [darkMode, setDarkMode] = useState(false); // Default to light mode
+  const [darkMode, setDarkMode] = useState(true); // Default to light mode
 
   const history = useHistory();
 
   const theme = darkMode ? darkTheme : lightTheme;
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
 
   return (
-    <div
-      className="page-container"
-      style={{ display: "flex", justifyContent: "center" }}
-    >
-      <Grid container spacing={3}>
-        <ThemeProvider theme={theme}>
-          <Grid item xs={12}>
-            <Box
-              sx={{
-                p: 1,
-                bgcolor: "background.paper",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                height: "100vh",
-              }}
+    <div className="page-container">
+      <Box id="train-box-container">
+        <Card
+          id="train-box"
+          elevation={6}
+          style={{ width: "100%", padding: theme.spacing(4) }}
+        >
+          <Typography variant="h5" style={{ marginBottom: theme.spacing(2) }}>
+            Start Training
+          </Typography>
+          <Typography variant="h6" style={{ margin: theme.spacing(2, 0) }}>
+            Quick Start
+          </Typography>
+          <FormControl fullWidth>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => history.push("/quickround")}
             >
-              <Paper elevation={6} style={{ padding: theme.spacing(4) }}>
-                <Typography
-                  variant="h4"
-                  style={{ marginBottom: theme.spacing(2) }}
-                >
-                  Start Training
-                </Typography>
-                <Switch defaultChecked onChange={toggleDarkMode}></Switch>
-                {darkMode ? "Light Mode" : "Dark Mode"}
-                <Typography
-                  variant="h6"
-                  style={{ margin: theme.spacing(2, 0) }}
-                >
-                  Quick Start
-                </Typography>
-                <FormControl fullWidth>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() => history.push("/games")}
-                  >
-                    Start a Game
-                  </Button>
-                </FormControl>
-                <Typography
-                  variant="h6"
-                  style={{ margin: theme.spacing(2, 0) }}
-                >
-                  Quick Game
-                </Typography>
-                <Grid container spacing={2}>
-                  <Grid item xs={6}>
-                    <Item elevation={4}>
-                      <img
-                        id="three-ring-game"
-                        src="images/three-ring.png"
-                        alt="A Three Ring Target"
-                        onClick={() => {
-                          dispatch({ type: "ADD_GAME" });
-                          history.push("/3-ring");
-                        }}
-                      />
-                    </Item>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Item elevation={4}>
-                      <img
-                        id="four-ring-game"
-                        src="images/four-ring.png"
-                        alt="A Four Ring Target"
-                        onClick={() => {
-                          dispatch({ type: "ADD_GAME" });
-                          history.push("/4-ring");
-                        }}
-                      />
-                    </Item>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Item elevation={4}>
-                      <img
-                        id="five-ring-game"
-                        src="images/five-ring.png"
-                        alt="A Five Ring Target"
-                        onClick={() => {
-                          dispatch({ type: "ADD_GAME" });
-                          history.push("/5-ring");
-                        }}
-                      />
-                    </Item>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Item elevation={4}>
-                      <img
-                        id="trap-game"
-                        src="images/clay.png"
-                        alt="A Trap Clay Target, Shattering"
-                        onClick={() => {
-                          dispatch({ type: "ADD_GAME" });
-                          history.push("/trap");
-                        }}
-                      />
-                    </Item>
-                  </Grid>
-                </Grid>
-              </Paper>
-            </Box>
+              Start a Game
+            </Button>
+          </FormControl>
+          <Typography variant="h6" style={{ margin: theme.spacing(2, 0) }}>
+            Quick Game
+          </Typography>
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              <Item elevation={8}>
+                <img
+                  id="three-ring-game"
+                  src="images/three-ring.png"
+                  alt="A Three Ring Target"
+                  onClick={() => {
+                    dispatch({ type: "ADD_GAME" });
+                    history.push("/3-ring");
+                  }}
+                />
+                <Typography>Three Ring</Typography>
+              </Item>
+            </Grid>
+            <Grid item xs={6}>
+              <Item elevation={8}>
+                <img
+                  id="four-ring-game"
+                  src="images/four-ring.png"
+                  alt="A Four Ring Target"
+                  onClick={() => {
+                    dispatch({ type: "ADD_GAME" });
+                    history.push("/4-ring");
+                  }}
+                />
+                <Typography>Four Ring</Typography>
+              </Item>
+            </Grid>
+            <Grid item xs={6}>
+              <Item elevation={8}>
+                <img
+                  id="five-ring-game"
+                  src="images/five-ring.png"
+                  alt="A Five Ring Target"
+                  onClick={() => {
+                    dispatch({ type: "ADD_GAME" });
+                    history.push("/5-ring");
+                  }}
+                />
+                <Typography>Five Ring</Typography>
+              </Item>
+            </Grid>
+            <Grid item xs={6}>
+              <Item elevation={8}>
+                <img
+                  id="trap-game"
+                  src="images/clay.png"
+                  alt="A Trap Clay Target, Shattering"
+                  onClick={() => {
+                    dispatch({ type: "ADD_GAME" });
+                    history.push("/trap");
+                  }}
+                />
+                <Typography>Trap</Typography>
+              </Item>
+            </Grid>
+            <Grid item xs={6}>
+              <Item elevation={8}>
+                <img
+                  id="hits-game"
+                  src="images/crosshair.png"
+                  alt="An image of a crosshair reticle"
+                  onClick={() => {
+                    dispatch({ type: "ADD_GAME" });
+                    history.push("/quickround");
+                  }}
+                  style={{ borderRadius: "50%" }}
+                />
+                <Typography>Hit / Miss</Typography>
+              </Item>
+            </Grid>
+            <Grid item xs={6}>
+              <Item elevation={8}>
+                <img
+                  id="hits-game"
+                  src="images/bullseye.png"
+                  alt="An image of a target with bullseye hit"
+                  onClick={() => {
+                    dispatch({ type: "ADD_GAME" });
+                    history.push("/bulls");
+                  }}
+                />
+                <Typography>Bullseyes Only</Typography>
+              </Item>
+            </Grid>
           </Grid>
-        </ThemeProvider>
-      </Grid>
+        </Card>
+      </Box>
     </div>
   );
 }

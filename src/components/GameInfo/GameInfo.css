@@ -1,0 +1,15 @@
+@media (max-width: 768px) {
+  #game-menu {
+    display: none;
+  }
+}
+
+#game-howto-btn {
+  border-radius: 15px;
+  margin-left: 10px;
+  background-color: rgb(223, 116, 16);
+}
+
+#game-howto-btn:hover {
+  transform: scale(1.1);
+}

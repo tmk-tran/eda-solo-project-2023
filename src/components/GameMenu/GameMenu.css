@@ -1,0 +1,8 @@
+#game-score-button {
+    background-color: rgb(223, 116, 16);
+    border-radius: 15px;
+}
+
+#game-score-button:hover {
+    transform: scale(1.1);
+}

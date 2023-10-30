@@ -61,6 +61,12 @@ Add additional notes about how to deploy this on a live system
 * [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
 * [Maven](https://maven.apache.org/) - Dependency Management
 * [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* Material UI
+* animate.css
+* SweetAlerts
+* Javascript
+* React
+* Node
 
 ## Contributing
 
@@ -71,10 +77,7 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* ** T Mark Schisel ** - Author
 
 ## License
 
@@ -82,9 +85,8 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
 * Thank you to https://css-generators.com/starburst-shape/ for the CSS generator and assisting with creating the animations in the Results commponent of this project
-* Inspiration
+* Emerging Digital Academy, for teaching me the skills to create this project
 * etc
 
 

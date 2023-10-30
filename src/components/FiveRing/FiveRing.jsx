@@ -7,15 +7,27 @@ import "./FiveRing.css";
 import {
   Card,
   CardContent,
-  TextField,
   FormControl,
   Button,
+  TextField,
   Typography,
+  Table,
+  TableBody,
+  TableHead,
+  TableRow,
 } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import EditIcon from "@mui/icons-material/Edit";
+import ClearAllIcon from "@mui/icons-material/ClearAll";
+import QueryStatsIcon from "@mui/icons-material/QueryStats";
 // ~~~~~~~~~~~~~~~ Hooks ~~~~~~~~~~~~~~~~~~
 import getCookie from "../../hooks/cookie";
+import Swal from "sweetalert2";
+// ~~~~~~~~~~~~~~~ Components ~~~~~~~~~~~~~
+import GameInfo from "../GameInfo/GameInfo";
+import GameMenu from "../GameMenu/GameMenu";
 
 export default function FourRing() {
   const dispatch = useDispatch();
@@ -43,13 +55,12 @@ export default function FourRing() {
   const [roundNumber, setRoundNumber] = useState(1);
 
   // Game State ~~~~~~~~~~~~~~~~~~~~~~~~~
-  const [notes, setNotes] = useState(getCookie("notes") || "Notes");
   const [totalScore, setTotalScore] = useState(
     pointsFifth + pointsFourth + pointsOuter + pointsInner + bulls
   );
   const [gameDate, setGameDate] = useState(new Date()); // Initialize with the current date
   console.log("GAME DATE IS:", gameDate);
-  const [gameNotes, setGameNotes] = useState("");
+  const [gameNotes, setGameNotes] = useState(getCookie("notes") || "Notes");
   const [targetName, setTargetName] = useState("5-Ring");
   const [targetScore, setTargetScore] = useState(0); // update this when we decide what it is for
 
@@ -65,6 +76,26 @@ export default function FourRing() {
     // Update the total score in the component state
     setTotalScore(totalScore);
   }, [pointsFifth, pointsFourth, pointsOuter, pointsInner, bulls]);
+
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }));
+
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    "&:nth-of-type(odd)": {
+      backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    "&:last-child td, &:last-child th": {
+      border: 0,
+    },
+  }));
 
   // Bring in Rounds
   const rounds = useSelector((store) => store.roundReducer);
@@ -112,7 +143,7 @@ export default function FourRing() {
 
     // Clear the input fields
     setGameDate(gameDate);
-    setNotes("Notes");
+    setGameNotes("Notes");
     setPointsFifth(0);
     setPointsFourth(0);
     setPointsOuter(0);
@@ -170,13 +201,13 @@ export default function FourRing() {
 
   const saveNotes = (e) => {
     e.preventDefault();
-    document.cookie = `notes=${notes}`;
+    document.cookie = `notes=${gameNotes}`;
     setIsEdit(false);
   };
 
   const saveName = (e) => {
     e.preventDefault();
-    document.cookie = `round=${roundName}`;
+    document.cookie = `round=${targetName}`;
     setReplaceName(false);
   };
 
@@ -215,14 +246,8 @@ export default function FourRing() {
       round_score: newRoundScore,
     };
     console.log("ROUND DATA IS: ", roundData); // remove after confirmation
-    // const roundScoreData = {
-    //   round_id: roundId,
-    //   round_score: newRoundScore,
-    // };
-    // console.log("ROUND SCORE DATA IS: ", roundScoreData); // remove after confirmation
 
     dispatch({ type: "ADD_ROUND", payload: roundData });
-    // dispatch({ type: "ADD_ROUND_SCORE", payload: roundScoreData }); // check roundScoreData
 
     setRoundNumber(roundNumber + 1);
     console.log("ROUND NUMBER IS: ", roundNumber); // remove after confirmation
@@ -247,6 +272,7 @@ export default function FourRing() {
       total_game_score: totalRoundScores, // this is representing the total score of all the rounds for the game
     };
 
+    savedAlert();
     // Dispatch the action with the new target data
     dispatch({ type: "EDIT_GAME", payload: gameData });
 
@@ -256,7 +282,6 @@ export default function FourRing() {
     setTotalScore(0);
     setTargetName("");
     setTargetScore(0);
-    alert("Added Game!");
     history.push("/results");
     resetScore();
   };
@@ -268,6 +293,8 @@ export default function FourRing() {
     document.cookie = "outer=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
     document.cookie = "inner=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
     document.cookie = "bulls=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    document.cookie = "notes=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    document.cookie = "round=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
 
     setPointsFifth(0);
     setPointsFourth(0);
@@ -279,19 +306,49 @@ export default function FourRing() {
     setRoundHeaders([]);
   };
 
+  const savedAlert = () => {
+    Swal.fire({
+      title: "Game Saved!",
+      showClass: {
+        popup: "animate__animated animate__fadeInDown",
+      },
+      hideClass: {
+        popup: "animate__animated animate__fadeOutUp",
+      },
+      confirmButtonColor: "#3085d6",
+    });
+  };
+
+  const buttonLabel = <QueryStatsIcon />;
+  const targetOptions = [
+    `6's: ${pointsFifth}`,
+    `7's: ${pointsFourth}`,
+    `8's: ${pointsOuter}`,
+    `9's: ${pointsInner}`,
+    `10's: ${bulls}`,
+    `Total = ${totalScore}`,
+  ];
+
   return (
-    <div className="page-container">
+    <div
+      className="page-container"
+      style={{ backgroundImage: "none", position: "relative", top: "10px" }}
+    >
       <div className="top-buttons">
-        <button
+        <Button
+          id="cancel-button"
+          variant="outlined"
           onClick={() => {
             resetScore();
-            dispatch({ type: "DELETE_GAME", payload: newGameId })
+            dispatch({ type: "DELETE_GAME", payload: newGameId });
             history.push("/games");
           }}
         >
           Cancel
-        </button>{" "}
-        <button onClick={addGame}>Finish</button>
+        </Button>{" "}
+        <Button id="finish-btn" variant="outlined" onClick={addGame}>
+          Finish
+        </Button>
       </div>
       <div>
         <Card>
@@ -299,19 +356,19 @@ export default function FourRing() {
             <div className="game-header">
               {!replaceName ? (
                 <div>
-                  <Typography variant="h6">{roundName}</Typography>
+                  <Typography variant="h6">{targetName}</Typography>
                 </div>
               ) : (
                 <input
                   type="text"
-                  value={roundName}
-                  onChange={(e) => setRoundName(e.target.value)}
+                  value={targetName}
+                  onChange={(e) => setTargetName(e.target.value)}
                   onBlur={saveName}
                 />
               )}
-              <button variant="contained" onClick={toggleSettings}>
+              <Button variant="contained" onClick={toggleSettings}>
                 <MoreHorizIcon />
-              </button>
+              </Button>
             </div>
             {showSettings ? (
               <div className="settings-div">
@@ -322,31 +379,31 @@ export default function FourRing() {
                     style={{ fontSize: "10px" }}
                   >
                     <EditIcon />
-                    Edit
+                    Edit Name
                   </Button>
                   <br />
                 </div>
                 <div className="round-table">
-                  <table>
-                    <thead>
-                      <tr>
+                  <Table sx={{ minWidth: 250 }} size="small">
+                    <TableHead>
+                      <TableRow sx={{ "&:last-child th": { border: 0 } }}>
                         {roundHeaders.map((header) => (
-                          <th key={header} className="header">
+                          <StyledTableCell key={header} className="header">
                             Round {header}
-                          </th>
+                          </StyledTableCell>
                         ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      <StyledTableRow>
                         {roundScores.map((score, index) => (
                           <td key={index} className="score">
                             {score}
                           </td>
                         ))}
-                      </tr>
-                    </tbody>
-                  </table>
+                      </StyledTableRow>
+                    </TableBody>
+                  </Table>
                 </div>
                 <div style={{ textAlign: "right", fontSize: "12px" }}>
                   <p>6's: {pointsFifth}</p>
@@ -357,17 +414,20 @@ export default function FourRing() {
                   <p style={{ fontWeight: "bold" }}>
                     Total: {totalScore} points
                   </p>
-                  <button onClick={clearScores}>Clear</button>
+                  <Button onClick={clearScores} style={{ color: "red" }}>
+                    <ClearAllIcon /> Clear
+                  </Button>{" "}
                 </div>
               </div>
             ) : (
               <>
                 {isEdit ? (
                   // Render an input field in edit mode
-                  <input
+                  <TextField
                     type="text"
-                    value={notes}
-                    onChange={(e) => setNotes(e.target.value)}
+                    label="Game Notes"
+                    // value={gameNotes}
+                    onChange={(e) => setGameNotes(e.target.value)}
                     onBlur={saveNotes}
                   />
                 ) : (
@@ -375,12 +435,13 @@ export default function FourRing() {
                   <>
                     {/* <GameTimer /> gameId={game_id} */}
                     <Typography
+                      id="notes-edit"
                       variant="h7"
                       onClick={() => {
                         setIsEdit(!isEdit);
                       }}
                     >
-                      {notes}
+                      {gameNotes}
                     </Typography>
                   </>
                 )}
@@ -390,6 +451,13 @@ export default function FourRing() {
         </Card>
       </div>
       <div className="container">
+        <div className="game-menu">
+          <GameInfo />
+        </div>
+        <div className="game-menu2">
+          {" "}
+          <GameMenu buttonLabel={buttonLabel} targetOptions={targetOptions} />
+        </div>
         <div className="fifth-ring" onClick={clickFifth}>
           <div className="fourth-ring2" onClick={clickFourth}>
             <div className="third-ring2" onClick={clickOuter}>

@@ -12,9 +12,8 @@ const userRouter = require("./routes/user.router");
 const gamesRouter = require("./routes/games.router");
 const roundsRouter = require("./routes/rounds.router");
 const sumRoundRouter = require("./routes/sumRound.router");
-// const scoresRouter = require("./routes/scores.router");
-
 const totalRoundsRouter = require("./routes/totalRounds.router");
+const roundScoreAvgRouter = require("./routes/roundScoreAvg.router");
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -31,9 +30,9 @@ app.use(passport.session());
 app.use("/api/user", userRouter);
 app.use("/api/games", gamesRouter);
 app.use("/api/rounds", roundsRouter);
-// app.use("/api/scores", scoresRouter);
 app.use("/api/sum-round", sumRoundRouter);
 app.use("/api/total-rounds", totalRoundsRouter);
+app.use("/api/round-avg", roundScoreAvgRouter);
 
 // Serve static files
 app.use(express.static("build"));

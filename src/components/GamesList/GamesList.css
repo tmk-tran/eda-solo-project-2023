@@ -1,14 +1,3 @@
-.list-buttons {
-  margin-top: 15px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.list-header {
-  display: flex;
-  justify-content: space-between;
-}
-
 .list-header {
   display: flex;
   justify-content: space-between;
@@ -19,39 +8,20 @@
   flex-wrap: wrap;
 }
 
-/* .edit-field { */
-  /* flex-basis: 50%; Two fields per row, adjust as needed */
-  /* margin-bottom: 10px;
-} */
-
-/* Style labels in edit mode */
-/* .edit-field label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-} */
-
-/* Style input fields in edit mode */
-/* .edit-field input,
-.edit-field textarea {
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-} */
+#edit-card {
+  width: 100%;
+  height: 100%;
+}
 
 .list-buttons {
-  margin-top: 10px;
+  margin: 5px 20px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
 /* Style the Delete button */
 .list-buttons button {
-  /* margin-left: 10px; */
-  /* color: white; */
-  /* border: none; */
-  border-radius: 5px;
-  /* padding: 5px 10px; */
+  border-radius: 10px;
   cursor: pointer;
 }
 
@@ -61,20 +31,65 @@
   /* justify-content: space-between; */
 }
 
+/* Style for game history Card */
+#history-card {
+  width: 70%;
+  margin-right: 5px;
+  min-width: 50vh;
+}
+
 /* Style for the Game history data */
 .game-history {
   text-align: left;
-} 
+}
 
-#games-list-card {
+#games-list-card { /* no need to adjust, card within history-paper */
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+/* Style for game information table display */
+.game-list-display-container {
+  display: flex;
+}
+
+/* Card for Round info */
+.round-info { /* no need to adjust */
+  border: 1px solid rgb(1, 34, 1);
+  width: 100%;
+  min-width: 25vh;
+}
+
+#round-scores {
+  margin-left: 5px;
+  color: #cbcbd3;
+  text-align: center;
+  padding: 15px;
+}
+
+/* style for GamesList container, in History component */
+#history-paper {
   width: 50%;
   margin: 0 auto;
 }
 
 /* Media query for smaller screens (e.g., mobile) */
 @media (max-width: 768px) {
-  #games-list-card {
+  #games-list-card,
+  #edit-card {
     width: 100%;
-    /* margin: 0 auto; */
+  }
+
+  .round-info {
+    display: none;
+  }
+
+  #history-card {
+    margin-right: 0;
+  }
+
+  #history-paper {
+    width: 100%;
+    min-width: auto;
   }
 }

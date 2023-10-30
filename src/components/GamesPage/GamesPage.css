@@ -20,6 +20,11 @@
 #trap-game:hover,
 #hits-game:hover {
   transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(255, 223, 186, 0.7); /* Adjust the values for the glow color and size */
+}
+
+#hits-game:hover {
+  border-radius: 15px;
 }
 
 #hits-game {
@@ -28,14 +33,21 @@
 }
 
 #games-page-card {
-  height: 100vh;
-  background-color: aliceblue;
+  /* height: 100vh; */
+  border-radius: 10px;
   overflow-y: auto;
+  height: 100%;
+  margin-top: 45px;
 }
 
 /* Media query for smaller screens (e.g., mobile) */
 @media (max-width: 768px) {
   #games-page-card {
-    height: 100vh;
+    width: 100vh;
+    height: auto;
+    margin-top: 45px;
+  }
+  .Grid {
+    width: 100vh;
   }
 }
