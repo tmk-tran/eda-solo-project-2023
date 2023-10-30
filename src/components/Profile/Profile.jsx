@@ -49,7 +49,8 @@ export default function Profile({ user }) {
   console.log("Last ten games: ", lastTenGames);
 
   const scoresArrayTen = lastTenGames.map((game) => game.total_game_score);
-
+  const scoresArrayFive = lastFiveGames.map((game) => game.total_game_score);
+   
   const showAlert = () => {
     Swal.fire({
       title: "Edit Profile Username",
@@ -145,12 +146,12 @@ export default function Profile({ user }) {
           <Typography variant="h6">Dashboard</Typography>
           <br />
           <div style={{ display: "flex", flexDirection: "row" }}>
-            <Card elevation={12}>
+            <Card elevation={12} style={{ borderRadius: "10px" }}>
               <CardContent>
-                <LineDot userId={userId} scoresArrayTen={scoresArrayTen} />
+                <LineDot userId={userId} scoresArrayTen={scoresArrayTen} scoresArrayFive={scoresArrayFive} />
                 <Card elevation={5} style={{ borderRadius: "10px" }}>
                   <CardContent style={{ textAlign: "center" }}>
-                    Data from the last 10 games
+                    <Typography>Data from the last 10 games</Typography>
                   </CardContent>
                 </Card>
               </CardContent>
