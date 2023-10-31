@@ -26,7 +26,8 @@ Before you get started, make sure you have the following software installed on y
 ### Installing
 
 ## Development Setup Instructions
-
+- Create a database named 'your database name',
+- The queries in the database.sql file are set up to create all the necessary tables and populate the needed data to allow the application to run correctly. The project is built on Postgres, so you will need to make sure to have that installed. We recommend using Postico to run those queries as that was used to create the queries.
 - Run `npm install`
 - Create a `.env` file at the root of the project and paste this line into the file:
   ```
