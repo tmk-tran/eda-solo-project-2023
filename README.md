@@ -10,9 +10,10 @@ Some features:
 - View analysis of your shooting performance
 - Record notes/goals to further measure your improvement
 
-## Getting Started
+### Authors
+*** T Mark Schisel *** - Author
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+## Getting Started
 
 ### Prerequisites
 
@@ -51,9 +52,6 @@ Add additional notes about how to deploy this on a live system
 * animate.css
 * SweetAlerts
 * Javascript
-
-### Authors
-*** T Mark Schisel *** - Author
 
 ## License
 
