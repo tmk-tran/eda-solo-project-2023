@@ -1,96 +1,25 @@
-# Project Title
+## Debugging
 
-One Paragraph of project description goes here
+To debug, you will need to run the client-side separately from the server. Start the client by running the command `npm run client`. Start the debugging server by selecting the Debug button.
 
-## Getting Started
+![VSCode Toolbar](documentation/images/vscode-toolbar.png)
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+Then make sure `Launch Program` is selected from the dropdown, then click the green play arrow.
 
-### Prerequisites
+## Production Build
 
-What things you need to install the software and how to install them
+Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
 
-```
-Give examples
-```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
+- Start postgres if not running already by using `brew services start postgresql`
+- Run `npm start`
+- Navigate to `localhost:5000`
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-* Material UI
-* animate.css
-* SweetAlerts
-* Javascript
-* React
-* Node
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-* ** T Mark Schisel ** - Author
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Thank you to https://css-generators.com/starburst-shape/ for the CSS generator and assisting with creating the animations in the Results commponent of this project
-* Emerging Digital Academy, for teaching me the skills to create this project
-* etc
-
-
-## Dependencies
-* npm install chart.js
-* npm install js-cookie
-* Material UI
+1. Create a new Heroku project
+1. Link the Heroku project to the project GitHub Repo
+1. Create an Heroku Postgres database
+1. Connect to the Heroku Postgres database from Postico
+1. Create the necessary tables
+1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
+1. In the deploy section, select manual deploy
