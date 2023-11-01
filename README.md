@@ -108,7 +108,7 @@ Before you get started, make sure you have the following software installed on y
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+*** ( Adding additional notes about how to deploy this on a live system )***
 
 ## Built With
 
@@ -127,11 +127,12 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Thank you to https://css-generators.com/starburst-shape/ for the CSS generator and assisting with creating the animations in the Results commponent of this project
 * Emerging Digital Academy, for teaching me the skills to create this project
+* Thank you to https://css-generators.com/starburst-shape/ for the CSS generator and assisting with creating the animations in the Results commponent of this project
 
 ## Dependencies
 * npm install js-cookie
 * Material UI
 * Material UI x-charts
+* Sweet Alerts
 * A full list of dependencies can be found in `package.json`
