@@ -35,7 +35,7 @@ Whether you are a novice or an experienced shooter, ScoreMark can assist you in 
 2. History
 
 - Displays games played by user
-- Ability to edit a game
+- Ability to edit a game:
   - Date
   - Notes
   - Game Name
