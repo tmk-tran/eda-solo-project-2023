@@ -142,7 +142,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Dependencies
 
-- npm install js-cookie
 - Material UI
 - Material UI x-charts
 - Sweet Alerts
