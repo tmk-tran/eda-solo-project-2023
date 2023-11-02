@@ -13,7 +13,7 @@ Some features:
 
 ### Author
 
-**_ T Mark Schisel _**
+## T Mark Schisel ##
 
 ### Project Mission:
 
@@ -27,30 +27,31 @@ Whether you are a novice or an experienced shooter, ScoreMark can assist you in 
 
 1. Profile
 
-- Displays username and total rounds played
-- Two graph views of the last 10 games played
-  - option to toggle view to most recent 5 games
-- Setting to edit username
+  - Displays username and total rounds played
+  - Two graph views of the last 10 games played
+    - option to toggle view to most recent 5 games
+  - Setting to edit username
 
 2. History
 
-- Displays games played by user
-- Ability to edit a game:
-  - Date
-  - Notes
-  - Game Name
-  - Total Score
-  - Target Score Value
-- Option to delete a game
+  - Displays games played by user
+  - Ability to edit a game:
+    - Date
+    - Notes
+    - Game Name
+    - Total Score
+    - Target Score Value
+  - Option to delete a game
 
 3. Train
 
-- Dashboard for navigating to different targets, with example pictures
-- Can start a quick game, where user can log hits or misses on a target
+  - Dashboard for navigating to different targets, with example pictures
+  - Can start a quick game, where user can log hits or misses on a target
 
 4. Games
 
-- Displays a list of game modes
+  - Displays a list of game modes
+
   ## Three Ring
       This 3-Ring Target Game Mode is perfect for those
       looking to refine their shooting precision. Concentrate on
@@ -82,12 +83,12 @@ Whether you are a novice or an experienced shooter, ScoreMark can assist you in 
 
 5. About
 
-- Displays information about the application, its intended use, and some safety information
-- Author contact information, links to GitHub and LinkedIn
+  - Displays information about the application, its intended use, and some safety information
+  - Author contact information, links to GitHub and LinkedIn
 
 6. Light / Dark Mode
 
-- Switch in the bottom left corner toggles between light and dark mode
+  - Switch in the bottom left corner toggles between light and dark mode
 
 ## Getting Started
 
