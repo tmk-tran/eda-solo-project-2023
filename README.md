@@ -53,33 +53,33 @@ Whether you are a novice or an experienced shooter, ScoreMark can assist you in 
   - Displays a list of game modes
 
   ## Three Ring
-    This 3-Ring Target Game Mode is perfect for those
+  This 3-Ring Target Game Mode is perfect for those
   looking to refine their shooting precision. Concentrate on
   hitting the different rings to score points. This mode
   offers a great way to enhance your aim and enjoy the
   satisfaction of hitting your target. Are you up for the
   challenge? Give it a shot!
   ## 4-Ring
-    Sharpen your shooting accuracy with the Four Ring Target
+  Sharpen your shooting accuracy with the Four Ring Target
   Game Mode. Focus on hitting the smaller target areas to
   earn higher scores. Challenge yourself to aim for the
   center and achieve the elusive bullseye. Whether you're a
   beginner or a seasoned shooter, this mode offers an
   exciting test of your marksmanship skills.
   ## 5-Ring
-    Experience the thrill of precision shooting with the
+  Experience the thrill of precision shooting with the
   5-Ring Target Game Mode. Test your accuracy and focus as
   you aim for the center of the target. Hit the bullseye to
   maximize your score. Perfect for both novice and expert
   marksmen, this mode will challenge your shooting skills
   and keep you coming back for more.
   ## Hits / Miss
-      Record Hits/Misses on a target
+  Record Hits/Misses on a target
   ## Trap
-      Record your shooting scores for each round of trap
+  Record your shooting scores for each round of trap
   shooting
   ## Bullseyes Only
-      Record your shooting scores for bullseye hits only
+  Record your shooting scores for bullseye hits only
 
 5. About
 
