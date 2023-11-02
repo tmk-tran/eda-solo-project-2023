@@ -25,14 +25,14 @@ Emerging Digital Academy is an immersive 20-week program that empowers learners 
 
 Whether you are a novice or an experienced shooter, ScoreMark can assist you in honing your skills and achieving your shooting goals.
 
-1. ## Profile
+## 1. Profile
 
   - Displays username and total rounds played
   - Two graph views of the last 10 games played
     - option to toggle view to most recent 5 games
   - Setting to edit username
 
-2. History
+## 2. History
 
   - Displays games played by user
   - Ability to edit a game:
@@ -43,50 +43,50 @@ Whether you are a novice or an experienced shooter, ScoreMark can assist you in 
     - Target Score Value
   - Option to delete a game
 
-3. Train
+## 3. Train
 
   - Dashboard for navigating to different targets, with example pictures
   - Can start a quick game, where user can log hits or misses on a target
 
-4. Games
+## 4. Games
 
   - Displays a list of game modes
 
-  ## Three Ring
+  # Three Ring
   This 3-Ring Target Game Mode is perfect for those
   looking to refine their shooting precision. Concentrate on
   hitting the different rings to score points. This mode
   offers a great way to enhance your aim and enjoy the
   satisfaction of hitting your target. Are you up for the
   challenge? Give it a shot!
-  ## 4-Ring
+  # 4-Ring
   Sharpen your shooting accuracy with the Four Ring Target
   Game Mode. Focus on hitting the smaller target areas to
   earn higher scores. Challenge yourself to aim for the
   center and achieve the elusive bullseye. Whether you're a
   beginner or a seasoned shooter, this mode offers an
   exciting test of your marksmanship skills.
-  ## 5-Ring
+  # 5-Ring
   Experience the thrill of precision shooting with the
   5-Ring Target Game Mode. Test your accuracy and focus as
   you aim for the center of the target. Hit the bullseye to
   maximize your score. Perfect for both novice and expert
   marksmen, this mode will challenge your shooting skills
   and keep you coming back for more.
-  ## Hits / Miss
+  # Hits / Miss
   Record Hits/Misses on a target
-  ## Trap
+  # Trap
   Record your shooting scores for each round of trap
   shooting
-  ## Bullseyes Only
+  # Bullseyes Only
   Record your shooting scores for bullseye hits only
 
-5. About
+## 5. About
 
   - Displays information about the application, its intended use, and some safety information
   - Author contact information, links to GitHub and LinkedIn
 
-6. Light / Dark Mode
+## 6. Light / Dark Mode
 
   - Switch in the bottom left corner toggles between light and dark mode
 
