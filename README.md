@@ -25,7 +25,7 @@ Emerging Digital Academy is an immersive 20-week program that empowers learners 
 
 Whether you are a novice or an experienced shooter, ScoreMark can assist you in honing your skills and achieving your shooting goals.
 
-1. Profile
+1. ## Profile
 
   - Displays username and total rounds played
   - Two graph views of the last 10 games played
