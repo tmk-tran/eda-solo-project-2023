@@ -67,7 +67,7 @@ Whether you are a novice or an experienced shooter, ScoreMark can assist you in 
   
   - Displays a list of game modes
 
-  ## Games
+  ## Games List
   ### Three Ring
   This 3-Ring Target Game Mode is perfect for those
   looking to refine their shooting precision. Concentrate on
