@@ -106,16 +106,12 @@ Whether you are a novice or an experienced shooter, ScoreMark can assist you in 
 
   - It was a stretch goal of mine to be able to have a mobile view for this application
 
-![3-Ring Mobile View](image-6.png)
 <img src="image-6.png" alt="3-Ring mobile view" width="300" height="550">
 
-![Quick Round Mobile VIew](image-7.png)
 <img src="image-7.png" alt="Quick Round mobile view" width="300" height="550">
 
-![Trap Mobile View](image-8.png)
 <img src="image-8.png" alt="Trap mobile view" width="300" height="550">
 
-<!-- ![Bullseye Only Mobile View](image-9.png) -->
 <img src="image-9.png" alt="Bullseye only game view" width="300" height="550">
 
 
