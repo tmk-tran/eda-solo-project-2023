@@ -15,6 +15,13 @@ Some features:
 
 ## T Mark Schisel ##
 
+## Table of Contents
+- [About](#usage)
+- [Games](#games)
+- [Install](#getting-started)
+- [Thanks](#acknowledgments)
+- [Dependencies](#dependencies)
+
 ### Project Mission:
 
 This application was developed to address the need for a way to track my scores while at the shooting range, as well as have the ability to visualize personal improvement. This was also created as my Solo Project for my course work at Emerging Digital Academy.
@@ -57,9 +64,10 @@ Whether you are a novice or an experienced shooter, ScoreMark can assist you in 
 ![Train](image-3.png)  
 
 ## 4. Games
-
+  
   - Displays a list of game modes
 
+  ## Games
   ### Three Ring
   This 3-Ring Target Game Mode is perfect for those
   looking to refine their shooting precision. Concentrate on
