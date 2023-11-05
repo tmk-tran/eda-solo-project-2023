@@ -25,12 +25,16 @@ Emerging Digital Academy is an immersive 20-week program that empowers learners 
 
 Whether you are a novice or an experienced shooter, ScoreMark can assist you in honing your skills and achieving your shooting goals.
 
+![Login Screen](image.png)
+
 ## 1. Profile
 
   - Displays username and total rounds played
   - Two graph views of the last 10 games played
     - option to toggle view to most recent 5 games
   - Setting to edit username
+
+![Profile](image-1.png)
 
 ## 2. History
 
@@ -43,10 +47,14 @@ Whether you are a novice or an experienced shooter, ScoreMark can assist you in 
     - Target Score Value
   - Option to delete a game
 
+![History](image-2.png)
+
 ## 3. Train
 
   - Dashboard for navigating to different targets, with example pictures
   - Can start a quick game, where user can log hits or misses on a target
+
+![Train](image-3.png)  
 
 ## 4. Games
 
@@ -81,14 +89,30 @@ Whether you are a novice or an experienced shooter, ScoreMark can assist you in 
   ### Bullseyes Only
   Record your shooting scores for bullseye hits only
 
+![Games](image-4.png)  
+
 ## 5. About
 
   - Displays information about the application, its intended use, and some safety information
   - Author contact information, links to GitHub and LinkedIn
 
+![About](image-5.png)
+
 ## 6. Light / Dark Mode
 
   - Switch in the bottom left corner toggles between light and dark mode
+
+## 7. Mobile View
+
+  - It was a stretch goal of mine to be able to have a mobile view for this application
+
+![3-Ring Mobile View](image-6.png)
+
+![Quick Round Mobile VIew](image-7.png)
+
+![Trap Mobile View](image-8.png)
+
+![Bullseye Only Mobile View](image-9.png)
 
 ## Getting Started
 

@@ -275,6 +275,7 @@ export default function Bulls() {
       <div className="top-buttons">
         <Button
           id="cancel-button"
+          variant="outlined"
           onClick={() => {
             resetScore();
             dispatch({ type: "DELETE_GAME", payload: newGameId });

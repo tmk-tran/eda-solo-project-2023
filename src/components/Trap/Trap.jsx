@@ -383,7 +383,7 @@ export default function Trap() {
           </CardContent>
         </Card>
       </div>
-      <h1>Trap</h1>
+      {/* <h1>Trap</h1> */}
       <Typography style={{ textAlign: "center" }}>
         <img
           src="/images/clay.png"
