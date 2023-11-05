@@ -113,7 +113,7 @@ Whether you are a novice or an experienced shooter, ScoreMark can assist you in 
 ![Trap Mobile View](image-8.png)
 
 <!-- ![Bullseye Only Mobile View](image-9.png) -->
-<img src="image-9.png" alt="Bullseye only game view" width="300" height="600">
+<img src="image-9.png" alt="Bullseye only game view" width="300" height="550">
 
 
 ## Getting Started
