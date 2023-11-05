@@ -106,8 +106,6 @@ Whether you are a novice or an experienced shooter, ScoreMark can assist you in 
 
   - It was a stretch goal of mine to be able to have a mobile view for this application
 
-<img src="image-6.png" alt="3-Ring mobile view" width="300" height="550">
-
 <img src="image-7.png" alt="Quick Round mobile view" width="300" height="550">
 
 <img src="image-8.png" alt="Trap mobile view" width="300" height="550">
