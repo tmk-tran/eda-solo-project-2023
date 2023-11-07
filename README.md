@@ -170,7 +170,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 - Emerging Digital Academy, for teaching me the skills to create this project
-- Thank you to https://css-generators.com/starburst-shape/ for the CSS generator and assisting with creating the animations in the Results commponent of this project
+- Thank you to https://css-generators.com/starburst-shape/ for the CSS generator and assisting with creating the animations in the Results component of this project
 
 ## Dependencies
 
